@@ -144,7 +144,7 @@ const file_auth_v1_type_proto_rawDesc = "" +
 	"\x06status\x18\x01 \x01(\tR\x06status\x12\x12\n" +
 	"\x04code\x18\x02 \x01(\x05R\x04code\x12\x18\n" +
 	"\amessage\x18\x03 \x01(\tR\amessage\x12\x16\n" +
-	"\x06result\x18\x04 \x01(\tR\x06resultB7Z5github.com/Newcode05/qm_be/contracts/gen/auth/v1;authb\x06proto3"
+	"\x06result\x18\x04 \x01(\tR\x06resultB1Z/github.com/Newcode05/contracts/gen/auth/v1;authb\x06proto3"
 
 var (
 	file_auth_v1_type_proto_rawDescOnce sync.Once

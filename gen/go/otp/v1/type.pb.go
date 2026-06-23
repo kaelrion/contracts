@@ -576,7 +576,7 @@ const file_otp_v1_type_proto_rawDesc = "" +
 	"identifier\x12\x19\n" +
 	"\botp_code\x18\x04 \x01(\tR\aotpCode\"+\n" +
 	"\x11VerifyOTPResponse\x12\x16\n" +
-	"\x06result\x18\x01 \x01(\bR\x06resultB5Z3github.com/Newcode05/qm_be/contracts/gen/otp/v1;otpb\x06proto3"
+	"\x06result\x18\x01 \x01(\bR\x06resultB/Z-github.com/Newcode05/contracts/gen/otp/v1;otpb\x06proto3"
 
 var (
 	file_otp_v1_type_proto_rawDescOnce sync.Once

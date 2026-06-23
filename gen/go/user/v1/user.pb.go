@@ -175,7 +175,7 @@ const file_user_v1_user_proto_rawDesc = "" +
 	"\x06exists\x18\x01 \x01(\bR\x06exists2T\n" +
 	"\vUserService\x12E\n" +
 	"\n" +
-	"ExistsUser\x12\x1a.user.v1.ExistsUserRequest\x1a\x1b.user.v1.ExistsUserResponseB7Z5github.com/Newcode05/qm_be/contracts/gen/user/v1;userb\x06proto3"
+	"ExistsUser\x12\x1a.user.v1.ExistsUserRequest\x1a\x1b.user.v1.ExistsUserResponseB1Z/github.com/Newcode05/contracts/gen/user/v1;userb\x06proto3"
 
 var (
 	file_user_v1_user_proto_rawDescOnce sync.Once
