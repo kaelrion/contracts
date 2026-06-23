@@ -1,0 +1,16 @@
+syntax="proto3";
+
+package auth.v1;
+
+option go_package="github.com/Newcode05/contracts/gen/auth/v1;auth";
+
+message CheckEmailRequest {
+    string email = 1;
+}
+
+message CheckEmailResponse {
+    string status = 1;
+    int32 code = 2;
+    string message = 3;
+    string result = 4;
+}

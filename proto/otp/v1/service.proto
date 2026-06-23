@@ -1,0 +1,12 @@
+syntax="proto3";
+
+package otp.v1;
+
+option go_package="github.com/Newcode05/contracts/gen/otp/v1;otp";
+
+import "otp/v1/type.proto";
+service OTPService {
+    rpc Create(CreateOTPRequest) returns (CreateOTPResponse);
+    rpc Verify(VerifyOTPRequest) returns (VerifyOTPResponse);
+}
+

@@ -1,0 +1,22 @@
+syntax="proto3";
+
+package user.v1;
+
+option go_package = "github.com/Newcode05/contracts/gen/user/v1;user";
+
+message User {
+  string id       = 1;
+  string username = 2;
+}
+
+message ExistsUserRequest {
+  string id = 1;
+}
+
+message ExistsUserResponse {
+  bool exists = 1;
+}
+service UserService {
+  rpc ExistsUser(ExistsUserRequest) returns (ExistsUserResponse);
+
+}
