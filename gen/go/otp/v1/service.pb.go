@@ -24,11 +24,10 @@ var File_otp_v1_service_proto protoreflect.FileDescriptor
 
 const file_otp_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x14otp/v1/service.proto\x12\x06otp.v1\x1a\x11otp/v1/type.proto2\x8a\x01\n" +
-	"\n" +
-	"OTPService\x12=\n" +
+	"\x14otp/v1/service.proto\x12\x06otp.v1\x1a\x11otp/v1/type.proto2\x87\x01\n" +
+	"\aService\x12=\n" +
 	"\x06Create\x12\x18.otp.v1.CreateOTPRequest\x1a\x19.otp.v1.CreateOTPResponse\x12=\n" +
-	"\x06Verify\x12\x18.otp.v1.VerifyOTPRequest\x1a\x19.otp.v1.VerifyOTPResponseB/Z-github.com/Newcode05/contracts/gen/otp/v1;otpb\x06proto3"
+	"\x06Verify\x12\x18.otp.v1.VerifyOTPRequest\x1a\x19.otp.v1.VerifyOTPResponseB+Z)github.com/Newcode05/contracts/otp/v1;otpb\x06proto3"
 
 var file_otp_v1_service_proto_goTypes = []any{
 	(*CreateOTPRequest)(nil),  // 0: otp.v1.CreateOTPRequest
@@ -37,10 +36,10 @@ var file_otp_v1_service_proto_goTypes = []any{
 	(*VerifyOTPResponse)(nil), // 3: otp.v1.VerifyOTPResponse
 }
 var file_otp_v1_service_proto_depIdxs = []int32{
-	0, // 0: otp.v1.OTPService.Create:input_type -> otp.v1.CreateOTPRequest
-	1, // 1: otp.v1.OTPService.Verify:input_type -> otp.v1.VerifyOTPRequest
-	2, // 2: otp.v1.OTPService.Create:output_type -> otp.v1.CreateOTPResponse
-	3, // 3: otp.v1.OTPService.Verify:output_type -> otp.v1.VerifyOTPResponse
+	0, // 0: otp.v1.Service.Create:input_type -> otp.v1.CreateOTPRequest
+	1, // 1: otp.v1.Service.Verify:input_type -> otp.v1.VerifyOTPRequest
+	2, // 2: otp.v1.Service.Create:output_type -> otp.v1.CreateOTPResponse
+	3, // 3: otp.v1.Service.Verify:output_type -> otp.v1.VerifyOTPResponse
 	2, // [2:4] is the sub-list for method output_type
 	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

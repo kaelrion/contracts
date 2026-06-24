@@ -1,0 +1,16 @@
+syntax="proto3";
+
+package otp.v1;
+
+option go_package="github.com/Newcode05/contracts/otp/v1;otp";
+
+enum ErrorCode {
+  ERROR_CODE_UNSPECIFIED = 0;
+  OTP_INVALID            = 1;
+  OTP_EXPIRED            = 2;
+  OTP_MAX_ATTEMPT_RESEND = 3;
+}
+
+message Error {
+  ErrorCode Code = 1;
+}

@@ -19,139 +19,139 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	OTPService_Create_FullMethodName = "/otp.v1.OTPService/Create"
-	OTPService_Verify_FullMethodName = "/otp.v1.OTPService/Verify"
+	Service_Create_FullMethodName = "/otp.v1.Service/Create"
+	Service_Verify_FullMethodName = "/otp.v1.Service/Verify"
 )
 
-// OTPServiceClient is the client API for OTPService service.
+// ServiceClient is the client API for Service service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type OTPServiceClient interface {
+type ServiceClient interface {
 	Create(ctx context.Context, in *CreateOTPRequest, opts ...grpc.CallOption) (*CreateOTPResponse, error)
 	Verify(ctx context.Context, in *VerifyOTPRequest, opts ...grpc.CallOption) (*VerifyOTPResponse, error)
 }
 
-type oTPServiceClient struct {
+type serviceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewOTPServiceClient(cc grpc.ClientConnInterface) OTPServiceClient {
-	return &oTPServiceClient{cc}
+func NewServiceClient(cc grpc.ClientConnInterface) ServiceClient {
+	return &serviceClient{cc}
 }
 
-func (c *oTPServiceClient) Create(ctx context.Context, in *CreateOTPRequest, opts ...grpc.CallOption) (*CreateOTPResponse, error) {
+func (c *serviceClient) Create(ctx context.Context, in *CreateOTPRequest, opts ...grpc.CallOption) (*CreateOTPResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateOTPResponse)
-	err := c.cc.Invoke(ctx, OTPService_Create_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Service_Create_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *oTPServiceClient) Verify(ctx context.Context, in *VerifyOTPRequest, opts ...grpc.CallOption) (*VerifyOTPResponse, error) {
+func (c *serviceClient) Verify(ctx context.Context, in *VerifyOTPRequest, opts ...grpc.CallOption) (*VerifyOTPResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(VerifyOTPResponse)
-	err := c.cc.Invoke(ctx, OTPService_Verify_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Service_Verify_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// OTPServiceServer is the server API for OTPService service.
-// All implementations must embed UnimplementedOTPServiceServer
+// ServiceServer is the server API for Service service.
+// All implementations must embed UnimplementedServiceServer
 // for forward compatibility.
-type OTPServiceServer interface {
+type ServiceServer interface {
 	Create(context.Context, *CreateOTPRequest) (*CreateOTPResponse, error)
 	Verify(context.Context, *VerifyOTPRequest) (*VerifyOTPResponse, error)
-	mustEmbedUnimplementedOTPServiceServer()
+	mustEmbedUnimplementedServiceServer()
 }
 
-// UnimplementedOTPServiceServer must be embedded to have
+// UnimplementedServiceServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedOTPServiceServer struct{}
+type UnimplementedServiceServer struct{}
 
-func (UnimplementedOTPServiceServer) Create(context.Context, *CreateOTPRequest) (*CreateOTPResponse, error) {
+func (UnimplementedServiceServer) Create(context.Context, *CreateOTPRequest) (*CreateOTPResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedOTPServiceServer) Verify(context.Context, *VerifyOTPRequest) (*VerifyOTPResponse, error) {
+func (UnimplementedServiceServer) Verify(context.Context, *VerifyOTPRequest) (*VerifyOTPResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Verify not implemented")
 }
-func (UnimplementedOTPServiceServer) mustEmbedUnimplementedOTPServiceServer() {}
-func (UnimplementedOTPServiceServer) testEmbeddedByValue()                    {}
+func (UnimplementedServiceServer) mustEmbedUnimplementedServiceServer() {}
+func (UnimplementedServiceServer) testEmbeddedByValue()                 {}
 
-// UnsafeOTPServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to OTPServiceServer will
+// UnsafeServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ServiceServer will
 // result in compilation errors.
-type UnsafeOTPServiceServer interface {
-	mustEmbedUnimplementedOTPServiceServer()
+type UnsafeServiceServer interface {
+	mustEmbedUnimplementedServiceServer()
 }
 
-func RegisterOTPServiceServer(s grpc.ServiceRegistrar, srv OTPServiceServer) {
-	// If the following call panics, it indicates UnimplementedOTPServiceServer was
+func RegisterServiceServer(s grpc.ServiceRegistrar, srv ServiceServer) {
+	// If the following call panics, it indicates UnimplementedServiceServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&OTPService_ServiceDesc, srv)
+	s.RegisterService(&Service_ServiceDesc, srv)
 }
 
-func _OTPService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Service_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateOTPRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OTPServiceServer).Create(ctx, in)
+		return srv.(ServiceServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: OTPService_Create_FullMethodName,
+		FullMethod: Service_Create_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OTPServiceServer).Create(ctx, req.(*CreateOTPRequest))
+		return srv.(ServiceServer).Create(ctx, req.(*CreateOTPRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _OTPService_Verify_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Service_Verify_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(VerifyOTPRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OTPServiceServer).Verify(ctx, in)
+		return srv.(ServiceServer).Verify(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: OTPService_Verify_FullMethodName,
+		FullMethod: Service_Verify_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OTPServiceServer).Verify(ctx, req.(*VerifyOTPRequest))
+		return srv.(ServiceServer).Verify(ctx, req.(*VerifyOTPRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// OTPService_ServiceDesc is the grpc.ServiceDesc for OTPService service.
+// Service_ServiceDesc is the grpc.ServiceDesc for Service service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var OTPService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "otp.v1.OTPService",
-	HandlerType: (*OTPServiceServer)(nil),
+var Service_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "otp.v1.Service",
+	HandlerType: (*ServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Create",
-			Handler:    _OTPService_Create_Handler,
+			Handler:    _Service_Create_Handler,
 		},
 		{
 			MethodName: "Verify",
-			Handler:    _OTPService_Verify_Handler,
+			Handler:    _Service_Verify_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

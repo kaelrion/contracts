@@ -2,7 +2,7 @@ syntax="proto3";
 
 package auth.v1;
 
-option go_package="github.com/Newcode05/contracts/gen/auth/v1;auth";
+option go_package="github.com/Newcode05/contracts/auth/v1;auth";
 
 import "auth/v1/type.proto";
 service AuthService {

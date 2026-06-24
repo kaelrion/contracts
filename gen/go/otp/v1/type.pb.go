@@ -486,6 +486,7 @@ func (x *VerifyOTPRequest) GetOtpCode() string {
 type VerifyOTPResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Result        bool                   `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	Error         *Error                 `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -527,11 +528,18 @@ func (x *VerifyOTPResponse) GetResult() bool {
 	return false
 }
 
+func (x *VerifyOTPResponse) GetError() *Error {
+	if x != nil {
+		return x.Error
+	}
+	return nil
+}
+
 var File_otp_v1_type_proto protoreflect.FileDescriptor
 
 const file_otp_v1_type_proto_rawDesc = "" +
 	"\n" +
-	"\x11otp/v1/type.proto\x12\x06otp.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\"(\n" +
+	"\x11otp/v1/type.proto\x12\x06otp.v1\x1a\x13otp/v1/errors.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\"(\n" +
 	"\x10CreateOtpRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\"\xa4\x01\n" +
 	"\x11CreateOtpResponse\x12\x18\n" +
@@ -574,9 +582,10 @@ const file_otp_v1_type_proto_rawDesc = "" +
 	"\n" +
 	"identifier\x18\x03 \x01(\tR\n" +
 	"identifier\x12\x19\n" +
-	"\botp_code\x18\x04 \x01(\tR\aotpCode\"+\n" +
+	"\botp_code\x18\x04 \x01(\tR\aotpCode\"P\n" +
 	"\x11VerifyOTPResponse\x12\x16\n" +
-	"\x06result\x18\x01 \x01(\bR\x06resultB/Z-github.com/Newcode05/contracts/gen/otp/v1;otpb\x06proto3"
+	"\x06result\x18\x01 \x01(\bR\x06result\x12#\n" +
+	"\x05error\x18\x02 \x01(\v2\r.otp.v1.ErrorR\x05errorB+Z)github.com/Newcode05/contracts/otp/v1;otpb\x06proto3"
 
 var (
 	file_otp_v1_type_proto_rawDescOnce sync.Once
@@ -602,19 +611,21 @@ var file_otp_v1_type_proto_goTypes = []any{
 	(*VerifyOTPResponse)(nil),     // 7: otp.v1.VerifyOTPResponse
 	(*durationpb.Duration)(nil),   // 8: google.protobuf.Duration
 	(*timestamppb.Timestamp)(nil), // 9: google.protobuf.Timestamp
+	(*Error)(nil),                 // 10: otp.v1.Error
 }
 var file_otp_v1_type_proto_depIdxs = []int32{
-	8, // 0: otp.v1.CreateOtpResponse.retry_after:type_name -> google.protobuf.Duration
-	9, // 1: otp.v1.CreateOtpResponse.expires_at:type_name -> google.protobuf.Timestamp
-	9, // 2: otp.v1.CreateOTPResponse.expires_at:type_name -> google.protobuf.Timestamp
-	9, // 3: otp.v1.CreateOTPResponse.cooldown_until:type_name -> google.protobuf.Timestamp
-	9, // 4: otp.v1.ResendOTPResponse.expires_at:type_name -> google.protobuf.Timestamp
-	9, // 5: otp.v1.ResendOTPResponse.cooldown_until:type_name -> google.protobuf.Timestamp
-	6, // [6:6] is the sub-list for method output_type
-	6, // [6:6] is the sub-list for method input_type
-	6, // [6:6] is the sub-list for extension type_name
-	6, // [6:6] is the sub-list for extension extendee
-	0, // [0:6] is the sub-list for field type_name
+	8,  // 0: otp.v1.CreateOtpResponse.retry_after:type_name -> google.protobuf.Duration
+	9,  // 1: otp.v1.CreateOtpResponse.expires_at:type_name -> google.protobuf.Timestamp
+	9,  // 2: otp.v1.CreateOTPResponse.expires_at:type_name -> google.protobuf.Timestamp
+	9,  // 3: otp.v1.CreateOTPResponse.cooldown_until:type_name -> google.protobuf.Timestamp
+	9,  // 4: otp.v1.ResendOTPResponse.expires_at:type_name -> google.protobuf.Timestamp
+	9,  // 5: otp.v1.ResendOTPResponse.cooldown_until:type_name -> google.protobuf.Timestamp
+	10, // 6: otp.v1.VerifyOTPResponse.error:type_name -> otp.v1.Error
+	7,  // [7:7] is the sub-list for method output_type
+	7,  // [7:7] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_otp_v1_type_proto_init() }
@@ -622,6 +633,7 @@ func file_otp_v1_type_proto_init() {
 	if File_otp_v1_type_proto != nil {
 		return
 	}
+	file_otp_v1_errors_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

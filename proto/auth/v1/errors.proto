@@ -1,0 +1,16 @@
+syntax="proto3";
+
+package error;
+
+option go_package = "github.com/Newcode05/contracts/auth/v1;auth";
+
+message Error {
+  string code = 1;
+}
+
+enum ErrorCode {
+  ERROR_CODE_UNSPECIFIED = 0;
+  OTP_INVALID            = 1;
+  OTP_EXPIRED            = 2;
+  OTP_MAX_ATTEMPT_RESEND = 3;
+}
