@@ -5,10 +5,13 @@ package otp.v1;
 option go_package="github.com/Newcode05/contracts/otp/v1;otp";
 
 enum ErrorCode {
-  ERROR_CODE_UNSPECIFIED = 0;
-  OTP_INVALID            = 1;
-  OTP_EXPIRED            = 2;
-  OTP_MAX_ATTEMPT_RESEND = 3;
+  ERROR_CODE_UNSPECIFIED   = 0;
+  OTP_INVALID              = 1;
+  OTP_EXPIRED              = 2;
+  OTP_MAX_ATTEMPT_EXCEEDED = 3;
+  OTP_MAX_ATTEMPT_RESEND   = 4;
+  SESSION_NOT_FOUND        = 5;
+  INTERNAL_SERVER          = 6;
 }
 
 message ErrorDetail {
