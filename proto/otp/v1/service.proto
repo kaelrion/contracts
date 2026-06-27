@@ -6,7 +6,7 @@ option go_package="github.com/Newcode05/contracts/otp/v1;otp";
 
 import "otp/v1/type.proto";
 service Service {
-    rpc Create(CreateOTPRequest) returns (CreateOTPResponse);
-    rpc Verify(VerifyOTPRequest) returns (VerifyOTPResponse);
+    rpc Issue(IssueRequest) returns (IssueResponse);
+    rpc Verify(VerifyRequest) returns (VerifyResponse);
 }
 

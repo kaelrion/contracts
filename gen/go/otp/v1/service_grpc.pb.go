@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Service_Create_FullMethodName = "/otp.v1.Service/Create"
+	Service_Issue_FullMethodName  = "/otp.v1.Service/Issue"
 	Service_Verify_FullMethodName = "/otp.v1.Service/Verify"
 )
 
@@ -27,8 +27,8 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ServiceClient interface {
-	Create(ctx context.Context, in *CreateOTPRequest, opts ...grpc.CallOption) (*CreateOTPResponse, error)
-	Verify(ctx context.Context, in *VerifyOTPRequest, opts ...grpc.CallOption) (*VerifyOTPResponse, error)
+	Issue(ctx context.Context, in *IssueRequest, opts ...grpc.CallOption) (*IssueResponse, error)
+	Verify(ctx context.Context, in *VerifyRequest, opts ...grpc.CallOption) (*VerifyResponse, error)
 }
 
 type serviceClient struct {
@@ -39,19 +39,19 @@ func NewServiceClient(cc grpc.ClientConnInterface) ServiceClient {
 	return &serviceClient{cc}
 }
 
-func (c *serviceClient) Create(ctx context.Context, in *CreateOTPRequest, opts ...grpc.CallOption) (*CreateOTPResponse, error) {
+func (c *serviceClient) Issue(ctx context.Context, in *IssueRequest, opts ...grpc.CallOption) (*IssueResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateOTPResponse)
-	err := c.cc.Invoke(ctx, Service_Create_FullMethodName, in, out, cOpts...)
+	out := new(IssueResponse)
+	err := c.cc.Invoke(ctx, Service_Issue_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceClient) Verify(ctx context.Context, in *VerifyOTPRequest, opts ...grpc.CallOption) (*VerifyOTPResponse, error) {
+func (c *serviceClient) Verify(ctx context.Context, in *VerifyRequest, opts ...grpc.CallOption) (*VerifyResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(VerifyOTPResponse)
+	out := new(VerifyResponse)
 	err := c.cc.Invoke(ctx, Service_Verify_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -63,8 +63,8 @@ func (c *serviceClient) Verify(ctx context.Context, in *VerifyOTPRequest, opts .
 // All implementations must embed UnimplementedServiceServer
 // for forward compatibility.
 type ServiceServer interface {
-	Create(context.Context, *CreateOTPRequest) (*CreateOTPResponse, error)
-	Verify(context.Context, *VerifyOTPRequest) (*VerifyOTPResponse, error)
+	Issue(context.Context, *IssueRequest) (*IssueResponse, error)
+	Verify(context.Context, *VerifyRequest) (*VerifyResponse, error)
 	mustEmbedUnimplementedServiceServer()
 }
 
@@ -75,10 +75,10 @@ type ServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedServiceServer struct{}
 
-func (UnimplementedServiceServer) Create(context.Context, *CreateOTPRequest) (*CreateOTPResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method Create not implemented")
+func (UnimplementedServiceServer) Issue(context.Context, *IssueRequest) (*IssueResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method Issue not implemented")
 }
-func (UnimplementedServiceServer) Verify(context.Context, *VerifyOTPRequest) (*VerifyOTPResponse, error) {
+func (UnimplementedServiceServer) Verify(context.Context, *VerifyRequest) (*VerifyResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Verify not implemented")
 }
 func (UnimplementedServiceServer) mustEmbedUnimplementedServiceServer() {}
@@ -102,26 +102,26 @@ func RegisterServiceServer(s grpc.ServiceRegistrar, srv ServiceServer) {
 	s.RegisterService(&Service_ServiceDesc, srv)
 }
 
-func _Service_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateOTPRequest)
+func _Service_Issue_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IssueRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).Create(ctx, in)
+		return srv.(ServiceServer).Issue(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_Create_FullMethodName,
+		FullMethod: Service_Issue_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Create(ctx, req.(*CreateOTPRequest))
+		return srv.(ServiceServer).Issue(ctx, req.(*IssueRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Service_Verify_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(VerifyOTPRequest)
+	in := new(VerifyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -133,7 +133,7 @@ func _Service_Verify_Handler(srv interface{}, ctx context.Context, dec func(inte
 		FullMethod: Service_Verify_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).Verify(ctx, req.(*VerifyOTPRequest))
+		return srv.(ServiceServer).Verify(ctx, req.(*VerifyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -146,8 +146,8 @@ var Service_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Create",
-			Handler:    _Service_Create_Handler,
+			MethodName: "Issue",
+			Handler:    _Service_Issue_Handler,
 		},
 		{
 			MethodName: "Verify",
