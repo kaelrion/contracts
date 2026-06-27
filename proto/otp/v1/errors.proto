@@ -11,6 +11,6 @@ enum ErrorCode {
   OTP_MAX_ATTEMPT_RESEND = 3;
 }
 
-message Error {
+message ErrorDetail {
   ErrorCode Code = 1;
 }

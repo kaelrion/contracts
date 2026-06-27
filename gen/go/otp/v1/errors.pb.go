@@ -73,27 +73,27 @@ func (ErrorCode) EnumDescriptor() ([]byte, []int) {
 	return file_otp_v1_errors_proto_rawDescGZIP(), []int{0}
 }
 
-type Error struct {
+type ErrorDetail struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Code          ErrorCode              `protobuf:"varint,1,opt,name=Code,proto3,enum=otp.v1.ErrorCode" json:"Code,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Error) Reset() {
-	*x = Error{}
+func (x *ErrorDetail) Reset() {
+	*x = ErrorDetail{}
 	mi := &file_otp_v1_errors_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Error) String() string {
+func (x *ErrorDetail) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Error) ProtoMessage() {}
+func (*ErrorDetail) ProtoMessage() {}
 
-func (x *Error) ProtoReflect() protoreflect.Message {
+func (x *ErrorDetail) ProtoReflect() protoreflect.Message {
 	mi := &file_otp_v1_errors_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -105,12 +105,12 @@ func (x *Error) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Error.ProtoReflect.Descriptor instead.
-func (*Error) Descriptor() ([]byte, []int) {
+// Deprecated: Use ErrorDetail.ProtoReflect.Descriptor instead.
+func (*ErrorDetail) Descriptor() ([]byte, []int) {
 	return file_otp_v1_errors_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Error) GetCode() ErrorCode {
+func (x *ErrorDetail) GetCode() ErrorCode {
 	if x != nil {
 		return x.Code
 	}
@@ -121,8 +121,8 @@ var File_otp_v1_errors_proto protoreflect.FileDescriptor
 
 const file_otp_v1_errors_proto_rawDesc = "" +
 	"\n" +
-	"\x13otp/v1/errors.proto\x12\x06otp.v1\".\n" +
-	"\x05Error\x12%\n" +
+	"\x13otp/v1/errors.proto\x12\x06otp.v1\"4\n" +
+	"\vErrorDetail\x12%\n" +
 	"\x04Code\x18\x01 \x01(\x0e2\x11.otp.v1.ErrorCodeR\x04Code*e\n" +
 	"\tErrorCode\x12\x1a\n" +
 	"\x16ERROR_CODE_UNSPECIFIED\x10\x00\x12\x0f\n" +
@@ -145,11 +145,11 @@ func file_otp_v1_errors_proto_rawDescGZIP() []byte {
 var file_otp_v1_errors_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_otp_v1_errors_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_otp_v1_errors_proto_goTypes = []any{
-	(ErrorCode)(0), // 0: otp.v1.ErrorCode
-	(*Error)(nil),  // 1: otp.v1.Error
+	(ErrorCode)(0),      // 0: otp.v1.ErrorCode
+	(*ErrorDetail)(nil), // 1: otp.v1.ErrorDetail
 }
 var file_otp_v1_errors_proto_depIdxs = []int32{
-	0, // 0: otp.v1.Error.Code:type_name -> otp.v1.ErrorCode
+	0, // 0: otp.v1.ErrorDetail.Code:type_name -> otp.v1.ErrorCode
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
