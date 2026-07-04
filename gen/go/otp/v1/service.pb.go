@@ -24,24 +24,29 @@ var File_otp_v1_service_proto protoreflect.FileDescriptor
 
 const file_otp_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x14otp/v1/service.proto\x12\x06otp.v1\x1a\x11otp/v1/type.proto2x\n" +
+	"\x14otp/v1/service.proto\x12\x06otp.v1\x1a\x11otp/v1/type.proto2\xb4\x01\n" +
 	"\aService\x124\n" +
-	"\x05Issue\x12\x14.otp.v1.IssueRequest\x1a\x15.otp.v1.IssueResponse\x127\n" +
+	"\x05Issue\x12\x14.otp.v1.IssueRequest\x1a\x15.otp.v1.IssueResponse\x12:\n" +
+	"\aReissue\x12\x16.otp.v1.ReissueRequest\x1a\x17.otp.v1.ReissueResponse\x127\n" +
 	"\x06Verify\x12\x15.otp.v1.VerifyRequest\x1a\x16.otp.v1.VerifyResponseB+Z)github.com/Newcode05/contracts/otp/v1;otpb\x06proto3"
 
 var file_otp_v1_service_proto_goTypes = []any{
-	(*IssueRequest)(nil),   // 0: otp.v1.IssueRequest
-	(*VerifyRequest)(nil),  // 1: otp.v1.VerifyRequest
-	(*IssueResponse)(nil),  // 2: otp.v1.IssueResponse
-	(*VerifyResponse)(nil), // 3: otp.v1.VerifyResponse
+	(*IssueRequest)(nil),    // 0: otp.v1.IssueRequest
+	(*ReissueRequest)(nil),  // 1: otp.v1.ReissueRequest
+	(*VerifyRequest)(nil),   // 2: otp.v1.VerifyRequest
+	(*IssueResponse)(nil),   // 3: otp.v1.IssueResponse
+	(*ReissueResponse)(nil), // 4: otp.v1.ReissueResponse
+	(*VerifyResponse)(nil),  // 5: otp.v1.VerifyResponse
 }
 var file_otp_v1_service_proto_depIdxs = []int32{
 	0, // 0: otp.v1.Service.Issue:input_type -> otp.v1.IssueRequest
-	1, // 1: otp.v1.Service.Verify:input_type -> otp.v1.VerifyRequest
-	2, // 2: otp.v1.Service.Issue:output_type -> otp.v1.IssueResponse
-	3, // 3: otp.v1.Service.Verify:output_type -> otp.v1.VerifyResponse
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	1, // 1: otp.v1.Service.Reissue:input_type -> otp.v1.ReissueRequest
+	2, // 2: otp.v1.Service.Verify:input_type -> otp.v1.VerifyRequest
+	3, // 3: otp.v1.Service.Issue:output_type -> otp.v1.IssueResponse
+	4, // 4: otp.v1.Service.Reissue:output_type -> otp.v1.ReissueResponse
+	5, // 5: otp.v1.Service.Verify:output_type -> otp.v1.VerifyResponse
+	3, // [3:6] is the sub-list for method output_type
+	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name

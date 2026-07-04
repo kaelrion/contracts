@@ -9,6 +9,8 @@ package otp
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	_ "google.golang.org/protobuf/types/known/durationpb"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -31,6 +33,8 @@ const (
 	ErrorCode_OTP_MAX_ATTEMPT_RESEND   ErrorCode = 4
 	ErrorCode_SESSION_NOT_FOUND        ErrorCode = 5
 	ErrorCode_INTERNAL_SERVER          ErrorCode = 6
+	ErrorCode_COOLDOWN_ACTIVE          ErrorCode = 7
+	ErrorCode_LOCKED                   ErrorCode = 8
 )
 
 // Enum value maps for ErrorCode.
@@ -43,6 +47,8 @@ var (
 		4: "OTP_MAX_ATTEMPT_RESEND",
 		5: "SESSION_NOT_FOUND",
 		6: "INTERNAL_SERVER",
+		7: "COOLDOWN_ACTIVE",
+		8: "LOCKED",
 	}
 	ErrorCode_value = map[string]int32{
 		"ERROR_CODE_UNSPECIFIED":   0,
@@ -52,6 +58,8 @@ var (
 		"OTP_MAX_ATTEMPT_RESEND":   4,
 		"SESSION_NOT_FOUND":        5,
 		"INTERNAL_SERVER":          6,
+		"COOLDOWN_ACTIVE":          7,
+		"LOCKED":                   8,
 	}
 )
 
@@ -83,10 +91,14 @@ func (ErrorCode) EnumDescriptor() ([]byte, []int) {
 }
 
 type ErrorDetail struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Code          ErrorCode              `protobuf:"varint,1,opt,name=Code,proto3,enum=otp.v1.ErrorCode" json:"Code,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	Code              ErrorCode              `protobuf:"varint,1,opt,name=Code,proto3,enum=otp.v1.ErrorCode" json:"Code,omitempty"`
+	CooldownUntil     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=cooldown_until,json=cooldownUntil,proto3" json:"cooldown_until,omitempty"`
+	LockUntil         *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=lock_until,json=lockUntil,proto3" json:"lock_until,omitempty"`
+	RemainingAttempts int32                  `protobuf:"varint,4,opt,name=remaining_attempts,json=remainingAttempts,proto3" json:"remaining_attempts,omitempty"`
+	RemainingResends  int32                  `protobuf:"varint,5,opt,name=remaining_resends,json=remainingResends,proto3" json:"remaining_resends,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *ErrorDetail) Reset() {
@@ -126,13 +138,46 @@ func (x *ErrorDetail) GetCode() ErrorCode {
 	return ErrorCode_ERROR_CODE_UNSPECIFIED
 }
 
+func (x *ErrorDetail) GetCooldownUntil() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CooldownUntil
+	}
+	return nil
+}
+
+func (x *ErrorDetail) GetLockUntil() *timestamppb.Timestamp {
+	if x != nil {
+		return x.LockUntil
+	}
+	return nil
+}
+
+func (x *ErrorDetail) GetRemainingAttempts() int32 {
+	if x != nil {
+		return x.RemainingAttempts
+	}
+	return 0
+}
+
+func (x *ErrorDetail) GetRemainingResends() int32 {
+	if x != nil {
+		return x.RemainingResends
+	}
+	return 0
+}
+
 var File_otp_v1_errors_proto protoreflect.FileDescriptor
 
 const file_otp_v1_errors_proto_rawDesc = "" +
 	"\n" +
-	"\x13otp/v1/errors.proto\x12\x06otp.v1\"4\n" +
+	"\x13otp/v1/errors.proto\x12\x06otp.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\"\x8e\x02\n" +
 	"\vErrorDetail\x12%\n" +
-	"\x04Code\x18\x01 \x01(\x0e2\x11.otp.v1.ErrorCodeR\x04Code*\xaf\x01\n" +
+	"\x04Code\x18\x01 \x01(\x0e2\x11.otp.v1.ErrorCodeR\x04Code\x12A\n" +
+	"\x0ecooldown_until\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\rcooldownUntil\x129\n" +
+	"\n" +
+	"lock_until\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tlockUntil\x12-\n" +
+	"\x12remaining_attempts\x18\x04 \x01(\x05R\x11remainingAttempts\x12+\n" +
+	"\x11remaining_resends\x18\x05 \x01(\x05R\x10remainingResends*\xd0\x01\n" +
 	"\tErrorCode\x12\x1a\n" +
 	"\x16ERROR_CODE_UNSPECIFIED\x10\x00\x12\x0f\n" +
 	"\vOTP_INVALID\x10\x01\x12\x0f\n" +
@@ -140,7 +185,10 @@ const file_otp_v1_errors_proto_rawDesc = "" +
 	"\x18OTP_MAX_ATTEMPT_EXCEEDED\x10\x03\x12\x1a\n" +
 	"\x16OTP_MAX_ATTEMPT_RESEND\x10\x04\x12\x15\n" +
 	"\x11SESSION_NOT_FOUND\x10\x05\x12\x13\n" +
-	"\x0fINTERNAL_SERVER\x10\x06B+Z)github.com/Newcode05/contracts/otp/v1;otpb\x06proto3"
+	"\x0fINTERNAL_SERVER\x10\x06\x12\x13\n" +
+	"\x0fCOOLDOWN_ACTIVE\x10\a\x12\n" +
+	"\n" +
+	"\x06LOCKED\x10\bB+Z)github.com/Newcode05/contracts/otp/v1;otpb\x06proto3"
 
 var (
 	file_otp_v1_errors_proto_rawDescOnce sync.Once
@@ -157,16 +205,19 @@ func file_otp_v1_errors_proto_rawDescGZIP() []byte {
 var file_otp_v1_errors_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_otp_v1_errors_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_otp_v1_errors_proto_goTypes = []any{
-	(ErrorCode)(0),      // 0: otp.v1.ErrorCode
-	(*ErrorDetail)(nil), // 1: otp.v1.ErrorDetail
+	(ErrorCode)(0),                // 0: otp.v1.ErrorCode
+	(*ErrorDetail)(nil),           // 1: otp.v1.ErrorDetail
+	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
 }
 var file_otp_v1_errors_proto_depIdxs = []int32{
 	0, // 0: otp.v1.ErrorDetail.Code:type_name -> otp.v1.ErrorCode
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	2, // 1: otp.v1.ErrorDetail.cooldown_until:type_name -> google.protobuf.Timestamp
+	2, // 2: otp.v1.ErrorDetail.lock_until:type_name -> google.protobuf.Timestamp
+	3, // [3:3] is the sub-list for method output_type
+	3, // [3:3] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_otp_v1_errors_proto_init() }

@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Service_Issue_FullMethodName  = "/otp.v1.Service/Issue"
-	Service_Verify_FullMethodName = "/otp.v1.Service/Verify"
+	Service_Issue_FullMethodName   = "/otp.v1.Service/Issue"
+	Service_Reissue_FullMethodName = "/otp.v1.Service/Reissue"
+	Service_Verify_FullMethodName  = "/otp.v1.Service/Verify"
 )
 
 // ServiceClient is the client API for Service service.
@@ -28,6 +29,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ServiceClient interface {
 	Issue(ctx context.Context, in *IssueRequest, opts ...grpc.CallOption) (*IssueResponse, error)
+	Reissue(ctx context.Context, in *ReissueRequest, opts ...grpc.CallOption) (*ReissueResponse, error)
 	Verify(ctx context.Context, in *VerifyRequest, opts ...grpc.CallOption) (*VerifyResponse, error)
 }
 
@@ -49,6 +51,16 @@ func (c *serviceClient) Issue(ctx context.Context, in *IssueRequest, opts ...grp
 	return out, nil
 }
 
+func (c *serviceClient) Reissue(ctx context.Context, in *ReissueRequest, opts ...grpc.CallOption) (*ReissueResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ReissueResponse)
+	err := c.cc.Invoke(ctx, Service_Reissue_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *serviceClient) Verify(ctx context.Context, in *VerifyRequest, opts ...grpc.CallOption) (*VerifyResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(VerifyResponse)
@@ -64,6 +76,7 @@ func (c *serviceClient) Verify(ctx context.Context, in *VerifyRequest, opts ...g
 // for forward compatibility.
 type ServiceServer interface {
 	Issue(context.Context, *IssueRequest) (*IssueResponse, error)
+	Reissue(context.Context, *ReissueRequest) (*ReissueResponse, error)
 	Verify(context.Context, *VerifyRequest) (*VerifyResponse, error)
 	mustEmbedUnimplementedServiceServer()
 }
@@ -77,6 +90,9 @@ type UnimplementedServiceServer struct{}
 
 func (UnimplementedServiceServer) Issue(context.Context, *IssueRequest) (*IssueResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Issue not implemented")
+}
+func (UnimplementedServiceServer) Reissue(context.Context, *ReissueRequest) (*ReissueResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method Reissue not implemented")
 }
 func (UnimplementedServiceServer) Verify(context.Context, *VerifyRequest) (*VerifyResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Verify not implemented")
@@ -120,6 +136,24 @@ func _Service_Issue_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Service_Reissue_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReissueRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServer).Reissue(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Service_Reissue_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServer).Reissue(ctx, req.(*ReissueRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Service_Verify_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(VerifyRequest)
 	if err := dec(in); err != nil {
@@ -148,6 +182,10 @@ var Service_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Issue",
 			Handler:    _Service_Issue_Handler,
+		},
+		{
+			MethodName: "Reissue",
+			Handler:    _Service_Reissue_Handler,
 		},
 		{
 			MethodName: "Verify",
