@@ -7,17 +7,15 @@ option go_package="github.com/Newcode05/contracts/otp/v1;otp";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
 
-
 enum ErrorCode {
-  ERROR_CODE_UNSPECIFIED   = 0;
-  OTP_INVALID              = 1;
-  OTP_EXPIRED              = 2;
-  OTP_MAX_ATTEMPT_EXCEEDED = 3;
-  OTP_MAX_ATTEMPT_RESEND   = 4;
-  SESSION_NOT_FOUND        = 5;
-  INTERNAL_SERVER          = 6;
-  COOLDOWN_ACTIVE          = 7;
-  LOCKED                   = 8;
+  ERROR_CODE_UNSPECIFIED = 0;
+  MAX_ATTEMPT_EXCEEDED   = 1;
+  MAX_RESEND_EXCEEDED    = 2;
+  OTP_INVALID            = 3;
+  SESSION_INVALID        = 4;
+  INTERNAL_SERVER        = 5;
+  COOLDOWN_ACTIVE        = 6;
+  LOCKED                 = 7;
 }
 
 message ErrorDetail {

@@ -26,40 +26,37 @@ const (
 type ErrorCode int32
 
 const (
-	ErrorCode_ERROR_CODE_UNSPECIFIED   ErrorCode = 0
-	ErrorCode_OTP_INVALID              ErrorCode = 1
-	ErrorCode_OTP_EXPIRED              ErrorCode = 2
-	ErrorCode_OTP_MAX_ATTEMPT_EXCEEDED ErrorCode = 3
-	ErrorCode_OTP_MAX_ATTEMPT_RESEND   ErrorCode = 4
-	ErrorCode_SESSION_NOT_FOUND        ErrorCode = 5
-	ErrorCode_INTERNAL_SERVER          ErrorCode = 6
-	ErrorCode_COOLDOWN_ACTIVE          ErrorCode = 7
-	ErrorCode_LOCKED                   ErrorCode = 8
+	ErrorCode_ERROR_CODE_UNSPECIFIED ErrorCode = 0
+	ErrorCode_MAX_ATTEMPT_EXCEEDED   ErrorCode = 1
+	ErrorCode_MAX_RESEND_EXCEEDED    ErrorCode = 2
+	ErrorCode_OTP_INVALID            ErrorCode = 3
+	ErrorCode_SESSION_INVALID        ErrorCode = 4
+	ErrorCode_INTERNAL_SERVER        ErrorCode = 5
+	ErrorCode_COOLDOWN_ACTIVE        ErrorCode = 6
+	ErrorCode_LOCKED                 ErrorCode = 7
 )
 
 // Enum value maps for ErrorCode.
 var (
 	ErrorCode_name = map[int32]string{
 		0: "ERROR_CODE_UNSPECIFIED",
-		1: "OTP_INVALID",
-		2: "OTP_EXPIRED",
-		3: "OTP_MAX_ATTEMPT_EXCEEDED",
-		4: "OTP_MAX_ATTEMPT_RESEND",
-		5: "SESSION_NOT_FOUND",
-		6: "INTERNAL_SERVER",
-		7: "COOLDOWN_ACTIVE",
-		8: "LOCKED",
+		1: "MAX_ATTEMPT_EXCEEDED",
+		2: "MAX_RESEND_EXCEEDED",
+		3: "OTP_INVALID",
+		4: "SESSION_INVALID",
+		5: "INTERNAL_SERVER",
+		6: "COOLDOWN_ACTIVE",
+		7: "LOCKED",
 	}
 	ErrorCode_value = map[string]int32{
-		"ERROR_CODE_UNSPECIFIED":   0,
-		"OTP_INVALID":              1,
-		"OTP_EXPIRED":              2,
-		"OTP_MAX_ATTEMPT_EXCEEDED": 3,
-		"OTP_MAX_ATTEMPT_RESEND":   4,
-		"SESSION_NOT_FOUND":        5,
-		"INTERNAL_SERVER":          6,
-		"COOLDOWN_ACTIVE":          7,
-		"LOCKED":                   8,
+		"ERROR_CODE_UNSPECIFIED": 0,
+		"MAX_ATTEMPT_EXCEEDED":   1,
+		"MAX_RESEND_EXCEEDED":    2,
+		"OTP_INVALID":            3,
+		"SESSION_INVALID":        4,
+		"INTERNAL_SERVER":        5,
+		"COOLDOWN_ACTIVE":        6,
+		"LOCKED":                 7,
 	}
 )
 
@@ -177,18 +174,17 @@ const file_otp_v1_errors_proto_rawDesc = "" +
 	"\n" +
 	"lock_until\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tlockUntil\x12-\n" +
 	"\x12remaining_attempts\x18\x04 \x01(\x05R\x11remainingAttempts\x12+\n" +
-	"\x11remaining_resends\x18\x05 \x01(\x05R\x10remainingResends*\xd0\x01\n" +
+	"\x11remaining_resends\x18\x05 \x01(\x05R\x10remainingResends*\xb6\x01\n" +
 	"\tErrorCode\x12\x1a\n" +
-	"\x16ERROR_CODE_UNSPECIFIED\x10\x00\x12\x0f\n" +
-	"\vOTP_INVALID\x10\x01\x12\x0f\n" +
-	"\vOTP_EXPIRED\x10\x02\x12\x1c\n" +
-	"\x18OTP_MAX_ATTEMPT_EXCEEDED\x10\x03\x12\x1a\n" +
-	"\x16OTP_MAX_ATTEMPT_RESEND\x10\x04\x12\x15\n" +
-	"\x11SESSION_NOT_FOUND\x10\x05\x12\x13\n" +
-	"\x0fINTERNAL_SERVER\x10\x06\x12\x13\n" +
-	"\x0fCOOLDOWN_ACTIVE\x10\a\x12\n" +
+	"\x16ERROR_CODE_UNSPECIFIED\x10\x00\x12\x18\n" +
+	"\x14MAX_ATTEMPT_EXCEEDED\x10\x01\x12\x17\n" +
+	"\x13MAX_RESEND_EXCEEDED\x10\x02\x12\x0f\n" +
+	"\vOTP_INVALID\x10\x03\x12\x13\n" +
+	"\x0fSESSION_INVALID\x10\x04\x12\x13\n" +
+	"\x0fINTERNAL_SERVER\x10\x05\x12\x13\n" +
+	"\x0fCOOLDOWN_ACTIVE\x10\x06\x12\n" +
 	"\n" +
-	"\x06LOCKED\x10\bB+Z)github.com/Newcode05/contracts/otp/v1;otpb\x06proto3"
+	"\x06LOCKED\x10\aB+Z)github.com/Newcode05/contracts/otp/v1;otpb\x06proto3"
 
 var (
 	file_otp_v1_errors_proto_rawDescOnce sync.Once
