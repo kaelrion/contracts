@@ -1,4 +1,4 @@
-module github.com/Newcode05/contracts
+module github.com/kaelrion/contracts
 
 go 1.26.4
 
