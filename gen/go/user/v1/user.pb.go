@@ -7,11 +7,12 @@
 package user
 
 import (
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
-	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
+
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 )
 
 const (
@@ -175,7 +176,7 @@ const file_user_v1_user_proto_rawDesc = "" +
 	"\x06exists\x18\x01 \x01(\bR\x06exists2T\n" +
 	"\vUserService\x12E\n" +
 	"\n" +
-	"ExistsUser\x12\x1a.user.v1.ExistsUserRequest\x1a\x1b.user.v1.ExistsUserResponseB1Z/github.com/Newcode05/contracts/gen/user/v1;userb\x06proto3"
+	"ExistsUser\x12\x1a.user.v1.ExistsUserRequest\x1a\x1b.user.v1.ExistsUserResponseB1Z/github.com/kaelrion/contracts/gen/user/v1;userb\x06proto3"
 
 var (
 	file_user_v1_user_proto_rawDescOnce sync.Once

@@ -2,7 +2,7 @@ syntax="proto3";
 
 package otp.v1;
 
-option go_package="github.com/Newcode05/contracts/gen/otp/v1;otp";
+option go_package="github.com/kaelrion/contracts/gen/otp/v1;otp";
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";

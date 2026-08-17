@@ -7,10 +7,11 @@
 package otp
 
 import (
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
-	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	unsafe "unsafe"
+
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 )
 
 const (
@@ -28,7 +29,7 @@ const file_otp_v1_service_proto_rawDesc = "" +
 	"\n" +
 	"OTPService\x12=\n" +
 	"\x06Create\x12\x18.otp.v1.CreateOTPRequest\x1a\x19.otp.v1.CreateOTPResponse\x12=\n" +
-	"\x06Verify\x12\x18.otp.v1.VerifyOTPRequest\x1a\x19.otp.v1.VerifyOTPResponseB/Z-github.com/Newcode05/contracts/gen/otp/v1;otpb\x06proto3"
+	"\x06Verify\x12\x18.otp.v1.VerifyOTPRequest\x1a\x19.otp.v1.VerifyOTPResponseB/Z-github.com/kaelrion/contracts/gen/otp/v1;otpb\x06proto3"
 
 var file_otp_v1_service_proto_goTypes = []any{
 	(*CreateOTPRequest)(nil),  // 0: otp.v1.CreateOTPRequest

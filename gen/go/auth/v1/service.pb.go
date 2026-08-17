@@ -7,10 +7,11 @@
 package auth
 
 import (
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
-	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	unsafe "unsafe"
+
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 )
 
 const (
@@ -27,7 +28,7 @@ const file_auth_v1_service_proto_rawDesc = "" +
 	"\x15auth/v1/service.proto\x12\aauth.v1\x1a\x12auth/v1/type.proto2T\n" +
 	"\vAuthService\x12E\n" +
 	"\n" +
-	"CheckEmail\x12\x1a.auth.v1.CheckEmailRequest\x1a\x1b.auth.v1.CheckEmailResponseB1Z/github.com/Newcode05/contracts/gen/auth/v1;authb\x06proto3"
+	"CheckEmail\x12\x1a.auth.v1.CheckEmailRequest\x1a\x1b.auth.v1.CheckEmailResponseB1Z/github.com/kaelrion/contracts/gen/auth/v1;authb\x06proto3"
 
 var file_auth_v1_service_proto_goTypes = []any{
 	(*CheckEmailRequest)(nil),  // 0: auth.v1.CheckEmailRequest
