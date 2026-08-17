@@ -9,7 +9,7 @@ import "google/protobuf/timestamp.proto";
 // INITIALIZE UPLOAD
 message File {
   string             name          = 1;
-  string             size          = 2;
+  int64              size          = 2;
   string             content_type  = 3;
   map<string,string> user_metadata = 4;
 
