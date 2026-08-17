@@ -78,15 +78,16 @@ enum MediaStatus {
 }
 
 message MediaInfo {
-  string                    id           = 1;
-  MediaKind                 kind         = 2;
-  MediaStatus               status       = 3;
-  string                    content_type = 4;
-  int64                     size         = 5;
-  optional int32            width        = 6;
-  optional int32            height       = 7;
-  optional int64            duration     = 8;
-  google.protobuf.Timestamp created_at   = 9;
+  string                    media_id            = 1;
+  string                    representation_id   = 2;
+  string                    representation_type = 3;
+  optional string           profile             = 4;
+  string                    content_type        = 5;
+  int64                     size                = 6;
+  optional int32            width               = 7;
+  optional int32            height              = 8;
+  optional int64            duration_ms         = 9;
+  google.protobuf.Timestamp created_at          = 10;
 }
 
 message CompleteMultipartUploadResponse {

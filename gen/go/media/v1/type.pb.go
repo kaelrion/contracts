@@ -642,18 +642,19 @@ func (x *CompleteMultipartUploadRequest) GetParts() []*CompletedPart {
 }
 
 type MediaInfo struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Kind          MediaKind              `protobuf:"varint,2,opt,name=kind,proto3,enum=media.v1.MediaKind" json:"kind,omitempty"`
-	Status        MediaStatus            `protobuf:"varint,3,opt,name=status,proto3,enum=media.v1.MediaStatus" json:"status,omitempty"`
-	ContentType   string                 `protobuf:"bytes,4,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
-	Size          int64                  `protobuf:"varint,5,opt,name=size,proto3" json:"size,omitempty"`
-	Width         *int32                 `protobuf:"varint,6,opt,name=width,proto3,oneof" json:"width,omitempty"`
-	Height        *int32                 `protobuf:"varint,7,opt,name=height,proto3,oneof" json:"height,omitempty"`
-	Duration      *int64                 `protobuf:"varint,8,opt,name=duration,proto3,oneof" json:"duration,omitempty"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	MediaId            string                 `protobuf:"bytes,1,opt,name=media_id,json=mediaId,proto3" json:"media_id,omitempty"`
+	RepresentationId   string                 `protobuf:"bytes,2,opt,name=representation_id,json=representationId,proto3" json:"representation_id,omitempty"`
+	RepresentationType string                 `protobuf:"bytes,3,opt,name=representation_type,json=representationType,proto3" json:"representation_type,omitempty"`
+	Profile            *string                `protobuf:"bytes,4,opt,name=profile,proto3,oneof" json:"profile,omitempty"`
+	ContentType        string                 `protobuf:"bytes,5,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
+	Size               int64                  `protobuf:"varint,6,opt,name=size,proto3" json:"size,omitempty"`
+	Width              *int32                 `protobuf:"varint,7,opt,name=width,proto3,oneof" json:"width,omitempty"`
+	Height             *int32                 `protobuf:"varint,8,opt,name=height,proto3,oneof" json:"height,omitempty"`
+	DurationMs         *int64                 `protobuf:"varint,9,opt,name=duration_ms,json=durationMs,proto3,oneof" json:"duration_ms,omitempty"`
+	CreatedAt          *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *MediaInfo) Reset() {
@@ -686,25 +687,32 @@ func (*MediaInfo) Descriptor() ([]byte, []int) {
 	return file_media_v1_type_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *MediaInfo) GetId() string {
+func (x *MediaInfo) GetMediaId() string {
 	if x != nil {
-		return x.Id
+		return x.MediaId
 	}
 	return ""
 }
 
-func (x *MediaInfo) GetKind() MediaKind {
+func (x *MediaInfo) GetRepresentationId() string {
 	if x != nil {
-		return x.Kind
+		return x.RepresentationId
 	}
-	return MediaKind_MEDIA_KIND_UNSPECIFIED
+	return ""
 }
 
-func (x *MediaInfo) GetStatus() MediaStatus {
+func (x *MediaInfo) GetRepresentationType() string {
 	if x != nil {
-		return x.Status
+		return x.RepresentationType
 	}
-	return MediaStatus_MEDIA_STATUS_UNSPECIFIED
+	return ""
+}
+
+func (x *MediaInfo) GetProfile() string {
+	if x != nil && x.Profile != nil {
+		return *x.Profile
+	}
+	return ""
 }
 
 func (x *MediaInfo) GetContentType() string {
@@ -735,9 +743,9 @@ func (x *MediaInfo) GetHeight() int32 {
 	return 0
 }
 
-func (x *MediaInfo) GetDuration() int64 {
-	if x != nil && x.Duration != nil {
-		return *x.Duration
+func (x *MediaInfo) GetDurationMs() int64 {
+	if x != nil && x.DurationMs != nil {
+		return *x.DurationMs
 	}
 	return 0
 }
@@ -839,21 +847,26 @@ const file_media_v1_type_proto_rawDesc = "" +
 	"\x1eCompleteMultipartUploadRequest\x12\x1d\n" +
 	"\n" +
 	"session_id\x18\x01 \x01(\tR\tsessionId\x12-\n" +
-	"\x05parts\x18\x02 \x03(\v2\x17.media.v1.CompletedPartR\x05parts\"\xe0\x02\n" +
-	"\tMediaInfo\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12'\n" +
-	"\x04kind\x18\x02 \x01(\x0e2\x13.media.v1.MediaKindR\x04kind\x12-\n" +
-	"\x06status\x18\x03 \x01(\x0e2\x15.media.v1.MediaStatusR\x06status\x12!\n" +
-	"\fcontent_type\x18\x04 \x01(\tR\vcontentType\x12\x12\n" +
-	"\x04size\x18\x05 \x01(\x03R\x04size\x12\x19\n" +
-	"\x05width\x18\x06 \x01(\x05H\x00R\x05width\x88\x01\x01\x12\x1b\n" +
-	"\x06height\x18\a \x01(\x05H\x01R\x06height\x88\x01\x01\x12\x1f\n" +
-	"\bduration\x18\b \x01(\x03H\x02R\bduration\x88\x01\x01\x129\n" +
+	"\x05parts\x18\x02 \x03(\v2\x17.media.v1.CompletedPartR\x05parts\"\xa4\x03\n" +
+	"\tMediaInfo\x12\x19\n" +
+	"\bmedia_id\x18\x01 \x01(\tR\amediaId\x12+\n" +
+	"\x11representation_id\x18\x02 \x01(\tR\x10representationId\x12/\n" +
+	"\x13representation_type\x18\x03 \x01(\tR\x12representationType\x12\x1d\n" +
+	"\aprofile\x18\x04 \x01(\tH\x00R\aprofile\x88\x01\x01\x12!\n" +
+	"\fcontent_type\x18\x05 \x01(\tR\vcontentType\x12\x12\n" +
+	"\x04size\x18\x06 \x01(\x03R\x04size\x12\x19\n" +
+	"\x05width\x18\a \x01(\x05H\x01R\x05width\x88\x01\x01\x12\x1b\n" +
+	"\x06height\x18\b \x01(\x05H\x02R\x06height\x88\x01\x01\x12$\n" +
+	"\vduration_ms\x18\t \x01(\x03H\x03R\n" +
+	"durationMs\x88\x01\x01\x129\n" +
 	"\n" +
-	"created_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAtB\b\n" +
+	"created_at\x18\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAtB\n" +
+	"\n" +
+	"\b_profileB\b\n" +
 	"\x06_widthB\t\n" +
-	"\a_heightB\v\n" +
-	"\t_duration\"L\n" +
+	"\a_heightB\x0e\n" +
+	"\f_duration_ms\"L\n" +
 	"\x1fCompleteMultipartUploadResponse\x12)\n" +
 	"\x05media\x18\x01 \x01(\v2\x13.media.v1.MediaInfoR\x05media*~\n" +
 	"\tMediaKind\x12\x1a\n" +
@@ -910,15 +923,13 @@ var file_media_v1_type_proto_depIdxs = []int32{
 	14, // 4: media.v1.PresignedPart.expires_at:type_name -> google.protobuf.Timestamp
 	6,  // 5: media.v1.SignUploadPartsResponse.parts:type_name -> media.v1.PresignedPart
 	9,  // 6: media.v1.CompleteMultipartUploadRequest.parts:type_name -> media.v1.CompletedPart
-	0,  // 7: media.v1.MediaInfo.kind:type_name -> media.v1.MediaKind
-	1,  // 8: media.v1.MediaInfo.status:type_name -> media.v1.MediaStatus
-	14, // 9: media.v1.MediaInfo.created_at:type_name -> google.protobuf.Timestamp
-	11, // 10: media.v1.CompleteMultipartUploadResponse.media:type_name -> media.v1.MediaInfo
-	11, // [11:11] is the sub-list for method output_type
-	11, // [11:11] is the sub-list for method input_type
-	11, // [11:11] is the sub-list for extension type_name
-	11, // [11:11] is the sub-list for extension extendee
-	0,  // [0:11] is the sub-list for field type_name
+	14, // 7: media.v1.MediaInfo.created_at:type_name -> google.protobuf.Timestamp
+	11, // 8: media.v1.CompleteMultipartUploadResponse.media:type_name -> media.v1.MediaInfo
+	9,  // [9:9] is the sub-list for method output_type
+	9,  // [9:9] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_media_v1_type_proto_init() }
