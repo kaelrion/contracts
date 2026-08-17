@@ -1,0 +1,94 @@
+syntax="proto3";
+
+package media.v1;
+
+option go_package = "github.com/kaelrion/contracts/media/v1;media";
+
+import "google/protobuf/timestamp.proto";
+
+// INITIALIZE UPLOAD
+message File {
+  string             name          = 1;
+  string             size          = 2;
+  string             content_type  = 3;
+  map<string,string> user_metadata = 4;
+
+}
+
+message MultipartUploadInfo {
+  string                    session_id  = 1;
+  int32                     total_parts = 2;
+  int64                     part_size   = 3;
+  google.protobuf.Timestamp expires_at  = 4;
+}
+
+message InitializeUploadsRequest {
+  string        idempotency_key = 1;
+  string        owner_id        = 2;
+  repeated File files           = 3;
+}
+
+message InitializeUploadsResponse {
+  repeated MultipartUploadInfo uploads = 1;
+}
+
+// SIGN PART
+message PresignedPart {
+  int32                     part_number = 1;
+  string                    url         = 2;
+  google.protobuf.Timestamp expires_at  = 3;
+}
+
+message SignUploadPartsRequest {
+  string         session_id   = 1;
+  repeated int32 part_numbers = 2;
+}
+
+message SignUploadPartsResponse {
+  repeated PresignedPart parts = 1;
+}
+
+// COMPLETE MULTIPART
+message CompletedPart {
+  int32  part_number = 1;
+  string e_tag       = 2;
+}
+
+message CompleteMultipartUploadRequest {
+  string                 session_id = 1;
+  repeated CompletedPart parts      = 2;
+}
+
+enum MediaKind {
+  MEDIA_KIND_UNSPECIFIED = 0;
+  MEDIA_KIND_IMAGE       = 1;
+  MEDIA_KIND_VIDEO       = 2;
+  MEDIA_KIND_AUDIO       = 3;
+  MEDIA_KIND_FILE        = 4;
+}
+
+enum MediaStatus {
+  MEDIA_STATUS_UNSPECIFIED = 0;
+  MEDIA_STATUS_UPLOADING   = 1;
+  MEDIA_STATUS_PROCESSING  = 2;
+  MEDIA_STATUS_READY       = 3;
+  MEDIA_STATUS_FAILED      = 4;
+  MEDIA_STATUS_EXPIRED     = 5;
+  MEDIA_STATUS_ABANDONED   = 6;
+}
+
+message MediaInfo {
+  string                    id           = 1;
+  MediaKind                 kind         = 2;
+  MediaStatus               status       = 3;
+  string                    content_type = 4;
+  int64                     size         = 5;
+  optional int32            width        = 6;
+  optional int32            height       = 7;
+  optional int64            duration     = 8;
+  google.protobuf.Timestamp created_at   = 9;
+}
+
+message CompleteMultipartUploadResponse {
+  MediaInfo media = 1;
+}
