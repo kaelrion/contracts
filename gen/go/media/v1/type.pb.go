@@ -142,7 +142,7 @@ func (MediaStatus) EnumDescriptor() ([]byte, []int) {
 type File struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Size          string                 `protobuf:"bytes,2,opt,name=size,proto3" json:"size,omitempty"`
+	Size          int64                  `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
 	ContentType   string                 `protobuf:"bytes,3,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
 	UserMetadata  map[string]string      `protobuf:"bytes,4,rep,name=user_metadata,json=userMetadata,proto3" json:"user_metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
@@ -186,11 +186,11 @@ func (x *File) GetName() string {
 	return ""
 }
 
-func (x *File) GetSize() string {
+func (x *File) GetSize() int64 {
 	if x != nil {
 		return x.Size
 	}
-	return ""
+	return 0
 }
 
 func (x *File) GetContentType() string {
@@ -800,7 +800,7 @@ const file_media_v1_type_proto_rawDesc = "" +
 	"\x13media/v1/type.proto\x12\bmedia.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd9\x01\n" +
 	"\x04File\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
-	"\x04size\x18\x02 \x01(\tR\x04size\x12!\n" +
+	"\x04size\x18\x02 \x01(\x03R\x04size\x12!\n" +
 	"\fcontent_type\x18\x03 \x01(\tR\vcontentType\x12E\n" +
 	"\ruser_metadata\x18\x04 \x03(\v2 .media.v1.File.UserMetadataEntryR\fuserMetadata\x1a?\n" +
 	"\x11UserMetadataEntry\x12\x10\n" +

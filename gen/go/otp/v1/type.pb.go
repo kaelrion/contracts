@@ -7,14 +7,13 @@
 package otp
 
 import (
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
-
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	durationpb "google.golang.org/protobuf/types/known/durationpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
+	reflect "reflect"
+	sync "sync"
+	unsafe "unsafe"
 )
 
 const (
@@ -577,7 +576,7 @@ const file_otp_v1_type_proto_rawDesc = "" +
 	"identifier\x12\x19\n" +
 	"\botp_code\x18\x04 \x01(\tR\aotpCode\"+\n" +
 	"\x11VerifyOTPResponse\x12\x16\n" +
-	"\x06result\x18\x01 \x01(\bR\x06resultB/Z-github.com/kaelrion/contracts/gen/otp/v1;otpb\x06proto3"
+	"\x06result\x18\x01 \x01(\bR\x06resultB.Z,github.com/kaelrion/contracts/gen/otp/v1;otpb\x06proto3"
 
 var (
 	file_otp_v1_type_proto_rawDescOnce sync.Once
