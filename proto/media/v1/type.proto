@@ -29,7 +29,8 @@ message InitializeUploadsRequest {
 }
 
 message InitializeUploadsResponse {
-  repeated MultipartUploadInfo uploads = 1;
+  string                       media_id = 1;
+  repeated MultipartUploadInfo uploads  = 2;
 }
 
 // SIGN PART

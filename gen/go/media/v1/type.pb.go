@@ -337,7 +337,8 @@ func (x *InitializeUploadsRequest) GetFiles() []*File {
 
 type InitializeUploadsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Uploads       []*MultipartUploadInfo `protobuf:"bytes,1,rep,name=uploads,proto3" json:"uploads,omitempty"`
+	MediaId       string                 `protobuf:"bytes,1,opt,name=media_id,json=mediaId,proto3" json:"media_id,omitempty"`
+	Uploads       []*MultipartUploadInfo `protobuf:"bytes,2,rep,name=uploads,proto3" json:"uploads,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -370,6 +371,13 @@ func (x *InitializeUploadsResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use InitializeUploadsResponse.ProtoReflect.Descriptor instead.
 func (*InitializeUploadsResponse) Descriptor() ([]byte, []int) {
 	return file_media_v1_type_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *InitializeUploadsResponse) GetMediaId() string {
+	if x != nil {
+		return x.MediaId
+	}
+	return ""
 }
 
 func (x *InitializeUploadsResponse) GetUploads() []*MultipartUploadInfo {
@@ -825,9 +833,10 @@ const file_media_v1_type_proto_rawDesc = "" +
 	"\x18InitializeUploadsRequest\x12'\n" +
 	"\x0fidempotency_key\x18\x01 \x01(\tR\x0eidempotencyKey\x12\x19\n" +
 	"\bowner_id\x18\x02 \x01(\tR\aownerId\x12$\n" +
-	"\x05files\x18\x03 \x03(\v2\x0e.media.v1.FileR\x05files\"T\n" +
-	"\x19InitializeUploadsResponse\x127\n" +
-	"\auploads\x18\x01 \x03(\v2\x1d.media.v1.MultipartUploadInfoR\auploads\"}\n" +
+	"\x05files\x18\x03 \x03(\v2\x0e.media.v1.FileR\x05files\"o\n" +
+	"\x19InitializeUploadsResponse\x12\x19\n" +
+	"\bmedia_id\x18\x01 \x01(\tR\amediaId\x127\n" +
+	"\auploads\x18\x02 \x03(\v2\x1d.media.v1.MultipartUploadInfoR\auploads\"}\n" +
 	"\rPresignedPart\x12\x1f\n" +
 	"\vpart_number\x18\x01 \x01(\x05R\n" +
 	"partNumber\x12\x10\n" +
