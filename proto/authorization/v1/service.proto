@@ -1,0 +1,10 @@
+syntax="proto3";
+
+package authorization.v1;
+
+option go_package = "github.com/kaelorin/authorization";
+import "authorization/v1/type.proto";
+
+service Service {
+  rpc Check(CheckRequest) returns (CheckResponse);
+}

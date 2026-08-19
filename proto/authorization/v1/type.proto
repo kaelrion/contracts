@@ -1,0 +1,25 @@
+syntax="proto3";
+
+package authorization.v1;
+
+option go_package = "github.com/kaelorin/authorization";
+
+message Subject {
+  string id   = 1;
+  string type = 2;
+}
+
+message Object {
+  string id   = 1;
+  string type = 2;
+}
+
+message CheckRequest {
+  Subject subject  = 1;
+  string  relation = 2;
+  Object  object   = 3;
+}
+
+message CheckResponse {
+  bool allow = 1;
+}
