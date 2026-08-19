@@ -209,10 +209,11 @@ func (x *File) GetUserMetadata() map[string]string {
 
 type MultipartUploadInfo struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	SessionId     string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
-	TotalParts    int32                  `protobuf:"varint,2,opt,name=total_parts,json=totalParts,proto3" json:"total_parts,omitempty"`
-	PartSize      int64                  `protobuf:"varint,3,opt,name=part_size,json=partSize,proto3" json:"part_size,omitempty"`
-	ExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
+	MediaId       string                 `protobuf:"bytes,1,opt,name=media_id,json=mediaId,proto3" json:"media_id,omitempty"`
+	SessionId     string                 `protobuf:"bytes,2,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
+	TotalParts    int32                  `protobuf:"varint,3,opt,name=total_parts,json=totalParts,proto3" json:"total_parts,omitempty"`
+	PartSize      int64                  `protobuf:"varint,4,opt,name=part_size,json=partSize,proto3" json:"part_size,omitempty"`
+	ExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -245,6 +246,13 @@ func (x *MultipartUploadInfo) ProtoReflect() protoreflect.Message {
 // Deprecated: Use MultipartUploadInfo.ProtoReflect.Descriptor instead.
 func (*MultipartUploadInfo) Descriptor() ([]byte, []int) {
 	return file_media_v1_type_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *MultipartUploadInfo) GetMediaId() string {
+	if x != nil {
+		return x.MediaId
+	}
+	return ""
 }
 
 func (x *MultipartUploadInfo) GetSessionId() string {
@@ -337,8 +345,7 @@ func (x *InitializeUploadsRequest) GetFiles() []*File {
 
 type InitializeUploadsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	MediaId       string                 `protobuf:"bytes,1,opt,name=media_id,json=mediaId,proto3" json:"media_id,omitempty"`
-	Uploads       []*MultipartUploadInfo `protobuf:"bytes,2,rep,name=uploads,proto3" json:"uploads,omitempty"`
+	Uploads       []*MultipartUploadInfo `protobuf:"bytes,1,rep,name=uploads,proto3" json:"uploads,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -371,13 +378,6 @@ func (x *InitializeUploadsResponse) ProtoReflect() protoreflect.Message {
 // Deprecated: Use InitializeUploadsResponse.ProtoReflect.Descriptor instead.
 func (*InitializeUploadsResponse) Descriptor() ([]byte, []int) {
 	return file_media_v1_type_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *InitializeUploadsResponse) GetMediaId() string {
-	if x != nil {
-		return x.MediaId
-	}
-	return ""
 }
 
 func (x *InitializeUploadsResponse) GetUploads() []*MultipartUploadInfo {
@@ -821,22 +821,22 @@ const file_media_v1_type_proto_rawDesc = "" +
 	"\ruser_metadata\x18\x04 \x03(\v2 .media.v1.File.UserMetadataEntryR\fuserMetadata\x1a?\n" +
 	"\x11UserMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xad\x01\n" +
-	"\x13MultipartUploadInfo\x12\x1d\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xc8\x01\n" +
+	"\x13MultipartUploadInfo\x12\x19\n" +
+	"\bmedia_id\x18\x01 \x01(\tR\amediaId\x12\x1d\n" +
 	"\n" +
-	"session_id\x18\x01 \x01(\tR\tsessionId\x12\x1f\n" +
-	"\vtotal_parts\x18\x02 \x01(\x05R\n" +
+	"session_id\x18\x02 \x01(\tR\tsessionId\x12\x1f\n" +
+	"\vtotal_parts\x18\x03 \x01(\x05R\n" +
 	"totalParts\x12\x1b\n" +
-	"\tpart_size\x18\x03 \x01(\x03R\bpartSize\x129\n" +
+	"\tpart_size\x18\x04 \x01(\x03R\bpartSize\x129\n" +
 	"\n" +
-	"expires_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"\x84\x01\n" +
+	"expires_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"\x84\x01\n" +
 	"\x18InitializeUploadsRequest\x12'\n" +
 	"\x0fidempotency_key\x18\x01 \x01(\tR\x0eidempotencyKey\x12\x19\n" +
 	"\bowner_id\x18\x02 \x01(\tR\aownerId\x12$\n" +
-	"\x05files\x18\x03 \x03(\v2\x0e.media.v1.FileR\x05files\"o\n" +
-	"\x19InitializeUploadsResponse\x12\x19\n" +
-	"\bmedia_id\x18\x01 \x01(\tR\amediaId\x127\n" +
-	"\auploads\x18\x02 \x03(\v2\x1d.media.v1.MultipartUploadInfoR\auploads\"}\n" +
+	"\x05files\x18\x03 \x03(\v2\x0e.media.v1.FileR\x05files\"T\n" +
+	"\x19InitializeUploadsResponse\x127\n" +
+	"\auploads\x18\x01 \x03(\v2\x1d.media.v1.MultipartUploadInfoR\auploads\"}\n" +
 	"\rPresignedPart\x12\x1f\n" +
 	"\vpart_number\x18\x01 \x01(\x05R\n" +
 	"partNumber\x12\x10\n" +
