@@ -16,10 +16,11 @@ message File {
 }
 
 message MultipartUploadInfo {
-  string                    session_id  = 1;
-  int32                     total_parts = 2;
-  int64                     part_size   = 3;
-  google.protobuf.Timestamp expires_at  = 4;
+  string                    media_id    = 1;
+  string                    session_id  = 2;
+  int32                     total_parts = 3;
+  int64                     part_size   = 4;
+  google.protobuf.Timestamp expires_at  = 5;
 }
 
 message InitializeUploadsRequest {
@@ -29,8 +30,7 @@ message InitializeUploadsRequest {
 }
 
 message InitializeUploadsResponse {
-  string                       media_id = 1;
-  repeated MultipartUploadInfo uploads  = 2;
+  repeated MultipartUploadInfo uploads = 1;
 }
 
 // SIGN PART
