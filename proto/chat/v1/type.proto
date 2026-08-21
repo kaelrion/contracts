@@ -1,0 +1,37 @@
+syntax="proto3";
+
+package chat.v1;
+
+option go_package = "github.com/kaelorin/chat";
+
+message Text {
+  string content = 1;
+}
+
+message Attachment {
+  string             name          = 1;
+  int64              size          = 2;
+  string             content_type  = 3;
+  map<string,string> user_metadata = 4;
+}
+
+message Part {
+  string type = 1;
+  oneof content {
+    Text       text       = 2;
+    Attachment attachment = 3;
+  }
+  int32 position = 4;
+}
+
+message SendMessageRequest {
+  string          sender_id           = 1;
+  string          conversation_id     = 2;
+  optional string reply_to_message_id = 3;
+  repeated Part   parts               = 4;
+}
+
+message SendMessageResponse {
+  string message_id = 1;
+  string state      = 2;
+}

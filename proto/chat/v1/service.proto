@@ -1,0 +1,11 @@
+syntax="proto3";
+
+package chat.v1;
+
+option go_package = "github.com/kaelorin/chat";
+import "chat/v1/type.proto";
+
+service Service {
+  rpc SendMessage(SendMessageRequest)returns (SendMessageResponse);
+
+}
