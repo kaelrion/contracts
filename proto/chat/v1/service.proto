@@ -7,5 +7,5 @@ import "chat/v1/type.proto";
 
 service Service {
   rpc SendMessageText(SendMessageTextRequest)returns (SendMessageTextResponse);
-  rpc SendMessageWithAttachment(SendMessageTextRequest)returns (SendMessageTextResponse);
+  rpc SendMessageWithAttachment(SendMessageWithAttachmentRequest)returns (SendMessageWithAttachmentResponse);
 }

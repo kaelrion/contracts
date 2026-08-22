@@ -28,7 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ServiceClient interface {
 	SendMessageText(ctx context.Context, in *SendMessageTextRequest, opts ...grpc.CallOption) (*SendMessageTextResponse, error)
-	SendMessageWithAttachment(ctx context.Context, in *SendMessageTextRequest, opts ...grpc.CallOption) (*SendMessageTextResponse, error)
+	SendMessageWithAttachment(ctx context.Context, in *SendMessageWithAttachmentRequest, opts ...grpc.CallOption) (*SendMessageWithAttachmentResponse, error)
 }
 
 type serviceClient struct {
@@ -49,9 +49,9 @@ func (c *serviceClient) SendMessageText(ctx context.Context, in *SendMessageText
 	return out, nil
 }
 
-func (c *serviceClient) SendMessageWithAttachment(ctx context.Context, in *SendMessageTextRequest, opts ...grpc.CallOption) (*SendMessageTextResponse, error) {
+func (c *serviceClient) SendMessageWithAttachment(ctx context.Context, in *SendMessageWithAttachmentRequest, opts ...grpc.CallOption) (*SendMessageWithAttachmentResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SendMessageTextResponse)
+	out := new(SendMessageWithAttachmentResponse)
 	err := c.cc.Invoke(ctx, Service_SendMessageWithAttachment_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -64,7 +64,7 @@ func (c *serviceClient) SendMessageWithAttachment(ctx context.Context, in *SendM
 // for forward compatibility.
 type ServiceServer interface {
 	SendMessageText(context.Context, *SendMessageTextRequest) (*SendMessageTextResponse, error)
-	SendMessageWithAttachment(context.Context, *SendMessageTextRequest) (*SendMessageTextResponse, error)
+	SendMessageWithAttachment(context.Context, *SendMessageWithAttachmentRequest) (*SendMessageWithAttachmentResponse, error)
 	mustEmbedUnimplementedServiceServer()
 }
 
@@ -78,7 +78,7 @@ type UnimplementedServiceServer struct{}
 func (UnimplementedServiceServer) SendMessageText(context.Context, *SendMessageTextRequest) (*SendMessageTextResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method SendMessageText not implemented")
 }
-func (UnimplementedServiceServer) SendMessageWithAttachment(context.Context, *SendMessageTextRequest) (*SendMessageTextResponse, error) {
+func (UnimplementedServiceServer) SendMessageWithAttachment(context.Context, *SendMessageWithAttachmentRequest) (*SendMessageWithAttachmentResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method SendMessageWithAttachment not implemented")
 }
 func (UnimplementedServiceServer) mustEmbedUnimplementedServiceServer() {}
@@ -121,7 +121,7 @@ func _Service_SendMessageText_Handler(srv interface{}, ctx context.Context, dec 
 }
 
 func _Service_SendMessageWithAttachment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SendMessageTextRequest)
+	in := new(SendMessageWithAttachmentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -133,7 +133,7 @@ func _Service_SendMessageWithAttachment_Handler(srv interface{}, ctx context.Con
 		FullMethod: Service_SendMessageWithAttachment_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).SendMessageWithAttachment(ctx, req.(*SendMessageTextRequest))
+		return srv.(ServiceServer).SendMessageWithAttachment(ctx, req.(*SendMessageWithAttachmentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
