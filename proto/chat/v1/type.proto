@@ -24,19 +24,20 @@ message Part {
   int32 position = 4;
 }
 
-message SendMessageRequest {
+message SendMessageTextRequest {
   string          sender_id           = 1;
   string          conversation_id     = 2;
   optional string reply_to_message_id = 3;
   repeated Part   parts               = 4;
 }
 
-message SendMessageResponse {
-  string message_id = 1;
-  string state      = 2;
+message SendMessageTextResponse {
+  string conversation_id = 1;
+  string message_id      = 2;
+  string state           = 3;
 }
 
-message SendMessageTextRequest {
+message SendMessageWithAttachmentRequest {
   string          sender_id           = 1;
   string          conversation_id     = 2;
   optional string reply_to_message_id = 3;
@@ -48,7 +49,9 @@ message Upload {
   string part_id = 2;
 }
 
-message SendMessageTextResponse {
-  string          message_id = 1;
-  repeated Upload upload     = 2;
+message SendMessageWithAttachmentResponse {
+  string          conversation_id = 1;
+  string          message_id      = 2;
+  string          state           = 3;
+  repeated Upload upload          = 4;
 }

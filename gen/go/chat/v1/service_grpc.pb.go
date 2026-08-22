@@ -19,16 +19,16 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Service_SendMessage_FullMethodName     = "/chat.v1.Service/SendMessage"
-	Service_SendMessageText_FullMethodName = "/chat.v1.Service/SendMessageText"
+	Service_SendMessageText_FullMethodName           = "/chat.v1.Service/SendMessageText"
+	Service_SendMessageWithAttachment_FullMethodName = "/chat.v1.Service/SendMessageWithAttachment"
 )
 
 // ServiceClient is the client API for Service service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ServiceClient interface {
-	SendMessage(ctx context.Context, in *SendMessageRequest, opts ...grpc.CallOption) (*SendMessageResponse, error)
 	SendMessageText(ctx context.Context, in *SendMessageTextRequest, opts ...grpc.CallOption) (*SendMessageTextResponse, error)
+	SendMessageWithAttachment(ctx context.Context, in *SendMessageTextRequest, opts ...grpc.CallOption) (*SendMessageTextResponse, error)
 }
 
 type serviceClient struct {
@@ -37,16 +37,6 @@ type serviceClient struct {
 
 func NewServiceClient(cc grpc.ClientConnInterface) ServiceClient {
 	return &serviceClient{cc}
-}
-
-func (c *serviceClient) SendMessage(ctx context.Context, in *SendMessageRequest, opts ...grpc.CallOption) (*SendMessageResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SendMessageResponse)
-	err := c.cc.Invoke(ctx, Service_SendMessage_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *serviceClient) SendMessageText(ctx context.Context, in *SendMessageTextRequest, opts ...grpc.CallOption) (*SendMessageTextResponse, error) {
@@ -59,12 +49,22 @@ func (c *serviceClient) SendMessageText(ctx context.Context, in *SendMessageText
 	return out, nil
 }
 
+func (c *serviceClient) SendMessageWithAttachment(ctx context.Context, in *SendMessageTextRequest, opts ...grpc.CallOption) (*SendMessageTextResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SendMessageTextResponse)
+	err := c.cc.Invoke(ctx, Service_SendMessageWithAttachment_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ServiceServer is the server API for Service service.
 // All implementations must embed UnimplementedServiceServer
 // for forward compatibility.
 type ServiceServer interface {
-	SendMessage(context.Context, *SendMessageRequest) (*SendMessageResponse, error)
 	SendMessageText(context.Context, *SendMessageTextRequest) (*SendMessageTextResponse, error)
+	SendMessageWithAttachment(context.Context, *SendMessageTextRequest) (*SendMessageTextResponse, error)
 	mustEmbedUnimplementedServiceServer()
 }
 
@@ -75,11 +75,11 @@ type ServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedServiceServer struct{}
 
-func (UnimplementedServiceServer) SendMessage(context.Context, *SendMessageRequest) (*SendMessageResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method SendMessage not implemented")
-}
 func (UnimplementedServiceServer) SendMessageText(context.Context, *SendMessageTextRequest) (*SendMessageTextResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method SendMessageText not implemented")
+}
+func (UnimplementedServiceServer) SendMessageWithAttachment(context.Context, *SendMessageTextRequest) (*SendMessageTextResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method SendMessageWithAttachment not implemented")
 }
 func (UnimplementedServiceServer) mustEmbedUnimplementedServiceServer() {}
 func (UnimplementedServiceServer) testEmbeddedByValue()                 {}
@@ -102,24 +102,6 @@ func RegisterServiceServer(s grpc.ServiceRegistrar, srv ServiceServer) {
 	s.RegisterService(&Service_ServiceDesc, srv)
 }
 
-func _Service_SendMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SendMessageRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ServiceServer).SendMessage(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Service_SendMessage_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).SendMessage(ctx, req.(*SendMessageRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Service_SendMessageText_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SendMessageTextRequest)
 	if err := dec(in); err != nil {
@@ -138,6 +120,24 @@ func _Service_SendMessageText_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Service_SendMessageWithAttachment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendMessageTextRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServer).SendMessageWithAttachment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Service_SendMessageWithAttachment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServer).SendMessageWithAttachment(ctx, req.(*SendMessageTextRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Service_ServiceDesc is the grpc.ServiceDesc for Service service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -146,12 +146,12 @@ var Service_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "SendMessage",
-			Handler:    _Service_SendMessage_Handler,
-		},
-		{
 			MethodName: "SendMessageText",
 			Handler:    _Service_SendMessageText_Handler,
+		},
+		{
+			MethodName: "SendMessageWithAttachment",
+			Handler:    _Service_SendMessageWithAttachment_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
