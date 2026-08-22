@@ -24,19 +24,24 @@ var File_chat_v1_service_proto protoreflect.FileDescriptor
 
 const file_chat_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x15chat/v1/service.proto\x12\achat.v1\x1a\x12chat/v1/type.proto2S\n" +
+	"\x15chat/v1/service.proto\x12\achat.v1\x1a\x12chat/v1/type.proto2\xa9\x01\n" +
 	"\aService\x12H\n" +
-	"\vSendMessage\x12\x1b.chat.v1.SendMessageRequest\x1a\x1c.chat.v1.SendMessageResponseB\x1aZ\x18github.com/kaelorin/chatb\x06proto3"
+	"\vSendMessage\x12\x1b.chat.v1.SendMessageRequest\x1a\x1c.chat.v1.SendMessageResponse\x12T\n" +
+	"\x0fSendMessageText\x12\x1f.chat.v1.SendMessageTextRequest\x1a .chat.v1.SendMessageTextResponseB\x1aZ\x18github.com/kaelorin/chatb\x06proto3"
 
 var file_chat_v1_service_proto_goTypes = []any{
-	(*SendMessageRequest)(nil),  // 0: chat.v1.SendMessageRequest
-	(*SendMessageResponse)(nil), // 1: chat.v1.SendMessageResponse
+	(*SendMessageRequest)(nil),      // 0: chat.v1.SendMessageRequest
+	(*SendMessageTextRequest)(nil),  // 1: chat.v1.SendMessageTextRequest
+	(*SendMessageResponse)(nil),     // 2: chat.v1.SendMessageResponse
+	(*SendMessageTextResponse)(nil), // 3: chat.v1.SendMessageTextResponse
 }
 var file_chat_v1_service_proto_depIdxs = []int32{
 	0, // 0: chat.v1.Service.SendMessage:input_type -> chat.v1.SendMessageRequest
-	1, // 1: chat.v1.Service.SendMessage:output_type -> chat.v1.SendMessageResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	1, // 1: chat.v1.Service.SendMessageText:input_type -> chat.v1.SendMessageTextRequest
+	2, // 2: chat.v1.Service.SendMessage:output_type -> chat.v1.SendMessageResponse
+	3, // 3: chat.v1.Service.SendMessageText:output_type -> chat.v1.SendMessageTextResponse
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
