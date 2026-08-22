@@ -12,7 +12,7 @@ message File {
   int64              size          = 2;
   string             content_type  = 3;
   map<string,string> user_metadata = 4;
-
+  string             token         = 5;
 }
 
 message MultipartUploadInfo {
