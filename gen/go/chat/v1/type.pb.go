@@ -427,28 +427,30 @@ func (x *SendMessageWithAttachmentRequest) GetParts() []*Part {
 	return nil
 }
 
-type Upload struct {
+type SendMessageWithAttachmentPart struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	PartId        string                 `protobuf:"bytes,2,opt,name=part_id,json=partId,proto3" json:"part_id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Type          string                 `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
+	Text          *string                `protobuf:"bytes,3,opt,name=text,proto3,oneof" json:"text,omitempty"`
+	Token         *string                `protobuf:"bytes,4,opt,name=token,proto3,oneof" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Upload) Reset() {
-	*x = Upload{}
+func (x *SendMessageWithAttachmentPart) Reset() {
+	*x = SendMessageWithAttachmentPart{}
 	mi := &file_chat_v1_type_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Upload) String() string {
+func (x *SendMessageWithAttachmentPart) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Upload) ProtoMessage() {}
+func (*SendMessageWithAttachmentPart) ProtoMessage() {}
 
-func (x *Upload) ProtoReflect() protoreflect.Message {
+func (x *SendMessageWithAttachmentPart) ProtoReflect() protoreflect.Message {
 	mi := &file_chat_v1_type_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -460,31 +462,45 @@ func (x *Upload) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Upload.ProtoReflect.Descriptor instead.
-func (*Upload) Descriptor() ([]byte, []int) {
+// Deprecated: Use SendMessageWithAttachmentPart.ProtoReflect.Descriptor instead.
+func (*SendMessageWithAttachmentPart) Descriptor() ([]byte, []int) {
 	return file_chat_v1_type_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *Upload) GetToken() string {
+func (x *SendMessageWithAttachmentPart) GetId() string {
 	if x != nil {
-		return x.Token
+		return x.Id
 	}
 	return ""
 }
 
-func (x *Upload) GetPartId() string {
+func (x *SendMessageWithAttachmentPart) GetType() string {
 	if x != nil {
-		return x.PartId
+		return x.Type
+	}
+	return ""
+}
+
+func (x *SendMessageWithAttachmentPart) GetText() string {
+	if x != nil && x.Text != nil {
+		return *x.Text
+	}
+	return ""
+}
+
+func (x *SendMessageWithAttachmentPart) GetToken() string {
+	if x != nil && x.Token != nil {
+		return *x.Token
 	}
 	return ""
 }
 
 type SendMessageWithAttachmentResponse struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	ConversationId string                 `protobuf:"bytes,1,opt,name=conversation_id,json=conversationId,proto3" json:"conversation_id,omitempty"`
-	MessageId      string                 `protobuf:"bytes,2,opt,name=message_id,json=messageId,proto3" json:"message_id,omitempty"`
-	State          string                 `protobuf:"bytes,3,opt,name=state,proto3" json:"state,omitempty"`
-	Upload         []*Upload              `protobuf:"bytes,4,rep,name=upload,proto3" json:"upload,omitempty"`
+	state          protoimpl.MessageState           `protogen:"open.v1"`
+	ConversationId string                           `protobuf:"bytes,1,opt,name=conversation_id,json=conversationId,proto3" json:"conversation_id,omitempty"`
+	MessageId      string                           `protobuf:"bytes,2,opt,name=message_id,json=messageId,proto3" json:"message_id,omitempty"`
+	State          string                           `protobuf:"bytes,3,opt,name=state,proto3" json:"state,omitempty"`
+	Parts          []*SendMessageWithAttachmentPart `protobuf:"bytes,4,rep,name=parts,proto3" json:"parts,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -540,9 +556,9 @@ func (x *SendMessageWithAttachmentResponse) GetState() string {
 	return ""
 }
 
-func (x *SendMessageWithAttachmentResponse) GetUpload() []*Upload {
+func (x *SendMessageWithAttachmentResponse) GetParts() []*SendMessageWithAttachmentPart {
 	if x != nil {
-		return x.Upload
+		return x.Parts
 	}
 	return nil
 }
@@ -587,16 +603,20 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"\x0fconversation_id\x18\x02 \x01(\tR\x0econversationId\x122\n" +
 	"\x13reply_to_message_id\x18\x03 \x01(\tH\x00R\x10replyToMessageId\x88\x01\x01\x12#\n" +
 	"\x05parts\x18\x04 \x03(\v2\r.chat.v1.PartR\x05partsB\x16\n" +
-	"\x14_reply_to_message_id\"7\n" +
-	"\x06Upload\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\x12\x17\n" +
-	"\apart_id\x18\x02 \x01(\tR\x06partId\"\xaa\x01\n" +
+	"\x14_reply_to_message_id\"\x8a\x01\n" +
+	"\x1dSendMessageWithAttachmentPart\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04type\x18\x02 \x01(\tR\x04type\x12\x17\n" +
+	"\x04text\x18\x03 \x01(\tH\x00R\x04text\x88\x01\x01\x12\x19\n" +
+	"\x05token\x18\x04 \x01(\tH\x01R\x05token\x88\x01\x01B\a\n" +
+	"\x05_textB\b\n" +
+	"\x06_token\"\xbf\x01\n" +
 	"!SendMessageWithAttachmentResponse\x12'\n" +
 	"\x0fconversation_id\x18\x01 \x01(\tR\x0econversationId\x12\x1d\n" +
 	"\n" +
 	"message_id\x18\x02 \x01(\tR\tmessageId\x12\x14\n" +
-	"\x05state\x18\x03 \x01(\tR\x05state\x12'\n" +
-	"\x06upload\x18\x04 \x03(\v2\x0f.chat.v1.UploadR\x06uploadB\x1aZ\x18github.com/kaelorin/chatb\x06proto3"
+	"\x05state\x18\x03 \x01(\tR\x05state\x12<\n" +
+	"\x05parts\x18\x04 \x03(\v2&.chat.v1.SendMessageWithAttachmentPartR\x05partsB\x1aZ\x18github.com/kaelorin/chatb\x06proto3"
 
 var (
 	file_chat_v1_type_proto_rawDescOnce sync.Once
@@ -618,7 +638,7 @@ var file_chat_v1_type_proto_goTypes = []any{
 	(*SendMessageTextRequest)(nil),            // 3: chat.v1.SendMessageTextRequest
 	(*SendMessageTextResponse)(nil),           // 4: chat.v1.SendMessageTextResponse
 	(*SendMessageWithAttachmentRequest)(nil),  // 5: chat.v1.SendMessageWithAttachmentRequest
-	(*Upload)(nil),                            // 6: chat.v1.Upload
+	(*SendMessageWithAttachmentPart)(nil),     // 6: chat.v1.SendMessageWithAttachmentPart
 	(*SendMessageWithAttachmentResponse)(nil), // 7: chat.v1.SendMessageWithAttachmentResponse
 	nil, // 8: chat.v1.Attachment.UserMetadataEntry
 }
@@ -628,7 +648,7 @@ var file_chat_v1_type_proto_depIdxs = []int32{
 	1, // 2: chat.v1.Part.attachment:type_name -> chat.v1.Attachment
 	2, // 3: chat.v1.SendMessageTextRequest.parts:type_name -> chat.v1.Part
 	2, // 4: chat.v1.SendMessageWithAttachmentRequest.parts:type_name -> chat.v1.Part
-	6, // 5: chat.v1.SendMessageWithAttachmentResponse.upload:type_name -> chat.v1.Upload
+	6, // 5: chat.v1.SendMessageWithAttachmentResponse.parts:type_name -> chat.v1.SendMessageWithAttachmentPart
 	6, // [6:6] is the sub-list for method output_type
 	6, // [6:6] is the sub-list for method input_type
 	6, // [6:6] is the sub-list for extension type_name
@@ -647,6 +667,7 @@ func file_chat_v1_type_proto_init() {
 	}
 	file_chat_v1_type_proto_msgTypes[3].OneofWrappers = []any{}
 	file_chat_v1_type_proto_msgTypes[5].OneofWrappers = []any{}
+	file_chat_v1_type_proto_msgTypes[6].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

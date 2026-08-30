@@ -44,14 +44,17 @@ message SendMessageWithAttachmentRequest {
   repeated Part   parts               = 4;
 }
 
-message Upload {
-  string token   = 1;
-  string part_id = 2;
+message SendMessageWithAttachmentPart {
+  string          id    = 1;
+  string          type  = 2;
+  optional string text  = 3;
+  optional string token = 4;
+
 }
 
 message SendMessageWithAttachmentResponse {
-  string          conversation_id = 1;
-  string          message_id      = 2;
-  string          state           = 3;
-  repeated Upload upload          = 4;
+  string                                 conversation_id = 1;
+  string                                 message_id      = 2;
+  string                                 state           = 3;
+  repeated SendMessageWithAttachmentPart parts           = 4;
 }
