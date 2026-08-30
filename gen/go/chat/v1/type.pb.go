@@ -433,6 +433,7 @@ type SendMessageWithAttachmentPart struct {
 	Type          string                 `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
 	Text          *string                `protobuf:"bytes,3,opt,name=text,proto3,oneof" json:"text,omitempty"`
 	Token         *string                `protobuf:"bytes,4,opt,name=token,proto3,oneof" json:"token,omitempty"`
+	Position      int32                  `protobuf:"varint,5,opt,name=position,proto3" json:"position,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -493,6 +494,13 @@ func (x *SendMessageWithAttachmentPart) GetToken() string {
 		return *x.Token
 	}
 	return ""
+}
+
+func (x *SendMessageWithAttachmentPart) GetPosition() int32 {
+	if x != nil {
+		return x.Position
+	}
+	return 0
 }
 
 type SendMessageWithAttachmentResponse struct {
@@ -603,12 +611,13 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"\x0fconversation_id\x18\x02 \x01(\tR\x0econversationId\x122\n" +
 	"\x13reply_to_message_id\x18\x03 \x01(\tH\x00R\x10replyToMessageId\x88\x01\x01\x12#\n" +
 	"\x05parts\x18\x04 \x03(\v2\r.chat.v1.PartR\x05partsB\x16\n" +
-	"\x14_reply_to_message_id\"\x8a\x01\n" +
+	"\x14_reply_to_message_id\"\xa6\x01\n" +
 	"\x1dSendMessageWithAttachmentPart\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04type\x18\x02 \x01(\tR\x04type\x12\x17\n" +
 	"\x04text\x18\x03 \x01(\tH\x00R\x04text\x88\x01\x01\x12\x19\n" +
-	"\x05token\x18\x04 \x01(\tH\x01R\x05token\x88\x01\x01B\a\n" +
+	"\x05token\x18\x04 \x01(\tH\x01R\x05token\x88\x01\x01\x12\x1a\n" +
+	"\bposition\x18\x05 \x01(\x05R\bpositionB\a\n" +
 	"\x05_textB\b\n" +
 	"\x06_token\"\xbf\x01\n" +
 	"!SendMessageWithAttachmentResponse\x12'\n" +
