@@ -45,10 +45,11 @@ message SendMessageWithAttachmentRequest {
 }
 
 message SendMessageWithAttachmentPart {
-  string          id    = 1;
-  string          type  = 2;
-  optional string text  = 3;
-  optional string token = 4;
+  string          id       = 1;
+  string          type     = 2;
+  optional string text     = 3;
+  optional string token    = 4;
+  int32           position = 5;
 
 }
 
