@@ -431,7 +431,7 @@ type SendMessageWithAttachmentPart struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Type          string                 `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
-	Text          *string                `protobuf:"bytes,3,opt,name=text,proto3,oneof" json:"text,omitempty"`
+	Text          *Text                  `protobuf:"bytes,3,opt,name=text,proto3,oneof" json:"text,omitempty"`
 	Token         *string                `protobuf:"bytes,4,opt,name=token,proto3,oneof" json:"token,omitempty"`
 	Position      int32                  `protobuf:"varint,5,opt,name=position,proto3" json:"position,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -482,11 +482,11 @@ func (x *SendMessageWithAttachmentPart) GetType() string {
 	return ""
 }
 
-func (x *SendMessageWithAttachmentPart) GetText() string {
-	if x != nil && x.Text != nil {
-		return *x.Text
+func (x *SendMessageWithAttachmentPart) GetText() *Text {
+	if x != nil {
+		return x.Text
 	}
-	return ""
+	return nil
 }
 
 func (x *SendMessageWithAttachmentPart) GetToken() string {
@@ -611,11 +611,11 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"\x0fconversation_id\x18\x02 \x01(\tR\x0econversationId\x122\n" +
 	"\x13reply_to_message_id\x18\x03 \x01(\tH\x00R\x10replyToMessageId\x88\x01\x01\x12#\n" +
 	"\x05parts\x18\x04 \x03(\v2\r.chat.v1.PartR\x05partsB\x16\n" +
-	"\x14_reply_to_message_id\"\xa6\x01\n" +
+	"\x14_reply_to_message_id\"\xb5\x01\n" +
 	"\x1dSendMessageWithAttachmentPart\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
-	"\x04type\x18\x02 \x01(\tR\x04type\x12\x17\n" +
-	"\x04text\x18\x03 \x01(\tH\x00R\x04text\x88\x01\x01\x12\x19\n" +
+	"\x04type\x18\x02 \x01(\tR\x04type\x12&\n" +
+	"\x04text\x18\x03 \x01(\v2\r.chat.v1.TextH\x00R\x04text\x88\x01\x01\x12\x19\n" +
 	"\x05token\x18\x04 \x01(\tH\x01R\x05token\x88\x01\x01\x12\x1a\n" +
 	"\bposition\x18\x05 \x01(\x05R\bpositionB\a\n" +
 	"\x05_textB\b\n" +
@@ -657,12 +657,13 @@ var file_chat_v1_type_proto_depIdxs = []int32{
 	1, // 2: chat.v1.Part.attachment:type_name -> chat.v1.Attachment
 	2, // 3: chat.v1.SendMessageTextRequest.parts:type_name -> chat.v1.Part
 	2, // 4: chat.v1.SendMessageWithAttachmentRequest.parts:type_name -> chat.v1.Part
-	6, // 5: chat.v1.SendMessageWithAttachmentResponse.parts:type_name -> chat.v1.SendMessageWithAttachmentPart
-	6, // [6:6] is the sub-list for method output_type
-	6, // [6:6] is the sub-list for method input_type
-	6, // [6:6] is the sub-list for extension type_name
-	6, // [6:6] is the sub-list for extension extendee
-	0, // [0:6] is the sub-list for field type_name
+	0, // 5: chat.v1.SendMessageWithAttachmentPart.text:type_name -> chat.v1.Text
+	6, // 6: chat.v1.SendMessageWithAttachmentResponse.parts:type_name -> chat.v1.SendMessageWithAttachmentPart
+	7, // [7:7] is the sub-list for method output_type
+	7, // [7:7] is the sub-list for method input_type
+	7, // [7:7] is the sub-list for extension type_name
+	7, // [7:7] is the sub-list for extension extendee
+	0, // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_chat_v1_type_proto_init() }
