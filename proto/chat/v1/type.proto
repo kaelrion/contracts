@@ -12,7 +12,10 @@ message Attachment {
   string             name          = 1;
   int64              size          = 2;
   string             content_type  = 3;
-  map<string,string> user_metadata = 4;
+  optional int64     width         = 4;
+  optional int64     height        = 5;
+  optional int64     duration_ms   = 6;
+  map<string,string> user_metadata = 7;
 }
 
 message Part {
@@ -43,7 +46,6 @@ message SendMessageWithAttachmentRequest {
   optional string reply_to_message_id = 3;
   repeated Part   parts               = 4;
 }
-
 
 message SendMessageWithAttachmentPart {
   string          id       = 1;

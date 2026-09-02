@@ -70,7 +70,10 @@ type Attachment struct {
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Size          int64                  `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
 	ContentType   string                 `protobuf:"bytes,3,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
-	UserMetadata  map[string]string      `protobuf:"bytes,4,rep,name=user_metadata,json=userMetadata,proto3" json:"user_metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Width         *int64                 `protobuf:"varint,4,opt,name=width,proto3,oneof" json:"width,omitempty"`
+	Height        *int64                 `protobuf:"varint,5,opt,name=height,proto3,oneof" json:"height,omitempty"`
+	DurationMs    *int64                 `protobuf:"varint,6,opt,name=duration_ms,json=durationMs,proto3,oneof" json:"duration_ms,omitempty"`
+	UserMetadata  map[string]string      `protobuf:"bytes,7,rep,name=user_metadata,json=userMetadata,proto3" json:"user_metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -124,6 +127,27 @@ func (x *Attachment) GetContentType() string {
 		return x.ContentType
 	}
 	return ""
+}
+
+func (x *Attachment) GetWidth() int64 {
+	if x != nil && x.Width != nil {
+		return *x.Width
+	}
+	return 0
+}
+
+func (x *Attachment) GetHeight() int64 {
+	if x != nil && x.Height != nil {
+		return *x.Height
+	}
+	return 0
+}
+
+func (x *Attachment) GetDurationMs() int64 {
+	if x != nil && x.DurationMs != nil {
+		return *x.DurationMs
+	}
+	return 0
 }
 
 func (x *Attachment) GetUserMetadata() map[string]string {
@@ -577,16 +601,23 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"\n" +
 	"\x12chat/v1/type.proto\x12\achat.v1\" \n" +
 	"\x04Text\x12\x18\n" +
-	"\acontent\x18\x01 \x01(\tR\acontent\"\xe4\x01\n" +
+	"\acontent\x18\x01 \x01(\tR\acontent\"\xe7\x02\n" +
 	"\n" +
 	"Attachment\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
 	"\x04size\x18\x02 \x01(\x03R\x04size\x12!\n" +
-	"\fcontent_type\x18\x03 \x01(\tR\vcontentType\x12J\n" +
-	"\ruser_metadata\x18\x04 \x03(\v2%.chat.v1.Attachment.UserMetadataEntryR\fuserMetadata\x1a?\n" +
+	"\fcontent_type\x18\x03 \x01(\tR\vcontentType\x12\x19\n" +
+	"\x05width\x18\x04 \x01(\x03H\x00R\x05width\x88\x01\x01\x12\x1b\n" +
+	"\x06height\x18\x05 \x01(\x03H\x01R\x06height\x88\x01\x01\x12$\n" +
+	"\vduration_ms\x18\x06 \x01(\x03H\x02R\n" +
+	"durationMs\x88\x01\x01\x12J\n" +
+	"\ruser_metadata\x18\a \x03(\v2%.chat.v1.Attachment.UserMetadataEntryR\fuserMetadata\x1a?\n" +
 	"\x11UserMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x9d\x01\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B\b\n" +
+	"\x06_widthB\t\n" +
+	"\a_heightB\x0e\n" +
+	"\f_duration_ms\"\x9d\x01\n" +
 	"\x04Part\x12\x12\n" +
 	"\x04type\x18\x01 \x01(\tR\x04type\x12#\n" +
 	"\x04text\x18\x02 \x01(\v2\r.chat.v1.TextH\x00R\x04text\x125\n" +
@@ -671,6 +702,7 @@ func file_chat_v1_type_proto_init() {
 	if File_chat_v1_type_proto != nil {
 		return
 	}
+	file_chat_v1_type_proto_msgTypes[1].OneofWrappers = []any{}
 	file_chat_v1_type_proto_msgTypes[2].OneofWrappers = []any{
 		(*Part_Text)(nil),
 		(*Part_Attachment)(nil),
