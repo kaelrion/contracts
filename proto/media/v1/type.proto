@@ -94,3 +94,16 @@ message MediaInfo {
 message CompleteMultipartUploadResponse {
   MediaInfo media = 1;
 }
+
+message PresignDownloadsRequest {
+  repeated string mediaIds = 1;
+}
+
+message PresignedDownload {
+  string                    url        = 1;
+  google.protobuf.Timestamp expires_at = 2;
+}
+
+message PresignDownloadsResponse {
+  repeated PresignedDownload urls = 1;
+}

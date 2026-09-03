@@ -24,29 +24,34 @@ var File_media_v1_service_proto protoreflect.FileDescriptor
 
 const file_media_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x16media/v1/service.proto\x12\bmedia.v1\x1a\x13media/v1/type.proto2\xb9\x02\n" +
+	"\x16media/v1/service.proto\x12\bmedia.v1\x1a\x13media/v1/type.proto2\x94\x03\n" +
 	"\aService\x12e\n" +
 	"\x1aInitializeMultipartUploads\x12\".media.v1.InitializeUploadsRequest\x1a#.media.v1.InitializeUploadsResponse\x12V\n" +
 	"\x0fSignUploadParts\x12 .media.v1.SignUploadPartsRequest\x1a!.media.v1.SignUploadPartsResponse\x12o\n" +
-	"\x18CompleteMultipartUploads\x12(.media.v1.CompleteMultipartUploadRequest\x1a).media.v1.CompleteMultipartUploadResponseB.Z,github.com/kaelrion/contracts/media/v1;mediab\x06proto3"
+	"\x18CompleteMultipartUploads\x12(.media.v1.CompleteMultipartUploadRequest\x1a).media.v1.CompleteMultipartUploadResponse\x12Y\n" +
+	"\x10PresignDownloads\x12!.media.v1.PresignDownloadsRequest\x1a\".media.v1.PresignDownloadsResponseB.Z,github.com/kaelrion/contracts/media/v1;mediab\x06proto3"
 
 var file_media_v1_service_proto_goTypes = []any{
 	(*InitializeUploadsRequest)(nil),        // 0: media.v1.InitializeUploadsRequest
 	(*SignUploadPartsRequest)(nil),          // 1: media.v1.SignUploadPartsRequest
 	(*CompleteMultipartUploadRequest)(nil),  // 2: media.v1.CompleteMultipartUploadRequest
-	(*InitializeUploadsResponse)(nil),       // 3: media.v1.InitializeUploadsResponse
-	(*SignUploadPartsResponse)(nil),         // 4: media.v1.SignUploadPartsResponse
-	(*CompleteMultipartUploadResponse)(nil), // 5: media.v1.CompleteMultipartUploadResponse
+	(*PresignDownloadsRequest)(nil),         // 3: media.v1.PresignDownloadsRequest
+	(*InitializeUploadsResponse)(nil),       // 4: media.v1.InitializeUploadsResponse
+	(*SignUploadPartsResponse)(nil),         // 5: media.v1.SignUploadPartsResponse
+	(*CompleteMultipartUploadResponse)(nil), // 6: media.v1.CompleteMultipartUploadResponse
+	(*PresignDownloadsResponse)(nil),        // 7: media.v1.PresignDownloadsResponse
 }
 var file_media_v1_service_proto_depIdxs = []int32{
 	0, // 0: media.v1.Service.InitializeMultipartUploads:input_type -> media.v1.InitializeUploadsRequest
 	1, // 1: media.v1.Service.SignUploadParts:input_type -> media.v1.SignUploadPartsRequest
 	2, // 2: media.v1.Service.CompleteMultipartUploads:input_type -> media.v1.CompleteMultipartUploadRequest
-	3, // 3: media.v1.Service.InitializeMultipartUploads:output_type -> media.v1.InitializeUploadsResponse
-	4, // 4: media.v1.Service.SignUploadParts:output_type -> media.v1.SignUploadPartsResponse
-	5, // 5: media.v1.Service.CompleteMultipartUploads:output_type -> media.v1.CompleteMultipartUploadResponse
-	3, // [3:6] is the sub-list for method output_type
-	0, // [0:3] is the sub-list for method input_type
+	3, // 3: media.v1.Service.PresignDownloads:input_type -> media.v1.PresignDownloadsRequest
+	4, // 4: media.v1.Service.InitializeMultipartUploads:output_type -> media.v1.InitializeUploadsResponse
+	5, // 5: media.v1.Service.SignUploadParts:output_type -> media.v1.SignUploadPartsResponse
+	6, // 6: media.v1.Service.CompleteMultipartUploads:output_type -> media.v1.CompleteMultipartUploadResponse
+	7, // 7: media.v1.Service.PresignDownloads:output_type -> media.v1.PresignDownloadsResponse
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name

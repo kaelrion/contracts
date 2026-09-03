@@ -22,6 +22,7 @@ const (
 	Service_InitializeMultipartUploads_FullMethodName = "/media.v1.Service/InitializeMultipartUploads"
 	Service_SignUploadParts_FullMethodName            = "/media.v1.Service/SignUploadParts"
 	Service_CompleteMultipartUploads_FullMethodName   = "/media.v1.Service/CompleteMultipartUploads"
+	Service_PresignDownloads_FullMethodName           = "/media.v1.Service/PresignDownloads"
 )
 
 // ServiceClient is the client API for Service service.
@@ -31,6 +32,7 @@ type ServiceClient interface {
 	InitializeMultipartUploads(ctx context.Context, in *InitializeUploadsRequest, opts ...grpc.CallOption) (*InitializeUploadsResponse, error)
 	SignUploadParts(ctx context.Context, in *SignUploadPartsRequest, opts ...grpc.CallOption) (*SignUploadPartsResponse, error)
 	CompleteMultipartUploads(ctx context.Context, in *CompleteMultipartUploadRequest, opts ...grpc.CallOption) (*CompleteMultipartUploadResponse, error)
+	PresignDownloads(ctx context.Context, in *PresignDownloadsRequest, opts ...grpc.CallOption) (*PresignDownloadsResponse, error)
 }
 
 type serviceClient struct {
@@ -71,6 +73,16 @@ func (c *serviceClient) CompleteMultipartUploads(ctx context.Context, in *Comple
 	return out, nil
 }
 
+func (c *serviceClient) PresignDownloads(ctx context.Context, in *PresignDownloadsRequest, opts ...grpc.CallOption) (*PresignDownloadsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PresignDownloadsResponse)
+	err := c.cc.Invoke(ctx, Service_PresignDownloads_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ServiceServer is the server API for Service service.
 // All implementations must embed UnimplementedServiceServer
 // for forward compatibility.
@@ -78,6 +90,7 @@ type ServiceServer interface {
 	InitializeMultipartUploads(context.Context, *InitializeUploadsRequest) (*InitializeUploadsResponse, error)
 	SignUploadParts(context.Context, *SignUploadPartsRequest) (*SignUploadPartsResponse, error)
 	CompleteMultipartUploads(context.Context, *CompleteMultipartUploadRequest) (*CompleteMultipartUploadResponse, error)
+	PresignDownloads(context.Context, *PresignDownloadsRequest) (*PresignDownloadsResponse, error)
 	mustEmbedUnimplementedServiceServer()
 }
 
@@ -96,6 +109,9 @@ func (UnimplementedServiceServer) SignUploadParts(context.Context, *SignUploadPa
 }
 func (UnimplementedServiceServer) CompleteMultipartUploads(context.Context, *CompleteMultipartUploadRequest) (*CompleteMultipartUploadResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CompleteMultipartUploads not implemented")
+}
+func (UnimplementedServiceServer) PresignDownloads(context.Context, *PresignDownloadsRequest) (*PresignDownloadsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method PresignDownloads not implemented")
 }
 func (UnimplementedServiceServer) mustEmbedUnimplementedServiceServer() {}
 func (UnimplementedServiceServer) testEmbeddedByValue()                 {}
@@ -172,6 +188,24 @@ func _Service_CompleteMultipartUploads_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Service_PresignDownloads_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PresignDownloadsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServer).PresignDownloads(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Service_PresignDownloads_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServer).PresignDownloads(ctx, req.(*PresignDownloadsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Service_ServiceDesc is the grpc.ServiceDesc for Service service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -190,6 +224,10 @@ var Service_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CompleteMultipartUploads",
 			Handler:    _Service_CompleteMultipartUploads_Handler,
+		},
+		{
+			MethodName: "PresignDownloads",
+			Handler:    _Service_PresignDownloads_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

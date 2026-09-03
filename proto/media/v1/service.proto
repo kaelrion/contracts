@@ -9,4 +9,5 @@ service Service {
   rpc InitializeMultipartUploads(InitializeUploadsRequest)returns (InitializeUploadsResponse);
   rpc SignUploadParts(SignUploadPartsRequest)returns (SignUploadPartsResponse);
   rpc CompleteMultipartUploads(CompleteMultipartUploadRequest)returns (CompleteMultipartUploadResponse);
+  rpc PresignDownloads(PresignDownloadsRequest)returns (PresignDownloadsResponse);
 }
