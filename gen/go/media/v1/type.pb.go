@@ -819,7 +819,7 @@ func (x *CompleteMultipartUploadResponse) GetMedia() *MediaInfo {
 
 type PresignDownloadsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	MediaIds      []string               `protobuf:"bytes,1,rep,name=mediaIds,proto3" json:"mediaIds,omitempty"`
+	MediaIds      []string               `protobuf:"bytes,1,rep,name=media_ids,json=mediaIds,proto3" json:"media_ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -863,8 +863,9 @@ func (x *PresignDownloadsRequest) GetMediaIds() []string {
 
 type PresignedDownload struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Url           string                 `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
-	ExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
+	MediaId       string                 `protobuf:"bytes,1,opt,name=media_id,json=mediaId,proto3" json:"media_id,omitempty"`
+	Url           string                 `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty"`
+	ExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -897,6 +898,13 @@ func (x *PresignedDownload) ProtoReflect() protoreflect.Message {
 // Deprecated: Use PresignedDownload.ProtoReflect.Descriptor instead.
 func (*PresignedDownload) Descriptor() ([]byte, []int) {
 	return file_media_v1_type_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *PresignedDownload) GetMediaId() string {
+	if x != nil {
+		return x.MediaId
+	}
+	return ""
 }
 
 func (x *PresignedDownload) GetUrl() string {
@@ -1026,13 +1034,14 @@ const file_media_v1_type_proto_rawDesc = "" +
 	"\a_heightB\x0e\n" +
 	"\f_duration_ms\"L\n" +
 	"\x1fCompleteMultipartUploadResponse\x12)\n" +
-	"\x05media\x18\x01 \x01(\v2\x13.media.v1.MediaInfoR\x05media\"5\n" +
-	"\x17PresignDownloadsRequest\x12\x1a\n" +
-	"\bmediaIds\x18\x01 \x03(\tR\bmediaIds\"`\n" +
-	"\x11PresignedDownload\x12\x10\n" +
-	"\x03url\x18\x01 \x01(\tR\x03url\x129\n" +
+	"\x05media\x18\x01 \x01(\v2\x13.media.v1.MediaInfoR\x05media\"6\n" +
+	"\x17PresignDownloadsRequest\x12\x1b\n" +
+	"\tmedia_ids\x18\x01 \x03(\tR\bmediaIds\"{\n" +
+	"\x11PresignedDownload\x12\x19\n" +
+	"\bmedia_id\x18\x01 \x01(\tR\amediaId\x12\x10\n" +
+	"\x03url\x18\x02 \x01(\tR\x03url\x129\n" +
 	"\n" +
-	"expires_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"K\n" +
+	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"K\n" +
 	"\x18PresignDownloadsResponse\x12/\n" +
 	"\x04urls\x18\x01 \x03(\v2\x1b.media.v1.PresignedDownloadR\x04urls*~\n" +
 	"\tMediaKind\x12\x1a\n" +
