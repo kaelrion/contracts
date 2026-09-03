@@ -32,12 +32,14 @@ message SendMessageTextRequest {
   string          conversation_id     = 2;
   optional string reply_to_message_id = 3;
   repeated Part   parts               = 4;
+  string          client_id           = 5;
 }
 
 message SendMessageTextResponse {
   string conversation_id = 1;
   string message_id      = 2;
   string state           = 3;
+  string client_id       = 4;
 }
 
 message SendMessageWithAttachmentRequest {
@@ -45,6 +47,7 @@ message SendMessageWithAttachmentRequest {
   string          conversation_id     = 2;
   optional string reply_to_message_id = 3;
   repeated Part   parts               = 4;
+  string          client_id           = 5;
 }
 
 message SendMessageWithAttachmentPart {
@@ -61,4 +64,5 @@ message SendMessageWithAttachmentResponse {
   string                                 message_id      = 2;
   string                                 state           = 3;
   repeated SendMessageWithAttachmentPart parts           = 4;
+  string                                 client_id       = 5;
 }

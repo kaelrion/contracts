@@ -261,6 +261,7 @@ type SendMessageTextRequest struct {
 	ConversationId   string                 `protobuf:"bytes,2,opt,name=conversation_id,json=conversationId,proto3" json:"conversation_id,omitempty"`
 	ReplyToMessageId *string                `protobuf:"bytes,3,opt,name=reply_to_message_id,json=replyToMessageId,proto3,oneof" json:"reply_to_message_id,omitempty"`
 	Parts            []*Part                `protobuf:"bytes,4,rep,name=parts,proto3" json:"parts,omitempty"`
+	ClientId         string                 `protobuf:"bytes,5,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -323,11 +324,19 @@ func (x *SendMessageTextRequest) GetParts() []*Part {
 	return nil
 }
 
+func (x *SendMessageTextRequest) GetClientId() string {
+	if x != nil {
+		return x.ClientId
+	}
+	return ""
+}
+
 type SendMessageTextResponse struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	ConversationId string                 `protobuf:"bytes,1,opt,name=conversation_id,json=conversationId,proto3" json:"conversation_id,omitempty"`
 	MessageId      string                 `protobuf:"bytes,2,opt,name=message_id,json=messageId,proto3" json:"message_id,omitempty"`
 	State          string                 `protobuf:"bytes,3,opt,name=state,proto3" json:"state,omitempty"`
+	ClientId       string                 `protobuf:"bytes,4,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -383,12 +392,20 @@ func (x *SendMessageTextResponse) GetState() string {
 	return ""
 }
 
+func (x *SendMessageTextResponse) GetClientId() string {
+	if x != nil {
+		return x.ClientId
+	}
+	return ""
+}
+
 type SendMessageWithAttachmentRequest struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	SenderId         string                 `protobuf:"bytes,1,opt,name=sender_id,json=senderId,proto3" json:"sender_id,omitempty"`
 	ConversationId   string                 `protobuf:"bytes,2,opt,name=conversation_id,json=conversationId,proto3" json:"conversation_id,omitempty"`
 	ReplyToMessageId *string                `protobuf:"bytes,3,opt,name=reply_to_message_id,json=replyToMessageId,proto3,oneof" json:"reply_to_message_id,omitempty"`
 	Parts            []*Part                `protobuf:"bytes,4,rep,name=parts,proto3" json:"parts,omitempty"`
+	ClientId         string                 `protobuf:"bytes,5,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -449,6 +466,13 @@ func (x *SendMessageWithAttachmentRequest) GetParts() []*Part {
 		return x.Parts
 	}
 	return nil
+}
+
+func (x *SendMessageWithAttachmentRequest) GetClientId() string {
+	if x != nil {
+		return x.ClientId
+	}
+	return ""
 }
 
 type SendMessageWithAttachmentPart struct {
@@ -533,6 +557,7 @@ type SendMessageWithAttachmentResponse struct {
 	MessageId      string                           `protobuf:"bytes,2,opt,name=message_id,json=messageId,proto3" json:"message_id,omitempty"`
 	State          string                           `protobuf:"bytes,3,opt,name=state,proto3" json:"state,omitempty"`
 	Parts          []*SendMessageWithAttachmentPart `protobuf:"bytes,4,rep,name=parts,proto3" json:"parts,omitempty"`
+	ClientId       string                           `protobuf:"bytes,5,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -595,6 +620,13 @@ func (x *SendMessageWithAttachmentResponse) GetParts() []*SendMessageWithAttachm
 	return nil
 }
 
+func (x *SendMessageWithAttachmentResponse) GetClientId() string {
+	if x != nil {
+		return x.ClientId
+	}
+	return ""
+}
+
 var File_chat_v1_type_proto protoreflect.FileDescriptor
 
 const file_chat_v1_type_proto_rawDesc = "" +
@@ -625,23 +657,26 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"attachment\x18\x03 \x01(\v2\x13.chat.v1.AttachmentH\x00R\n" +
 	"attachment\x12\x1a\n" +
 	"\bposition\x18\x04 \x01(\x05R\bpositionB\t\n" +
-	"\acontent\"\xcf\x01\n" +
+	"\acontent\"\xec\x01\n" +
 	"\x16SendMessageTextRequest\x12\x1b\n" +
 	"\tsender_id\x18\x01 \x01(\tR\bsenderId\x12'\n" +
 	"\x0fconversation_id\x18\x02 \x01(\tR\x0econversationId\x122\n" +
 	"\x13reply_to_message_id\x18\x03 \x01(\tH\x00R\x10replyToMessageId\x88\x01\x01\x12#\n" +
-	"\x05parts\x18\x04 \x03(\v2\r.chat.v1.PartR\x05partsB\x16\n" +
-	"\x14_reply_to_message_id\"w\n" +
+	"\x05parts\x18\x04 \x03(\v2\r.chat.v1.PartR\x05parts\x12\x1b\n" +
+	"\tclient_id\x18\x05 \x01(\tR\bclientIdB\x16\n" +
+	"\x14_reply_to_message_id\"\x94\x01\n" +
 	"\x17SendMessageTextResponse\x12'\n" +
 	"\x0fconversation_id\x18\x01 \x01(\tR\x0econversationId\x12\x1d\n" +
 	"\n" +
 	"message_id\x18\x02 \x01(\tR\tmessageId\x12\x14\n" +
-	"\x05state\x18\x03 \x01(\tR\x05state\"\xd9\x01\n" +
+	"\x05state\x18\x03 \x01(\tR\x05state\x12\x1b\n" +
+	"\tclient_id\x18\x04 \x01(\tR\bclientId\"\xf6\x01\n" +
 	" SendMessageWithAttachmentRequest\x12\x1b\n" +
 	"\tsender_id\x18\x01 \x01(\tR\bsenderId\x12'\n" +
 	"\x0fconversation_id\x18\x02 \x01(\tR\x0econversationId\x122\n" +
 	"\x13reply_to_message_id\x18\x03 \x01(\tH\x00R\x10replyToMessageId\x88\x01\x01\x12#\n" +
-	"\x05parts\x18\x04 \x03(\v2\r.chat.v1.PartR\x05partsB\x16\n" +
+	"\x05parts\x18\x04 \x03(\v2\r.chat.v1.PartR\x05parts\x12\x1b\n" +
+	"\tclient_id\x18\x05 \x01(\tR\bclientIdB\x16\n" +
 	"\x14_reply_to_message_id\"\xb5\x01\n" +
 	"\x1dSendMessageWithAttachmentPart\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
@@ -650,13 +685,14 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"\x05token\x18\x04 \x01(\tH\x01R\x05token\x88\x01\x01\x12\x1a\n" +
 	"\bposition\x18\x05 \x01(\x05R\bpositionB\a\n" +
 	"\x05_textB\b\n" +
-	"\x06_token\"\xbf\x01\n" +
+	"\x06_token\"\xdc\x01\n" +
 	"!SendMessageWithAttachmentResponse\x12'\n" +
 	"\x0fconversation_id\x18\x01 \x01(\tR\x0econversationId\x12\x1d\n" +
 	"\n" +
 	"message_id\x18\x02 \x01(\tR\tmessageId\x12\x14\n" +
 	"\x05state\x18\x03 \x01(\tR\x05state\x12<\n" +
-	"\x05parts\x18\x04 \x03(\v2&.chat.v1.SendMessageWithAttachmentPartR\x05partsB\x1aZ\x18github.com/kaelorin/chatb\x06proto3"
+	"\x05parts\x18\x04 \x03(\v2&.chat.v1.SendMessageWithAttachmentPartR\x05parts\x12\x1b\n" +
+	"\tclient_id\x18\x05 \x01(\tR\bclientIdB\x1aZ\x18github.com/kaelorin/chatb\x06proto3"
 
 var (
 	file_chat_v1_type_proto_rawDescOnce sync.Once
