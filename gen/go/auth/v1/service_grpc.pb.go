@@ -19,7 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AuthService_CheckEmail_FullMethodName = "/auth.v1.AuthService/CheckEmail"
+	AuthService_CheckEmail_FullMethodName                = "/auth.v1.AuthService/CheckEmail"
+	AuthService_RegisterWithEmailStart_FullMethodName    = "/auth.v1.AuthService/RegisterWithEmailStart"
+	AuthService_RegisterWithEmailComplete_FullMethodName = "/auth.v1.AuthService/RegisterWithEmailComplete"
+	AuthService_LoginWithEmail_FullMethodName            = "/auth.v1.AuthService/LoginWithEmail"
+	AuthService_RefreshToken_FullMethodName              = "/auth.v1.AuthService/RefreshToken"
 )
 
 // AuthServiceClient is the client API for AuthService service.
@@ -27,6 +31,10 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AuthServiceClient interface {
 	CheckEmail(ctx context.Context, in *CheckEmailRequest, opts ...grpc.CallOption) (*CheckEmailResponse, error)
+	RegisterWithEmailStart(ctx context.Context, in *RegisterWithEmailStartRequest, opts ...grpc.CallOption) (*RegisterWithEmailStartResponse, error)
+	RegisterWithEmailComplete(ctx context.Context, in *RegisterWithEmailCompleteRequest, opts ...grpc.CallOption) (*RegisterWithEmailCompleteResponse, error)
+	LoginWithEmail(ctx context.Context, in *LoginWithEmailRequest, opts ...grpc.CallOption) (*LoginWithEmailResponse, error)
+	RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error)
 }
 
 type authServiceClient struct {
@@ -47,11 +55,55 @@ func (c *authServiceClient) CheckEmail(ctx context.Context, in *CheckEmailReques
 	return out, nil
 }
 
+func (c *authServiceClient) RegisterWithEmailStart(ctx context.Context, in *RegisterWithEmailStartRequest, opts ...grpc.CallOption) (*RegisterWithEmailStartResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RegisterWithEmailStartResponse)
+	err := c.cc.Invoke(ctx, AuthService_RegisterWithEmailStart_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) RegisterWithEmailComplete(ctx context.Context, in *RegisterWithEmailCompleteRequest, opts ...grpc.CallOption) (*RegisterWithEmailCompleteResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RegisterWithEmailCompleteResponse)
+	err := c.cc.Invoke(ctx, AuthService_RegisterWithEmailComplete_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) LoginWithEmail(ctx context.Context, in *LoginWithEmailRequest, opts ...grpc.CallOption) (*LoginWithEmailResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(LoginWithEmailResponse)
+	err := c.cc.Invoke(ctx, AuthService_LoginWithEmail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*RefreshTokenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RefreshTokenResponse)
+	err := c.cc.Invoke(ctx, AuthService_RefreshToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthServiceServer is the server API for AuthService service.
 // All implementations must embed UnimplementedAuthServiceServer
 // for forward compatibility.
 type AuthServiceServer interface {
 	CheckEmail(context.Context, *CheckEmailRequest) (*CheckEmailResponse, error)
+	RegisterWithEmailStart(context.Context, *RegisterWithEmailStartRequest) (*RegisterWithEmailStartResponse, error)
+	RegisterWithEmailComplete(context.Context, *RegisterWithEmailCompleteRequest) (*RegisterWithEmailCompleteResponse, error)
+	LoginWithEmail(context.Context, *LoginWithEmailRequest) (*LoginWithEmailResponse, error)
+	RefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error)
 	mustEmbedUnimplementedAuthServiceServer()
 }
 
@@ -64,6 +116,18 @@ type UnimplementedAuthServiceServer struct{}
 
 func (UnimplementedAuthServiceServer) CheckEmail(context.Context, *CheckEmailRequest) (*CheckEmailResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CheckEmail not implemented")
+}
+func (UnimplementedAuthServiceServer) RegisterWithEmailStart(context.Context, *RegisterWithEmailStartRequest) (*RegisterWithEmailStartResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method RegisterWithEmailStart not implemented")
+}
+func (UnimplementedAuthServiceServer) RegisterWithEmailComplete(context.Context, *RegisterWithEmailCompleteRequest) (*RegisterWithEmailCompleteResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method RegisterWithEmailComplete not implemented")
+}
+func (UnimplementedAuthServiceServer) LoginWithEmail(context.Context, *LoginWithEmailRequest) (*LoginWithEmailResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method LoginWithEmail not implemented")
+}
+func (UnimplementedAuthServiceServer) RefreshToken(context.Context, *RefreshTokenRequest) (*RefreshTokenResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method RefreshToken not implemented")
 }
 func (UnimplementedAuthServiceServer) mustEmbedUnimplementedAuthServiceServer() {}
 func (UnimplementedAuthServiceServer) testEmbeddedByValue()                     {}
@@ -104,6 +168,78 @@ func _AuthService_CheckEmail_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AuthService_RegisterWithEmailStart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RegisterWithEmailStartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).RegisterWithEmailStart(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthService_RegisterWithEmailStart_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).RegisterWithEmailStart(ctx, req.(*RegisterWithEmailStartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_RegisterWithEmailComplete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RegisterWithEmailCompleteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).RegisterWithEmailComplete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthService_RegisterWithEmailComplete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).RegisterWithEmailComplete(ctx, req.(*RegisterWithEmailCompleteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_LoginWithEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoginWithEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).LoginWithEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthService_LoginWithEmail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).LoginWithEmail(ctx, req.(*LoginWithEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_RefreshToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RefreshTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).RefreshToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthService_RefreshToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).RefreshToken(ctx, req.(*RefreshTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AuthService_ServiceDesc is the grpc.ServiceDesc for AuthService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +250,22 @@ var AuthService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CheckEmail",
 			Handler:    _AuthService_CheckEmail_Handler,
+		},
+		{
+			MethodName: "RegisterWithEmailStart",
+			Handler:    _AuthService_RegisterWithEmailStart_Handler,
+		},
+		{
+			MethodName: "RegisterWithEmailComplete",
+			Handler:    _AuthService_RegisterWithEmailComplete_Handler,
+		},
+		{
+			MethodName: "LoginWithEmail",
+			Handler:    _AuthService_LoginWithEmail_Handler,
+		},
+		{
+			MethodName: "RefreshToken",
+			Handler:    _AuthService_RefreshToken_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

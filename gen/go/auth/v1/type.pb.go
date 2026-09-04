@@ -9,6 +9,7 @@ package auth
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -133,18 +134,652 @@ func (x *CheckEmailResponse) GetResult() string {
 	return ""
 }
 
+type RegisterWithEmailStartRequest struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Indentifie1    string                 `protobuf:"bytes,1,opt,name=indentifie1,proto3" json:"indentifie1,omitempty"`
+	IdentifierType string                 `protobuf:"bytes,2,opt,name=identifier_type,json=identifierType,proto3" json:"identifier_type,omitempty"`
+	Password       string                 `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
+	Region         string                 `protobuf:"bytes,4,opt,name=region,proto3" json:"region,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *RegisterWithEmailStartRequest) Reset() {
+	*x = RegisterWithEmailStartRequest{}
+	mi := &file_auth_v1_type_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RegisterWithEmailStartRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RegisterWithEmailStartRequest) ProtoMessage() {}
+
+func (x *RegisterWithEmailStartRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_type_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RegisterWithEmailStartRequest.ProtoReflect.Descriptor instead.
+func (*RegisterWithEmailStartRequest) Descriptor() ([]byte, []int) {
+	return file_auth_v1_type_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *RegisterWithEmailStartRequest) GetIndentifie1() string {
+	if x != nil {
+		return x.Indentifie1
+	}
+	return ""
+}
+
+func (x *RegisterWithEmailStartRequest) GetIdentifierType() string {
+	if x != nil {
+		return x.IdentifierType
+	}
+	return ""
+}
+
+func (x *RegisterWithEmailStartRequest) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+func (x *RegisterWithEmailStartRequest) GetRegion() string {
+	if x != nil {
+		return x.Region
+	}
+	return ""
+}
+
+type RegisterWithEmailStartResponse struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	PrincipalId      string                 `protobuf:"bytes,1,opt,name=principal_id,json=principalId,proto3" json:"principal_id,omitempty"`
+	ChallengeId      string                 `protobuf:"bytes,2,opt,name=challenge_id,json=challengeId,proto3" json:"challenge_id,omitempty"`
+	OtpExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=otp_expires_at,json=otpExpiresAt,proto3" json:"otp_expires_at,omitempty"`
+	OtpCooldownUntil *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=otp_cooldown_until,json=otpCooldownUntil,proto3" json:"otp_cooldown_until,omitempty"`
+	Message          string                 `protobuf:"bytes,5,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *RegisterWithEmailStartResponse) Reset() {
+	*x = RegisterWithEmailStartResponse{}
+	mi := &file_auth_v1_type_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RegisterWithEmailStartResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RegisterWithEmailStartResponse) ProtoMessage() {}
+
+func (x *RegisterWithEmailStartResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_type_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RegisterWithEmailStartResponse.ProtoReflect.Descriptor instead.
+func (*RegisterWithEmailStartResponse) Descriptor() ([]byte, []int) {
+	return file_auth_v1_type_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *RegisterWithEmailStartResponse) GetPrincipalId() string {
+	if x != nil {
+		return x.PrincipalId
+	}
+	return ""
+}
+
+func (x *RegisterWithEmailStartResponse) GetChallengeId() string {
+	if x != nil {
+		return x.ChallengeId
+	}
+	return ""
+}
+
+func (x *RegisterWithEmailStartResponse) GetOtpExpiresAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.OtpExpiresAt
+	}
+	return nil
+}
+
+func (x *RegisterWithEmailStartResponse) GetOtpCooldownUntil() *timestamppb.Timestamp {
+	if x != nil {
+		return x.OtpCooldownUntil
+	}
+	return nil
+}
+
+func (x *RegisterWithEmailStartResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type RegisterWithEmailCompleteRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PrincipalId   string                 `protobuf:"bytes,1,opt,name=principal_id,json=principalId,proto3" json:"principal_id,omitempty"`
+	ChallengeId   string                 `protobuf:"bytes,2,opt,name=challenge_id,json=challengeId,proto3" json:"challenge_id,omitempty"`
+	OtpCode       string                 `protobuf:"bytes,3,opt,name=otp_code,json=otpCode,proto3" json:"otp_code,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RegisterWithEmailCompleteRequest) Reset() {
+	*x = RegisterWithEmailCompleteRequest{}
+	mi := &file_auth_v1_type_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RegisterWithEmailCompleteRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RegisterWithEmailCompleteRequest) ProtoMessage() {}
+
+func (x *RegisterWithEmailCompleteRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_type_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RegisterWithEmailCompleteRequest.ProtoReflect.Descriptor instead.
+func (*RegisterWithEmailCompleteRequest) Descriptor() ([]byte, []int) {
+	return file_auth_v1_type_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *RegisterWithEmailCompleteRequest) GetPrincipalId() string {
+	if x != nil {
+		return x.PrincipalId
+	}
+	return ""
+}
+
+func (x *RegisterWithEmailCompleteRequest) GetChallengeId() string {
+	if x != nil {
+		return x.ChallengeId
+	}
+	return ""
+}
+
+func (x *RegisterWithEmailCompleteRequest) GetOtpCode() string {
+	if x != nil {
+		return x.OtpCode
+	}
+	return ""
+}
+
+type RegisterWithEmailCompleteResponse struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	PrincipalId     string                 `protobuf:"bytes,1,opt,name=principal_id,json=principalId,proto3" json:"principal_id,omitempty"`
+	PrincipalStatus string                 `protobuf:"bytes,2,opt,name=principal_status,json=principalStatus,proto3" json:"principal_status,omitempty"`
+	AccessToken     string                 `protobuf:"bytes,3,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
+	RefreshToken    string                 `protobuf:"bytes,4,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
+	Message         string                 `protobuf:"bytes,5,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *RegisterWithEmailCompleteResponse) Reset() {
+	*x = RegisterWithEmailCompleteResponse{}
+	mi := &file_auth_v1_type_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RegisterWithEmailCompleteResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RegisterWithEmailCompleteResponse) ProtoMessage() {}
+
+func (x *RegisterWithEmailCompleteResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_type_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RegisterWithEmailCompleteResponse.ProtoReflect.Descriptor instead.
+func (*RegisterWithEmailCompleteResponse) Descriptor() ([]byte, []int) {
+	return file_auth_v1_type_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *RegisterWithEmailCompleteResponse) GetPrincipalId() string {
+	if x != nil {
+		return x.PrincipalId
+	}
+	return ""
+}
+
+func (x *RegisterWithEmailCompleteResponse) GetPrincipalStatus() string {
+	if x != nil {
+		return x.PrincipalStatus
+	}
+	return ""
+}
+
+func (x *RegisterWithEmailCompleteResponse) GetAccessToken() string {
+	if x != nil {
+		return x.AccessToken
+	}
+	return ""
+}
+
+func (x *RegisterWithEmailCompleteResponse) GetRefreshToken() string {
+	if x != nil {
+		return x.RefreshToken
+	}
+	return ""
+}
+
+func (x *RegisterWithEmailCompleteResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type RefreshTokenRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	RefreshToken  string                 `protobuf:"bytes,1,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RefreshTokenRequest) Reset() {
+	*x = RefreshTokenRequest{}
+	mi := &file_auth_v1_type_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RefreshTokenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RefreshTokenRequest) ProtoMessage() {}
+
+func (x *RefreshTokenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_type_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RefreshTokenRequest.ProtoReflect.Descriptor instead.
+func (*RefreshTokenRequest) Descriptor() ([]byte, []int) {
+	return file_auth_v1_type_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *RefreshTokenRequest) GetRefreshToken() string {
+	if x != nil {
+		return x.RefreshToken
+	}
+	return ""
+}
+
+type RefreshTokenResponse struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	AccessToken      string                 `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
+	RefreshToken     string                 `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
+	AccessExpiresAt  *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=access_expires_at,json=accessExpiresAt,proto3" json:"access_expires_at,omitempty"`
+	RefreshExpiresAt *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=refresh_expires_at,json=refreshExpiresAt,proto3" json:"refresh_expires_at,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *RefreshTokenResponse) Reset() {
+	*x = RefreshTokenResponse{}
+	mi := &file_auth_v1_type_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RefreshTokenResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RefreshTokenResponse) ProtoMessage() {}
+
+func (x *RefreshTokenResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_type_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RefreshTokenResponse.ProtoReflect.Descriptor instead.
+func (*RefreshTokenResponse) Descriptor() ([]byte, []int) {
+	return file_auth_v1_type_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *RefreshTokenResponse) GetAccessToken() string {
+	if x != nil {
+		return x.AccessToken
+	}
+	return ""
+}
+
+func (x *RefreshTokenResponse) GetRefreshToken() string {
+	if x != nil {
+		return x.RefreshToken
+	}
+	return ""
+}
+
+func (x *RefreshTokenResponse) GetAccessExpiresAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.AccessExpiresAt
+	}
+	return nil
+}
+
+func (x *RefreshTokenResponse) GetRefreshExpiresAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.RefreshExpiresAt
+	}
+	return nil
+}
+
+type LoginWithEmailRequest struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Identifier     string                 `protobuf:"bytes,1,opt,name=identifier,proto3" json:"identifier,omitempty"`
+	IdentifierType string                 `protobuf:"bytes,2,opt,name=identifier_type,json=identifierType,proto3" json:"identifier_type,omitempty"`
+	Password       string                 `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
+	CredentialType string                 `protobuf:"bytes,4,opt,name=credential_type,json=credentialType,proto3" json:"credential_type,omitempty"`
+	Ip             string                 `protobuf:"bytes,5,opt,name=ip,proto3" json:"ip,omitempty"`
+	UserAgent      string                 `protobuf:"bytes,6,opt,name=user_agent,json=userAgent,proto3" json:"user_agent,omitempty"`
+	DeviceId       string                 `protobuf:"bytes,7,opt,name=device_id,json=deviceId,proto3" json:"device_id,omitempty"`
+	Name           string                 `protobuf:"bytes,8,opt,name=name,proto3" json:"name,omitempty"`
+	Os             string                 `protobuf:"bytes,9,opt,name=os,proto3" json:"os,omitempty"`
+	Platform       string                 `protobuf:"bytes,10,opt,name=platform,proto3" json:"platform,omitempty"`
+	DeviceType     string                 `protobuf:"bytes,11,opt,name=device_type,json=deviceType,proto3" json:"device_type,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *LoginWithEmailRequest) Reset() {
+	*x = LoginWithEmailRequest{}
+	mi := &file_auth_v1_type_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LoginWithEmailRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LoginWithEmailRequest) ProtoMessage() {}
+
+func (x *LoginWithEmailRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_type_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LoginWithEmailRequest.ProtoReflect.Descriptor instead.
+func (*LoginWithEmailRequest) Descriptor() ([]byte, []int) {
+	return file_auth_v1_type_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *LoginWithEmailRequest) GetIdentifier() string {
+	if x != nil {
+		return x.Identifier
+	}
+	return ""
+}
+
+func (x *LoginWithEmailRequest) GetIdentifierType() string {
+	if x != nil {
+		return x.IdentifierType
+	}
+	return ""
+}
+
+func (x *LoginWithEmailRequest) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+func (x *LoginWithEmailRequest) GetCredentialType() string {
+	if x != nil {
+		return x.CredentialType
+	}
+	return ""
+}
+
+func (x *LoginWithEmailRequest) GetIp() string {
+	if x != nil {
+		return x.Ip
+	}
+	return ""
+}
+
+func (x *LoginWithEmailRequest) GetUserAgent() string {
+	if x != nil {
+		return x.UserAgent
+	}
+	return ""
+}
+
+func (x *LoginWithEmailRequest) GetDeviceId() string {
+	if x != nil {
+		return x.DeviceId
+	}
+	return ""
+}
+
+func (x *LoginWithEmailRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *LoginWithEmailRequest) GetOs() string {
+	if x != nil {
+		return x.Os
+	}
+	return ""
+}
+
+func (x *LoginWithEmailRequest) GetPlatform() string {
+	if x != nil {
+		return x.Platform
+	}
+	return ""
+}
+
+func (x *LoginWithEmailRequest) GetDeviceType() string {
+	if x != nil {
+		return x.DeviceType
+	}
+	return ""
+}
+
+type LoginWithEmailResponse struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	AccessToken      string                 `protobuf:"bytes,1,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
+	RefreshToken     string                 `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
+	AccessExpiresAt  *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=access_expires_at,json=accessExpiresAt,proto3" json:"access_expires_at,omitempty"`
+	RefreshExpiresAt *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=refresh_expires_at,json=refreshExpiresAt,proto3" json:"refresh_expires_at,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *LoginWithEmailResponse) Reset() {
+	*x = LoginWithEmailResponse{}
+	mi := &file_auth_v1_type_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LoginWithEmailResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LoginWithEmailResponse) ProtoMessage() {}
+
+func (x *LoginWithEmailResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_type_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LoginWithEmailResponse.ProtoReflect.Descriptor instead.
+func (*LoginWithEmailResponse) Descriptor() ([]byte, []int) {
+	return file_auth_v1_type_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *LoginWithEmailResponse) GetAccessToken() string {
+	if x != nil {
+		return x.AccessToken
+	}
+	return ""
+}
+
+func (x *LoginWithEmailResponse) GetRefreshToken() string {
+	if x != nil {
+		return x.RefreshToken
+	}
+	return ""
+}
+
+func (x *LoginWithEmailResponse) GetAccessExpiresAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.AccessExpiresAt
+	}
+	return nil
+}
+
+func (x *LoginWithEmailResponse) GetRefreshExpiresAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.RefreshExpiresAt
+	}
+	return nil
+}
+
 var File_auth_v1_type_proto protoreflect.FileDescriptor
 
 const file_auth_v1_type_proto_rawDesc = "" +
 	"\n" +
-	"\x12auth/v1/type.proto\x12\aauth.v1\")\n" +
+	"\x12auth/v1/type.proto\x12\aauth.v1\x1a\x1fgoogle/protobuf/timestamp.proto\")\n" +
 	"\x11CheckEmailRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\"r\n" +
 	"\x12CheckEmailResponse\x12\x16\n" +
 	"\x06status\x18\x01 \x01(\tR\x06status\x12\x12\n" +
 	"\x04code\x18\x02 \x01(\x05R\x04code\x12\x18\n" +
 	"\amessage\x18\x03 \x01(\tR\amessage\x12\x16\n" +
-	"\x06result\x18\x04 \x01(\tR\x06resultB0Z.github.com/kaelrion/contracts/gen/auth/v1;authb\x06proto3"
+	"\x06result\x18\x04 \x01(\tR\x06result\"\x9e\x01\n" +
+	"\x1dRegisterWithEmailStartRequest\x12 \n" +
+	"\vindentifie1\x18\x01 \x01(\tR\vindentifie1\x12'\n" +
+	"\x0fidentifier_type\x18\x02 \x01(\tR\x0eidentifierType\x12\x1a\n" +
+	"\bpassword\x18\x03 \x01(\tR\bpassword\x12\x16\n" +
+	"\x06region\x18\x04 \x01(\tR\x06region\"\x8c\x02\n" +
+	"\x1eRegisterWithEmailStartResponse\x12!\n" +
+	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\x12!\n" +
+	"\fchallenge_id\x18\x02 \x01(\tR\vchallengeId\x12@\n" +
+	"\x0eotp_expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\fotpExpiresAt\x12H\n" +
+	"\x12otp_cooldown_until\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x10otpCooldownUntil\x12\x18\n" +
+	"\amessage\x18\x05 \x01(\tR\amessage\"\x83\x01\n" +
+	" RegisterWithEmailCompleteRequest\x12!\n" +
+	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\x12!\n" +
+	"\fchallenge_id\x18\x02 \x01(\tR\vchallengeId\x12\x19\n" +
+	"\botp_code\x18\x03 \x01(\tR\aotpCode\"\xd3\x01\n" +
+	"!RegisterWithEmailCompleteResponse\x12!\n" +
+	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\x12)\n" +
+	"\x10principal_status\x18\x02 \x01(\tR\x0fprincipalStatus\x12!\n" +
+	"\faccess_token\x18\x03 \x01(\tR\vaccessToken\x12#\n" +
+	"\rrefresh_token\x18\x04 \x01(\tR\frefreshToken\x12\x18\n" +
+	"\amessage\x18\x05 \x01(\tR\amessage\":\n" +
+	"\x13RefreshTokenRequest\x12#\n" +
+	"\rrefresh_token\x18\x01 \x01(\tR\frefreshToken\"\xf0\x01\n" +
+	"\x14RefreshTokenResponse\x12!\n" +
+	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12#\n" +
+	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\x12F\n" +
+	"\x11access_expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x0faccessExpiresAt\x12H\n" +
+	"\x12refresh_expires_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x10refreshExpiresAt\"\xd2\x02\n" +
+	"\x15LoginWithEmailRequest\x12\x1e\n" +
+	"\n" +
+	"identifier\x18\x01 \x01(\tR\n" +
+	"identifier\x12'\n" +
+	"\x0fidentifier_type\x18\x02 \x01(\tR\x0eidentifierType\x12\x1a\n" +
+	"\bpassword\x18\x03 \x01(\tR\bpassword\x12'\n" +
+	"\x0fcredential_type\x18\x04 \x01(\tR\x0ecredentialType\x12\x0e\n" +
+	"\x02ip\x18\x05 \x01(\tR\x02ip\x12\x1d\n" +
+	"\n" +
+	"user_agent\x18\x06 \x01(\tR\tuserAgent\x12\x1b\n" +
+	"\tdevice_id\x18\a \x01(\tR\bdeviceId\x12\x12\n" +
+	"\x04name\x18\b \x01(\tR\x04name\x12\x0e\n" +
+	"\x02os\x18\t \x01(\tR\x02os\x12\x1a\n" +
+	"\bplatform\x18\n" +
+	" \x01(\tR\bplatform\x12\x1f\n" +
+	"\vdevice_type\x18\v \x01(\tR\n" +
+	"deviceType\"\xf2\x01\n" +
+	"\x16LoginWithEmailResponse\x12!\n" +
+	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12#\n" +
+	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\x12F\n" +
+	"\x11access_expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x0faccessExpiresAt\x12H\n" +
+	"\x12refresh_expires_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x10refreshExpiresAtB0Z.github.com/kaelrion/contracts/gen/auth/v1;authb\x06proto3"
 
 var (
 	file_auth_v1_type_proto_rawDescOnce sync.Once
@@ -158,17 +793,32 @@ func file_auth_v1_type_proto_rawDescGZIP() []byte {
 	return file_auth_v1_type_proto_rawDescData
 }
 
-var file_auth_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_auth_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_auth_v1_type_proto_goTypes = []any{
-	(*CheckEmailRequest)(nil),  // 0: auth.v1.CheckEmailRequest
-	(*CheckEmailResponse)(nil), // 1: auth.v1.CheckEmailResponse
+	(*CheckEmailRequest)(nil),                 // 0: auth.v1.CheckEmailRequest
+	(*CheckEmailResponse)(nil),                // 1: auth.v1.CheckEmailResponse
+	(*RegisterWithEmailStartRequest)(nil),     // 2: auth.v1.RegisterWithEmailStartRequest
+	(*RegisterWithEmailStartResponse)(nil),    // 3: auth.v1.RegisterWithEmailStartResponse
+	(*RegisterWithEmailCompleteRequest)(nil),  // 4: auth.v1.RegisterWithEmailCompleteRequest
+	(*RegisterWithEmailCompleteResponse)(nil), // 5: auth.v1.RegisterWithEmailCompleteResponse
+	(*RefreshTokenRequest)(nil),               // 6: auth.v1.RefreshTokenRequest
+	(*RefreshTokenResponse)(nil),              // 7: auth.v1.RefreshTokenResponse
+	(*LoginWithEmailRequest)(nil),             // 8: auth.v1.LoginWithEmailRequest
+	(*LoginWithEmailResponse)(nil),            // 9: auth.v1.LoginWithEmailResponse
+	(*timestamppb.Timestamp)(nil),             // 10: google.protobuf.Timestamp
 }
 var file_auth_v1_type_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	10, // 0: auth.v1.RegisterWithEmailStartResponse.otp_expires_at:type_name -> google.protobuf.Timestamp
+	10, // 1: auth.v1.RegisterWithEmailStartResponse.otp_cooldown_until:type_name -> google.protobuf.Timestamp
+	10, // 2: auth.v1.RefreshTokenResponse.access_expires_at:type_name -> google.protobuf.Timestamp
+	10, // 3: auth.v1.RefreshTokenResponse.refresh_expires_at:type_name -> google.protobuf.Timestamp
+	10, // 4: auth.v1.LoginWithEmailResponse.access_expires_at:type_name -> google.protobuf.Timestamp
+	10, // 5: auth.v1.LoginWithEmailResponse.refresh_expires_at:type_name -> google.protobuf.Timestamp
+	6,  // [6:6] is the sub-list for method output_type
+	6,  // [6:6] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_auth_v1_type_proto_init() }
@@ -182,7 +832,7 @@ func file_auth_v1_type_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auth_v1_type_proto_rawDesc), len(file_auth_v1_type_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

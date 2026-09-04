@@ -24,20 +24,40 @@ var File_auth_v1_service_proto protoreflect.FileDescriptor
 
 const file_auth_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x15auth/v1/service.proto\x12\aauth.v1\x1a\x12auth/v1/type.proto2T\n" +
+	"\x15auth/v1/service.proto\x12\aauth.v1\x1a\x12auth/v1/type.proto2\xd3\x03\n" +
 	"\vAuthService\x12E\n" +
 	"\n" +
-	"CheckEmail\x12\x1a.auth.v1.CheckEmailRequest\x1a\x1b.auth.v1.CheckEmailResponseB0Z.github.com/kaelrion/contracts/gen/auth/v1;authb\x06proto3"
+	"CheckEmail\x12\x1a.auth.v1.CheckEmailRequest\x1a\x1b.auth.v1.CheckEmailResponse\x12i\n" +
+	"\x16RegisterWithEmailStart\x12&.auth.v1.RegisterWithEmailStartRequest\x1a'.auth.v1.RegisterWithEmailStartResponse\x12r\n" +
+	"\x19RegisterWithEmailComplete\x12).auth.v1.RegisterWithEmailCompleteRequest\x1a*.auth.v1.RegisterWithEmailCompleteResponse\x12Q\n" +
+	"\x0eLoginWithEmail\x12\x1e.auth.v1.LoginWithEmailRequest\x1a\x1f.auth.v1.LoginWithEmailResponse\x12K\n" +
+	"\fRefreshToken\x12\x1c.auth.v1.RefreshTokenRequest\x1a\x1d.auth.v1.RefreshTokenResponseB0Z.github.com/kaelrion/contracts/gen/auth/v1;authb\x06proto3"
 
 var file_auth_v1_service_proto_goTypes = []any{
-	(*CheckEmailRequest)(nil),  // 0: auth.v1.CheckEmailRequest
-	(*CheckEmailResponse)(nil), // 1: auth.v1.CheckEmailResponse
+	(*CheckEmailRequest)(nil),                 // 0: auth.v1.CheckEmailRequest
+	(*RegisterWithEmailStartRequest)(nil),     // 1: auth.v1.RegisterWithEmailStartRequest
+	(*RegisterWithEmailCompleteRequest)(nil),  // 2: auth.v1.RegisterWithEmailCompleteRequest
+	(*LoginWithEmailRequest)(nil),             // 3: auth.v1.LoginWithEmailRequest
+	(*RefreshTokenRequest)(nil),               // 4: auth.v1.RefreshTokenRequest
+	(*CheckEmailResponse)(nil),                // 5: auth.v1.CheckEmailResponse
+	(*RegisterWithEmailStartResponse)(nil),    // 6: auth.v1.RegisterWithEmailStartResponse
+	(*RegisterWithEmailCompleteResponse)(nil), // 7: auth.v1.RegisterWithEmailCompleteResponse
+	(*LoginWithEmailResponse)(nil),            // 8: auth.v1.LoginWithEmailResponse
+	(*RefreshTokenResponse)(nil),              // 9: auth.v1.RefreshTokenResponse
 }
 var file_auth_v1_service_proto_depIdxs = []int32{
 	0, // 0: auth.v1.AuthService.CheckEmail:input_type -> auth.v1.CheckEmailRequest
-	1, // 1: auth.v1.AuthService.CheckEmail:output_type -> auth.v1.CheckEmailResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	1, // 1: auth.v1.AuthService.RegisterWithEmailStart:input_type -> auth.v1.RegisterWithEmailStartRequest
+	2, // 2: auth.v1.AuthService.RegisterWithEmailComplete:input_type -> auth.v1.RegisterWithEmailCompleteRequest
+	3, // 3: auth.v1.AuthService.LoginWithEmail:input_type -> auth.v1.LoginWithEmailRequest
+	4, // 4: auth.v1.AuthService.RefreshToken:input_type -> auth.v1.RefreshTokenRequest
+	5, // 5: auth.v1.AuthService.CheckEmail:output_type -> auth.v1.CheckEmailResponse
+	6, // 6: auth.v1.AuthService.RegisterWithEmailStart:output_type -> auth.v1.RegisterWithEmailStartResponse
+	7, // 7: auth.v1.AuthService.RegisterWithEmailComplete:output_type -> auth.v1.RegisterWithEmailCompleteResponse
+	8, // 8: auth.v1.AuthService.LoginWithEmail:output_type -> auth.v1.LoginWithEmailResponse
+	9, // 9: auth.v1.AuthService.RefreshToken:output_type -> auth.v1.RefreshTokenResponse
+	5, // [5:10] is the sub-list for method output_type
+	0, // [0:5] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
