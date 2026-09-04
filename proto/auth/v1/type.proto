@@ -3,14 +3,76 @@ syntax="proto3";
 package auth.v1;
 
 option go_package="github.com/kaelrion/contracts/gen/auth/v1;auth";
+import "google/protobuf/timestamp.proto";
 
 message CheckEmailRequest {
-    string email = 1;
+  string email = 1;
 }
 
 message CheckEmailResponse {
-    string status = 1;
-    int32 code = 2;
-    string message = 3;
-    string result = 4;
+  string status  = 1;
+  int32  code    = 2;
+  string message = 3;
+  string result  = 4;
+}
+
+message RegisterWithEmailStartRequest{
+  string indentifie1     = 1;
+  string identifier_type = 2;
+  string password        = 3;
+  string region          = 4;
+}
+
+message RegisterWithEmailStartResponse {
+  string                    principal_id       = 1;
+  string                    challenge_id       = 2;
+  google.protobuf.Timestamp otp_expires_at     = 3;
+  google.protobuf.Timestamp otp_cooldown_until = 4;
+  string                    message            = 5;
+}
+
+message RegisterWithEmailCompleteRequest{
+  string principal_id = 1;
+  string challenge_id = 2;
+  string otp_code     = 3;
+}
+
+message RegisterWithEmailCompleteResponse{
+  string principal_id     = 1;
+  string principal_status = 2;
+  string access_token     = 3;
+  string refresh_token    = 4;
+  string message          = 5;
+}
+
+message RefreshTokenRequest {
+  string refresh_token = 1;
+}
+
+message RefreshTokenResponse {
+  string                    access_token       = 1;
+  string                    refresh_token      = 2;
+  google.protobuf.Timestamp access_expires_at  = 3;
+  google.protobuf.Timestamp refresh_expires_at = 4;
+}
+
+message LoginWithEmailRequest{
+  string identifier      = 1;
+  string identifier_type = 2;
+  string password        = 3;
+  string credential_type = 4;
+  string ip              = 5;
+  string user_agent      = 6;
+  string device_id       = 7;
+  string name            = 8;
+  string os              = 9;
+  string platform        = 10;
+  string device_type     = 11;
+}
+
+message LoginWithEmailResponse{
+  string                    access_token       = 1;
+  string                    refresh_token      = 2;
+  google.protobuf.Timestamp access_expires_at  = 3;
+  google.protobuf.Timestamp refresh_expires_at = 4;
 }

@@ -7,4 +7,8 @@ option go_package="github.com/kaelrion/contracts/gen/auth/v1;auth";
 import "auth/v1/type.proto";
 service AuthService {
   rpc CheckEmail(CheckEmailRequest) returns (CheckEmailResponse);
+  rpc RegisterWithEmailStart(RegisterWithEmailStartRequest) returns (RegisterWithEmailStartResponse);
+  rpc RegisterWithEmailComplete(RegisterWithEmailCompleteRequest) returns (RegisterWithEmailCompleteResponse);
+  rpc LoginWithEmail(LoginWithEmailRequest) returns (LoginWithEmailResponse);
+  rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse);
 }
