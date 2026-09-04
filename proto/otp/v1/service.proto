@@ -2,11 +2,11 @@ syntax="proto3";
 
 package otp.v1;
 
-option go_package="github.com/kaelrion/contracts/gen/otp/v1;otp";
+option go_package="github.com/kaelorin/contracts/otp/v1;otp";
 
 import "otp/v1/type.proto";
-service OTPService {
-    rpc Create(CreateOTPRequest) returns (CreateOTPResponse);
-    rpc Verify(VerifyOTPRequest) returns (VerifyOTPResponse);
+service Service {
+  rpc Issue(IssueRequest) returns (IssueResponse);
+  rpc Reissue(ReissueRequest) returns (ReissueResponse);
+  rpc Verify(VerifyRequest) returns (VerifyResponse);
 }
-

@@ -2,58 +2,40 @@ syntax="proto3";
 
 package otp.v1;
 
-option go_package="github.com/kaelrion/contracts/gen/otp/v1;otp";
+option go_package="github.com/kaelorin/contracts/otp/v1;otp";
 
 import "google/protobuf/timestamp.proto";
-import "google/protobuf/duration.proto";
 
-message CreateOtpRequest {
-  string email = 1;
-}
 
-message CreateOtpResponse {
-  bool                      created     = 1;
-  google.protobuf.Duration  retry_after = 2;
-  google.protobuf.Timestamp expires_at  = 3;
-}
-
-message CreateOTPRequest {
+message IssueRequest {
   string purpose    = 1;
-  string target     = 2;
+  string channel    = 2;
   string identifier = 3;
 }
 
-message CreateOTPResponse {
-  string                    status         = 1;
-  uint32                    code           = 2;
-  string                    message        = 3;
-  string                    otp_id         = 4;
-  google.protobuf.Timestamp expires_at     = 5;
-  google.protobuf.Timestamp cooldown_until = 6;
+message IssueResponse {
+  google.protobuf.Timestamp otp_expires_at        = 4;
+  google.protobuf.Timestamp resend_cooldown_until = 5;
 }
 
-message ResendOTPRequest {
+message ReissueRequest {
   string purpose    = 1;
-  string target     = 2;
+  string channel    = 2;
   string identifier = 3;
 }
 
-message ResendOTPResponse {
-  string                    status         = 1;
-  uint32                    code           = 2;
-  string                    message        = 3;
-  string                    otp_id         = 4;
-  google.protobuf.Timestamp expires_at     = 5;
-  google.protobuf.Timestamp cooldown_until = 6;
+message ReissueResponse {
+  google.protobuf.Timestamp otp_expires_at        = 5;
+  google.protobuf.Timestamp resend_cooldown_until = 6;
 }
 
-message VerifyOTPRequest {
+message VerifyRequest {
   string purpose    = 1;
-  string target     = 2;
+  string channel    = 2;
   string identifier = 3;
   string otp_code   = 4;
 }
 
-message VerifyOTPResponse {
-  bool result = 1;
+message VerifyResponse {
+  bool verified = 1;
 }

@@ -9,7 +9,6 @@ package otp
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	durationpb "google.golang.org/protobuf/types/known/durationpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
@@ -23,27 +22,29 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type CreateOtpRequest struct {
+type IssueRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	Purpose       string                 `protobuf:"bytes,1,opt,name=purpose,proto3" json:"purpose,omitempty"`
+	Channel       string                 `protobuf:"bytes,2,opt,name=channel,proto3" json:"channel,omitempty"`
+	Identifier    string                 `protobuf:"bytes,3,opt,name=identifier,proto3" json:"identifier,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CreateOtpRequest) Reset() {
-	*x = CreateOtpRequest{}
+func (x *IssueRequest) Reset() {
+	*x = IssueRequest{}
 	mi := &file_otp_v1_type_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateOtpRequest) String() string {
+func (x *IssueRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateOtpRequest) ProtoMessage() {}
+func (*IssueRequest) ProtoMessage() {}
 
-func (x *CreateOtpRequest) ProtoReflect() protoreflect.Message {
+func (x *IssueRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_otp_v1_type_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -55,41 +56,54 @@ func (x *CreateOtpRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateOtpRequest.ProtoReflect.Descriptor instead.
-func (*CreateOtpRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use IssueRequest.ProtoReflect.Descriptor instead.
+func (*IssueRequest) Descriptor() ([]byte, []int) {
 	return file_otp_v1_type_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *CreateOtpRequest) GetEmail() string {
+func (x *IssueRequest) GetPurpose() string {
 	if x != nil {
-		return x.Email
+		return x.Purpose
 	}
 	return ""
 }
 
-type CreateOtpResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Created       bool                   `protobuf:"varint,1,opt,name=created,proto3" json:"created,omitempty"`
-	RetryAfter    *durationpb.Duration   `protobuf:"bytes,2,opt,name=retry_after,json=retryAfter,proto3" json:"retry_after,omitempty"`
-	ExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+func (x *IssueRequest) GetChannel() string {
+	if x != nil {
+		return x.Channel
+	}
+	return ""
 }
 
-func (x *CreateOtpResponse) Reset() {
-	*x = CreateOtpResponse{}
+func (x *IssueRequest) GetIdentifier() string {
+	if x != nil {
+		return x.Identifier
+	}
+	return ""
+}
+
+type IssueResponse struct {
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	OtpExpiresAt        *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=otp_expires_at,json=otpExpiresAt,proto3" json:"otp_expires_at,omitempty"`
+	ResendCooldownUntil *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=resend_cooldown_until,json=resendCooldownUntil,proto3" json:"resend_cooldown_until,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *IssueResponse) Reset() {
+	*x = IssueResponse{}
 	mi := &file_otp_v1_type_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateOtpResponse) String() string {
+func (x *IssueResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateOtpResponse) ProtoMessage() {}
+func (*IssueResponse) ProtoMessage() {}
 
-func (x *CreateOtpResponse) ProtoReflect() protoreflect.Message {
+func (x *IssueResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_otp_v1_type_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -101,55 +115,48 @@ func (x *CreateOtpResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateOtpResponse.ProtoReflect.Descriptor instead.
-func (*CreateOtpResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use IssueResponse.ProtoReflect.Descriptor instead.
+func (*IssueResponse) Descriptor() ([]byte, []int) {
 	return file_otp_v1_type_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateOtpResponse) GetCreated() bool {
+func (x *IssueResponse) GetOtpExpiresAt() *timestamppb.Timestamp {
 	if x != nil {
-		return x.Created
-	}
-	return false
-}
-
-func (x *CreateOtpResponse) GetRetryAfter() *durationpb.Duration {
-	if x != nil {
-		return x.RetryAfter
+		return x.OtpExpiresAt
 	}
 	return nil
 }
 
-func (x *CreateOtpResponse) GetExpiresAt() *timestamppb.Timestamp {
+func (x *IssueResponse) GetResendCooldownUntil() *timestamppb.Timestamp {
 	if x != nil {
-		return x.ExpiresAt
+		return x.ResendCooldownUntil
 	}
 	return nil
 }
 
-type CreateOTPRequest struct {
+type ReissueRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Purpose       string                 `protobuf:"bytes,1,opt,name=purpose,proto3" json:"purpose,omitempty"`
-	Target        string                 `protobuf:"bytes,2,opt,name=target,proto3" json:"target,omitempty"`
+	Channel       string                 `protobuf:"bytes,2,opt,name=channel,proto3" json:"channel,omitempty"`
 	Identifier    string                 `protobuf:"bytes,3,opt,name=identifier,proto3" json:"identifier,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CreateOTPRequest) Reset() {
-	*x = CreateOTPRequest{}
+func (x *ReissueRequest) Reset() {
+	*x = ReissueRequest{}
 	mi := &file_otp_v1_type_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateOTPRequest) String() string {
+func (x *ReissueRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateOTPRequest) ProtoMessage() {}
+func (*ReissueRequest) ProtoMessage() {}
 
-func (x *CreateOTPRequest) ProtoReflect() protoreflect.Message {
+func (x *ReissueRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_otp_v1_type_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -161,58 +168,54 @@ func (x *CreateOTPRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateOTPRequest.ProtoReflect.Descriptor instead.
-func (*CreateOTPRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use ReissueRequest.ProtoReflect.Descriptor instead.
+func (*ReissueRequest) Descriptor() ([]byte, []int) {
 	return file_otp_v1_type_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *CreateOTPRequest) GetPurpose() string {
+func (x *ReissueRequest) GetPurpose() string {
 	if x != nil {
 		return x.Purpose
 	}
 	return ""
 }
 
-func (x *CreateOTPRequest) GetTarget() string {
+func (x *ReissueRequest) GetChannel() string {
 	if x != nil {
-		return x.Target
+		return x.Channel
 	}
 	return ""
 }
 
-func (x *CreateOTPRequest) GetIdentifier() string {
+func (x *ReissueRequest) GetIdentifier() string {
 	if x != nil {
 		return x.Identifier
 	}
 	return ""
 }
 
-type CreateOTPResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Status        string                 `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	Code          uint32                 `protobuf:"varint,2,opt,name=code,proto3" json:"code,omitempty"`
-	Message       string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
-	OtpId         string                 `protobuf:"bytes,4,opt,name=otp_id,json=otpId,proto3" json:"otp_id,omitempty"`
-	ExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
-	CooldownUntil *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=cooldown_until,json=cooldownUntil,proto3" json:"cooldown_until,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+type ReissueResponse struct {
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	OtpExpiresAt        *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=otp_expires_at,json=otpExpiresAt,proto3" json:"otp_expires_at,omitempty"`
+	ResendCooldownUntil *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=resend_cooldown_until,json=resendCooldownUntil,proto3" json:"resend_cooldown_until,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
-func (x *CreateOTPResponse) Reset() {
-	*x = CreateOTPResponse{}
+func (x *ReissueResponse) Reset() {
+	*x = ReissueResponse{}
 	mi := &file_otp_v1_type_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateOTPResponse) String() string {
+func (x *ReissueResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateOTPResponse) ProtoMessage() {}
+func (*ReissueResponse) ProtoMessage() {}
 
-func (x *CreateOTPResponse) ProtoReflect() protoreflect.Message {
+func (x *ReissueResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_otp_v1_type_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -224,222 +227,50 @@ func (x *CreateOTPResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateOTPResponse.ProtoReflect.Descriptor instead.
-func (*CreateOTPResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ReissueResponse.ProtoReflect.Descriptor instead.
+func (*ReissueResponse) Descriptor() ([]byte, []int) {
 	return file_otp_v1_type_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *CreateOTPResponse) GetStatus() string {
+func (x *ReissueResponse) GetOtpExpiresAt() *timestamppb.Timestamp {
 	if x != nil {
-		return x.Status
-	}
-	return ""
-}
-
-func (x *CreateOTPResponse) GetCode() uint32 {
-	if x != nil {
-		return x.Code
-	}
-	return 0
-}
-
-func (x *CreateOTPResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
-func (x *CreateOTPResponse) GetOtpId() string {
-	if x != nil {
-		return x.OtpId
-	}
-	return ""
-}
-
-func (x *CreateOTPResponse) GetExpiresAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.ExpiresAt
+		return x.OtpExpiresAt
 	}
 	return nil
 }
 
-func (x *CreateOTPResponse) GetCooldownUntil() *timestamppb.Timestamp {
+func (x *ReissueResponse) GetResendCooldownUntil() *timestamppb.Timestamp {
 	if x != nil {
-		return x.CooldownUntil
+		return x.ResendCooldownUntil
 	}
 	return nil
 }
 
-type ResendOTPRequest struct {
+type VerifyRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Purpose       string                 `protobuf:"bytes,1,opt,name=purpose,proto3" json:"purpose,omitempty"`
-	Target        string                 `protobuf:"bytes,2,opt,name=target,proto3" json:"target,omitempty"`
-	Identifier    string                 `protobuf:"bytes,3,opt,name=identifier,proto3" json:"identifier,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ResendOTPRequest) Reset() {
-	*x = ResendOTPRequest{}
-	mi := &file_otp_v1_type_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ResendOTPRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ResendOTPRequest) ProtoMessage() {}
-
-func (x *ResendOTPRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_otp_v1_type_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ResendOTPRequest.ProtoReflect.Descriptor instead.
-func (*ResendOTPRequest) Descriptor() ([]byte, []int) {
-	return file_otp_v1_type_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *ResendOTPRequest) GetPurpose() string {
-	if x != nil {
-		return x.Purpose
-	}
-	return ""
-}
-
-func (x *ResendOTPRequest) GetTarget() string {
-	if x != nil {
-		return x.Target
-	}
-	return ""
-}
-
-func (x *ResendOTPRequest) GetIdentifier() string {
-	if x != nil {
-		return x.Identifier
-	}
-	return ""
-}
-
-type ResendOTPResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Status        string                 `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	Code          uint32                 `protobuf:"varint,2,opt,name=code,proto3" json:"code,omitempty"`
-	Message       string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
-	OtpId         string                 `protobuf:"bytes,4,opt,name=otp_id,json=otpId,proto3" json:"otp_id,omitempty"`
-	ExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
-	CooldownUntil *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=cooldown_until,json=cooldownUntil,proto3" json:"cooldown_until,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ResendOTPResponse) Reset() {
-	*x = ResendOTPResponse{}
-	mi := &file_otp_v1_type_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ResendOTPResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ResendOTPResponse) ProtoMessage() {}
-
-func (x *ResendOTPResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_otp_v1_type_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ResendOTPResponse.ProtoReflect.Descriptor instead.
-func (*ResendOTPResponse) Descriptor() ([]byte, []int) {
-	return file_otp_v1_type_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *ResendOTPResponse) GetStatus() string {
-	if x != nil {
-		return x.Status
-	}
-	return ""
-}
-
-func (x *ResendOTPResponse) GetCode() uint32 {
-	if x != nil {
-		return x.Code
-	}
-	return 0
-}
-
-func (x *ResendOTPResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
-func (x *ResendOTPResponse) GetOtpId() string {
-	if x != nil {
-		return x.OtpId
-	}
-	return ""
-}
-
-func (x *ResendOTPResponse) GetExpiresAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.ExpiresAt
-	}
-	return nil
-}
-
-func (x *ResendOTPResponse) GetCooldownUntil() *timestamppb.Timestamp {
-	if x != nil {
-		return x.CooldownUntil
-	}
-	return nil
-}
-
-type VerifyOTPRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Purpose       string                 `protobuf:"bytes,1,opt,name=purpose,proto3" json:"purpose,omitempty"`
-	Target        string                 `protobuf:"bytes,2,opt,name=target,proto3" json:"target,omitempty"`
+	Channel       string                 `protobuf:"bytes,2,opt,name=channel,proto3" json:"channel,omitempty"`
 	Identifier    string                 `protobuf:"bytes,3,opt,name=identifier,proto3" json:"identifier,omitempty"`
 	OtpCode       string                 `protobuf:"bytes,4,opt,name=otp_code,json=otpCode,proto3" json:"otp_code,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *VerifyOTPRequest) Reset() {
-	*x = VerifyOTPRequest{}
-	mi := &file_otp_v1_type_proto_msgTypes[6]
+func (x *VerifyRequest) Reset() {
+	*x = VerifyRequest{}
+	mi := &file_otp_v1_type_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *VerifyOTPRequest) String() string {
+func (x *VerifyRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*VerifyOTPRequest) ProtoMessage() {}
+func (*VerifyRequest) ProtoMessage() {}
 
-func (x *VerifyOTPRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_otp_v1_type_proto_msgTypes[6]
+func (x *VerifyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_otp_v1_type_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -450,61 +281,61 @@ func (x *VerifyOTPRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use VerifyOTPRequest.ProtoReflect.Descriptor instead.
-func (*VerifyOTPRequest) Descriptor() ([]byte, []int) {
-	return file_otp_v1_type_proto_rawDescGZIP(), []int{6}
+// Deprecated: Use VerifyRequest.ProtoReflect.Descriptor instead.
+func (*VerifyRequest) Descriptor() ([]byte, []int) {
+	return file_otp_v1_type_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *VerifyOTPRequest) GetPurpose() string {
+func (x *VerifyRequest) GetPurpose() string {
 	if x != nil {
 		return x.Purpose
 	}
 	return ""
 }
 
-func (x *VerifyOTPRequest) GetTarget() string {
+func (x *VerifyRequest) GetChannel() string {
 	if x != nil {
-		return x.Target
+		return x.Channel
 	}
 	return ""
 }
 
-func (x *VerifyOTPRequest) GetIdentifier() string {
+func (x *VerifyRequest) GetIdentifier() string {
 	if x != nil {
 		return x.Identifier
 	}
 	return ""
 }
 
-func (x *VerifyOTPRequest) GetOtpCode() string {
+func (x *VerifyRequest) GetOtpCode() string {
 	if x != nil {
 		return x.OtpCode
 	}
 	return ""
 }
 
-type VerifyOTPResponse struct {
+type VerifyResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Result        bool                   `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	Verified      bool                   `protobuf:"varint,1,opt,name=verified,proto3" json:"verified,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *VerifyOTPResponse) Reset() {
-	*x = VerifyOTPResponse{}
-	mi := &file_otp_v1_type_proto_msgTypes[7]
+func (x *VerifyResponse) Reset() {
+	*x = VerifyResponse{}
+	mi := &file_otp_v1_type_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *VerifyOTPResponse) String() string {
+func (x *VerifyResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*VerifyOTPResponse) ProtoMessage() {}
+func (*VerifyResponse) ProtoMessage() {}
 
-func (x *VerifyOTPResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_otp_v1_type_proto_msgTypes[7]
+func (x *VerifyResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_otp_v1_type_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -515,14 +346,14 @@ func (x *VerifyOTPResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use VerifyOTPResponse.ProtoReflect.Descriptor instead.
-func (*VerifyOTPResponse) Descriptor() ([]byte, []int) {
-	return file_otp_v1_type_proto_rawDescGZIP(), []int{7}
+// Deprecated: Use VerifyResponse.ProtoReflect.Descriptor instead.
+func (*VerifyResponse) Descriptor() ([]byte, []int) {
+	return file_otp_v1_type_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *VerifyOTPResponse) GetResult() bool {
+func (x *VerifyResponse) GetVerified() bool {
 	if x != nil {
-		return x.Result
+		return x.Verified
 	}
 	return false
 }
@@ -531,52 +362,34 @@ var File_otp_v1_type_proto protoreflect.FileDescriptor
 
 const file_otp_v1_type_proto_rawDesc = "" +
 	"\n" +
-	"\x11otp/v1/type.proto\x12\x06otp.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\"(\n" +
-	"\x10CreateOtpRequest\x12\x14\n" +
-	"\x05email\x18\x01 \x01(\tR\x05email\"\xa4\x01\n" +
-	"\x11CreateOtpResponse\x12\x18\n" +
-	"\acreated\x18\x01 \x01(\bR\acreated\x12:\n" +
-	"\vretry_after\x18\x02 \x01(\v2\x19.google.protobuf.DurationR\n" +
-	"retryAfter\x129\n" +
-	"\n" +
-	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"d\n" +
-	"\x10CreateOTPRequest\x12\x18\n" +
-	"\apurpose\x18\x01 \x01(\tR\apurpose\x12\x16\n" +
-	"\x06target\x18\x02 \x01(\tR\x06target\x12\x1e\n" +
+	"\x11otp/v1/type.proto\x12\x06otp.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"b\n" +
+	"\fIssueRequest\x12\x18\n" +
+	"\apurpose\x18\x01 \x01(\tR\apurpose\x12\x18\n" +
+	"\achannel\x18\x02 \x01(\tR\achannel\x12\x1e\n" +
 	"\n" +
 	"identifier\x18\x03 \x01(\tR\n" +
-	"identifier\"\xee\x01\n" +
-	"\x11CreateOTPResponse\x12\x16\n" +
-	"\x06status\x18\x01 \x01(\tR\x06status\x12\x12\n" +
-	"\x04code\x18\x02 \x01(\rR\x04code\x12\x18\n" +
-	"\amessage\x18\x03 \x01(\tR\amessage\x12\x15\n" +
-	"\x06otp_id\x18\x04 \x01(\tR\x05otpId\x129\n" +
-	"\n" +
-	"expires_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\x12A\n" +
-	"\x0ecooldown_until\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\rcooldownUntil\"d\n" +
-	"\x10ResendOTPRequest\x12\x18\n" +
-	"\apurpose\x18\x01 \x01(\tR\apurpose\x12\x16\n" +
-	"\x06target\x18\x02 \x01(\tR\x06target\x12\x1e\n" +
+	"identifier\"\xa1\x01\n" +
+	"\rIssueResponse\x12@\n" +
+	"\x0eotp_expires_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\fotpExpiresAt\x12N\n" +
+	"\x15resend_cooldown_until\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x13resendCooldownUntil\"d\n" +
+	"\x0eReissueRequest\x12\x18\n" +
+	"\apurpose\x18\x01 \x01(\tR\apurpose\x12\x18\n" +
+	"\achannel\x18\x02 \x01(\tR\achannel\x12\x1e\n" +
 	"\n" +
 	"identifier\x18\x03 \x01(\tR\n" +
-	"identifier\"\xee\x01\n" +
-	"\x11ResendOTPResponse\x12\x16\n" +
-	"\x06status\x18\x01 \x01(\tR\x06status\x12\x12\n" +
-	"\x04code\x18\x02 \x01(\rR\x04code\x12\x18\n" +
-	"\amessage\x18\x03 \x01(\tR\amessage\x12\x15\n" +
-	"\x06otp_id\x18\x04 \x01(\tR\x05otpId\x129\n" +
-	"\n" +
-	"expires_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\x12A\n" +
-	"\x0ecooldown_until\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\rcooldownUntil\"\x7f\n" +
-	"\x10VerifyOTPRequest\x12\x18\n" +
-	"\apurpose\x18\x01 \x01(\tR\apurpose\x12\x16\n" +
-	"\x06target\x18\x02 \x01(\tR\x06target\x12\x1e\n" +
+	"identifier\"\xa3\x01\n" +
+	"\x0fReissueResponse\x12@\n" +
+	"\x0eotp_expires_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\fotpExpiresAt\x12N\n" +
+	"\x15resend_cooldown_until\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\x13resendCooldownUntil\"~\n" +
+	"\rVerifyRequest\x12\x18\n" +
+	"\apurpose\x18\x01 \x01(\tR\apurpose\x12\x18\n" +
+	"\achannel\x18\x02 \x01(\tR\achannel\x12\x1e\n" +
 	"\n" +
 	"identifier\x18\x03 \x01(\tR\n" +
 	"identifier\x12\x19\n" +
-	"\botp_code\x18\x04 \x01(\tR\aotpCode\"+\n" +
-	"\x11VerifyOTPResponse\x12\x16\n" +
-	"\x06result\x18\x01 \x01(\bR\x06resultB.Z,github.com/kaelrion/contracts/gen/otp/v1;otpb\x06proto3"
+	"\botp_code\x18\x04 \x01(\tR\aotpCode\",\n" +
+	"\x0eVerifyResponse\x12\x1a\n" +
+	"\bverified\x18\x01 \x01(\bR\bverifiedB*Z(github.com/kaelorin/contracts/otp/v1;otpb\x06proto3"
 
 var (
 	file_otp_v1_type_proto_rawDescOnce sync.Once
@@ -590,31 +403,26 @@ func file_otp_v1_type_proto_rawDescGZIP() []byte {
 	return file_otp_v1_type_proto_rawDescData
 }
 
-var file_otp_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_otp_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_otp_v1_type_proto_goTypes = []any{
-	(*CreateOtpRequest)(nil),      // 0: otp.v1.CreateOtpRequest
-	(*CreateOtpResponse)(nil),     // 1: otp.v1.CreateOtpResponse
-	(*CreateOTPRequest)(nil),      // 2: otp.v1.CreateOTPRequest
-	(*CreateOTPResponse)(nil),     // 3: otp.v1.CreateOTPResponse
-	(*ResendOTPRequest)(nil),      // 4: otp.v1.ResendOTPRequest
-	(*ResendOTPResponse)(nil),     // 5: otp.v1.ResendOTPResponse
-	(*VerifyOTPRequest)(nil),      // 6: otp.v1.VerifyOTPRequest
-	(*VerifyOTPResponse)(nil),     // 7: otp.v1.VerifyOTPResponse
-	(*durationpb.Duration)(nil),   // 8: google.protobuf.Duration
-	(*timestamppb.Timestamp)(nil), // 9: google.protobuf.Timestamp
+	(*IssueRequest)(nil),          // 0: otp.v1.IssueRequest
+	(*IssueResponse)(nil),         // 1: otp.v1.IssueResponse
+	(*ReissueRequest)(nil),        // 2: otp.v1.ReissueRequest
+	(*ReissueResponse)(nil),       // 3: otp.v1.ReissueResponse
+	(*VerifyRequest)(nil),         // 4: otp.v1.VerifyRequest
+	(*VerifyResponse)(nil),        // 5: otp.v1.VerifyResponse
+	(*timestamppb.Timestamp)(nil), // 6: google.protobuf.Timestamp
 }
 var file_otp_v1_type_proto_depIdxs = []int32{
-	8, // 0: otp.v1.CreateOtpResponse.retry_after:type_name -> google.protobuf.Duration
-	9, // 1: otp.v1.CreateOtpResponse.expires_at:type_name -> google.protobuf.Timestamp
-	9, // 2: otp.v1.CreateOTPResponse.expires_at:type_name -> google.protobuf.Timestamp
-	9, // 3: otp.v1.CreateOTPResponse.cooldown_until:type_name -> google.protobuf.Timestamp
-	9, // 4: otp.v1.ResendOTPResponse.expires_at:type_name -> google.protobuf.Timestamp
-	9, // 5: otp.v1.ResendOTPResponse.cooldown_until:type_name -> google.protobuf.Timestamp
-	6, // [6:6] is the sub-list for method output_type
-	6, // [6:6] is the sub-list for method input_type
-	6, // [6:6] is the sub-list for extension type_name
-	6, // [6:6] is the sub-list for extension extendee
-	0, // [0:6] is the sub-list for field type_name
+	6, // 0: otp.v1.IssueResponse.otp_expires_at:type_name -> google.protobuf.Timestamp
+	6, // 1: otp.v1.IssueResponse.resend_cooldown_until:type_name -> google.protobuf.Timestamp
+	6, // 2: otp.v1.ReissueResponse.otp_expires_at:type_name -> google.protobuf.Timestamp
+	6, // 3: otp.v1.ReissueResponse.resend_cooldown_until:type_name -> google.protobuf.Timestamp
+	4, // [4:4] is the sub-list for method output_type
+	4, // [4:4] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_otp_v1_type_proto_init() }
@@ -628,7 +436,7 @@ func file_otp_v1_type_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_otp_v1_type_proto_rawDesc), len(file_otp_v1_type_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
