@@ -136,10 +136,16 @@ func (x *CheckEmailResponse) GetResult() string {
 
 type RegisterWithEmailStartRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	Indentifie1    string                 `protobuf:"bytes,1,opt,name=indentifie1,proto3" json:"indentifie1,omitempty"`
+	Indentifier    string                 `protobuf:"bytes,1,opt,name=indentifier,proto3" json:"indentifier,omitempty"`
 	IdentifierType string                 `protobuf:"bytes,2,opt,name=identifier_type,json=identifierType,proto3" json:"identifier_type,omitempty"`
-	Password       string                 `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
-	Region         string                 `protobuf:"bytes,4,opt,name=region,proto3" json:"region,omitempty"`
+	Credential     string                 `protobuf:"bytes,3,opt,name=credential,proto3" json:"credential,omitempty"`
+	CredentialType string                 `protobuf:"bytes,4,opt,name=credential_type,json=credentialType,proto3" json:"credential_type,omitempty"`
+	Name           string                 `protobuf:"bytes,5,opt,name=name,proto3" json:"name,omitempty"`
+	Os             string                 `protobuf:"bytes,6,opt,name=os,proto3" json:"os,omitempty"`
+	Browser        string                 `protobuf:"bytes,7,opt,name=browser,proto3" json:"browser,omitempty"`
+	Platform       string                 `protobuf:"bytes,8,opt,name=platform,proto3" json:"platform,omitempty"`
+	DeviceType     string                 `protobuf:"bytes,9,opt,name=device_type,json=deviceType,proto3" json:"device_type,omitempty"`
+	Ip             string                 `protobuf:"bytes,10,opt,name=ip,proto3" json:"ip,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -174,9 +180,9 @@ func (*RegisterWithEmailStartRequest) Descriptor() ([]byte, []int) {
 	return file_auth_v1_type_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *RegisterWithEmailStartRequest) GetIndentifie1() string {
+func (x *RegisterWithEmailStartRequest) GetIndentifier() string {
 	if x != nil {
-		return x.Indentifie1
+		return x.Indentifier
 	}
 	return ""
 }
@@ -188,16 +194,58 @@ func (x *RegisterWithEmailStartRequest) GetIdentifierType() string {
 	return ""
 }
 
-func (x *RegisterWithEmailStartRequest) GetPassword() string {
+func (x *RegisterWithEmailStartRequest) GetCredential() string {
 	if x != nil {
-		return x.Password
+		return x.Credential
 	}
 	return ""
 }
 
-func (x *RegisterWithEmailStartRequest) GetRegion() string {
+func (x *RegisterWithEmailStartRequest) GetCredentialType() string {
 	if x != nil {
-		return x.Region
+		return x.CredentialType
+	}
+	return ""
+}
+
+func (x *RegisterWithEmailStartRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *RegisterWithEmailStartRequest) GetOs() string {
+	if x != nil {
+		return x.Os
+	}
+	return ""
+}
+
+func (x *RegisterWithEmailStartRequest) GetBrowser() string {
+	if x != nil {
+		return x.Browser
+	}
+	return ""
+}
+
+func (x *RegisterWithEmailStartRequest) GetPlatform() string {
+	if x != nil {
+		return x.Platform
+	}
+	return ""
+}
+
+func (x *RegisterWithEmailStartRequest) GetDeviceType() string {
+	if x != nil {
+		return x.DeviceType
+	}
+	return ""
+}
+
+func (x *RegisterWithEmailStartRequest) GetIp() string {
+	if x != nil {
+		return x.Ip
 	}
 	return ""
 }
@@ -729,12 +777,22 @@ const file_auth_v1_type_proto_rawDesc = "" +
 	"\x06status\x18\x01 \x01(\tR\x06status\x12\x12\n" +
 	"\x04code\x18\x02 \x01(\x05R\x04code\x12\x18\n" +
 	"\amessage\x18\x03 \x01(\tR\amessage\x12\x16\n" +
-	"\x06result\x18\x04 \x01(\tR\x06result\"\x9e\x01\n" +
+	"\x06result\x18\x04 \x01(\tR\x06result\"\xbe\x02\n" +
 	"\x1dRegisterWithEmailStartRequest\x12 \n" +
-	"\vindentifie1\x18\x01 \x01(\tR\vindentifie1\x12'\n" +
-	"\x0fidentifier_type\x18\x02 \x01(\tR\x0eidentifierType\x12\x1a\n" +
-	"\bpassword\x18\x03 \x01(\tR\bpassword\x12\x16\n" +
-	"\x06region\x18\x04 \x01(\tR\x06region\"\x8c\x02\n" +
+	"\vindentifier\x18\x01 \x01(\tR\vindentifier\x12'\n" +
+	"\x0fidentifier_type\x18\x02 \x01(\tR\x0eidentifierType\x12\x1e\n" +
+	"\n" +
+	"credential\x18\x03 \x01(\tR\n" +
+	"credential\x12'\n" +
+	"\x0fcredential_type\x18\x04 \x01(\tR\x0ecredentialType\x12\x12\n" +
+	"\x04name\x18\x05 \x01(\tR\x04name\x12\x0e\n" +
+	"\x02os\x18\x06 \x01(\tR\x02os\x12\x18\n" +
+	"\abrowser\x18\a \x01(\tR\abrowser\x12\x1a\n" +
+	"\bplatform\x18\b \x01(\tR\bplatform\x12\x1f\n" +
+	"\vdevice_type\x18\t \x01(\tR\n" +
+	"deviceType\x12\x0e\n" +
+	"\x02ip\x18\n" +
+	" \x01(\tR\x02ip\"\x8c\x02\n" +
 	"\x1eRegisterWithEmailStartResponse\x12!\n" +
 	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\x12!\n" +
 	"\fchallenge_id\x18\x02 \x01(\tR\vchallengeId\x12@\n" +

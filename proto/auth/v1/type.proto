@@ -17,10 +17,16 @@ message CheckEmailResponse {
 }
 
 message RegisterWithEmailStartRequest{
-  string indentifie1     = 1;
+  string indentifier     = 1;
   string identifier_type = 2;
-  string password        = 3;
-  string region          = 4;
+  string credential      = 3;
+  string credential_type = 4;
+  string name            = 5;
+  string os              = 6;
+  string browser         = 7;
+  string platform        = 8;
+  string device_type     = 9;
+  string ip              = 10;
 }
 
 message RegisterWithEmailStartResponse {
