@@ -326,6 +326,110 @@ func (x *RegisterWithEmailStartResponse) GetMessage() string {
 	return ""
 }
 
+type RegisterWithEmailResendRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PrincipalId   string                 `protobuf:"bytes,1,opt,name=principal_id,json=principalId,proto3" json:"principal_id,omitempty"`
+	ChallengeId   string                 `protobuf:"bytes,2,opt,name=challenge_id,json=challengeId,proto3" json:"challenge_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RegisterWithEmailResendRequest) Reset() {
+	*x = RegisterWithEmailResendRequest{}
+	mi := &file_auth_v1_type_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RegisterWithEmailResendRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RegisterWithEmailResendRequest) ProtoMessage() {}
+
+func (x *RegisterWithEmailResendRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_type_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RegisterWithEmailResendRequest.ProtoReflect.Descriptor instead.
+func (*RegisterWithEmailResendRequest) Descriptor() ([]byte, []int) {
+	return file_auth_v1_type_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *RegisterWithEmailResendRequest) GetPrincipalId() string {
+	if x != nil {
+		return x.PrincipalId
+	}
+	return ""
+}
+
+func (x *RegisterWithEmailResendRequest) GetChallengeId() string {
+	if x != nil {
+		return x.ChallengeId
+	}
+	return ""
+}
+
+type RegisterWithEmailResendResponse struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	OtpExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=otp_expires_at,json=otpExpiresAt,proto3" json:"otp_expires_at,omitempty"`
+	OtpCooldownUntil *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=otp_cooldown_until,json=otpCooldownUntil,proto3" json:"otp_cooldown_until,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *RegisterWithEmailResendResponse) Reset() {
+	*x = RegisterWithEmailResendResponse{}
+	mi := &file_auth_v1_type_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RegisterWithEmailResendResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RegisterWithEmailResendResponse) ProtoMessage() {}
+
+func (x *RegisterWithEmailResendResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_type_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RegisterWithEmailResendResponse.ProtoReflect.Descriptor instead.
+func (*RegisterWithEmailResendResponse) Descriptor() ([]byte, []int) {
+	return file_auth_v1_type_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *RegisterWithEmailResendResponse) GetOtpExpiresAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.OtpExpiresAt
+	}
+	return nil
+}
+
+func (x *RegisterWithEmailResendResponse) GetOtpCooldownUntil() *timestamppb.Timestamp {
+	if x != nil {
+		return x.OtpCooldownUntil
+	}
+	return nil
+}
+
 type RegisterWithEmailCompleteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PrincipalId   string                 `protobuf:"bytes,1,opt,name=principal_id,json=principalId,proto3" json:"principal_id,omitempty"`
@@ -337,7 +441,7 @@ type RegisterWithEmailCompleteRequest struct {
 
 func (x *RegisterWithEmailCompleteRequest) Reset() {
 	*x = RegisterWithEmailCompleteRequest{}
-	mi := &file_auth_v1_type_proto_msgTypes[4]
+	mi := &file_auth_v1_type_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -349,7 +453,7 @@ func (x *RegisterWithEmailCompleteRequest) String() string {
 func (*RegisterWithEmailCompleteRequest) ProtoMessage() {}
 
 func (x *RegisterWithEmailCompleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_v1_type_proto_msgTypes[4]
+	mi := &file_auth_v1_type_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -362,7 +466,7 @@ func (x *RegisterWithEmailCompleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterWithEmailCompleteRequest.ProtoReflect.Descriptor instead.
 func (*RegisterWithEmailCompleteRequest) Descriptor() ([]byte, []int) {
-	return file_auth_v1_type_proto_rawDescGZIP(), []int{4}
+	return file_auth_v1_type_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *RegisterWithEmailCompleteRequest) GetPrincipalId() string {
@@ -399,7 +503,7 @@ type RegisterWithEmailCompleteResponse struct {
 
 func (x *RegisterWithEmailCompleteResponse) Reset() {
 	*x = RegisterWithEmailCompleteResponse{}
-	mi := &file_auth_v1_type_proto_msgTypes[5]
+	mi := &file_auth_v1_type_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -411,7 +515,7 @@ func (x *RegisterWithEmailCompleteResponse) String() string {
 func (*RegisterWithEmailCompleteResponse) ProtoMessage() {}
 
 func (x *RegisterWithEmailCompleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_v1_type_proto_msgTypes[5]
+	mi := &file_auth_v1_type_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -424,7 +528,7 @@ func (x *RegisterWithEmailCompleteResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use RegisterWithEmailCompleteResponse.ProtoReflect.Descriptor instead.
 func (*RegisterWithEmailCompleteResponse) Descriptor() ([]byte, []int) {
-	return file_auth_v1_type_proto_rawDescGZIP(), []int{5}
+	return file_auth_v1_type_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *RegisterWithEmailCompleteResponse) GetPrincipalId() string {
@@ -471,7 +575,7 @@ type RefreshTokenRequest struct {
 
 func (x *RefreshTokenRequest) Reset() {
 	*x = RefreshTokenRequest{}
-	mi := &file_auth_v1_type_proto_msgTypes[6]
+	mi := &file_auth_v1_type_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -483,7 +587,7 @@ func (x *RefreshTokenRequest) String() string {
 func (*RefreshTokenRequest) ProtoMessage() {}
 
 func (x *RefreshTokenRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_v1_type_proto_msgTypes[6]
+	mi := &file_auth_v1_type_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -496,7 +600,7 @@ func (x *RefreshTokenRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RefreshTokenRequest.ProtoReflect.Descriptor instead.
 func (*RefreshTokenRequest) Descriptor() ([]byte, []int) {
-	return file_auth_v1_type_proto_rawDescGZIP(), []int{6}
+	return file_auth_v1_type_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *RefreshTokenRequest) GetRefreshToken() string {
@@ -518,7 +622,7 @@ type RefreshTokenResponse struct {
 
 func (x *RefreshTokenResponse) Reset() {
 	*x = RefreshTokenResponse{}
-	mi := &file_auth_v1_type_proto_msgTypes[7]
+	mi := &file_auth_v1_type_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -530,7 +634,7 @@ func (x *RefreshTokenResponse) String() string {
 func (*RefreshTokenResponse) ProtoMessage() {}
 
 func (x *RefreshTokenResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_v1_type_proto_msgTypes[7]
+	mi := &file_auth_v1_type_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -543,7 +647,7 @@ func (x *RefreshTokenResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RefreshTokenResponse.ProtoReflect.Descriptor instead.
 func (*RefreshTokenResponse) Descriptor() ([]byte, []int) {
-	return file_auth_v1_type_proto_rawDescGZIP(), []int{7}
+	return file_auth_v1_type_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *RefreshTokenResponse) GetAccessToken() string {
@@ -593,7 +697,7 @@ type LoginWithEmailRequest struct {
 
 func (x *LoginWithEmailRequest) Reset() {
 	*x = LoginWithEmailRequest{}
-	mi := &file_auth_v1_type_proto_msgTypes[8]
+	mi := &file_auth_v1_type_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -605,7 +709,7 @@ func (x *LoginWithEmailRequest) String() string {
 func (*LoginWithEmailRequest) ProtoMessage() {}
 
 func (x *LoginWithEmailRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_v1_type_proto_msgTypes[8]
+	mi := &file_auth_v1_type_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -618,7 +722,7 @@ func (x *LoginWithEmailRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoginWithEmailRequest.ProtoReflect.Descriptor instead.
 func (*LoginWithEmailRequest) Descriptor() ([]byte, []int) {
-	return file_auth_v1_type_proto_rawDescGZIP(), []int{8}
+	return file_auth_v1_type_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *LoginWithEmailRequest) GetIdentifier() string {
@@ -710,7 +814,7 @@ type LoginWithEmailResponse struct {
 
 func (x *LoginWithEmailResponse) Reset() {
 	*x = LoginWithEmailResponse{}
-	mi := &file_auth_v1_type_proto_msgTypes[9]
+	mi := &file_auth_v1_type_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -722,7 +826,7 @@ func (x *LoginWithEmailResponse) String() string {
 func (*LoginWithEmailResponse) ProtoMessage() {}
 
 func (x *LoginWithEmailResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_v1_type_proto_msgTypes[9]
+	mi := &file_auth_v1_type_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -735,7 +839,7 @@ func (x *LoginWithEmailResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoginWithEmailResponse.ProtoReflect.Descriptor instead.
 func (*LoginWithEmailResponse) Descriptor() ([]byte, []int) {
-	return file_auth_v1_type_proto_rawDescGZIP(), []int{9}
+	return file_auth_v1_type_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *LoginWithEmailResponse) GetAccessToken() string {
@@ -798,7 +902,13 @@ const file_auth_v1_type_proto_rawDesc = "" +
 	"\fchallenge_id\x18\x02 \x01(\tR\vchallengeId\x12@\n" +
 	"\x0eotp_expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\fotpExpiresAt\x12H\n" +
 	"\x12otp_cooldown_until\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x10otpCooldownUntil\x12\x18\n" +
-	"\amessage\x18\x05 \x01(\tR\amessage\"\x83\x01\n" +
+	"\amessage\x18\x05 \x01(\tR\amessage\"f\n" +
+	"\x1eRegisterWithEmailResendRequest\x12!\n" +
+	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\x12!\n" +
+	"\fchallenge_id\x18\x02 \x01(\tR\vchallengeId\"\xad\x01\n" +
+	"\x1fRegisterWithEmailResendResponse\x12@\n" +
+	"\x0eotp_expires_at\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\fotpExpiresAt\x12H\n" +
+	"\x12otp_cooldown_until\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x10otpCooldownUntil\"\x83\x01\n" +
 	" RegisterWithEmailCompleteRequest\x12!\n" +
 	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\x12!\n" +
 	"\fchallenge_id\x18\x02 \x01(\tR\vchallengeId\x12\x19\n" +
@@ -851,32 +961,36 @@ func file_auth_v1_type_proto_rawDescGZIP() []byte {
 	return file_auth_v1_type_proto_rawDescData
 }
 
-var file_auth_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_auth_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_auth_v1_type_proto_goTypes = []any{
 	(*CheckEmailRequest)(nil),                 // 0: auth.v1.CheckEmailRequest
 	(*CheckEmailResponse)(nil),                // 1: auth.v1.CheckEmailResponse
 	(*RegisterWithEmailStartRequest)(nil),     // 2: auth.v1.RegisterWithEmailStartRequest
 	(*RegisterWithEmailStartResponse)(nil),    // 3: auth.v1.RegisterWithEmailStartResponse
-	(*RegisterWithEmailCompleteRequest)(nil),  // 4: auth.v1.RegisterWithEmailCompleteRequest
-	(*RegisterWithEmailCompleteResponse)(nil), // 5: auth.v1.RegisterWithEmailCompleteResponse
-	(*RefreshTokenRequest)(nil),               // 6: auth.v1.RefreshTokenRequest
-	(*RefreshTokenResponse)(nil),              // 7: auth.v1.RefreshTokenResponse
-	(*LoginWithEmailRequest)(nil),             // 8: auth.v1.LoginWithEmailRequest
-	(*LoginWithEmailResponse)(nil),            // 9: auth.v1.LoginWithEmailResponse
-	(*timestamppb.Timestamp)(nil),             // 10: google.protobuf.Timestamp
+	(*RegisterWithEmailResendRequest)(nil),    // 4: auth.v1.RegisterWithEmailResendRequest
+	(*RegisterWithEmailResendResponse)(nil),   // 5: auth.v1.RegisterWithEmailResendResponse
+	(*RegisterWithEmailCompleteRequest)(nil),  // 6: auth.v1.RegisterWithEmailCompleteRequest
+	(*RegisterWithEmailCompleteResponse)(nil), // 7: auth.v1.RegisterWithEmailCompleteResponse
+	(*RefreshTokenRequest)(nil),               // 8: auth.v1.RefreshTokenRequest
+	(*RefreshTokenResponse)(nil),              // 9: auth.v1.RefreshTokenResponse
+	(*LoginWithEmailRequest)(nil),             // 10: auth.v1.LoginWithEmailRequest
+	(*LoginWithEmailResponse)(nil),            // 11: auth.v1.LoginWithEmailResponse
+	(*timestamppb.Timestamp)(nil),             // 12: google.protobuf.Timestamp
 }
 var file_auth_v1_type_proto_depIdxs = []int32{
-	10, // 0: auth.v1.RegisterWithEmailStartResponse.otp_expires_at:type_name -> google.protobuf.Timestamp
-	10, // 1: auth.v1.RegisterWithEmailStartResponse.otp_cooldown_until:type_name -> google.protobuf.Timestamp
-	10, // 2: auth.v1.RefreshTokenResponse.access_expires_at:type_name -> google.protobuf.Timestamp
-	10, // 3: auth.v1.RefreshTokenResponse.refresh_expires_at:type_name -> google.protobuf.Timestamp
-	10, // 4: auth.v1.LoginWithEmailResponse.access_expires_at:type_name -> google.protobuf.Timestamp
-	10, // 5: auth.v1.LoginWithEmailResponse.refresh_expires_at:type_name -> google.protobuf.Timestamp
-	6,  // [6:6] is the sub-list for method output_type
-	6,  // [6:6] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	12, // 0: auth.v1.RegisterWithEmailStartResponse.otp_expires_at:type_name -> google.protobuf.Timestamp
+	12, // 1: auth.v1.RegisterWithEmailStartResponse.otp_cooldown_until:type_name -> google.protobuf.Timestamp
+	12, // 2: auth.v1.RegisterWithEmailResendResponse.otp_expires_at:type_name -> google.protobuf.Timestamp
+	12, // 3: auth.v1.RegisterWithEmailResendResponse.otp_cooldown_until:type_name -> google.protobuf.Timestamp
+	12, // 4: auth.v1.RefreshTokenResponse.access_expires_at:type_name -> google.protobuf.Timestamp
+	12, // 5: auth.v1.RefreshTokenResponse.refresh_expires_at:type_name -> google.protobuf.Timestamp
+	12, // 6: auth.v1.LoginWithEmailResponse.access_expires_at:type_name -> google.protobuf.Timestamp
+	12, // 7: auth.v1.LoginWithEmailResponse.refresh_expires_at:type_name -> google.protobuf.Timestamp
+	8,  // [8:8] is the sub-list for method output_type
+	8,  // [8:8] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_auth_v1_type_proto_init() }
@@ -890,7 +1004,7 @@ func file_auth_v1_type_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auth_v1_type_proto_rawDesc), len(file_auth_v1_type_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   10,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

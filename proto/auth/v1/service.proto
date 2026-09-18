@@ -9,6 +9,7 @@ service AuthService {
   rpc CheckEmail(CheckEmailRequest) returns (CheckEmailResponse);
   rpc RegisterWithEmailStart(RegisterWithEmailStartRequest) returns (RegisterWithEmailStartResponse);
   rpc RegisterWithEmailComplete(RegisterWithEmailCompleteRequest) returns (RegisterWithEmailCompleteResponse);
+  rpc RegisterWithEmailResend(RegisterWithEmailResendRequest) returns (RegisterWithEmailResendResponse);
   rpc LoginWithEmail(LoginWithEmailRequest) returns (LoginWithEmailResponse);
   rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse);
 }

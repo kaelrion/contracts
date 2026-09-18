@@ -37,6 +37,16 @@ message RegisterWithEmailStartResponse {
   string                    message            = 5;
 }
 
+message RegisterWithEmailResendRequest {
+  string principal_id = 1;
+  string challenge_id = 2;
+}
+
+message RegisterWithEmailResendResponse {
+  google.protobuf.Timestamp otp_expires_at     = 1;
+  google.protobuf.Timestamp otp_cooldown_until = 2;
+}
+
 message RegisterWithEmailCompleteRequest{
   string principal_id = 1;
   string challenge_id = 2;
