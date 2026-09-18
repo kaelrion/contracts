@@ -24,8 +24,8 @@ var File_auth_v1_service_proto protoreflect.FileDescriptor
 
 const file_auth_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x15auth/v1/service.proto\x12\aauth.v1\x1a\x12auth/v1/type.proto2\xc1\x04\n" +
-	"\vAuthService\x12E\n" +
+	"\x15auth/v1/service.proto\x12\aauth.v1\x1a\x12auth/v1/type.proto2\xbd\x04\n" +
+	"\aService\x12E\n" +
 	"\n" +
 	"CheckEmail\x12\x1a.auth.v1.CheckEmailRequest\x1a\x1b.auth.v1.CheckEmailResponse\x12i\n" +
 	"\x16RegisterWithEmailStart\x12&.auth.v1.RegisterWithEmailStartRequest\x1a'.auth.v1.RegisterWithEmailStartResponse\x12r\n" +
@@ -49,18 +49,18 @@ var file_auth_v1_service_proto_goTypes = []any{
 	(*RefreshTokenResponse)(nil),              // 11: auth.v1.RefreshTokenResponse
 }
 var file_auth_v1_service_proto_depIdxs = []int32{
-	0,  // 0: auth.v1.AuthService.CheckEmail:input_type -> auth.v1.CheckEmailRequest
-	1,  // 1: auth.v1.AuthService.RegisterWithEmailStart:input_type -> auth.v1.RegisterWithEmailStartRequest
-	2,  // 2: auth.v1.AuthService.RegisterWithEmailComplete:input_type -> auth.v1.RegisterWithEmailCompleteRequest
-	3,  // 3: auth.v1.AuthService.RegisterWithEmailResend:input_type -> auth.v1.RegisterWithEmailResendRequest
-	4,  // 4: auth.v1.AuthService.LoginWithEmail:input_type -> auth.v1.LoginWithEmailRequest
-	5,  // 5: auth.v1.AuthService.RefreshToken:input_type -> auth.v1.RefreshTokenRequest
-	6,  // 6: auth.v1.AuthService.CheckEmail:output_type -> auth.v1.CheckEmailResponse
-	7,  // 7: auth.v1.AuthService.RegisterWithEmailStart:output_type -> auth.v1.RegisterWithEmailStartResponse
-	8,  // 8: auth.v1.AuthService.RegisterWithEmailComplete:output_type -> auth.v1.RegisterWithEmailCompleteResponse
-	9,  // 9: auth.v1.AuthService.RegisterWithEmailResend:output_type -> auth.v1.RegisterWithEmailResendResponse
-	10, // 10: auth.v1.AuthService.LoginWithEmail:output_type -> auth.v1.LoginWithEmailResponse
-	11, // 11: auth.v1.AuthService.RefreshToken:output_type -> auth.v1.RefreshTokenResponse
+	0,  // 0: auth.v1.Service.CheckEmail:input_type -> auth.v1.CheckEmailRequest
+	1,  // 1: auth.v1.Service.RegisterWithEmailStart:input_type -> auth.v1.RegisterWithEmailStartRequest
+	2,  // 2: auth.v1.Service.RegisterWithEmailComplete:input_type -> auth.v1.RegisterWithEmailCompleteRequest
+	3,  // 3: auth.v1.Service.RegisterWithEmailResend:input_type -> auth.v1.RegisterWithEmailResendRequest
+	4,  // 4: auth.v1.Service.LoginWithEmail:input_type -> auth.v1.LoginWithEmailRequest
+	5,  // 5: auth.v1.Service.RefreshToken:input_type -> auth.v1.RefreshTokenRequest
+	6,  // 6: auth.v1.Service.CheckEmail:output_type -> auth.v1.CheckEmailResponse
+	7,  // 7: auth.v1.Service.RegisterWithEmailStart:output_type -> auth.v1.RegisterWithEmailStartResponse
+	8,  // 8: auth.v1.Service.RegisterWithEmailComplete:output_type -> auth.v1.RegisterWithEmailCompleteResponse
+	9,  // 9: auth.v1.Service.RegisterWithEmailResend:output_type -> auth.v1.RegisterWithEmailResendResponse
+	10, // 10: auth.v1.Service.LoginWithEmail:output_type -> auth.v1.LoginWithEmailResponse
+	11, // 11: auth.v1.Service.RefreshToken:output_type -> auth.v1.RefreshTokenResponse
 	6,  // [6:12] is the sub-list for method output_type
 	0,  // [0:6] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
