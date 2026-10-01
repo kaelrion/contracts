@@ -16,6 +16,7 @@ enum ErrorCode {
   ERROR_CODE_INTERNAL_SERVER      = 5;
   ERROR_CODE_COOLDOWN_ACTIVE      = 6;
   ERROR_CODE_LOCKED               = 7;
+  
 }
 
 message ErrorDetail {
