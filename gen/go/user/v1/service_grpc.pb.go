@@ -8,7 +8,6 @@ package user
 
 import (
 	context "context"
-	v1 "github.com/kaelrion/contracts/gen/user/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -27,7 +26,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ServiceClient interface {
-	GetProfile(ctx context.Context, in *v1.GetProfileRequest, opts ...grpc.CallOption) (*v1.GetProfileResponse, error)
+	GetProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error)
 }
 
 type serviceClient struct {
@@ -38,9 +37,9 @@ func NewServiceClient(cc grpc.ClientConnInterface) ServiceClient {
 	return &serviceClient{cc}
 }
 
-func (c *serviceClient) GetProfile(ctx context.Context, in *v1.GetProfileRequest, opts ...grpc.CallOption) (*v1.GetProfileResponse, error) {
+func (c *serviceClient) GetProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(v1.GetProfileResponse)
+	out := new(GetProfileResponse)
 	err := c.cc.Invoke(ctx, Service_GetProfile_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -52,7 +51,7 @@ func (c *serviceClient) GetProfile(ctx context.Context, in *v1.GetProfileRequest
 // All implementations must embed UnimplementedServiceServer
 // for forward compatibility.
 type ServiceServer interface {
-	GetProfile(context.Context, *v1.GetProfileRequest) (*v1.GetProfileResponse, error)
+	GetProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error)
 	mustEmbedUnimplementedServiceServer()
 }
 
@@ -63,7 +62,7 @@ type ServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedServiceServer struct{}
 
-func (UnimplementedServiceServer) GetProfile(context.Context, *v1.GetProfileRequest) (*v1.GetProfileResponse, error) {
+func (UnimplementedServiceServer) GetProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetProfile not implemented")
 }
 func (UnimplementedServiceServer) mustEmbedUnimplementedServiceServer() {}
@@ -88,7 +87,7 @@ func RegisterServiceServer(s grpc.ServiceRegistrar, srv ServiceServer) {
 }
 
 func _Service_GetProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(v1.GetProfileRequest)
+	in := new(GetProfileRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -100,7 +99,7 @@ func _Service_GetProfile_Handler(srv interface{}, ctx context.Context, dec func(
 		FullMethod: Service_GetProfile_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).GetProfile(ctx, req.(*v1.GetProfileRequest))
+		return srv.(ServiceServer).GetProfile(ctx, req.(*GetProfileRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

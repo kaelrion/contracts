@@ -7,7 +7,6 @@
 package user
 
 import (
-	v1 "github.com/kaelrion/contracts/gen/user/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -28,11 +27,11 @@ const file_user_v1_service_proto_rawDesc = "" +
 	"\x15user/v1/service.proto\x12\auser.v1\x1a\x12user/v1/type.proto2P\n" +
 	"\aService\x12E\n" +
 	"\n" +
-	"GetProfile\x12\x1a.user.v1.GetProfileRequest\x1a\x1b.user.v1.GetProfileResponseB\x1aZ\x18github.com/kaelorin/userb\x06proto3"
+	"GetProfile\x12\x1a.user.v1.GetProfileRequest\x1a\x1b.user.v1.GetProfileResponseB0Z.github.com/kaelrion/contracts/gen/user/v1;userb\x06proto3"
 
 var file_user_v1_service_proto_goTypes = []any{
-	(*v1.GetProfileRequest)(nil),  // 0: user.v1.GetProfileRequest
-	(*v1.GetProfileResponse)(nil), // 1: user.v1.GetProfileResponse
+	(*GetProfileRequest)(nil),  // 0: user.v1.GetProfileRequest
+	(*GetProfileResponse)(nil), // 1: user.v1.GetProfileResponse
 }
 var file_user_v1_service_proto_depIdxs = []int32{
 	0, // 0: user.v1.Service.GetProfile:input_type -> user.v1.GetProfileRequest
@@ -49,6 +48,7 @@ func file_user_v1_service_proto_init() {
 	if File_user_v1_service_proto != nil {
 		return
 	}
+	file_user_v1_type_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

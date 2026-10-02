@@ -2,7 +2,7 @@ syntax="proto3";
 
 package user.v1;
 
-option go_package = "github.com/kaelorin/user";
+option go_package = "github.com/kaelrion/contracts/gen/user/v1;user";
 import "user/v1/type.proto";
 
 service Service {
