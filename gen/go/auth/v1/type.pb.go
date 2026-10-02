@@ -497,6 +497,7 @@ type RegisterWithEmailCompleteResponse struct {
 	AccessToken     string                 `protobuf:"bytes,3,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
 	RefreshToken    string                 `protobuf:"bytes,4,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
 	Message         string                 `protobuf:"bytes,5,opt,name=message,proto3" json:"message,omitempty"`
+	DeviceId        string                 `protobuf:"bytes,6,opt,name=device_id,json=deviceId,proto3" json:"device_id,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -562,6 +563,13 @@ func (x *RegisterWithEmailCompleteResponse) GetRefreshToken() string {
 func (x *RegisterWithEmailCompleteResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
+	}
+	return ""
+}
+
+func (x *RegisterWithEmailCompleteResponse) GetDeviceId() string {
+	if x != nil {
+		return x.DeviceId
 	}
 	return ""
 }
@@ -912,13 +920,14 @@ const file_auth_v1_type_proto_rawDesc = "" +
 	" RegisterWithEmailCompleteRequest\x12!\n" +
 	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\x12!\n" +
 	"\fchallenge_id\x18\x02 \x01(\tR\vchallengeId\x12\x19\n" +
-	"\botp_code\x18\x03 \x01(\tR\aotpCode\"\xd3\x01\n" +
+	"\botp_code\x18\x03 \x01(\tR\aotpCode\"\xf0\x01\n" +
 	"!RegisterWithEmailCompleteResponse\x12!\n" +
 	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\x12)\n" +
 	"\x10principal_status\x18\x02 \x01(\tR\x0fprincipalStatus\x12!\n" +
 	"\faccess_token\x18\x03 \x01(\tR\vaccessToken\x12#\n" +
 	"\rrefresh_token\x18\x04 \x01(\tR\frefreshToken\x12\x18\n" +
-	"\amessage\x18\x05 \x01(\tR\amessage\":\n" +
+	"\amessage\x18\x05 \x01(\tR\amessage\x12\x1b\n" +
+	"\tdevice_id\x18\x06 \x01(\tR\bdeviceId\":\n" +
 	"\x13RefreshTokenRequest\x12#\n" +
 	"\rrefresh_token\x18\x01 \x01(\tR\frefreshToken\"\xf0\x01\n" +
 	"\x14RefreshTokenResponse\x12!\n" +

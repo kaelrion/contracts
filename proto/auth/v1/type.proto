@@ -59,6 +59,7 @@ message RegisterWithEmailCompleteResponse{
   string access_token     = 3;
   string refresh_token    = 4;
   string message          = 5;
+  string device_id        = 6;
 }
 
 message RefreshTokenRequest {
