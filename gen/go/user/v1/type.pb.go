@@ -9,6 +9,7 @@ package user
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -66,15 +67,15 @@ func (x *GetProfileRequest) GetPrincipalId() string {
 }
 
 type GetProfileResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	DisplayName   string                 `protobuf:"bytes,2,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
-	Bio           *string                `protobuf:"bytes,3,opt,name=bio,proto3,oneof" json:"bio,omitempty"`
-	AvatarUrl     *string                `protobuf:"bytes,4,opt,name=avatar_url,json=avatarUrl,proto3,oneof" json:"avatar_url,omitempty"`
-	BackgroundUrl *string                `protobuf:"bytes,5,opt,name=background_url,json=backgroundUrl,proto3,oneof" json:"background_url,omitempty"`
-	Birthday      *string                `protobuf:"bytes,6,opt,name=birthday,proto3,oneof" json:"birthday,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	Name                string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	DisplayName         string                 `protobuf:"bytes,2,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	Bio                 *string                `protobuf:"bytes,3,opt,name=bio,proto3,oneof" json:"bio,omitempty"`
+	AvatarUrl           *string                `protobuf:"bytes,4,opt,name=avatar_url,json=avatarUrl,proto3,oneof" json:"avatar_url,omitempty"`
+	BackgroundUrl       *string                `protobuf:"bytes,5,opt,name=background_url,json=backgroundUrl,proto3,oneof" json:"background_url,omitempty"`
+	ResendCooldownUntil *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=resend_cooldown_until,json=resendCooldownUntil,proto3,oneof" json:"resend_cooldown_until,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *GetProfileResponse) Reset() {
@@ -142,32 +143,32 @@ func (x *GetProfileResponse) GetBackgroundUrl() string {
 	return ""
 }
 
-func (x *GetProfileResponse) GetBirthday() string {
-	if x != nil && x.Birthday != nil {
-		return *x.Birthday
+func (x *GetProfileResponse) GetResendCooldownUntil() *timestamppb.Timestamp {
+	if x != nil {
+		return x.ResendCooldownUntil
 	}
-	return ""
+	return nil
 }
 
 var File_user_v1_type_proto protoreflect.FileDescriptor
 
 const file_user_v1_type_proto_rawDesc = "" +
 	"\n" +
-	"\x12user/v1/type.proto\x12\auser.v1\"6\n" +
+	"\x12user/v1/type.proto\x12\auser.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"6\n" +
 	"\x11GetProfileRequest\x12!\n" +
-	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\"\x8a\x02\n" +
+	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\"\xcb\x02\n" +
 	"\x12GetProfileResponse\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12!\n" +
 	"\fdisplay_name\x18\x02 \x01(\tR\vdisplayName\x12\x15\n" +
 	"\x03bio\x18\x03 \x01(\tH\x00R\x03bio\x88\x01\x01\x12\"\n" +
 	"\n" +
 	"avatar_url\x18\x04 \x01(\tH\x01R\tavatarUrl\x88\x01\x01\x12*\n" +
-	"\x0ebackground_url\x18\x05 \x01(\tH\x02R\rbackgroundUrl\x88\x01\x01\x12\x1f\n" +
-	"\bbirthday\x18\x06 \x01(\tH\x03R\bbirthday\x88\x01\x01B\x06\n" +
+	"\x0ebackground_url\x18\x05 \x01(\tH\x02R\rbackgroundUrl\x88\x01\x01\x12S\n" +
+	"\x15resend_cooldown_until\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampH\x03R\x13resendCooldownUntil\x88\x01\x01B\x06\n" +
 	"\x04_bioB\r\n" +
 	"\v_avatar_urlB\x11\n" +
-	"\x0f_background_urlB\v\n" +
-	"\t_birthdayB0Z.github.com/kaelrion/contracts/gen/user/v1;userb\x06proto3"
+	"\x0f_background_urlB\x18\n" +
+	"\x16_resend_cooldown_untilB0Z.github.com/kaelrion/contracts/gen/user/v1;userb\x06proto3"
 
 var (
 	file_user_v1_type_proto_rawDescOnce sync.Once
@@ -183,15 +184,17 @@ func file_user_v1_type_proto_rawDescGZIP() []byte {
 
 var file_user_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_user_v1_type_proto_goTypes = []any{
-	(*GetProfileRequest)(nil),  // 0: user.v1.GetProfileRequest
-	(*GetProfileResponse)(nil), // 1: user.v1.GetProfileResponse
+	(*GetProfileRequest)(nil),     // 0: user.v1.GetProfileRequest
+	(*GetProfileResponse)(nil),    // 1: user.v1.GetProfileResponse
+	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
 }
 var file_user_v1_type_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	2, // 0: user.v1.GetProfileResponse.resend_cooldown_until:type_name -> google.protobuf.Timestamp
+	1, // [1:1] is the sub-list for method output_type
+	1, // [1:1] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_user_v1_type_proto_init() }
