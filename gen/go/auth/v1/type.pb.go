@@ -682,7 +682,7 @@ type LoginWithEmailRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	Identifier     string                 `protobuf:"bytes,1,opt,name=identifier,proto3" json:"identifier,omitempty"`
 	IdentifierType string                 `protobuf:"bytes,2,opt,name=identifier_type,json=identifierType,proto3" json:"identifier_type,omitempty"`
-	Password       string                 `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
+	Credential     string                 `protobuf:"bytes,3,opt,name=credential,proto3" json:"credential,omitempty"`
 	CredentialType string                 `protobuf:"bytes,4,opt,name=credential_type,json=credentialType,proto3" json:"credential_type,omitempty"`
 	Ip             string                 `protobuf:"bytes,5,opt,name=ip,proto3" json:"ip,omitempty"`
 	UserAgent      string                 `protobuf:"bytes,6,opt,name=user_agent,json=userAgent,proto3" json:"user_agent,omitempty"`
@@ -739,9 +739,9 @@ func (x *LoginWithEmailRequest) GetIdentifierType() string {
 	return ""
 }
 
-func (x *LoginWithEmailRequest) GetPassword() string {
+func (x *LoginWithEmailRequest) GetCredential() string {
 	if x != nil {
-		return x.Password
+		return x.Credential
 	}
 	return ""
 }
@@ -925,13 +925,15 @@ const file_auth_v1_type_proto_rawDesc = "" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12#\n" +
 	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\x12F\n" +
 	"\x11access_expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x0faccessExpiresAt\x12H\n" +
-	"\x12refresh_expires_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x10refreshExpiresAt\"\xd2\x02\n" +
+	"\x12refresh_expires_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x10refreshExpiresAt\"\xd6\x02\n" +
 	"\x15LoginWithEmailRequest\x12\x1e\n" +
 	"\n" +
 	"identifier\x18\x01 \x01(\tR\n" +
 	"identifier\x12'\n" +
-	"\x0fidentifier_type\x18\x02 \x01(\tR\x0eidentifierType\x12\x1a\n" +
-	"\bpassword\x18\x03 \x01(\tR\bpassword\x12'\n" +
+	"\x0fidentifier_type\x18\x02 \x01(\tR\x0eidentifierType\x12\x1e\n" +
+	"\n" +
+	"credential\x18\x03 \x01(\tR\n" +
+	"credential\x12'\n" +
 	"\x0fcredential_type\x18\x04 \x01(\tR\x0ecredentialType\x12\x0e\n" +
 	"\x02ip\x18\x05 \x01(\tR\x02ip\x12\x1d\n" +
 	"\n" +

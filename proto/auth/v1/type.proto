@@ -75,7 +75,7 @@ message RefreshTokenResponse {
 message LoginWithEmailRequest{
   string identifier      = 1;
   string identifier_type = 2;
-  string password        = 3;
+  string credential      = 3;
   string credential_type = 4;
   string ip              = 5;
   string user_agent      = 6;
