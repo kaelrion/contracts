@@ -1,0 +1,18 @@
+syntax="proto3";
+
+package user.v1;
+
+option go_package = "github.com/kaelrion/contracts/gen/user/v1;user";
+
+message GetProfileRequest {
+  string principal_id = 1;
+}
+
+message GetProfileResponse {
+  string          name           = 1;
+  string          display_name   = 2;
+  optional string bio            = 3;
+  optional string avatar_url     = 4;
+  optional string background_url = 5;
+  optional string birthday       = 6;
+}
