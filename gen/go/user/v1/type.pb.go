@@ -67,15 +67,15 @@ func (x *GetProfileRequest) GetPrincipalId() string {
 }
 
 type GetProfileResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	DisplayName   string                 `protobuf:"bytes,2,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
-	Bio           *string                `protobuf:"bytes,3,opt,name=bio,proto3,oneof" json:"bio,omitempty"`
-	AvatarUrl     *string                `protobuf:"bytes,4,opt,name=avatar_url,json=avatarUrl,proto3,oneof" json:"avatar_url,omitempty"`
-	BackgroundUrl *string                `protobuf:"bytes,5,opt,name=background_url,json=backgroundUrl,proto3,oneof" json:"background_url,omitempty"`
-	Birthday      *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=birthday,proto3,oneof" json:"birthday,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	Name              string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	DisplayName       string                 `protobuf:"bytes,2,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	Bio               *string                `protobuf:"bytes,3,opt,name=bio,proto3,oneof" json:"bio,omitempty"`
+	AvatarMediaId     *string                `protobuf:"bytes,4,opt,name=avatar_media_id,json=avatarMediaId,proto3,oneof" json:"avatar_media_id,omitempty"`
+	BackgroundMediaId *string                `protobuf:"bytes,5,opt,name=background_media_id,json=backgroundMediaId,proto3,oneof" json:"background_media_id,omitempty"`
+	Birthday          *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=birthday,proto3,oneof" json:"birthday,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *GetProfileResponse) Reset() {
@@ -129,16 +129,16 @@ func (x *GetProfileResponse) GetBio() string {
 	return ""
 }
 
-func (x *GetProfileResponse) GetAvatarUrl() string {
-	if x != nil && x.AvatarUrl != nil {
-		return *x.AvatarUrl
+func (x *GetProfileResponse) GetAvatarMediaId() string {
+	if x != nil && x.AvatarMediaId != nil {
+		return *x.AvatarMediaId
 	}
 	return ""
 }
 
-func (x *GetProfileResponse) GetBackgroundUrl() string {
-	if x != nil && x.BackgroundUrl != nil {
-		return *x.BackgroundUrl
+func (x *GetProfileResponse) GetBackgroundMediaId() string {
+	if x != nil && x.BackgroundMediaId != nil {
+		return *x.BackgroundMediaId
 	}
 	return ""
 }
@@ -260,18 +260,17 @@ const file_user_v1_type_proto_rawDesc = "" +
 	"\n" +
 	"\x12user/v1/type.proto\x12\auser.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"6\n" +
 	"\x11GetProfileRequest\x12!\n" +
-	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\"\xa6\x02\n" +
+	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\"\xc2\x02\n" +
 	"\x12GetProfileResponse\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12!\n" +
 	"\fdisplay_name\x18\x02 \x01(\tR\vdisplayName\x12\x15\n" +
-	"\x03bio\x18\x03 \x01(\tH\x00R\x03bio\x88\x01\x01\x12\"\n" +
-	"\n" +
-	"avatar_url\x18\x04 \x01(\tH\x01R\tavatarUrl\x88\x01\x01\x12*\n" +
-	"\x0ebackground_url\x18\x05 \x01(\tH\x02R\rbackgroundUrl\x88\x01\x01\x12;\n" +
+	"\x03bio\x18\x03 \x01(\tH\x00R\x03bio\x88\x01\x01\x12+\n" +
+	"\x0favatar_media_id\x18\x04 \x01(\tH\x01R\ravatarMediaId\x88\x01\x01\x123\n" +
+	"\x13background_media_id\x18\x05 \x01(\tH\x02R\x11backgroundMediaId\x88\x01\x01\x12;\n" +
 	"\bbirthday\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampH\x03R\bbirthday\x88\x01\x01B\x06\n" +
-	"\x04_bioB\r\n" +
-	"\v_avatar_urlB\x11\n" +
-	"\x0f_background_urlB\v\n" +
+	"\x04_bioB\x12\n" +
+	"\x10_avatar_media_idB\x16\n" +
+	"\x14_background_media_idB\v\n" +
 	"\t_birthday\"v\n" +
 	"\x1aPresignUpdateAvatarRequest\x12!\n" +
 	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\x12!\n" +
