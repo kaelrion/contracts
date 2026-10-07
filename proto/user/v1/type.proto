@@ -17,11 +17,12 @@ message GetProfileResponse {
   optional google.protobuf.Timestamp birthday       = 6;
 }
 
-message UpdateAvatarRequest {
-  string principald_id = 1;
-  string content_type  = 2;
-  int64  size          = 3;
+message PresignUpdateAvatarRequest {
+  string principal_id = 1;
+  string content_type = 2;
+  int64  type         = 3;
 }
 
-message UpdateAvatarResponse {
+message PresignUpdateAvatarResponse {
+  string token = 1;
 }

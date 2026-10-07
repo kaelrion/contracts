@@ -150,29 +150,29 @@ func (x *GetProfileResponse) GetBirthday() *timestamppb.Timestamp {
 	return nil
 }
 
-type UpdateAvatarRequest struct {
+type PresignUpdateAvatarRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	PrincipaldId  string                 `protobuf:"bytes,1,opt,name=principald_id,json=principaldId,proto3" json:"principald_id,omitempty"`
+	PrincipalId   string                 `protobuf:"bytes,1,opt,name=principal_id,json=principalId,proto3" json:"principal_id,omitempty"`
 	ContentType   string                 `protobuf:"bytes,2,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
-	Size          int64                  `protobuf:"varint,3,opt,name=size,proto3" json:"size,omitempty"`
+	Type          int64                  `protobuf:"varint,3,opt,name=type,proto3" json:"type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UpdateAvatarRequest) Reset() {
-	*x = UpdateAvatarRequest{}
+func (x *PresignUpdateAvatarRequest) Reset() {
+	*x = PresignUpdateAvatarRequest{}
 	mi := &file_user_v1_type_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UpdateAvatarRequest) String() string {
+func (x *PresignUpdateAvatarRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateAvatarRequest) ProtoMessage() {}
+func (*PresignUpdateAvatarRequest) ProtoMessage() {}
 
-func (x *UpdateAvatarRequest) ProtoReflect() protoreflect.Message {
+func (x *PresignUpdateAvatarRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_user_v1_type_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -184,52 +184,53 @@ func (x *UpdateAvatarRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateAvatarRequest.ProtoReflect.Descriptor instead.
-func (*UpdateAvatarRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use PresignUpdateAvatarRequest.ProtoReflect.Descriptor instead.
+func (*PresignUpdateAvatarRequest) Descriptor() ([]byte, []int) {
 	return file_user_v1_type_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *UpdateAvatarRequest) GetPrincipaldId() string {
+func (x *PresignUpdateAvatarRequest) GetPrincipalId() string {
 	if x != nil {
-		return x.PrincipaldId
+		return x.PrincipalId
 	}
 	return ""
 }
 
-func (x *UpdateAvatarRequest) GetContentType() string {
+func (x *PresignUpdateAvatarRequest) GetContentType() string {
 	if x != nil {
 		return x.ContentType
 	}
 	return ""
 }
 
-func (x *UpdateAvatarRequest) GetSize() int64 {
+func (x *PresignUpdateAvatarRequest) GetType() int64 {
 	if x != nil {
-		return x.Size
+		return x.Type
 	}
 	return 0
 }
 
-type UpdateAvatarResponse struct {
+type PresignUpdateAvatarResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UpdateAvatarResponse) Reset() {
-	*x = UpdateAvatarResponse{}
+func (x *PresignUpdateAvatarResponse) Reset() {
+	*x = PresignUpdateAvatarResponse{}
 	mi := &file_user_v1_type_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UpdateAvatarResponse) String() string {
+func (x *PresignUpdateAvatarResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateAvatarResponse) ProtoMessage() {}
+func (*PresignUpdateAvatarResponse) ProtoMessage() {}
 
-func (x *UpdateAvatarResponse) ProtoReflect() protoreflect.Message {
+func (x *PresignUpdateAvatarResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_user_v1_type_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -241,9 +242,16 @@ func (x *UpdateAvatarResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateAvatarResponse.ProtoReflect.Descriptor instead.
-func (*UpdateAvatarResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use PresignUpdateAvatarResponse.ProtoReflect.Descriptor instead.
+func (*PresignUpdateAvatarResponse) Descriptor() ([]byte, []int) {
 	return file_user_v1_type_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *PresignUpdateAvatarResponse) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
 }
 
 var File_user_v1_type_proto protoreflect.FileDescriptor
@@ -264,12 +272,13 @@ const file_user_v1_type_proto_rawDesc = "" +
 	"\x04_bioB\r\n" +
 	"\v_avatar_urlB\x11\n" +
 	"\x0f_background_urlB\v\n" +
-	"\t_birthday\"q\n" +
-	"\x13UpdateAvatarRequest\x12#\n" +
-	"\rprincipald_id\x18\x01 \x01(\tR\fprincipaldId\x12!\n" +
+	"\t_birthday\"v\n" +
+	"\x1aPresignUpdateAvatarRequest\x12!\n" +
+	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\x12!\n" +
 	"\fcontent_type\x18\x02 \x01(\tR\vcontentType\x12\x12\n" +
-	"\x04size\x18\x03 \x01(\x03R\x04size\"\x16\n" +
-	"\x14UpdateAvatarResponseB0Z.github.com/kaelrion/contracts/gen/user/v1;userb\x06proto3"
+	"\x04type\x18\x03 \x01(\x03R\x04type\"3\n" +
+	"\x1bPresignUpdateAvatarResponse\x12\x14\n" +
+	"\x05token\x18\x01 \x01(\tR\x05tokenB0Z.github.com/kaelrion/contracts/gen/user/v1;userb\x06proto3"
 
 var (
 	file_user_v1_type_proto_rawDescOnce sync.Once
@@ -285,11 +294,11 @@ func file_user_v1_type_proto_rawDescGZIP() []byte {
 
 var file_user_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_user_v1_type_proto_goTypes = []any{
-	(*GetProfileRequest)(nil),     // 0: user.v1.GetProfileRequest
-	(*GetProfileResponse)(nil),    // 1: user.v1.GetProfileResponse
-	(*UpdateAvatarRequest)(nil),   // 2: user.v1.UpdateAvatarRequest
-	(*UpdateAvatarResponse)(nil),  // 3: user.v1.UpdateAvatarResponse
-	(*timestamppb.Timestamp)(nil), // 4: google.protobuf.Timestamp
+	(*GetProfileRequest)(nil),           // 0: user.v1.GetProfileRequest
+	(*GetProfileResponse)(nil),          // 1: user.v1.GetProfileResponse
+	(*PresignUpdateAvatarRequest)(nil),  // 2: user.v1.PresignUpdateAvatarRequest
+	(*PresignUpdateAvatarResponse)(nil), // 3: user.v1.PresignUpdateAvatarResponse
+	(*timestamppb.Timestamp)(nil),       // 4: google.protobuf.Timestamp
 }
 var file_user_v1_type_proto_depIdxs = []int32{
 	4, // 0: user.v1.GetProfileResponse.birthday:type_name -> google.protobuf.Timestamp
