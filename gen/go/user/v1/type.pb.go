@@ -150,6 +150,102 @@ func (x *GetProfileResponse) GetBirthday() *timestamppb.Timestamp {
 	return nil
 }
 
+type UpdateAvatarRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PrincipaldId  string                 `protobuf:"bytes,1,opt,name=principald_id,json=principaldId,proto3" json:"principald_id,omitempty"`
+	ContentType   string                 `protobuf:"bytes,2,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
+	Size          int64                  `protobuf:"varint,3,opt,name=size,proto3" json:"size,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateAvatarRequest) Reset() {
+	*x = UpdateAvatarRequest{}
+	mi := &file_user_v1_type_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateAvatarRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateAvatarRequest) ProtoMessage() {}
+
+func (x *UpdateAvatarRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_type_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateAvatarRequest.ProtoReflect.Descriptor instead.
+func (*UpdateAvatarRequest) Descriptor() ([]byte, []int) {
+	return file_user_v1_type_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *UpdateAvatarRequest) GetPrincipaldId() string {
+	if x != nil {
+		return x.PrincipaldId
+	}
+	return ""
+}
+
+func (x *UpdateAvatarRequest) GetContentType() string {
+	if x != nil {
+		return x.ContentType
+	}
+	return ""
+}
+
+func (x *UpdateAvatarRequest) GetSize() int64 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+type UpdateAvatarResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateAvatarResponse) Reset() {
+	*x = UpdateAvatarResponse{}
+	mi := &file_user_v1_type_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateAvatarResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateAvatarResponse) ProtoMessage() {}
+
+func (x *UpdateAvatarResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_type_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateAvatarResponse.ProtoReflect.Descriptor instead.
+func (*UpdateAvatarResponse) Descriptor() ([]byte, []int) {
+	return file_user_v1_type_proto_rawDescGZIP(), []int{3}
+}
+
 var File_user_v1_type_proto protoreflect.FileDescriptor
 
 const file_user_v1_type_proto_rawDesc = "" +
@@ -168,7 +264,12 @@ const file_user_v1_type_proto_rawDesc = "" +
 	"\x04_bioB\r\n" +
 	"\v_avatar_urlB\x11\n" +
 	"\x0f_background_urlB\v\n" +
-	"\t_birthdayB0Z.github.com/kaelrion/contracts/gen/user/v1;userb\x06proto3"
+	"\t_birthday\"q\n" +
+	"\x13UpdateAvatarRequest\x12#\n" +
+	"\rprincipald_id\x18\x01 \x01(\tR\fprincipaldId\x12!\n" +
+	"\fcontent_type\x18\x02 \x01(\tR\vcontentType\x12\x12\n" +
+	"\x04size\x18\x03 \x01(\x03R\x04size\"\x16\n" +
+	"\x14UpdateAvatarResponseB0Z.github.com/kaelrion/contracts/gen/user/v1;userb\x06proto3"
 
 var (
 	file_user_v1_type_proto_rawDescOnce sync.Once
@@ -182,14 +283,16 @@ func file_user_v1_type_proto_rawDescGZIP() []byte {
 	return file_user_v1_type_proto_rawDescData
 }
 
-var file_user_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_user_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_user_v1_type_proto_goTypes = []any{
 	(*GetProfileRequest)(nil),     // 0: user.v1.GetProfileRequest
 	(*GetProfileResponse)(nil),    // 1: user.v1.GetProfileResponse
-	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
+	(*UpdateAvatarRequest)(nil),   // 2: user.v1.UpdateAvatarRequest
+	(*UpdateAvatarResponse)(nil),  // 3: user.v1.UpdateAvatarResponse
+	(*timestamppb.Timestamp)(nil), // 4: google.protobuf.Timestamp
 }
 var file_user_v1_type_proto_depIdxs = []int32{
-	2, // 0: user.v1.GetProfileResponse.birthday:type_name -> google.protobuf.Timestamp
+	4, // 0: user.v1.GetProfileResponse.birthday:type_name -> google.protobuf.Timestamp
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
@@ -209,7 +312,7 @@ func file_user_v1_type_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_v1_type_proto_rawDesc), len(file_user_v1_type_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

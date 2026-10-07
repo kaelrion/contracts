@@ -24,20 +24,25 @@ var File_user_v1_service_proto protoreflect.FileDescriptor
 
 const file_user_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x15user/v1/service.proto\x12\auser.v1\x1a\x12user/v1/type.proto2P\n" +
+	"\x15user/v1/service.proto\x12\auser.v1\x1a\x12user/v1/type.proto2\x9d\x01\n" +
 	"\aService\x12E\n" +
 	"\n" +
-	"GetProfile\x12\x1a.user.v1.GetProfileRequest\x1a\x1b.user.v1.GetProfileResponseB0Z.github.com/kaelrion/contracts/gen/user/v1;userb\x06proto3"
+	"GetProfile\x12\x1a.user.v1.GetProfileRequest\x1a\x1b.user.v1.GetProfileResponse\x12K\n" +
+	"\fUpdateAvatar\x12\x1c.user.v1.UpdateAvatarRequest\x1a\x1d.user.v1.UpdateAvatarResponseB0Z.github.com/kaelrion/contracts/gen/user/v1;userb\x06proto3"
 
 var file_user_v1_service_proto_goTypes = []any{
-	(*GetProfileRequest)(nil),  // 0: user.v1.GetProfileRequest
-	(*GetProfileResponse)(nil), // 1: user.v1.GetProfileResponse
+	(*GetProfileRequest)(nil),    // 0: user.v1.GetProfileRequest
+	(*UpdateAvatarRequest)(nil),  // 1: user.v1.UpdateAvatarRequest
+	(*GetProfileResponse)(nil),   // 2: user.v1.GetProfileResponse
+	(*UpdateAvatarResponse)(nil), // 3: user.v1.UpdateAvatarResponse
 }
 var file_user_v1_service_proto_depIdxs = []int32{
 	0, // 0: user.v1.Service.GetProfile:input_type -> user.v1.GetProfileRequest
-	1, // 1: user.v1.Service.GetProfile:output_type -> user.v1.GetProfileResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	1, // 1: user.v1.Service.UpdateAvatar:input_type -> user.v1.UpdateAvatarRequest
+	2, // 2: user.v1.Service.GetProfile:output_type -> user.v1.GetProfileResponse
+	3, // 3: user.v1.Service.UpdateAvatar:output_type -> user.v1.UpdateAvatarResponse
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
