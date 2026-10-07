@@ -154,7 +154,7 @@ type PresignUpdateAvatarRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PrincipalId   string                 `protobuf:"bytes,1,opt,name=principal_id,json=principalId,proto3" json:"principal_id,omitempty"`
 	ContentType   string                 `protobuf:"bytes,2,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
-	Type          int64                  `protobuf:"varint,3,opt,name=type,proto3" json:"type,omitempty"`
+	Size          int64                  `protobuf:"varint,3,opt,name=size,proto3" json:"size,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -203,9 +203,9 @@ func (x *PresignUpdateAvatarRequest) GetContentType() string {
 	return ""
 }
 
-func (x *PresignUpdateAvatarRequest) GetType() int64 {
+func (x *PresignUpdateAvatarRequest) GetSize() int64 {
 	if x != nil {
-		return x.Type
+		return x.Size
 	}
 	return 0
 }
@@ -276,7 +276,7 @@ const file_user_v1_type_proto_rawDesc = "" +
 	"\x1aPresignUpdateAvatarRequest\x12!\n" +
 	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\x12!\n" +
 	"\fcontent_type\x18\x02 \x01(\tR\vcontentType\x12\x12\n" +
-	"\x04type\x18\x03 \x01(\x03R\x04type\"3\n" +
+	"\x04size\x18\x03 \x01(\x03R\x04size\"3\n" +
 	"\x1bPresignUpdateAvatarResponse\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05tokenB0Z.github.com/kaelrion/contracts/gen/user/v1;userb\x06proto3"
 
