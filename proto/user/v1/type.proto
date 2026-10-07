@@ -20,7 +20,7 @@ message GetProfileResponse {
 message PresignUpdateAvatarRequest {
   string principal_id = 1;
   string content_type = 2;
-  int64  type         = 3;
+  int64  size         = 3;
 }
 
 message PresignUpdateAvatarResponse {
