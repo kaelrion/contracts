@@ -108,3 +108,21 @@ message PresignedDownload {
 message PresignDownloadsResponse {
   repeated PresignedDownload urls = 1;
 }
+
+message PresignObjectUploadRequest {
+  string owner_id = 1;
+  File   file     = 2;
+}
+
+message PresignObjectUploadResponse {
+  string                    media_id   = 1;
+  string                    url        = 2;
+  google.protobuf.Timestamp expires_at = 3;
+}
+
+message CompleteObjectUploadRequest {
+  string media_id = 1;
+  string owner_id = 2;
+}
+
+message CompleteObjectUploadResponse {}

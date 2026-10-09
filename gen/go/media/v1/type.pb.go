@@ -965,6 +965,206 @@ func (x *PresignDownloadsResponse) GetUrls() []*PresignedDownload {
 	return nil
 }
 
+type PresignObjectUploadRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OwnerId       string                 `protobuf:"bytes,1,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	File          *File                  `protobuf:"bytes,2,opt,name=file,proto3" json:"file,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PresignObjectUploadRequest) Reset() {
+	*x = PresignObjectUploadRequest{}
+	mi := &file_media_v1_type_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PresignObjectUploadRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PresignObjectUploadRequest) ProtoMessage() {}
+
+func (x *PresignObjectUploadRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_media_v1_type_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PresignObjectUploadRequest.ProtoReflect.Descriptor instead.
+func (*PresignObjectUploadRequest) Descriptor() ([]byte, []int) {
+	return file_media_v1_type_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *PresignObjectUploadRequest) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+func (x *PresignObjectUploadRequest) GetFile() *File {
+	if x != nil {
+		return x.File
+	}
+	return nil
+}
+
+type PresignObjectUploadResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	MediaId       string                 `protobuf:"bytes,1,opt,name=media_id,json=mediaId,proto3" json:"media_id,omitempty"`
+	Url           string                 `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty"`
+	ExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PresignObjectUploadResponse) Reset() {
+	*x = PresignObjectUploadResponse{}
+	mi := &file_media_v1_type_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PresignObjectUploadResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PresignObjectUploadResponse) ProtoMessage() {}
+
+func (x *PresignObjectUploadResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_media_v1_type_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PresignObjectUploadResponse.ProtoReflect.Descriptor instead.
+func (*PresignObjectUploadResponse) Descriptor() ([]byte, []int) {
+	return file_media_v1_type_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *PresignObjectUploadResponse) GetMediaId() string {
+	if x != nil {
+		return x.MediaId
+	}
+	return ""
+}
+
+func (x *PresignObjectUploadResponse) GetUrl() string {
+	if x != nil {
+		return x.Url
+	}
+	return ""
+}
+
+func (x *PresignObjectUploadResponse) GetExpiresAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.ExpiresAt
+	}
+	return nil
+}
+
+type CompleteObjectUploadRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	MediaId       string                 `protobuf:"bytes,1,opt,name=media_id,json=mediaId,proto3" json:"media_id,omitempty"`
+	OwnerId       string                 `protobuf:"bytes,2,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CompleteObjectUploadRequest) Reset() {
+	*x = CompleteObjectUploadRequest{}
+	mi := &file_media_v1_type_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CompleteObjectUploadRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CompleteObjectUploadRequest) ProtoMessage() {}
+
+func (x *CompleteObjectUploadRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_media_v1_type_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CompleteObjectUploadRequest.ProtoReflect.Descriptor instead.
+func (*CompleteObjectUploadRequest) Descriptor() ([]byte, []int) {
+	return file_media_v1_type_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *CompleteObjectUploadRequest) GetMediaId() string {
+	if x != nil {
+		return x.MediaId
+	}
+	return ""
+}
+
+func (x *CompleteObjectUploadRequest) GetOwnerId() string {
+	if x != nil {
+		return x.OwnerId
+	}
+	return ""
+}
+
+type CompleteObjectUploadResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CompleteObjectUploadResponse) Reset() {
+	*x = CompleteObjectUploadResponse{}
+	mi := &file_media_v1_type_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CompleteObjectUploadResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CompleteObjectUploadResponse) ProtoMessage() {}
+
+func (x *CompleteObjectUploadResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_media_v1_type_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CompleteObjectUploadResponse.ProtoReflect.Descriptor instead.
+func (*CompleteObjectUploadResponse) Descriptor() ([]byte, []int) {
+	return file_media_v1_type_proto_rawDescGZIP(), []int{17}
+}
+
 var File_media_v1_type_proto protoreflect.FileDescriptor
 
 const file_media_v1_type_proto_rawDesc = "" +
@@ -1043,7 +1243,19 @@ const file_media_v1_type_proto_rawDesc = "" +
 	"\n" +
 	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"K\n" +
 	"\x18PresignDownloadsResponse\x12/\n" +
-	"\x04urls\x18\x01 \x03(\v2\x1b.media.v1.PresignedDownloadR\x04urls*~\n" +
+	"\x04urls\x18\x01 \x03(\v2\x1b.media.v1.PresignedDownloadR\x04urls\"[\n" +
+	"\x1aPresignObjectUploadRequest\x12\x19\n" +
+	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12\"\n" +
+	"\x04file\x18\x02 \x01(\v2\x0e.media.v1.FileR\x04file\"\x85\x01\n" +
+	"\x1bPresignObjectUploadResponse\x12\x19\n" +
+	"\bmedia_id\x18\x01 \x01(\tR\amediaId\x12\x10\n" +
+	"\x03url\x18\x02 \x01(\tR\x03url\x129\n" +
+	"\n" +
+	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"S\n" +
+	"\x1bCompleteObjectUploadRequest\x12\x19\n" +
+	"\bmedia_id\x18\x01 \x01(\tR\amediaId\x12\x19\n" +
+	"\bowner_id\x18\x02 \x01(\tR\aownerId\"\x1e\n" +
+	"\x1cCompleteObjectUploadResponse*~\n" +
 	"\tMediaKind\x12\x1a\n" +
 	"\x16MEDIA_KIND_UNSPECIFIED\x10\x00\x12\x14\n" +
 	"\x10MEDIA_KIND_IMAGE\x10\x01\x12\x14\n" +
@@ -1072,7 +1284,7 @@ func file_media_v1_type_proto_rawDescGZIP() []byte {
 }
 
 var file_media_v1_type_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_media_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_media_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
 var file_media_v1_type_proto_goTypes = []any{
 	(MediaKind)(0),                          // 0: media.v1.MediaKind
 	(MediaStatus)(0),                        // 1: media.v1.MediaStatus
@@ -1090,26 +1302,32 @@ var file_media_v1_type_proto_goTypes = []any{
 	(*PresignDownloadsRequest)(nil),         // 13: media.v1.PresignDownloadsRequest
 	(*PresignedDownload)(nil),               // 14: media.v1.PresignedDownload
 	(*PresignDownloadsResponse)(nil),        // 15: media.v1.PresignDownloadsResponse
-	nil,                                     // 16: media.v1.File.UserMetadataEntry
-	(*timestamppb.Timestamp)(nil),           // 17: google.protobuf.Timestamp
+	(*PresignObjectUploadRequest)(nil),      // 16: media.v1.PresignObjectUploadRequest
+	(*PresignObjectUploadResponse)(nil),     // 17: media.v1.PresignObjectUploadResponse
+	(*CompleteObjectUploadRequest)(nil),     // 18: media.v1.CompleteObjectUploadRequest
+	(*CompleteObjectUploadResponse)(nil),    // 19: media.v1.CompleteObjectUploadResponse
+	nil,                                     // 20: media.v1.File.UserMetadataEntry
+	(*timestamppb.Timestamp)(nil),           // 21: google.protobuf.Timestamp
 }
 var file_media_v1_type_proto_depIdxs = []int32{
-	16, // 0: media.v1.File.user_metadata:type_name -> media.v1.File.UserMetadataEntry
-	17, // 1: media.v1.MultipartUploadInfo.expires_at:type_name -> google.protobuf.Timestamp
+	20, // 0: media.v1.File.user_metadata:type_name -> media.v1.File.UserMetadataEntry
+	21, // 1: media.v1.MultipartUploadInfo.expires_at:type_name -> google.protobuf.Timestamp
 	2,  // 2: media.v1.InitializeUploadsRequest.files:type_name -> media.v1.File
 	3,  // 3: media.v1.InitializeUploadsResponse.uploads:type_name -> media.v1.MultipartUploadInfo
-	17, // 4: media.v1.PresignedPart.expires_at:type_name -> google.protobuf.Timestamp
+	21, // 4: media.v1.PresignedPart.expires_at:type_name -> google.protobuf.Timestamp
 	6,  // 5: media.v1.SignUploadPartsResponse.parts:type_name -> media.v1.PresignedPart
 	9,  // 6: media.v1.CompleteMultipartUploadRequest.parts:type_name -> media.v1.CompletedPart
-	17, // 7: media.v1.MediaInfo.created_at:type_name -> google.protobuf.Timestamp
+	21, // 7: media.v1.MediaInfo.created_at:type_name -> google.protobuf.Timestamp
 	11, // 8: media.v1.CompleteMultipartUploadResponse.media:type_name -> media.v1.MediaInfo
-	17, // 9: media.v1.PresignedDownload.expires_at:type_name -> google.protobuf.Timestamp
+	21, // 9: media.v1.PresignedDownload.expires_at:type_name -> google.protobuf.Timestamp
 	14, // 10: media.v1.PresignDownloadsResponse.urls:type_name -> media.v1.PresignedDownload
-	11, // [11:11] is the sub-list for method output_type
-	11, // [11:11] is the sub-list for method input_type
-	11, // [11:11] is the sub-list for extension type_name
-	11, // [11:11] is the sub-list for extension extendee
-	0,  // [0:11] is the sub-list for field type_name
+	2,  // 11: media.v1.PresignObjectUploadRequest.file:type_name -> media.v1.File
+	21, // 12: media.v1.PresignObjectUploadResponse.expires_at:type_name -> google.protobuf.Timestamp
+	13, // [13:13] is the sub-list for method output_type
+	13, // [13:13] is the sub-list for method input_type
+	13, // [13:13] is the sub-list for extension type_name
+	13, // [13:13] is the sub-list for extension extendee
+	0,  // [0:13] is the sub-list for field type_name
 }
 
 func init() { file_media_v1_type_proto_init() }
@@ -1124,7 +1342,7 @@ func file_media_v1_type_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_media_v1_type_proto_rawDesc), len(file_media_v1_type_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   15,
+			NumMessages:   19,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

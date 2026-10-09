@@ -23,6 +23,8 @@ const (
 	Service_SignUploadParts_FullMethodName            = "/media.v1.Service/SignUploadParts"
 	Service_CompleteMultipartUploads_FullMethodName   = "/media.v1.Service/CompleteMultipartUploads"
 	Service_PresignDownloads_FullMethodName           = "/media.v1.Service/PresignDownloads"
+	Service_PresignObjectUpload_FullMethodName        = "/media.v1.Service/PresignObjectUpload"
+	Service_CompleteObjectUpload_FullMethodName       = "/media.v1.Service/CompleteObjectUpload"
 )
 
 // ServiceClient is the client API for Service service.
@@ -33,6 +35,8 @@ type ServiceClient interface {
 	SignUploadParts(ctx context.Context, in *SignUploadPartsRequest, opts ...grpc.CallOption) (*SignUploadPartsResponse, error)
 	CompleteMultipartUploads(ctx context.Context, in *CompleteMultipartUploadRequest, opts ...grpc.CallOption) (*CompleteMultipartUploadResponse, error)
 	PresignDownloads(ctx context.Context, in *PresignDownloadsRequest, opts ...grpc.CallOption) (*PresignDownloadsResponse, error)
+	PresignObjectUpload(ctx context.Context, in *PresignObjectUploadRequest, opts ...grpc.CallOption) (*PresignObjectUploadResponse, error)
+	CompleteObjectUpload(ctx context.Context, in *CompleteObjectUploadRequest, opts ...grpc.CallOption) (*CompleteObjectUploadResponse, error)
 }
 
 type serviceClient struct {
@@ -83,6 +87,26 @@ func (c *serviceClient) PresignDownloads(ctx context.Context, in *PresignDownloa
 	return out, nil
 }
 
+func (c *serviceClient) PresignObjectUpload(ctx context.Context, in *PresignObjectUploadRequest, opts ...grpc.CallOption) (*PresignObjectUploadResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PresignObjectUploadResponse)
+	err := c.cc.Invoke(ctx, Service_PresignObjectUpload_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serviceClient) CompleteObjectUpload(ctx context.Context, in *CompleteObjectUploadRequest, opts ...grpc.CallOption) (*CompleteObjectUploadResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CompleteObjectUploadResponse)
+	err := c.cc.Invoke(ctx, Service_CompleteObjectUpload_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ServiceServer is the server API for Service service.
 // All implementations must embed UnimplementedServiceServer
 // for forward compatibility.
@@ -91,6 +115,8 @@ type ServiceServer interface {
 	SignUploadParts(context.Context, *SignUploadPartsRequest) (*SignUploadPartsResponse, error)
 	CompleteMultipartUploads(context.Context, *CompleteMultipartUploadRequest) (*CompleteMultipartUploadResponse, error)
 	PresignDownloads(context.Context, *PresignDownloadsRequest) (*PresignDownloadsResponse, error)
+	PresignObjectUpload(context.Context, *PresignObjectUploadRequest) (*PresignObjectUploadResponse, error)
+	CompleteObjectUpload(context.Context, *CompleteObjectUploadRequest) (*CompleteObjectUploadResponse, error)
 	mustEmbedUnimplementedServiceServer()
 }
 
@@ -112,6 +138,12 @@ func (UnimplementedServiceServer) CompleteMultipartUploads(context.Context, *Com
 }
 func (UnimplementedServiceServer) PresignDownloads(context.Context, *PresignDownloadsRequest) (*PresignDownloadsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method PresignDownloads not implemented")
+}
+func (UnimplementedServiceServer) PresignObjectUpload(context.Context, *PresignObjectUploadRequest) (*PresignObjectUploadResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method PresignObjectUpload not implemented")
+}
+func (UnimplementedServiceServer) CompleteObjectUpload(context.Context, *CompleteObjectUploadRequest) (*CompleteObjectUploadResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CompleteObjectUpload not implemented")
 }
 func (UnimplementedServiceServer) mustEmbedUnimplementedServiceServer() {}
 func (UnimplementedServiceServer) testEmbeddedByValue()                 {}
@@ -206,6 +238,42 @@ func _Service_PresignDownloads_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Service_PresignObjectUpload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PresignObjectUploadRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServer).PresignObjectUpload(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Service_PresignObjectUpload_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServer).PresignObjectUpload(ctx, req.(*PresignObjectUploadRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Service_CompleteObjectUpload_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CompleteObjectUploadRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServer).CompleteObjectUpload(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Service_CompleteObjectUpload_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServer).CompleteObjectUpload(ctx, req.(*CompleteObjectUploadRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Service_ServiceDesc is the grpc.ServiceDesc for Service service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -228,6 +296,14 @@ var Service_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PresignDownloads",
 			Handler:    _Service_PresignDownloads_Handler,
+		},
+		{
+			MethodName: "PresignObjectUpload",
+			Handler:    _Service_PresignObjectUpload_Handler,
+		},
+		{
+			MethodName: "CompleteObjectUpload",
+			Handler:    _Service_CompleteObjectUpload_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
