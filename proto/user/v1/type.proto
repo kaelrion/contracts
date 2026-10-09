@@ -26,3 +26,10 @@ message PresignUpdateAvatarRequest {
 message PresignUpdateAvatarResponse {
   string token = 1;
 }
+
+message CompleteUploadAvatarRequest {
+  string principal_id = 1;
+}
+
+message CompleteUploadAvatarResponse {
+}

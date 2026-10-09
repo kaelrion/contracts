@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Service_GetProfile_FullMethodName          = "/user.v1.Service/GetProfile"
-	Service_PresignUpdateAvatar_FullMethodName = "/user.v1.Service/PresignUpdateAvatar"
+	Service_GetProfile_FullMethodName           = "/user.v1.Service/GetProfile"
+	Service_PresignUpdateAvatar_FullMethodName  = "/user.v1.Service/PresignUpdateAvatar"
+	Service_CompleteUploadAvatar_FullMethodName = "/user.v1.Service/CompleteUploadAvatar"
 )
 
 // ServiceClient is the client API for Service service.
@@ -29,6 +30,7 @@ const (
 type ServiceClient interface {
 	GetProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error)
 	PresignUpdateAvatar(ctx context.Context, in *PresignUpdateAvatarRequest, opts ...grpc.CallOption) (*PresignUpdateAvatarResponse, error)
+	CompleteUploadAvatar(ctx context.Context, in *CompleteUploadAvatarRequest, opts ...grpc.CallOption) (*CompleteUploadAvatarResponse, error)
 }
 
 type serviceClient struct {
@@ -59,12 +61,23 @@ func (c *serviceClient) PresignUpdateAvatar(ctx context.Context, in *PresignUpda
 	return out, nil
 }
 
+func (c *serviceClient) CompleteUploadAvatar(ctx context.Context, in *CompleteUploadAvatarRequest, opts ...grpc.CallOption) (*CompleteUploadAvatarResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CompleteUploadAvatarResponse)
+	err := c.cc.Invoke(ctx, Service_CompleteUploadAvatar_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ServiceServer is the server API for Service service.
 // All implementations must embed UnimplementedServiceServer
 // for forward compatibility.
 type ServiceServer interface {
 	GetProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error)
 	PresignUpdateAvatar(context.Context, *PresignUpdateAvatarRequest) (*PresignUpdateAvatarResponse, error)
+	CompleteUploadAvatar(context.Context, *CompleteUploadAvatarRequest) (*CompleteUploadAvatarResponse, error)
 	mustEmbedUnimplementedServiceServer()
 }
 
@@ -80,6 +93,9 @@ func (UnimplementedServiceServer) GetProfile(context.Context, *GetProfileRequest
 }
 func (UnimplementedServiceServer) PresignUpdateAvatar(context.Context, *PresignUpdateAvatarRequest) (*PresignUpdateAvatarResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method PresignUpdateAvatar not implemented")
+}
+func (UnimplementedServiceServer) CompleteUploadAvatar(context.Context, *CompleteUploadAvatarRequest) (*CompleteUploadAvatarResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CompleteUploadAvatar not implemented")
 }
 func (UnimplementedServiceServer) mustEmbedUnimplementedServiceServer() {}
 func (UnimplementedServiceServer) testEmbeddedByValue()                 {}
@@ -138,6 +154,24 @@ func _Service_PresignUpdateAvatar_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Service_CompleteUploadAvatar_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CompleteUploadAvatarRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServer).CompleteUploadAvatar(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Service_CompleteUploadAvatar_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServer).CompleteUploadAvatar(ctx, req.(*CompleteUploadAvatarRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Service_ServiceDesc is the grpc.ServiceDesc for Service service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -152,6 +186,10 @@ var Service_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PresignUpdateAvatar",
 			Handler:    _Service_PresignUpdateAvatar_Handler,
+		},
+		{
+			MethodName: "CompleteUploadAvatar",
+			Handler:    _Service_CompleteUploadAvatar_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

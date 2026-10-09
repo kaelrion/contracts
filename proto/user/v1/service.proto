@@ -8,4 +8,5 @@ import "user/v1/type.proto";
 service Service {
   rpc GetProfile(GetProfileRequest) returns (GetProfileResponse);
   rpc PresignUpdateAvatar(PresignUpdateAvatarRequest) returns (PresignUpdateAvatarResponse);
+  rpc CompleteUploadAvatar(CompleteUploadAvatarRequest) returns (CompleteUploadAvatarResponse);
 }
