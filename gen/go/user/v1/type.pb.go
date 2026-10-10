@@ -213,6 +213,7 @@ func (x *PresignUpdateAvatarRequest) GetSize() int64 {
 type PresignUpdateAvatarResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	MediaId       string                 `protobuf:"bytes,2,opt,name=media_id,json=mediaId,proto3" json:"media_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -254,9 +255,17 @@ func (x *PresignUpdateAvatarResponse) GetToken() string {
 	return ""
 }
 
+func (x *PresignUpdateAvatarResponse) GetMediaId() string {
+	if x != nil {
+		return x.MediaId
+	}
+	return ""
+}
+
 type CompleteUploadAvatarRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PrincipalId   string                 `protobuf:"bytes,1,opt,name=principal_id,json=principalId,proto3" json:"principal_id,omitempty"`
+	MediaId       string                 `protobuf:"bytes,2,opt,name=media_id,json=mediaId,proto3" json:"media_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -294,6 +303,13 @@ func (*CompleteUploadAvatarRequest) Descriptor() ([]byte, []int) {
 func (x *CompleteUploadAvatarRequest) GetPrincipalId() string {
 	if x != nil {
 		return x.PrincipalId
+	}
+	return ""
+}
+
+func (x *CompleteUploadAvatarRequest) GetMediaId() string {
+	if x != nil {
+		return x.MediaId
 	}
 	return ""
 }
@@ -355,11 +371,13 @@ const file_user_v1_type_proto_rawDesc = "" +
 	"\x1aPresignUpdateAvatarRequest\x12!\n" +
 	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\x12!\n" +
 	"\fcontent_type\x18\x02 \x01(\tR\vcontentType\x12\x12\n" +
-	"\x04size\x18\x03 \x01(\x03R\x04size\"3\n" +
+	"\x04size\x18\x03 \x01(\x03R\x04size\"N\n" +
 	"\x1bPresignUpdateAvatarResponse\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"@\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\x12\x19\n" +
+	"\bmedia_id\x18\x02 \x01(\tR\amediaId\"[\n" +
 	"\x1bCompleteUploadAvatarRequest\x12!\n" +
-	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\"\x1e\n" +
+	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\x12\x19\n" +
+	"\bmedia_id\x18\x02 \x01(\tR\amediaId\"\x1e\n" +
 	"\x1cCompleteUploadAvatarResponseB0Z.github.com/kaelrion/contracts/gen/user/v1;userb\x06proto3"
 
 var (

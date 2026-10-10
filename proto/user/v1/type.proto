@@ -24,11 +24,13 @@ message PresignUpdateAvatarRequest {
 }
 
 message PresignUpdateAvatarResponse {
-  string token = 1;
+  string token    = 1;
+  string media_id = 2;
 }
 
 message CompleteUploadAvatarRequest {
   string principal_id = 1;
+  string media_id     = 2;
 }
 
 message CompleteUploadAvatarResponse {
