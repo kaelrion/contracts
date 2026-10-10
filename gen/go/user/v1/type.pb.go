@@ -316,6 +316,7 @@ func (x *CompleteUploadAvatarRequest) GetMediaId() string {
 
 type CompleteUploadAvatarResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	Url           string                 `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -350,6 +351,13 @@ func (*CompleteUploadAvatarResponse) Descriptor() ([]byte, []int) {
 	return file_user_v1_type_proto_rawDescGZIP(), []int{5}
 }
 
+func (x *CompleteUploadAvatarResponse) GetUrl() string {
+	if x != nil {
+		return x.Url
+	}
+	return ""
+}
+
 var File_user_v1_type_proto protoreflect.FileDescriptor
 
 const file_user_v1_type_proto_rawDesc = "" +
@@ -377,8 +385,9 @@ const file_user_v1_type_proto_rawDesc = "" +
 	"\bmedia_id\x18\x02 \x01(\tR\amediaId\"[\n" +
 	"\x1bCompleteUploadAvatarRequest\x12!\n" +
 	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\x12\x19\n" +
-	"\bmedia_id\x18\x02 \x01(\tR\amediaId\"\x1e\n" +
-	"\x1cCompleteUploadAvatarResponseB0Z.github.com/kaelrion/contracts/gen/user/v1;userb\x06proto3"
+	"\bmedia_id\x18\x02 \x01(\tR\amediaId\"0\n" +
+	"\x1cCompleteUploadAvatarResponse\x12\x10\n" +
+	"\x03url\x18\x01 \x01(\tR\x03urlB0Z.github.com/kaelrion/contracts/gen/user/v1;userb\x06proto3"
 
 var (
 	file_user_v1_type_proto_rawDescOnce sync.Once

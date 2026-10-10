@@ -34,4 +34,5 @@ message CompleteUploadAvatarRequest {
 }
 
 message CompleteUploadAvatarResponse {
+  string url = 1;
 }
