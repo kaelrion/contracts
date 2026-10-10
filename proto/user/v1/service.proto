@@ -9,4 +9,4 @@ service Service {
   rpc GetProfile(GetProfileRequest) returns (GetProfileResponse);
   rpc InitializeUploadAvatar(InitializeUploadAvatarRequest) returns (InitializeUploadAvatarResponse);
   rpc CompleteUploadAvatar(CompleteUploadAvatarRequest) returns (CompleteUploadAvatarResponse);
-} 
+}  

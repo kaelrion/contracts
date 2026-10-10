@@ -96,7 +96,8 @@ message CompleteMultipartUploadResponse {
 }
 
 message PresignDownloadsRequest {
-  repeated string media_ids = 1;
+  string          principal_id = 1;
+  repeated string media_ids    = 2;
 }
 
 message PresignedDownload {

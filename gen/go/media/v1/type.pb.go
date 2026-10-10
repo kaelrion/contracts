@@ -819,7 +819,8 @@ func (x *CompleteMultipartUploadResponse) GetMedia() *MediaInfo {
 
 type PresignDownloadsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	MediaIds      []string               `protobuf:"bytes,1,rep,name=media_ids,json=mediaIds,proto3" json:"media_ids,omitempty"`
+	PrincipalId   string                 `protobuf:"bytes,1,opt,name=principal_id,json=principalId,proto3" json:"principal_id,omitempty"`
+	MediaIds      []string               `protobuf:"bytes,2,rep,name=media_ids,json=mediaIds,proto3" json:"media_ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -852,6 +853,13 @@ func (x *PresignDownloadsRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use PresignDownloadsRequest.ProtoReflect.Descriptor instead.
 func (*PresignDownloadsRequest) Descriptor() ([]byte, []int) {
 	return file_media_v1_type_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *PresignDownloadsRequest) GetPrincipalId() string {
+	if x != nil {
+		return x.PrincipalId
+	}
+	return ""
 }
 
 func (x *PresignDownloadsRequest) GetMediaIds() []string {
@@ -1234,9 +1242,10 @@ const file_media_v1_type_proto_rawDesc = "" +
 	"\a_heightB\x0e\n" +
 	"\f_duration_ms\"L\n" +
 	"\x1fCompleteMultipartUploadResponse\x12)\n" +
-	"\x05media\x18\x01 \x01(\v2\x13.media.v1.MediaInfoR\x05media\"6\n" +
-	"\x17PresignDownloadsRequest\x12\x1b\n" +
-	"\tmedia_ids\x18\x01 \x03(\tR\bmediaIds\"{\n" +
+	"\x05media\x18\x01 \x01(\v2\x13.media.v1.MediaInfoR\x05media\"Y\n" +
+	"\x17PresignDownloadsRequest\x12!\n" +
+	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\x12\x1b\n" +
+	"\tmedia_ids\x18\x02 \x03(\tR\bmediaIds\"{\n" +
 	"\x11PresignedDownload\x12\x19\n" +
 	"\bmedia_id\x18\x01 \x01(\tR\amediaId\x12\x10\n" +
 	"\x03url\x18\x02 \x01(\tR\x03url\x129\n" +
