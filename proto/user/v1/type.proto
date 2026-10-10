@@ -17,13 +17,13 @@ message GetProfileResponse {
   optional google.protobuf.Timestamp birthday            = 6;
 }
 
-message PresignUpdateAvatarRequest {
+message InitializeUploadAvatarRequest {
   string principal_id = 1;
   string content_type = 2;
   int64  size         = 3;
 }
 
-message PresignUpdateAvatarResponse {
+message InitializeUploadAvatarResponse {
   string token    = 1;
   string media_id = 2;
 }

@@ -24,27 +24,27 @@ var File_user_v1_service_proto protoreflect.FileDescriptor
 
 const file_user_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x15user/v1/service.proto\x12\auser.v1\x1a\x12user/v1/type.proto2\x97\x02\n" +
+	"\x15user/v1/service.proto\x12\auser.v1\x1a\x12user/v1/type.proto2\xa0\x02\n" +
 	"\aService\x12E\n" +
 	"\n" +
-	"GetProfile\x12\x1a.user.v1.GetProfileRequest\x1a\x1b.user.v1.GetProfileResponse\x12`\n" +
-	"\x13PresignUpdateAvatar\x12#.user.v1.PresignUpdateAvatarRequest\x1a$.user.v1.PresignUpdateAvatarResponse\x12c\n" +
+	"GetProfile\x12\x1a.user.v1.GetProfileRequest\x1a\x1b.user.v1.GetProfileResponse\x12i\n" +
+	"\x16InitializeUploadAvatar\x12&.user.v1.InitializeUploadAvatarRequest\x1a'.user.v1.InitializeUploadAvatarResponse\x12c\n" +
 	"\x14CompleteUploadAvatar\x12$.user.v1.CompleteUploadAvatarRequest\x1a%.user.v1.CompleteUploadAvatarResponseB0Z.github.com/kaelrion/contracts/gen/user/v1;userb\x06proto3"
 
 var file_user_v1_service_proto_goTypes = []any{
-	(*GetProfileRequest)(nil),            // 0: user.v1.GetProfileRequest
-	(*PresignUpdateAvatarRequest)(nil),   // 1: user.v1.PresignUpdateAvatarRequest
-	(*CompleteUploadAvatarRequest)(nil),  // 2: user.v1.CompleteUploadAvatarRequest
-	(*GetProfileResponse)(nil),           // 3: user.v1.GetProfileResponse
-	(*PresignUpdateAvatarResponse)(nil),  // 4: user.v1.PresignUpdateAvatarResponse
-	(*CompleteUploadAvatarResponse)(nil), // 5: user.v1.CompleteUploadAvatarResponse
+	(*GetProfileRequest)(nil),              // 0: user.v1.GetProfileRequest
+	(*InitializeUploadAvatarRequest)(nil),  // 1: user.v1.InitializeUploadAvatarRequest
+	(*CompleteUploadAvatarRequest)(nil),    // 2: user.v1.CompleteUploadAvatarRequest
+	(*GetProfileResponse)(nil),             // 3: user.v1.GetProfileResponse
+	(*InitializeUploadAvatarResponse)(nil), // 4: user.v1.InitializeUploadAvatarResponse
+	(*CompleteUploadAvatarResponse)(nil),   // 5: user.v1.CompleteUploadAvatarResponse
 }
 var file_user_v1_service_proto_depIdxs = []int32{
 	0, // 0: user.v1.Service.GetProfile:input_type -> user.v1.GetProfileRequest
-	1, // 1: user.v1.Service.PresignUpdateAvatar:input_type -> user.v1.PresignUpdateAvatarRequest
+	1, // 1: user.v1.Service.InitializeUploadAvatar:input_type -> user.v1.InitializeUploadAvatarRequest
 	2, // 2: user.v1.Service.CompleteUploadAvatar:input_type -> user.v1.CompleteUploadAvatarRequest
 	3, // 3: user.v1.Service.GetProfile:output_type -> user.v1.GetProfileResponse
-	4, // 4: user.v1.Service.PresignUpdateAvatar:output_type -> user.v1.PresignUpdateAvatarResponse
+	4, // 4: user.v1.Service.InitializeUploadAvatar:output_type -> user.v1.InitializeUploadAvatarResponse
 	5, // 5: user.v1.Service.CompleteUploadAvatar:output_type -> user.v1.CompleteUploadAvatarResponse
 	3, // [3:6] is the sub-list for method output_type
 	0, // [0:3] is the sub-list for method input_type

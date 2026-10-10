@@ -19,9 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Service_GetProfile_FullMethodName           = "/user.v1.Service/GetProfile"
-	Service_PresignUpdateAvatar_FullMethodName  = "/user.v1.Service/PresignUpdateAvatar"
-	Service_CompleteUploadAvatar_FullMethodName = "/user.v1.Service/CompleteUploadAvatar"
+	Service_GetProfile_FullMethodName             = "/user.v1.Service/GetProfile"
+	Service_InitializeUploadAvatar_FullMethodName = "/user.v1.Service/InitializeUploadAvatar"
+	Service_CompleteUploadAvatar_FullMethodName   = "/user.v1.Service/CompleteUploadAvatar"
 )
 
 // ServiceClient is the client API for Service service.
@@ -29,7 +29,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ServiceClient interface {
 	GetProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error)
-	PresignUpdateAvatar(ctx context.Context, in *PresignUpdateAvatarRequest, opts ...grpc.CallOption) (*PresignUpdateAvatarResponse, error)
+	InitializeUploadAvatar(ctx context.Context, in *InitializeUploadAvatarRequest, opts ...grpc.CallOption) (*InitializeUploadAvatarResponse, error)
 	CompleteUploadAvatar(ctx context.Context, in *CompleteUploadAvatarRequest, opts ...grpc.CallOption) (*CompleteUploadAvatarResponse, error)
 }
 
@@ -51,10 +51,10 @@ func (c *serviceClient) GetProfile(ctx context.Context, in *GetProfileRequest, o
 	return out, nil
 }
 
-func (c *serviceClient) PresignUpdateAvatar(ctx context.Context, in *PresignUpdateAvatarRequest, opts ...grpc.CallOption) (*PresignUpdateAvatarResponse, error) {
+func (c *serviceClient) InitializeUploadAvatar(ctx context.Context, in *InitializeUploadAvatarRequest, opts ...grpc.CallOption) (*InitializeUploadAvatarResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(PresignUpdateAvatarResponse)
-	err := c.cc.Invoke(ctx, Service_PresignUpdateAvatar_FullMethodName, in, out, cOpts...)
+	out := new(InitializeUploadAvatarResponse)
+	err := c.cc.Invoke(ctx, Service_InitializeUploadAvatar_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -76,7 +76,7 @@ func (c *serviceClient) CompleteUploadAvatar(ctx context.Context, in *CompleteUp
 // for forward compatibility.
 type ServiceServer interface {
 	GetProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error)
-	PresignUpdateAvatar(context.Context, *PresignUpdateAvatarRequest) (*PresignUpdateAvatarResponse, error)
+	InitializeUploadAvatar(context.Context, *InitializeUploadAvatarRequest) (*InitializeUploadAvatarResponse, error)
 	CompleteUploadAvatar(context.Context, *CompleteUploadAvatarRequest) (*CompleteUploadAvatarResponse, error)
 	mustEmbedUnimplementedServiceServer()
 }
@@ -91,8 +91,8 @@ type UnimplementedServiceServer struct{}
 func (UnimplementedServiceServer) GetProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetProfile not implemented")
 }
-func (UnimplementedServiceServer) PresignUpdateAvatar(context.Context, *PresignUpdateAvatarRequest) (*PresignUpdateAvatarResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method PresignUpdateAvatar not implemented")
+func (UnimplementedServiceServer) InitializeUploadAvatar(context.Context, *InitializeUploadAvatarRequest) (*InitializeUploadAvatarResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method InitializeUploadAvatar not implemented")
 }
 func (UnimplementedServiceServer) CompleteUploadAvatar(context.Context, *CompleteUploadAvatarRequest) (*CompleteUploadAvatarResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CompleteUploadAvatar not implemented")
@@ -136,20 +136,20 @@ func _Service_GetProfile_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Service_PresignUpdateAvatar_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PresignUpdateAvatarRequest)
+func _Service_InitializeUploadAvatar_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InitializeUploadAvatarRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).PresignUpdateAvatar(ctx, in)
+		return srv.(ServiceServer).InitializeUploadAvatar(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Service_PresignUpdateAvatar_FullMethodName,
+		FullMethod: Service_InitializeUploadAvatar_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).PresignUpdateAvatar(ctx, req.(*PresignUpdateAvatarRequest))
+		return srv.(ServiceServer).InitializeUploadAvatar(ctx, req.(*InitializeUploadAvatarRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -184,8 +184,8 @@ var Service_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Service_GetProfile_Handler,
 		},
 		{
-			MethodName: "PresignUpdateAvatar",
-			Handler:    _Service_PresignUpdateAvatar_Handler,
+			MethodName: "InitializeUploadAvatar",
+			Handler:    _Service_InitializeUploadAvatar_Handler,
 		},
 		{
 			MethodName: "CompleteUploadAvatar",
