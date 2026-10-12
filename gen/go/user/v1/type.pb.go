@@ -213,7 +213,7 @@ func (x *InitializeUploadAvatarRequest) GetSize() int64 {
 type InitializeUploadAvatarResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	MediaId       string                 `protobuf:"bytes,2,opt,name=media_id,json=mediaId,proto3" json:"media_id,omitempty"`
+	SessionId     string                 `protobuf:"bytes,2,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -255,9 +255,9 @@ func (x *InitializeUploadAvatarResponse) GetToken() string {
 	return ""
 }
 
-func (x *InitializeUploadAvatarResponse) GetMediaId() string {
+func (x *InitializeUploadAvatarResponse) GetSessionId() string {
 	if x != nil {
-		return x.MediaId
+		return x.SessionId
 	}
 	return ""
 }
@@ -265,7 +265,7 @@ func (x *InitializeUploadAvatarResponse) GetMediaId() string {
 type CompleteUploadAvatarRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PrincipalId   string                 `protobuf:"bytes,1,opt,name=principal_id,json=principalId,proto3" json:"principal_id,omitempty"`
-	MediaId       string                 `protobuf:"bytes,2,opt,name=media_id,json=mediaId,proto3" json:"media_id,omitempty"`
+	SessionId     string                 `protobuf:"bytes,2,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -307,9 +307,9 @@ func (x *CompleteUploadAvatarRequest) GetPrincipalId() string {
 	return ""
 }
 
-func (x *CompleteUploadAvatarRequest) GetMediaId() string {
+func (x *CompleteUploadAvatarRequest) GetSessionId() string {
 	if x != nil {
-		return x.MediaId
+		return x.SessionId
 	}
 	return ""
 }
@@ -379,13 +379,15 @@ const file_user_v1_type_proto_rawDesc = "" +
 	"\x1dInitializeUploadAvatarRequest\x12!\n" +
 	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\x12!\n" +
 	"\fcontent_type\x18\x02 \x01(\tR\vcontentType\x12\x12\n" +
-	"\x04size\x18\x03 \x01(\x03R\x04size\"Q\n" +
+	"\x04size\x18\x03 \x01(\x03R\x04size\"U\n" +
 	"\x1eInitializeUploadAvatarResponse\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\x12\x19\n" +
-	"\bmedia_id\x18\x02 \x01(\tR\amediaId\"[\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\x12\x1d\n" +
+	"\n" +
+	"session_id\x18\x02 \x01(\tR\tsessionId\"_\n" +
 	"\x1bCompleteUploadAvatarRequest\x12!\n" +
-	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\x12\x19\n" +
-	"\bmedia_id\x18\x02 \x01(\tR\amediaId\"0\n" +
+	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\x12\x1d\n" +
+	"\n" +
+	"session_id\x18\x02 \x01(\tR\tsessionId\"0\n" +
 	"\x1cCompleteUploadAvatarResponse\x12\x10\n" +
 	"\x03url\x18\x01 \x01(\tR\x03urlB0Z.github.com/kaelrion/contracts/gen/user/v1;userb\x06proto3"
 

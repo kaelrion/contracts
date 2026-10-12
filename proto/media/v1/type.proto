@@ -116,14 +116,14 @@ message PresignObjectUploadRequest {
 }
 
 message PresignObjectUploadResponse {
-  string                    media_id   = 1;
+  string                    session_id = 1;
   string                    url        = 2;
   google.protobuf.Timestamp expires_at = 3;
 }
 
 message CompleteObjectUploadRequest {
-  string media_id = 1;
-  string owner_id = 2;
+  string session_id = 1;
+  string owner_id   = 2;
 }
 
 message CompleteObjectUploadResponse {}

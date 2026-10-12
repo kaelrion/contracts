@@ -24,13 +24,13 @@ message InitializeUploadAvatarRequest {
 }
 
 message InitializeUploadAvatarResponse {
-  string token    = 1;
-  string media_id = 2;
+  string token      = 1;
+  string session_id = 2;
 }
 
 message CompleteUploadAvatarRequest {
   string principal_id = 1;
-  string media_id     = 2;
+  string session_id   = 2;
 }
 
 message CompleteUploadAvatarResponse {

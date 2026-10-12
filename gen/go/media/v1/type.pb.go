@@ -1027,7 +1027,7 @@ func (x *PresignObjectUploadRequest) GetFile() *File {
 
 type PresignObjectUploadResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	MediaId       string                 `protobuf:"bytes,1,opt,name=media_id,json=mediaId,proto3" json:"media_id,omitempty"`
+	SessionId     string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
 	Url           string                 `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty"`
 	ExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -1064,9 +1064,9 @@ func (*PresignObjectUploadResponse) Descriptor() ([]byte, []int) {
 	return file_media_v1_type_proto_rawDescGZIP(), []int{15}
 }
 
-func (x *PresignObjectUploadResponse) GetMediaId() string {
+func (x *PresignObjectUploadResponse) GetSessionId() string {
 	if x != nil {
-		return x.MediaId
+		return x.SessionId
 	}
 	return ""
 }
@@ -1087,7 +1087,7 @@ func (x *PresignObjectUploadResponse) GetExpiresAt() *timestamppb.Timestamp {
 
 type CompleteObjectUploadRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	MediaId       string                 `protobuf:"bytes,1,opt,name=media_id,json=mediaId,proto3" json:"media_id,omitempty"`
+	SessionId     string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
 	OwnerId       string                 `protobuf:"bytes,2,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1123,9 +1123,9 @@ func (*CompleteObjectUploadRequest) Descriptor() ([]byte, []int) {
 	return file_media_v1_type_proto_rawDescGZIP(), []int{16}
 }
 
-func (x *CompleteObjectUploadRequest) GetMediaId() string {
+func (x *CompleteObjectUploadRequest) GetSessionId() string {
 	if x != nil {
-		return x.MediaId
+		return x.SessionId
 	}
 	return ""
 }
@@ -1255,14 +1255,16 @@ const file_media_v1_type_proto_rawDesc = "" +
 	"\x04urls\x18\x01 \x03(\v2\x1b.media.v1.PresignedDownloadR\x04urls\"[\n" +
 	"\x1aPresignObjectUploadRequest\x12\x19\n" +
 	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12\"\n" +
-	"\x04file\x18\x02 \x01(\v2\x0e.media.v1.FileR\x04file\"\x85\x01\n" +
-	"\x1bPresignObjectUploadResponse\x12\x19\n" +
-	"\bmedia_id\x18\x01 \x01(\tR\amediaId\x12\x10\n" +
+	"\x04file\x18\x02 \x01(\v2\x0e.media.v1.FileR\x04file\"\x89\x01\n" +
+	"\x1bPresignObjectUploadResponse\x12\x1d\n" +
+	"\n" +
+	"session_id\x18\x01 \x01(\tR\tsessionId\x12\x10\n" +
 	"\x03url\x18\x02 \x01(\tR\x03url\x129\n" +
 	"\n" +
-	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"S\n" +
-	"\x1bCompleteObjectUploadRequest\x12\x19\n" +
-	"\bmedia_id\x18\x01 \x01(\tR\amediaId\x12\x19\n" +
+	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"W\n" +
+	"\x1bCompleteObjectUploadRequest\x12\x1d\n" +
+	"\n" +
+	"session_id\x18\x01 \x01(\tR\tsessionId\x12\x19\n" +
 	"\bowner_id\x18\x02 \x01(\tR\aownerId\"\x1e\n" +
 	"\x1cCompleteObjectUploadResponse*~\n" +
 	"\tMediaKind\x12\x1a\n" +
