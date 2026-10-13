@@ -107,7 +107,7 @@ message PresignedDownload {
 }
 
 message PresignDownloadsResponse {
-  repeated PresignedDownload urls = 1;
+  repeated PresignedDownload medias = 1;
 }
 
 message PresignObjectUploadRequest {
@@ -127,3 +127,34 @@ message CompleteObjectUploadRequest {
 }
 
 message CompleteObjectUploadResponse {}
+
+message Representation{
+  string id   = 1;
+  string type = 2;
+}
+
+message GetListRepresentationsRequest{
+  string media_id     = 1;
+  string principal_id = 2;
+}
+
+message GetListRepresentationsResponse{
+  repeated Representation representations = 1;
+}
+
+message RepresentationMetadata {
+  optional int64 width        = 1;
+  optional int64 height       = 2;
+  int64          size         = 3;
+  string         content_type = 4;
+  optional int64 duration_ms  = 5;
+}
+
+message GetBatchRepresentationsMetadataRequest{
+  repeated string representation_ids = 1;
+  string          principal_id       = 2;
+}
+
+message GetBatchRepresentationsMetadataResponse{
+  repeated RepresentationMetadata representations_metadata = 1;
+}

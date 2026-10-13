@@ -13,4 +13,7 @@ service Service {
 
   rpc PresignObjectUpload(PresignObjectUploadRequest) returns (PresignObjectUploadResponse);
   rpc CompleteObjectUpload(CompleteObjectUploadRequest) returns (CompleteObjectUploadResponse);
+
+  rpc GetListRepresentations(GetListRepresentationsRequest) returns (GetListRepresentationsResponse);
+  rpc GetBatchRepresentationsMetadata(GetBatchRepresentationsMetadataRequest) returns (GetBatchRepresentationsMetadataResponse);
 }

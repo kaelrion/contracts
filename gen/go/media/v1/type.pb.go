@@ -931,7 +931,7 @@ func (x *PresignedDownload) GetExpiresAt() *timestamppb.Timestamp {
 
 type PresignDownloadsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Urls          []*PresignedDownload   `protobuf:"bytes,1,rep,name=urls,proto3" json:"urls,omitempty"`
+	Medias        []*PresignedDownload   `protobuf:"bytes,1,rep,name=medias,proto3" json:"medias,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -966,9 +966,9 @@ func (*PresignDownloadsResponse) Descriptor() ([]byte, []int) {
 	return file_media_v1_type_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *PresignDownloadsResponse) GetUrls() []*PresignedDownload {
+func (x *PresignDownloadsResponse) GetMedias() []*PresignedDownload {
 	if x != nil {
-		return x.Urls
+		return x.Medias
 	}
 	return nil
 }
@@ -1173,6 +1173,326 @@ func (*CompleteObjectUploadResponse) Descriptor() ([]byte, []int) {
 	return file_media_v1_type_proto_rawDescGZIP(), []int{17}
 }
 
+type Representation struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Type          string                 `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Representation) Reset() {
+	*x = Representation{}
+	mi := &file_media_v1_type_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Representation) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Representation) ProtoMessage() {}
+
+func (x *Representation) ProtoReflect() protoreflect.Message {
+	mi := &file_media_v1_type_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Representation.ProtoReflect.Descriptor instead.
+func (*Representation) Descriptor() ([]byte, []int) {
+	return file_media_v1_type_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *Representation) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Representation) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+type GetListRepresentationsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	MediaId       string                 `protobuf:"bytes,1,opt,name=media_id,json=mediaId,proto3" json:"media_id,omitempty"`
+	PrincipalId   string                 `protobuf:"bytes,2,opt,name=principal_id,json=principalId,proto3" json:"principal_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetListRepresentationsRequest) Reset() {
+	*x = GetListRepresentationsRequest{}
+	mi := &file_media_v1_type_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetListRepresentationsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetListRepresentationsRequest) ProtoMessage() {}
+
+func (x *GetListRepresentationsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_media_v1_type_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetListRepresentationsRequest.ProtoReflect.Descriptor instead.
+func (*GetListRepresentationsRequest) Descriptor() ([]byte, []int) {
+	return file_media_v1_type_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *GetListRepresentationsRequest) GetMediaId() string {
+	if x != nil {
+		return x.MediaId
+	}
+	return ""
+}
+
+func (x *GetListRepresentationsRequest) GetPrincipalId() string {
+	if x != nil {
+		return x.PrincipalId
+	}
+	return ""
+}
+
+type GetListRepresentationsResponse struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Representations []*Representation      `protobuf:"bytes,1,rep,name=representations,proto3" json:"representations,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *GetListRepresentationsResponse) Reset() {
+	*x = GetListRepresentationsResponse{}
+	mi := &file_media_v1_type_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetListRepresentationsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetListRepresentationsResponse) ProtoMessage() {}
+
+func (x *GetListRepresentationsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_media_v1_type_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetListRepresentationsResponse.ProtoReflect.Descriptor instead.
+func (*GetListRepresentationsResponse) Descriptor() ([]byte, []int) {
+	return file_media_v1_type_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *GetListRepresentationsResponse) GetRepresentations() []*Representation {
+	if x != nil {
+		return x.Representations
+	}
+	return nil
+}
+
+type RepresentationMetadata struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Width         *int64                 `protobuf:"varint,1,opt,name=width,proto3,oneof" json:"width,omitempty"`
+	Height        *int64                 `protobuf:"varint,2,opt,name=height,proto3,oneof" json:"height,omitempty"`
+	Size          int64                  `protobuf:"varint,3,opt,name=size,proto3" json:"size,omitempty"`
+	ContentType   string                 `protobuf:"bytes,4,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
+	DurationMs    *int64                 `protobuf:"varint,5,opt,name=duration_ms,json=durationMs,proto3,oneof" json:"duration_ms,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RepresentationMetadata) Reset() {
+	*x = RepresentationMetadata{}
+	mi := &file_media_v1_type_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RepresentationMetadata) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RepresentationMetadata) ProtoMessage() {}
+
+func (x *RepresentationMetadata) ProtoReflect() protoreflect.Message {
+	mi := &file_media_v1_type_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RepresentationMetadata.ProtoReflect.Descriptor instead.
+func (*RepresentationMetadata) Descriptor() ([]byte, []int) {
+	return file_media_v1_type_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *RepresentationMetadata) GetWidth() int64 {
+	if x != nil && x.Width != nil {
+		return *x.Width
+	}
+	return 0
+}
+
+func (x *RepresentationMetadata) GetHeight() int64 {
+	if x != nil && x.Height != nil {
+		return *x.Height
+	}
+	return 0
+}
+
+func (x *RepresentationMetadata) GetSize() int64 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *RepresentationMetadata) GetContentType() string {
+	if x != nil {
+		return x.ContentType
+	}
+	return ""
+}
+
+func (x *RepresentationMetadata) GetDurationMs() int64 {
+	if x != nil && x.DurationMs != nil {
+		return *x.DurationMs
+	}
+	return 0
+}
+
+type GetBatchRepresentationsMetadataRequest struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	RepresentationIds []string               `protobuf:"bytes,1,rep,name=representation_ids,json=representationIds,proto3" json:"representation_ids,omitempty"`
+	PrincipalId       string                 `protobuf:"bytes,2,opt,name=principal_id,json=principalId,proto3" json:"principal_id,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *GetBatchRepresentationsMetadataRequest) Reset() {
+	*x = GetBatchRepresentationsMetadataRequest{}
+	mi := &file_media_v1_type_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBatchRepresentationsMetadataRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBatchRepresentationsMetadataRequest) ProtoMessage() {}
+
+func (x *GetBatchRepresentationsMetadataRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_media_v1_type_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBatchRepresentationsMetadataRequest.ProtoReflect.Descriptor instead.
+func (*GetBatchRepresentationsMetadataRequest) Descriptor() ([]byte, []int) {
+	return file_media_v1_type_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *GetBatchRepresentationsMetadataRequest) GetRepresentationIds() []string {
+	if x != nil {
+		return x.RepresentationIds
+	}
+	return nil
+}
+
+func (x *GetBatchRepresentationsMetadataRequest) GetPrincipalId() string {
+	if x != nil {
+		return x.PrincipalId
+	}
+	return ""
+}
+
+type GetBatchRepresentationsMetadataResponse struct {
+	state                   protoimpl.MessageState    `protogen:"open.v1"`
+	RepresentationsMetadata []*RepresentationMetadata `protobuf:"bytes,1,rep,name=representations_metadata,json=representationsMetadata,proto3" json:"representations_metadata,omitempty"`
+	unknownFields           protoimpl.UnknownFields
+	sizeCache               protoimpl.SizeCache
+}
+
+func (x *GetBatchRepresentationsMetadataResponse) Reset() {
+	*x = GetBatchRepresentationsMetadataResponse{}
+	mi := &file_media_v1_type_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBatchRepresentationsMetadataResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBatchRepresentationsMetadataResponse) ProtoMessage() {}
+
+func (x *GetBatchRepresentationsMetadataResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_media_v1_type_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBatchRepresentationsMetadataResponse.ProtoReflect.Descriptor instead.
+func (*GetBatchRepresentationsMetadataResponse) Descriptor() ([]byte, []int) {
+	return file_media_v1_type_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *GetBatchRepresentationsMetadataResponse) GetRepresentationsMetadata() []*RepresentationMetadata {
+	if x != nil {
+		return x.RepresentationsMetadata
+	}
+	return nil
+}
+
 var File_media_v1_type_proto protoreflect.FileDescriptor
 
 const file_media_v1_type_proto_rawDesc = "" +
@@ -1250,9 +1570,9 @@ const file_media_v1_type_proto_rawDesc = "" +
 	"\bmedia_id\x18\x01 \x01(\tR\amediaId\x12\x10\n" +
 	"\x03url\x18\x02 \x01(\tR\x03url\x129\n" +
 	"\n" +
-	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"K\n" +
-	"\x18PresignDownloadsResponse\x12/\n" +
-	"\x04urls\x18\x01 \x03(\v2\x1b.media.v1.PresignedDownloadR\x04urls\"[\n" +
+	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"O\n" +
+	"\x18PresignDownloadsResponse\x123\n" +
+	"\x06medias\x18\x01 \x03(\v2\x1b.media.v1.PresignedDownloadR\x06medias\"[\n" +
 	"\x1aPresignObjectUploadRequest\x12\x19\n" +
 	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12\"\n" +
 	"\x04file\x18\x02 \x01(\v2\x0e.media.v1.FileR\x04file\"\x89\x01\n" +
@@ -1266,7 +1586,30 @@ const file_media_v1_type_proto_rawDesc = "" +
 	"\n" +
 	"session_id\x18\x01 \x01(\tR\tsessionId\x12\x19\n" +
 	"\bowner_id\x18\x02 \x01(\tR\aownerId\"\x1e\n" +
-	"\x1cCompleteObjectUploadResponse*~\n" +
+	"\x1cCompleteObjectUploadResponse\"4\n" +
+	"\x0eRepresentation\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04type\x18\x02 \x01(\tR\x04type\"]\n" +
+	"\x1dGetListRepresentationsRequest\x12\x19\n" +
+	"\bmedia_id\x18\x01 \x01(\tR\amediaId\x12!\n" +
+	"\fprincipal_id\x18\x02 \x01(\tR\vprincipalId\"d\n" +
+	"\x1eGetListRepresentationsResponse\x12B\n" +
+	"\x0frepresentations\x18\x01 \x03(\v2\x18.media.v1.RepresentationR\x0frepresentations\"\xd2\x01\n" +
+	"\x16RepresentationMetadata\x12\x19\n" +
+	"\x05width\x18\x01 \x01(\x03H\x00R\x05width\x88\x01\x01\x12\x1b\n" +
+	"\x06height\x18\x02 \x01(\x03H\x01R\x06height\x88\x01\x01\x12\x12\n" +
+	"\x04size\x18\x03 \x01(\x03R\x04size\x12!\n" +
+	"\fcontent_type\x18\x04 \x01(\tR\vcontentType\x12$\n" +
+	"\vduration_ms\x18\x05 \x01(\x03H\x02R\n" +
+	"durationMs\x88\x01\x01B\b\n" +
+	"\x06_widthB\t\n" +
+	"\a_heightB\x0e\n" +
+	"\f_duration_ms\"z\n" +
+	"&GetBatchRepresentationsMetadataRequest\x12-\n" +
+	"\x12representation_ids\x18\x01 \x03(\tR\x11representationIds\x12!\n" +
+	"\fprincipal_id\x18\x02 \x01(\tR\vprincipalId\"\x86\x01\n" +
+	"'GetBatchRepresentationsMetadataResponse\x12[\n" +
+	"\x18representations_metadata\x18\x01 \x03(\v2 .media.v1.RepresentationMetadataR\x17representationsMetadata*~\n" +
 	"\tMediaKind\x12\x1a\n" +
 	"\x16MEDIA_KIND_UNSPECIFIED\x10\x00\x12\x14\n" +
 	"\x10MEDIA_KIND_IMAGE\x10\x01\x12\x14\n" +
@@ -1295,50 +1638,58 @@ func file_media_v1_type_proto_rawDescGZIP() []byte {
 }
 
 var file_media_v1_type_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_media_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
+var file_media_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
 var file_media_v1_type_proto_goTypes = []any{
-	(MediaKind)(0),                          // 0: media.v1.MediaKind
-	(MediaStatus)(0),                        // 1: media.v1.MediaStatus
-	(*File)(nil),                            // 2: media.v1.File
-	(*MultipartUploadInfo)(nil),             // 3: media.v1.MultipartUploadInfo
-	(*InitializeUploadsRequest)(nil),        // 4: media.v1.InitializeUploadsRequest
-	(*InitializeUploadsResponse)(nil),       // 5: media.v1.InitializeUploadsResponse
-	(*PresignedPart)(nil),                   // 6: media.v1.PresignedPart
-	(*SignUploadPartsRequest)(nil),          // 7: media.v1.SignUploadPartsRequest
-	(*SignUploadPartsResponse)(nil),         // 8: media.v1.SignUploadPartsResponse
-	(*CompletedPart)(nil),                   // 9: media.v1.CompletedPart
-	(*CompleteMultipartUploadRequest)(nil),  // 10: media.v1.CompleteMultipartUploadRequest
-	(*MediaInfo)(nil),                       // 11: media.v1.MediaInfo
-	(*CompleteMultipartUploadResponse)(nil), // 12: media.v1.CompleteMultipartUploadResponse
-	(*PresignDownloadsRequest)(nil),         // 13: media.v1.PresignDownloadsRequest
-	(*PresignedDownload)(nil),               // 14: media.v1.PresignedDownload
-	(*PresignDownloadsResponse)(nil),        // 15: media.v1.PresignDownloadsResponse
-	(*PresignObjectUploadRequest)(nil),      // 16: media.v1.PresignObjectUploadRequest
-	(*PresignObjectUploadResponse)(nil),     // 17: media.v1.PresignObjectUploadResponse
-	(*CompleteObjectUploadRequest)(nil),     // 18: media.v1.CompleteObjectUploadRequest
-	(*CompleteObjectUploadResponse)(nil),    // 19: media.v1.CompleteObjectUploadResponse
-	nil,                                     // 20: media.v1.File.UserMetadataEntry
-	(*timestamppb.Timestamp)(nil),           // 21: google.protobuf.Timestamp
+	(MediaKind)(0),                                  // 0: media.v1.MediaKind
+	(MediaStatus)(0),                                // 1: media.v1.MediaStatus
+	(*File)(nil),                                    // 2: media.v1.File
+	(*MultipartUploadInfo)(nil),                     // 3: media.v1.MultipartUploadInfo
+	(*InitializeUploadsRequest)(nil),                // 4: media.v1.InitializeUploadsRequest
+	(*InitializeUploadsResponse)(nil),               // 5: media.v1.InitializeUploadsResponse
+	(*PresignedPart)(nil),                           // 6: media.v1.PresignedPart
+	(*SignUploadPartsRequest)(nil),                  // 7: media.v1.SignUploadPartsRequest
+	(*SignUploadPartsResponse)(nil),                 // 8: media.v1.SignUploadPartsResponse
+	(*CompletedPart)(nil),                           // 9: media.v1.CompletedPart
+	(*CompleteMultipartUploadRequest)(nil),          // 10: media.v1.CompleteMultipartUploadRequest
+	(*MediaInfo)(nil),                               // 11: media.v1.MediaInfo
+	(*CompleteMultipartUploadResponse)(nil),         // 12: media.v1.CompleteMultipartUploadResponse
+	(*PresignDownloadsRequest)(nil),                 // 13: media.v1.PresignDownloadsRequest
+	(*PresignedDownload)(nil),                       // 14: media.v1.PresignedDownload
+	(*PresignDownloadsResponse)(nil),                // 15: media.v1.PresignDownloadsResponse
+	(*PresignObjectUploadRequest)(nil),              // 16: media.v1.PresignObjectUploadRequest
+	(*PresignObjectUploadResponse)(nil),             // 17: media.v1.PresignObjectUploadResponse
+	(*CompleteObjectUploadRequest)(nil),             // 18: media.v1.CompleteObjectUploadRequest
+	(*CompleteObjectUploadResponse)(nil),            // 19: media.v1.CompleteObjectUploadResponse
+	(*Representation)(nil),                          // 20: media.v1.Representation
+	(*GetListRepresentationsRequest)(nil),           // 21: media.v1.GetListRepresentationsRequest
+	(*GetListRepresentationsResponse)(nil),          // 22: media.v1.GetListRepresentationsResponse
+	(*RepresentationMetadata)(nil),                  // 23: media.v1.RepresentationMetadata
+	(*GetBatchRepresentationsMetadataRequest)(nil),  // 24: media.v1.GetBatchRepresentationsMetadataRequest
+	(*GetBatchRepresentationsMetadataResponse)(nil), // 25: media.v1.GetBatchRepresentationsMetadataResponse
+	nil,                           // 26: media.v1.File.UserMetadataEntry
+	(*timestamppb.Timestamp)(nil), // 27: google.protobuf.Timestamp
 }
 var file_media_v1_type_proto_depIdxs = []int32{
-	20, // 0: media.v1.File.user_metadata:type_name -> media.v1.File.UserMetadataEntry
-	21, // 1: media.v1.MultipartUploadInfo.expires_at:type_name -> google.protobuf.Timestamp
+	26, // 0: media.v1.File.user_metadata:type_name -> media.v1.File.UserMetadataEntry
+	27, // 1: media.v1.MultipartUploadInfo.expires_at:type_name -> google.protobuf.Timestamp
 	2,  // 2: media.v1.InitializeUploadsRequest.files:type_name -> media.v1.File
 	3,  // 3: media.v1.InitializeUploadsResponse.uploads:type_name -> media.v1.MultipartUploadInfo
-	21, // 4: media.v1.PresignedPart.expires_at:type_name -> google.protobuf.Timestamp
+	27, // 4: media.v1.PresignedPart.expires_at:type_name -> google.protobuf.Timestamp
 	6,  // 5: media.v1.SignUploadPartsResponse.parts:type_name -> media.v1.PresignedPart
 	9,  // 6: media.v1.CompleteMultipartUploadRequest.parts:type_name -> media.v1.CompletedPart
-	21, // 7: media.v1.MediaInfo.created_at:type_name -> google.protobuf.Timestamp
+	27, // 7: media.v1.MediaInfo.created_at:type_name -> google.protobuf.Timestamp
 	11, // 8: media.v1.CompleteMultipartUploadResponse.media:type_name -> media.v1.MediaInfo
-	21, // 9: media.v1.PresignedDownload.expires_at:type_name -> google.protobuf.Timestamp
-	14, // 10: media.v1.PresignDownloadsResponse.urls:type_name -> media.v1.PresignedDownload
+	27, // 9: media.v1.PresignedDownload.expires_at:type_name -> google.protobuf.Timestamp
+	14, // 10: media.v1.PresignDownloadsResponse.medias:type_name -> media.v1.PresignedDownload
 	2,  // 11: media.v1.PresignObjectUploadRequest.file:type_name -> media.v1.File
-	21, // 12: media.v1.PresignObjectUploadResponse.expires_at:type_name -> google.protobuf.Timestamp
-	13, // [13:13] is the sub-list for method output_type
-	13, // [13:13] is the sub-list for method input_type
-	13, // [13:13] is the sub-list for extension type_name
-	13, // [13:13] is the sub-list for extension extendee
-	0,  // [0:13] is the sub-list for field type_name
+	27, // 12: media.v1.PresignObjectUploadResponse.expires_at:type_name -> google.protobuf.Timestamp
+	20, // 13: media.v1.GetListRepresentationsResponse.representations:type_name -> media.v1.Representation
+	23, // 14: media.v1.GetBatchRepresentationsMetadataResponse.representations_metadata:type_name -> media.v1.RepresentationMetadata
+	15, // [15:15] is the sub-list for method output_type
+	15, // [15:15] is the sub-list for method input_type
+	15, // [15:15] is the sub-list for extension type_name
+	15, // [15:15] is the sub-list for extension extendee
+	0,  // [0:15] is the sub-list for field type_name
 }
 
 func init() { file_media_v1_type_proto_init() }
@@ -1347,13 +1698,14 @@ func file_media_v1_type_proto_init() {
 		return
 	}
 	file_media_v1_type_proto_msgTypes[9].OneofWrappers = []any{}
+	file_media_v1_type_proto_msgTypes[21].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_media_v1_type_proto_rawDesc), len(file_media_v1_type_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   19,
+			NumMessages:   25,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

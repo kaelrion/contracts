@@ -19,12 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Service_InitializeMultipartUploads_FullMethodName = "/media.v1.Service/InitializeMultipartUploads"
-	Service_SignUploadParts_FullMethodName            = "/media.v1.Service/SignUploadParts"
-	Service_CompleteMultipartUploads_FullMethodName   = "/media.v1.Service/CompleteMultipartUploads"
-	Service_PresignDownloads_FullMethodName           = "/media.v1.Service/PresignDownloads"
-	Service_PresignObjectUpload_FullMethodName        = "/media.v1.Service/PresignObjectUpload"
-	Service_CompleteObjectUpload_FullMethodName       = "/media.v1.Service/CompleteObjectUpload"
+	Service_InitializeMultipartUploads_FullMethodName      = "/media.v1.Service/InitializeMultipartUploads"
+	Service_SignUploadParts_FullMethodName                 = "/media.v1.Service/SignUploadParts"
+	Service_CompleteMultipartUploads_FullMethodName        = "/media.v1.Service/CompleteMultipartUploads"
+	Service_PresignDownloads_FullMethodName                = "/media.v1.Service/PresignDownloads"
+	Service_PresignObjectUpload_FullMethodName             = "/media.v1.Service/PresignObjectUpload"
+	Service_CompleteObjectUpload_FullMethodName            = "/media.v1.Service/CompleteObjectUpload"
+	Service_GetListRepresentations_FullMethodName          = "/media.v1.Service/GetListRepresentations"
+	Service_GetBatchRepresentationsMetadata_FullMethodName = "/media.v1.Service/GetBatchRepresentationsMetadata"
 )
 
 // ServiceClient is the client API for Service service.
@@ -37,6 +39,8 @@ type ServiceClient interface {
 	PresignDownloads(ctx context.Context, in *PresignDownloadsRequest, opts ...grpc.CallOption) (*PresignDownloadsResponse, error)
 	PresignObjectUpload(ctx context.Context, in *PresignObjectUploadRequest, opts ...grpc.CallOption) (*PresignObjectUploadResponse, error)
 	CompleteObjectUpload(ctx context.Context, in *CompleteObjectUploadRequest, opts ...grpc.CallOption) (*CompleteObjectUploadResponse, error)
+	GetListRepresentations(ctx context.Context, in *GetListRepresentationsRequest, opts ...grpc.CallOption) (*GetListRepresentationsResponse, error)
+	GetBatchRepresentationsMetadata(ctx context.Context, in *GetBatchRepresentationsMetadataRequest, opts ...grpc.CallOption) (*GetBatchRepresentationsMetadataResponse, error)
 }
 
 type serviceClient struct {
@@ -107,6 +111,26 @@ func (c *serviceClient) CompleteObjectUpload(ctx context.Context, in *CompleteOb
 	return out, nil
 }
 
+func (c *serviceClient) GetListRepresentations(ctx context.Context, in *GetListRepresentationsRequest, opts ...grpc.CallOption) (*GetListRepresentationsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetListRepresentationsResponse)
+	err := c.cc.Invoke(ctx, Service_GetListRepresentations_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serviceClient) GetBatchRepresentationsMetadata(ctx context.Context, in *GetBatchRepresentationsMetadataRequest, opts ...grpc.CallOption) (*GetBatchRepresentationsMetadataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetBatchRepresentationsMetadataResponse)
+	err := c.cc.Invoke(ctx, Service_GetBatchRepresentationsMetadata_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ServiceServer is the server API for Service service.
 // All implementations must embed UnimplementedServiceServer
 // for forward compatibility.
@@ -117,6 +141,8 @@ type ServiceServer interface {
 	PresignDownloads(context.Context, *PresignDownloadsRequest) (*PresignDownloadsResponse, error)
 	PresignObjectUpload(context.Context, *PresignObjectUploadRequest) (*PresignObjectUploadResponse, error)
 	CompleteObjectUpload(context.Context, *CompleteObjectUploadRequest) (*CompleteObjectUploadResponse, error)
+	GetListRepresentations(context.Context, *GetListRepresentationsRequest) (*GetListRepresentationsResponse, error)
+	GetBatchRepresentationsMetadata(context.Context, *GetBatchRepresentationsMetadataRequest) (*GetBatchRepresentationsMetadataResponse, error)
 	mustEmbedUnimplementedServiceServer()
 }
 
@@ -144,6 +170,12 @@ func (UnimplementedServiceServer) PresignObjectUpload(context.Context, *PresignO
 }
 func (UnimplementedServiceServer) CompleteObjectUpload(context.Context, *CompleteObjectUploadRequest) (*CompleteObjectUploadResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CompleteObjectUpload not implemented")
+}
+func (UnimplementedServiceServer) GetListRepresentations(context.Context, *GetListRepresentationsRequest) (*GetListRepresentationsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetListRepresentations not implemented")
+}
+func (UnimplementedServiceServer) GetBatchRepresentationsMetadata(context.Context, *GetBatchRepresentationsMetadataRequest) (*GetBatchRepresentationsMetadataResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetBatchRepresentationsMetadata not implemented")
 }
 func (UnimplementedServiceServer) mustEmbedUnimplementedServiceServer() {}
 func (UnimplementedServiceServer) testEmbeddedByValue()                 {}
@@ -274,6 +306,42 @@ func _Service_CompleteObjectUpload_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Service_GetListRepresentations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetListRepresentationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServer).GetListRepresentations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Service_GetListRepresentations_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServer).GetListRepresentations(ctx, req.(*GetListRepresentationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Service_GetBatchRepresentationsMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBatchRepresentationsMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServer).GetBatchRepresentationsMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Service_GetBatchRepresentationsMetadata_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServer).GetBatchRepresentationsMetadata(ctx, req.(*GetBatchRepresentationsMetadataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Service_ServiceDesc is the grpc.ServiceDesc for Service service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -304,6 +372,14 @@ var Service_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CompleteObjectUpload",
 			Handler:    _Service_CompleteObjectUpload_Handler,
+		},
+		{
+			MethodName: "GetListRepresentations",
+			Handler:    _Service_GetListRepresentations_Handler,
+		},
+		{
+			MethodName: "GetBatchRepresentationsMetadata",
+			Handler:    _Service_GetBatchRepresentationsMetadata_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
