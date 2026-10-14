@@ -3,7 +3,7 @@ syntax="proto3";
 package chat.v1;
 
 option go_package = "github.com/kaelorin/chat";
-
+import "google/protobuf/timestamp.proto";
 message Text {
   string content = 1;
 }
@@ -91,6 +91,7 @@ message LatestMessage {
   string                     sender_id           = 2;
   optional string            reply_to_message_id = 3;
   repeated LatestMessagePart parts               = 4;
+  google.protobuf.Timestamp  created_at          = 5;
 }
 
 message GetListLatestMessagesRequest {

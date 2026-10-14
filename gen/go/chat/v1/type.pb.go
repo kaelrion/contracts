@@ -9,6 +9,7 @@ package chat
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -835,6 +836,7 @@ type LatestMessage struct {
 	SenderId         string                 `protobuf:"bytes,2,opt,name=sender_id,json=senderId,proto3" json:"sender_id,omitempty"`
 	ReplyToMessageId *string                `protobuf:"bytes,3,opt,name=reply_to_message_id,json=replyToMessageId,proto3,oneof" json:"reply_to_message_id,omitempty"`
 	Parts            []*LatestMessagePart   `protobuf:"bytes,4,rep,name=parts,proto3" json:"parts,omitempty"`
+	CreatedAt        *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -893,6 +895,13 @@ func (x *LatestMessage) GetReplyToMessageId() string {
 func (x *LatestMessage) GetParts() []*LatestMessagePart {
 	if x != nil {
 		return x.Parts
+	}
+	return nil
+}
+
+func (x *LatestMessage) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
 	}
 	return nil
 }
@@ -1005,7 +1014,7 @@ var File_chat_v1_type_proto protoreflect.FileDescriptor
 
 const file_chat_v1_type_proto_rawDesc = "" +
 	"\n" +
-	"\x12chat/v1/type.proto\x12\achat.v1\" \n" +
+	"\x12chat/v1/type.proto\x12\achat.v1\x1a\x1fgoogle/protobuf/timestamp.proto\" \n" +
 	"\x04Text\x12\x18\n" +
 	"\acontent\x18\x01 \x01(\tR\acontent\"\xe7\x02\n" +
 	"\n" +
@@ -1080,12 +1089,14 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"attachment\x18\x04 \x01(\v2 .chat.v1.LatestMessageAttachmentH\x00R\n" +
 	"attachment\x12\x12\n" +
 	"\x04type\x18\x05 \x01(\tR\x04typeB\t\n" +
-	"\acontent\"\xba\x01\n" +
+	"\acontent\"\xf5\x01\n" +
 	"\rLatestMessage\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +
 	"\tsender_id\x18\x02 \x01(\tR\bsenderId\x122\n" +
 	"\x13reply_to_message_id\x18\x03 \x01(\tH\x00R\x10replyToMessageId\x88\x01\x01\x120\n" +
-	"\x05parts\x18\x04 \x03(\v2\x1a.chat.v1.LatestMessagePartR\x05partsB\x16\n" +
+	"\x05parts\x18\x04 \x03(\v2\x1a.chat.v1.LatestMessagePartR\x05parts\x129\n" +
+	"\n" +
+	"created_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAtB\x16\n" +
 	"\x14_reply_to_message_id\"]\n" +
 	"\x1cGetListLatestMessagesRequest\x12'\n" +
 	"\x0fconversation_id\x18\x01 \x01(\tR\x0econversationId\x12\x14\n" +
@@ -1124,6 +1135,7 @@ var file_chat_v1_type_proto_goTypes = []any{
 	(*GetListLatestMessagesRequest)(nil),      // 12: chat.v1.GetListLatestMessagesRequest
 	(*GetListLatestMessagesResponse)(nil),     // 13: chat.v1.GetListLatestMessagesResponse
 	nil,                                       // 14: chat.v1.Attachment.UserMetadataEntry
+	(*timestamppb.Timestamp)(nil),             // 15: google.protobuf.Timestamp
 }
 var file_chat_v1_type_proto_depIdxs = []int32{
 	14, // 0: chat.v1.Attachment.user_metadata:type_name -> chat.v1.Attachment.UserMetadataEntry
@@ -1136,12 +1148,13 @@ var file_chat_v1_type_proto_depIdxs = []int32{
 	8,  // 7: chat.v1.LatestMessagePart.text:type_name -> chat.v1.LatestMessageText
 	9,  // 8: chat.v1.LatestMessagePart.attachment:type_name -> chat.v1.LatestMessageAttachment
 	10, // 9: chat.v1.LatestMessage.parts:type_name -> chat.v1.LatestMessagePart
-	11, // 10: chat.v1.GetListLatestMessagesResponse.messages:type_name -> chat.v1.LatestMessage
-	11, // [11:11] is the sub-list for method output_type
-	11, // [11:11] is the sub-list for method input_type
-	11, // [11:11] is the sub-list for extension type_name
-	11, // [11:11] is the sub-list for extension extendee
-	0,  // [0:11] is the sub-list for field type_name
+	15, // 10: chat.v1.LatestMessage.created_at:type_name -> google.protobuf.Timestamp
+	11, // 11: chat.v1.GetListLatestMessagesResponse.messages:type_name -> chat.v1.LatestMessage
+	12, // [12:12] is the sub-list for method output_type
+	12, // [12:12] is the sub-list for method input_type
+	12, // [12:12] is the sub-list for extension type_name
+	12, // [12:12] is the sub-list for extension extendee
+	0,  // [0:12] is the sub-list for field type_name
 }
 
 func init() { file_chat_v1_type_proto_init() }
