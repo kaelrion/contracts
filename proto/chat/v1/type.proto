@@ -83,6 +83,7 @@ message LatestMessagePart {
     LatestMessageText       text       = 3;
     LatestMessageAttachment attachment = 4;
   }
+  string type = 5;
 }
 
 message LatestMessage {

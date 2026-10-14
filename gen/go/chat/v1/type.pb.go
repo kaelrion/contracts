@@ -732,6 +732,7 @@ type LatestMessagePart struct {
 	//	*LatestMessagePart_Text
 	//	*LatestMessagePart_Attachment
 	Content       isLatestMessagePart_Content `protobuf_oneof:"content"`
+	Type          string                      `protobuf:"bytes,5,opt,name=type,proto3" json:"type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -803,6 +804,13 @@ func (x *LatestMessagePart) GetAttachment() *LatestMessageAttachment {
 		}
 	}
 	return nil
+}
+
+func (x *LatestMessagePart) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
 }
 
 type isLatestMessagePart_Content interface {
@@ -1055,14 +1063,15 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"\acontent\x18\x01 \x01(\tR\acontent\"H\n" +
 	"\x17LatestMessageAttachment\x12\x19\n" +
 	"\bmedia_id\x18\x01 \x01(\tR\amediaId\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"\xc0\x01\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"\xd4\x01\n" +
 	"\x11LatestMessagePart\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1a\n" +
 	"\bposition\x18\x02 \x01(\x05R\bposition\x120\n" +
 	"\x04text\x18\x03 \x01(\v2\x1a.chat.v1.LatestMessageTextH\x00R\x04text\x12B\n" +
 	"\n" +
 	"attachment\x18\x04 \x01(\v2 .chat.v1.LatestMessageAttachmentH\x00R\n" +
-	"attachmentB\t\n" +
+	"attachment\x12\x12\n" +
+	"\x04type\x18\x05 \x01(\tR\x04typeB\t\n" +
 	"\acontent\"\xba\x01\n" +
 	"\rLatestMessage\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +
