@@ -627,6 +627,364 @@ func (x *SendMessageWithAttachmentResponse) GetClientId() string {
 	return ""
 }
 
+type LatestMessageText struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Content       string                 `protobuf:"bytes,1,opt,name=content,proto3" json:"content,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LatestMessageText) Reset() {
+	*x = LatestMessageText{}
+	mi := &file_chat_v1_type_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LatestMessageText) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LatestMessageText) ProtoMessage() {}
+
+func (x *LatestMessageText) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_v1_type_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LatestMessageText.ProtoReflect.Descriptor instead.
+func (*LatestMessageText) Descriptor() ([]byte, []int) {
+	return file_chat_v1_type_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *LatestMessageText) GetContent() string {
+	if x != nil {
+		return x.Content
+	}
+	return ""
+}
+
+type LatestMessageAttachment struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	MediaId       string                 `protobuf:"bytes,1,opt,name=media_id,json=mediaId,proto3" json:"media_id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LatestMessageAttachment) Reset() {
+	*x = LatestMessageAttachment{}
+	mi := &file_chat_v1_type_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LatestMessageAttachment) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LatestMessageAttachment) ProtoMessage() {}
+
+func (x *LatestMessageAttachment) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_v1_type_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LatestMessageAttachment.ProtoReflect.Descriptor instead.
+func (*LatestMessageAttachment) Descriptor() ([]byte, []int) {
+	return file_chat_v1_type_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *LatestMessageAttachment) GetMediaId() string {
+	if x != nil {
+		return x.MediaId
+	}
+	return ""
+}
+
+func (x *LatestMessageAttachment) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type LatestMessagePart struct {
+	state    protoimpl.MessageState `protogen:"open.v1"`
+	Id       string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Position int32                  `protobuf:"varint,2,opt,name=position,proto3" json:"position,omitempty"`
+	// Types that are valid to be assigned to Content:
+	//
+	//	*LatestMessagePart_Text
+	//	*LatestMessagePart_Attachment
+	Content       isLatestMessagePart_Content `protobuf_oneof:"content"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LatestMessagePart) Reset() {
+	*x = LatestMessagePart{}
+	mi := &file_chat_v1_type_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LatestMessagePart) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LatestMessagePart) ProtoMessage() {}
+
+func (x *LatestMessagePart) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_v1_type_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LatestMessagePart.ProtoReflect.Descriptor instead.
+func (*LatestMessagePart) Descriptor() ([]byte, []int) {
+	return file_chat_v1_type_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *LatestMessagePart) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *LatestMessagePart) GetPosition() int32 {
+	if x != nil {
+		return x.Position
+	}
+	return 0
+}
+
+func (x *LatestMessagePart) GetContent() isLatestMessagePart_Content {
+	if x != nil {
+		return x.Content
+	}
+	return nil
+}
+
+func (x *LatestMessagePart) GetText() *LatestMessageText {
+	if x != nil {
+		if x, ok := x.Content.(*LatestMessagePart_Text); ok {
+			return x.Text
+		}
+	}
+	return nil
+}
+
+func (x *LatestMessagePart) GetAttachment() *LatestMessageAttachment {
+	if x != nil {
+		if x, ok := x.Content.(*LatestMessagePart_Attachment); ok {
+			return x.Attachment
+		}
+	}
+	return nil
+}
+
+type isLatestMessagePart_Content interface {
+	isLatestMessagePart_Content()
+}
+
+type LatestMessagePart_Text struct {
+	Text *LatestMessageText `protobuf:"bytes,3,opt,name=text,proto3,oneof"`
+}
+
+type LatestMessagePart_Attachment struct {
+	Attachment *LatestMessageAttachment `protobuf:"bytes,4,opt,name=attachment,proto3,oneof"`
+}
+
+func (*LatestMessagePart_Text) isLatestMessagePart_Content() {}
+
+func (*LatestMessagePart_Attachment) isLatestMessagePart_Content() {}
+
+type LatestMessage struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	Id               string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	SenderId         string                 `protobuf:"bytes,2,opt,name=sender_id,json=senderId,proto3" json:"sender_id,omitempty"`
+	ReplyToMessageId *string                `protobuf:"bytes,3,opt,name=reply_to_message_id,json=replyToMessageId,proto3,oneof" json:"reply_to_message_id,omitempty"`
+	Parts            []*LatestMessagePart   `protobuf:"bytes,4,rep,name=parts,proto3" json:"parts,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *LatestMessage) Reset() {
+	*x = LatestMessage{}
+	mi := &file_chat_v1_type_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LatestMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LatestMessage) ProtoMessage() {}
+
+func (x *LatestMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_v1_type_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LatestMessage.ProtoReflect.Descriptor instead.
+func (*LatestMessage) Descriptor() ([]byte, []int) {
+	return file_chat_v1_type_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *LatestMessage) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *LatestMessage) GetSenderId() string {
+	if x != nil {
+		return x.SenderId
+	}
+	return ""
+}
+
+func (x *LatestMessage) GetReplyToMessageId() string {
+	if x != nil && x.ReplyToMessageId != nil {
+		return *x.ReplyToMessageId
+	}
+	return ""
+}
+
+func (x *LatestMessage) GetParts() []*LatestMessagePart {
+	if x != nil {
+		return x.Parts
+	}
+	return nil
+}
+
+type GetListLatestMessagesRequest struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	ConversationId string                 `protobuf:"bytes,1,opt,name=conversation_id,json=conversationId,proto3" json:"conversation_id,omitempty"`
+	Limit          int64                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *GetListLatestMessagesRequest) Reset() {
+	*x = GetListLatestMessagesRequest{}
+	mi := &file_chat_v1_type_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetListLatestMessagesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetListLatestMessagesRequest) ProtoMessage() {}
+
+func (x *GetListLatestMessagesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_v1_type_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetListLatestMessagesRequest.ProtoReflect.Descriptor instead.
+func (*GetListLatestMessagesRequest) Descriptor() ([]byte, []int) {
+	return file_chat_v1_type_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *GetListLatestMessagesRequest) GetConversationId() string {
+	if x != nil {
+		return x.ConversationId
+	}
+	return ""
+}
+
+func (x *GetListLatestMessagesRequest) GetLimit() int64 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+type GetListLatestMessagesResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Messages      []*LatestMessage       `protobuf:"bytes,1,rep,name=messages,proto3" json:"messages,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetListLatestMessagesResponse) Reset() {
+	*x = GetListLatestMessagesResponse{}
+	mi := &file_chat_v1_type_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetListLatestMessagesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetListLatestMessagesResponse) ProtoMessage() {}
+
+func (x *GetListLatestMessagesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_v1_type_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetListLatestMessagesResponse.ProtoReflect.Descriptor instead.
+func (*GetListLatestMessagesResponse) Descriptor() ([]byte, []int) {
+	return file_chat_v1_type_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *GetListLatestMessagesResponse) GetMessages() []*LatestMessage {
+	if x != nil {
+		return x.Messages
+	}
+	return nil
+}
+
 var File_chat_v1_type_proto protoreflect.FileDescriptor
 
 const file_chat_v1_type_proto_rawDesc = "" +
@@ -692,7 +1050,31 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"message_id\x18\x02 \x01(\tR\tmessageId\x12\x14\n" +
 	"\x05state\x18\x03 \x01(\tR\x05state\x12<\n" +
 	"\x05parts\x18\x04 \x03(\v2&.chat.v1.SendMessageWithAttachmentPartR\x05parts\x12\x1b\n" +
-	"\tclient_id\x18\x05 \x01(\tR\bclientIdB\x1aZ\x18github.com/kaelorin/chatb\x06proto3"
+	"\tclient_id\x18\x05 \x01(\tR\bclientId\"-\n" +
+	"\x11LatestMessageText\x12\x18\n" +
+	"\acontent\x18\x01 \x01(\tR\acontent\"H\n" +
+	"\x17LatestMessageAttachment\x12\x19\n" +
+	"\bmedia_id\x18\x01 \x01(\tR\amediaId\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"\xc0\x01\n" +
+	"\x11LatestMessagePart\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1a\n" +
+	"\bposition\x18\x02 \x01(\x05R\bposition\x120\n" +
+	"\x04text\x18\x03 \x01(\v2\x1a.chat.v1.LatestMessageTextH\x00R\x04text\x12B\n" +
+	"\n" +
+	"attachment\x18\x04 \x01(\v2 .chat.v1.LatestMessageAttachmentH\x00R\n" +
+	"attachmentB\t\n" +
+	"\acontent\"\xba\x01\n" +
+	"\rLatestMessage\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +
+	"\tsender_id\x18\x02 \x01(\tR\bsenderId\x122\n" +
+	"\x13reply_to_message_id\x18\x03 \x01(\tH\x00R\x10replyToMessageId\x88\x01\x01\x120\n" +
+	"\x05parts\x18\x04 \x03(\v2\x1a.chat.v1.LatestMessagePartR\x05partsB\x16\n" +
+	"\x14_reply_to_message_id\"]\n" +
+	"\x1cGetListLatestMessagesRequest\x12'\n" +
+	"\x0fconversation_id\x18\x01 \x01(\tR\x0econversationId\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x03R\x05limit\"S\n" +
+	"\x1dGetListLatestMessagesResponse\x122\n" +
+	"\bmessages\x18\x01 \x03(\v2\x16.chat.v1.LatestMessageR\bmessagesB\x1aZ\x18github.com/kaelorin/chatb\x06proto3"
 
 var (
 	file_chat_v1_type_proto_rawDescOnce sync.Once
@@ -706,7 +1088,7 @@ func file_chat_v1_type_proto_rawDescGZIP() []byte {
 	return file_chat_v1_type_proto_rawDescData
 }
 
-var file_chat_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_chat_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_chat_v1_type_proto_goTypes = []any{
 	(*Text)(nil),                              // 0: chat.v1.Text
 	(*Attachment)(nil),                        // 1: chat.v1.Attachment
@@ -716,21 +1098,31 @@ var file_chat_v1_type_proto_goTypes = []any{
 	(*SendMessageWithAttachmentRequest)(nil),  // 5: chat.v1.SendMessageWithAttachmentRequest
 	(*SendMessageWithAttachmentPart)(nil),     // 6: chat.v1.SendMessageWithAttachmentPart
 	(*SendMessageWithAttachmentResponse)(nil), // 7: chat.v1.SendMessageWithAttachmentResponse
-	nil, // 8: chat.v1.Attachment.UserMetadataEntry
+	(*LatestMessageText)(nil),                 // 8: chat.v1.LatestMessageText
+	(*LatestMessageAttachment)(nil),           // 9: chat.v1.LatestMessageAttachment
+	(*LatestMessagePart)(nil),                 // 10: chat.v1.LatestMessagePart
+	(*LatestMessage)(nil),                     // 11: chat.v1.LatestMessage
+	(*GetListLatestMessagesRequest)(nil),      // 12: chat.v1.GetListLatestMessagesRequest
+	(*GetListLatestMessagesResponse)(nil),     // 13: chat.v1.GetListLatestMessagesResponse
+	nil,                                       // 14: chat.v1.Attachment.UserMetadataEntry
 }
 var file_chat_v1_type_proto_depIdxs = []int32{
-	8, // 0: chat.v1.Attachment.user_metadata:type_name -> chat.v1.Attachment.UserMetadataEntry
-	0, // 1: chat.v1.Part.text:type_name -> chat.v1.Text
-	1, // 2: chat.v1.Part.attachment:type_name -> chat.v1.Attachment
-	2, // 3: chat.v1.SendMessageTextRequest.parts:type_name -> chat.v1.Part
-	2, // 4: chat.v1.SendMessageWithAttachmentRequest.parts:type_name -> chat.v1.Part
-	0, // 5: chat.v1.SendMessageWithAttachmentPart.text:type_name -> chat.v1.Text
-	6, // 6: chat.v1.SendMessageWithAttachmentResponse.parts:type_name -> chat.v1.SendMessageWithAttachmentPart
-	7, // [7:7] is the sub-list for method output_type
-	7, // [7:7] is the sub-list for method input_type
-	7, // [7:7] is the sub-list for extension type_name
-	7, // [7:7] is the sub-list for extension extendee
-	0, // [0:7] is the sub-list for field type_name
+	14, // 0: chat.v1.Attachment.user_metadata:type_name -> chat.v1.Attachment.UserMetadataEntry
+	0,  // 1: chat.v1.Part.text:type_name -> chat.v1.Text
+	1,  // 2: chat.v1.Part.attachment:type_name -> chat.v1.Attachment
+	2,  // 3: chat.v1.SendMessageTextRequest.parts:type_name -> chat.v1.Part
+	2,  // 4: chat.v1.SendMessageWithAttachmentRequest.parts:type_name -> chat.v1.Part
+	0,  // 5: chat.v1.SendMessageWithAttachmentPart.text:type_name -> chat.v1.Text
+	6,  // 6: chat.v1.SendMessageWithAttachmentResponse.parts:type_name -> chat.v1.SendMessageWithAttachmentPart
+	8,  // 7: chat.v1.LatestMessagePart.text:type_name -> chat.v1.LatestMessageText
+	9,  // 8: chat.v1.LatestMessagePart.attachment:type_name -> chat.v1.LatestMessageAttachment
+	10, // 9: chat.v1.LatestMessage.parts:type_name -> chat.v1.LatestMessagePart
+	11, // 10: chat.v1.GetListLatestMessagesResponse.messages:type_name -> chat.v1.LatestMessage
+	11, // [11:11] is the sub-list for method output_type
+	11, // [11:11] is the sub-list for method input_type
+	11, // [11:11] is the sub-list for extension type_name
+	11, // [11:11] is the sub-list for extension extendee
+	0,  // [0:11] is the sub-list for field type_name
 }
 
 func init() { file_chat_v1_type_proto_init() }
@@ -746,13 +1138,18 @@ func file_chat_v1_type_proto_init() {
 	file_chat_v1_type_proto_msgTypes[3].OneofWrappers = []any{}
 	file_chat_v1_type_proto_msgTypes[5].OneofWrappers = []any{}
 	file_chat_v1_type_proto_msgTypes[6].OneofWrappers = []any{}
+	file_chat_v1_type_proto_msgTypes[10].OneofWrappers = []any{
+		(*LatestMessagePart_Text)(nil),
+		(*LatestMessagePart_Attachment)(nil),
+	}
+	file_chat_v1_type_proto_msgTypes[11].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_chat_v1_type_proto_rawDesc), len(file_chat_v1_type_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

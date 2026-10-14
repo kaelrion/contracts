@@ -24,24 +24,29 @@ var File_chat_v1_service_proto protoreflect.FileDescriptor
 
 const file_chat_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x15chat/v1/service.proto\x12\achat.v1\x1a\x12chat/v1/type.proto2\xd3\x01\n" +
+	"\x15chat/v1/service.proto\x12\achat.v1\x1a\x12chat/v1/type.proto2\xbb\x02\n" +
 	"\aService\x12T\n" +
 	"\x0fSendMessageText\x12\x1f.chat.v1.SendMessageTextRequest\x1a .chat.v1.SendMessageTextResponse\x12r\n" +
-	"\x19SendMessageWithAttachment\x12).chat.v1.SendMessageWithAttachmentRequest\x1a*.chat.v1.SendMessageWithAttachmentResponseB\x1aZ\x18github.com/kaelorin/chatb\x06proto3"
+	"\x19SendMessageWithAttachment\x12).chat.v1.SendMessageWithAttachmentRequest\x1a*.chat.v1.SendMessageWithAttachmentResponse\x12f\n" +
+	"\x15GetListLatestMessages\x12%.chat.v1.GetListLatestMessagesRequest\x1a&.chat.v1.GetListLatestMessagesResponseB\x1aZ\x18github.com/kaelorin/chatb\x06proto3"
 
 var file_chat_v1_service_proto_goTypes = []any{
 	(*SendMessageTextRequest)(nil),            // 0: chat.v1.SendMessageTextRequest
 	(*SendMessageWithAttachmentRequest)(nil),  // 1: chat.v1.SendMessageWithAttachmentRequest
-	(*SendMessageTextResponse)(nil),           // 2: chat.v1.SendMessageTextResponse
-	(*SendMessageWithAttachmentResponse)(nil), // 3: chat.v1.SendMessageWithAttachmentResponse
+	(*GetListLatestMessagesRequest)(nil),      // 2: chat.v1.GetListLatestMessagesRequest
+	(*SendMessageTextResponse)(nil),           // 3: chat.v1.SendMessageTextResponse
+	(*SendMessageWithAttachmentResponse)(nil), // 4: chat.v1.SendMessageWithAttachmentResponse
+	(*GetListLatestMessagesResponse)(nil),     // 5: chat.v1.GetListLatestMessagesResponse
 }
 var file_chat_v1_service_proto_depIdxs = []int32{
 	0, // 0: chat.v1.Service.SendMessageText:input_type -> chat.v1.SendMessageTextRequest
 	1, // 1: chat.v1.Service.SendMessageWithAttachment:input_type -> chat.v1.SendMessageWithAttachmentRequest
-	2, // 2: chat.v1.Service.SendMessageText:output_type -> chat.v1.SendMessageTextResponse
-	3, // 3: chat.v1.Service.SendMessageWithAttachment:output_type -> chat.v1.SendMessageWithAttachmentResponse
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	2, // 2: chat.v1.Service.GetListLatestMessages:input_type -> chat.v1.GetListLatestMessagesRequest
+	3, // 3: chat.v1.Service.SendMessageText:output_type -> chat.v1.SendMessageTextResponse
+	4, // 4: chat.v1.Service.SendMessageWithAttachment:output_type -> chat.v1.SendMessageWithAttachmentResponse
+	5, // 5: chat.v1.Service.GetListLatestMessages:output_type -> chat.v1.GetListLatestMessagesResponse
+	3, // [3:6] is the sub-list for method output_type
+	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name

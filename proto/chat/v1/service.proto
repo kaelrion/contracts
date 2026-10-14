@@ -6,6 +6,7 @@ option go_package = "github.com/kaelorin/chat";
 import "chat/v1/type.proto";
 
 service Service {
-  rpc SendMessageText(SendMessageTextRequest)returns (SendMessageTextResponse);
-  rpc SendMessageWithAttachment(SendMessageWithAttachmentRequest)returns (SendMessageWithAttachmentResponse);
+  rpc SendMessageText(SendMessageTextRequest) returns (SendMessageTextResponse);
+  rpc SendMessageWithAttachment(SendMessageWithAttachmentRequest) returns (SendMessageWithAttachmentResponse);
+  rpc GetListLatestMessages(GetListLatestMessagesRequest) returns (GetListLatestMessagesResponse);
 }

@@ -66,3 +66,37 @@ message SendMessageWithAttachmentResponse {
   repeated SendMessageWithAttachmentPart parts           = 4;
   string                                 client_id       = 5;
 }
+
+message LatestMessageText {
+  string content = 1;
+}
+
+message LatestMessageAttachment {
+  string media_id = 1;
+  string name     = 2;
+}
+
+message LatestMessagePart {
+  string id       = 1;
+  int32  position = 2;
+  oneof content {
+    LatestMessageText       text       = 3;
+    LatestMessageAttachment attachment = 4;
+  }
+}
+
+message LatestMessage {
+  string                     id                  = 1;
+  string                     sender_id           = 2;
+  optional string            reply_to_message_id = 3;
+  repeated LatestMessagePart parts               = 4;
+}
+
+message GetListLatestMessagesRequest {
+  string conversation_id = 1;
+  int64  limit           = 2;
+}
+
+message GetListLatestMessagesResponse {
+  repeated LatestMessage messages = 1;
+}
