@@ -16,4 +16,5 @@ service Service {
 
   rpc GetListRepresentations(GetListRepresentationsRequest) returns (GetListRepresentationsResponse);
   rpc GetBatchRepresentationsMetadata(GetBatchRepresentationsMetadataRequest) returns (GetBatchRepresentationsMetadataResponse);
+
 }

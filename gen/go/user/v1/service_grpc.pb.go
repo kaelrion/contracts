@@ -22,6 +22,7 @@ const (
 	Service_GetProfile_FullMethodName             = "/user.v1.Service/GetProfile"
 	Service_InitializeUploadAvatar_FullMethodName = "/user.v1.Service/InitializeUploadAvatar"
 	Service_CompleteUploadAvatar_FullMethodName   = "/user.v1.Service/CompleteUploadAvatar"
+	Service_GetBatchProfileSummary_FullMethodName = "/user.v1.Service/GetBatchProfileSummary"
 )
 
 // ServiceClient is the client API for Service service.
@@ -31,6 +32,7 @@ type ServiceClient interface {
 	GetProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*GetProfileResponse, error)
 	InitializeUploadAvatar(ctx context.Context, in *InitializeUploadAvatarRequest, opts ...grpc.CallOption) (*InitializeUploadAvatarResponse, error)
 	CompleteUploadAvatar(ctx context.Context, in *CompleteUploadAvatarRequest, opts ...grpc.CallOption) (*CompleteUploadAvatarResponse, error)
+	GetBatchProfileSummary(ctx context.Context, in *GetBatchProfileSummaryRequest, opts ...grpc.CallOption) (*GetBatchProfileSummaryResponse, error)
 }
 
 type serviceClient struct {
@@ -71,6 +73,16 @@ func (c *serviceClient) CompleteUploadAvatar(ctx context.Context, in *CompleteUp
 	return out, nil
 }
 
+func (c *serviceClient) GetBatchProfileSummary(ctx context.Context, in *GetBatchProfileSummaryRequest, opts ...grpc.CallOption) (*GetBatchProfileSummaryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetBatchProfileSummaryResponse)
+	err := c.cc.Invoke(ctx, Service_GetBatchProfileSummary_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ServiceServer is the server API for Service service.
 // All implementations must embed UnimplementedServiceServer
 // for forward compatibility.
@@ -78,6 +90,7 @@ type ServiceServer interface {
 	GetProfile(context.Context, *GetProfileRequest) (*GetProfileResponse, error)
 	InitializeUploadAvatar(context.Context, *InitializeUploadAvatarRequest) (*InitializeUploadAvatarResponse, error)
 	CompleteUploadAvatar(context.Context, *CompleteUploadAvatarRequest) (*CompleteUploadAvatarResponse, error)
+	GetBatchProfileSummary(context.Context, *GetBatchProfileSummaryRequest) (*GetBatchProfileSummaryResponse, error)
 	mustEmbedUnimplementedServiceServer()
 }
 
@@ -96,6 +109,9 @@ func (UnimplementedServiceServer) InitializeUploadAvatar(context.Context, *Initi
 }
 func (UnimplementedServiceServer) CompleteUploadAvatar(context.Context, *CompleteUploadAvatarRequest) (*CompleteUploadAvatarResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CompleteUploadAvatar not implemented")
+}
+func (UnimplementedServiceServer) GetBatchProfileSummary(context.Context, *GetBatchProfileSummaryRequest) (*GetBatchProfileSummaryResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetBatchProfileSummary not implemented")
 }
 func (UnimplementedServiceServer) mustEmbedUnimplementedServiceServer() {}
 func (UnimplementedServiceServer) testEmbeddedByValue()                 {}
@@ -172,6 +188,24 @@ func _Service_CompleteUploadAvatar_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Service_GetBatchProfileSummary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBatchProfileSummaryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServer).GetBatchProfileSummary(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Service_GetBatchProfileSummary_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServer).GetBatchProfileSummary(ctx, req.(*GetBatchProfileSummaryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Service_ServiceDesc is the grpc.ServiceDesc for Service service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -190,6 +224,10 @@ var Service_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CompleteUploadAvatar",
 			Handler:    _Service_CompleteUploadAvatar_Handler,
+		},
+		{
+			MethodName: "GetBatchProfileSummary",
+			Handler:    _Service_GetBatchProfileSummary_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

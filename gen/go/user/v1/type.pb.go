@@ -358,6 +358,162 @@ func (x *CompleteUploadAvatarResponse) GetUrl() string {
 	return ""
 }
 
+type ProfileSummary struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	FirstName     string                 `protobuf:"bytes,1,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	LastName      string                 `protobuf:"bytes,2,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
+	DisplayName   string                 `protobuf:"bytes,3,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	AvatarMediaId *string                `protobuf:"bytes,4,opt,name=avatar_media_id,json=avatarMediaId,proto3,oneof" json:"avatar_media_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProfileSummary) Reset() {
+	*x = ProfileSummary{}
+	mi := &file_user_v1_type_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProfileSummary) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProfileSummary) ProtoMessage() {}
+
+func (x *ProfileSummary) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_type_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProfileSummary.ProtoReflect.Descriptor instead.
+func (*ProfileSummary) Descriptor() ([]byte, []int) {
+	return file_user_v1_type_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *ProfileSummary) GetFirstName() string {
+	if x != nil {
+		return x.FirstName
+	}
+	return ""
+}
+
+func (x *ProfileSummary) GetLastName() string {
+	if x != nil {
+		return x.LastName
+	}
+	return ""
+}
+
+func (x *ProfileSummary) GetDisplayName() string {
+	if x != nil {
+		return x.DisplayName
+	}
+	return ""
+}
+
+func (x *ProfileSummary) GetAvatarMediaId() string {
+	if x != nil && x.AvatarMediaId != nil {
+		return *x.AvatarMediaId
+	}
+	return ""
+}
+
+type GetBatchProfileSummaryRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Ids           []string               `protobuf:"bytes,1,rep,name=ids,proto3" json:"ids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBatchProfileSummaryRequest) Reset() {
+	*x = GetBatchProfileSummaryRequest{}
+	mi := &file_user_v1_type_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBatchProfileSummaryRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBatchProfileSummaryRequest) ProtoMessage() {}
+
+func (x *GetBatchProfileSummaryRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_type_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBatchProfileSummaryRequest.ProtoReflect.Descriptor instead.
+func (*GetBatchProfileSummaryRequest) Descriptor() ([]byte, []int) {
+	return file_user_v1_type_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *GetBatchProfileSummaryRequest) GetIds() []string {
+	if x != nil {
+		return x.Ids
+	}
+	return nil
+}
+
+type GetBatchProfileSummaryResponse struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	ProfileSummarys []*ProfileSummary      `protobuf:"bytes,1,rep,name=profile_summarys,json=profileSummarys,proto3" json:"profile_summarys,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *GetBatchProfileSummaryResponse) Reset() {
+	*x = GetBatchProfileSummaryResponse{}
+	mi := &file_user_v1_type_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBatchProfileSummaryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBatchProfileSummaryResponse) ProtoMessage() {}
+
+func (x *GetBatchProfileSummaryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_v1_type_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBatchProfileSummaryResponse.ProtoReflect.Descriptor instead.
+func (*GetBatchProfileSummaryResponse) Descriptor() ([]byte, []int) {
+	return file_user_v1_type_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *GetBatchProfileSummaryResponse) GetProfileSummarys() []*ProfileSummary {
+	if x != nil {
+		return x.ProfileSummarys
+	}
+	return nil
+}
+
 var File_user_v1_type_proto protoreflect.FileDescriptor
 
 const file_user_v1_type_proto_rawDesc = "" +
@@ -389,7 +545,18 @@ const file_user_v1_type_proto_rawDesc = "" +
 	"\n" +
 	"session_id\x18\x02 \x01(\tR\tsessionId\"0\n" +
 	"\x1cCompleteUploadAvatarResponse\x12\x10\n" +
-	"\x03url\x18\x01 \x01(\tR\x03urlB0Z.github.com/kaelrion/contracts/gen/user/v1;userb\x06proto3"
+	"\x03url\x18\x01 \x01(\tR\x03url\"\xb0\x01\n" +
+	"\x0eProfileSummary\x12\x1d\n" +
+	"\n" +
+	"first_name\x18\x01 \x01(\tR\tfirstName\x12\x1b\n" +
+	"\tlast_name\x18\x02 \x01(\tR\blastName\x12!\n" +
+	"\fdisplay_name\x18\x03 \x01(\tR\vdisplayName\x12+\n" +
+	"\x0favatar_media_id\x18\x04 \x01(\tH\x00R\ravatarMediaId\x88\x01\x01B\x12\n" +
+	"\x10_avatar_media_id\"1\n" +
+	"\x1dGetBatchProfileSummaryRequest\x12\x10\n" +
+	"\x03ids\x18\x01 \x03(\tR\x03ids\"d\n" +
+	"\x1eGetBatchProfileSummaryResponse\x12B\n" +
+	"\x10profile_summarys\x18\x01 \x03(\v2\x17.user.v1.ProfileSummaryR\x0fprofileSummarysB0Z.github.com/kaelrion/contracts/gen/user/v1;userb\x06proto3"
 
 var (
 	file_user_v1_type_proto_rawDescOnce sync.Once
@@ -403,7 +570,7 @@ func file_user_v1_type_proto_rawDescGZIP() []byte {
 	return file_user_v1_type_proto_rawDescData
 }
 
-var file_user_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_user_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_user_v1_type_proto_goTypes = []any{
 	(*GetProfileRequest)(nil),              // 0: user.v1.GetProfileRequest
 	(*GetProfileResponse)(nil),             // 1: user.v1.GetProfileResponse
@@ -411,15 +578,19 @@ var file_user_v1_type_proto_goTypes = []any{
 	(*InitializeUploadAvatarResponse)(nil), // 3: user.v1.InitializeUploadAvatarResponse
 	(*CompleteUploadAvatarRequest)(nil),    // 4: user.v1.CompleteUploadAvatarRequest
 	(*CompleteUploadAvatarResponse)(nil),   // 5: user.v1.CompleteUploadAvatarResponse
-	(*timestamppb.Timestamp)(nil),          // 6: google.protobuf.Timestamp
+	(*ProfileSummary)(nil),                 // 6: user.v1.ProfileSummary
+	(*GetBatchProfileSummaryRequest)(nil),  // 7: user.v1.GetBatchProfileSummaryRequest
+	(*GetBatchProfileSummaryResponse)(nil), // 8: user.v1.GetBatchProfileSummaryResponse
+	(*timestamppb.Timestamp)(nil),          // 9: google.protobuf.Timestamp
 }
 var file_user_v1_type_proto_depIdxs = []int32{
-	6, // 0: user.v1.GetProfileResponse.birthday:type_name -> google.protobuf.Timestamp
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	9, // 0: user.v1.GetProfileResponse.birthday:type_name -> google.protobuf.Timestamp
+	6, // 1: user.v1.GetBatchProfileSummaryResponse.profile_summarys:type_name -> user.v1.ProfileSummary
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_user_v1_type_proto_init() }
@@ -428,13 +599,14 @@ func file_user_v1_type_proto_init() {
 		return
 	}
 	file_user_v1_type_proto_msgTypes[1].OneofWrappers = []any{}
+	file_user_v1_type_proto_msgTypes[6].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_v1_type_proto_rawDesc), len(file_user_v1_type_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

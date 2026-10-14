@@ -24,30 +24,35 @@ var File_user_v1_service_proto protoreflect.FileDescriptor
 
 const file_user_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x15user/v1/service.proto\x12\auser.v1\x1a\x12user/v1/type.proto2\xa0\x02\n" +
+	"\x15user/v1/service.proto\x12\auser.v1\x1a\x12user/v1/type.proto2\x8b\x03\n" +
 	"\aService\x12E\n" +
 	"\n" +
 	"GetProfile\x12\x1a.user.v1.GetProfileRequest\x1a\x1b.user.v1.GetProfileResponse\x12i\n" +
 	"\x16InitializeUploadAvatar\x12&.user.v1.InitializeUploadAvatarRequest\x1a'.user.v1.InitializeUploadAvatarResponse\x12c\n" +
-	"\x14CompleteUploadAvatar\x12$.user.v1.CompleteUploadAvatarRequest\x1a%.user.v1.CompleteUploadAvatarResponseB0Z.github.com/kaelrion/contracts/gen/user/v1;userb\x06proto3"
+	"\x14CompleteUploadAvatar\x12$.user.v1.CompleteUploadAvatarRequest\x1a%.user.v1.CompleteUploadAvatarResponse\x12i\n" +
+	"\x16GetBatchProfileSummary\x12&.user.v1.GetBatchProfileSummaryRequest\x1a'.user.v1.GetBatchProfileSummaryResponseB0Z.github.com/kaelrion/contracts/gen/user/v1;userb\x06proto3"
 
 var file_user_v1_service_proto_goTypes = []any{
 	(*GetProfileRequest)(nil),              // 0: user.v1.GetProfileRequest
 	(*InitializeUploadAvatarRequest)(nil),  // 1: user.v1.InitializeUploadAvatarRequest
 	(*CompleteUploadAvatarRequest)(nil),    // 2: user.v1.CompleteUploadAvatarRequest
-	(*GetProfileResponse)(nil),             // 3: user.v1.GetProfileResponse
-	(*InitializeUploadAvatarResponse)(nil), // 4: user.v1.InitializeUploadAvatarResponse
-	(*CompleteUploadAvatarResponse)(nil),   // 5: user.v1.CompleteUploadAvatarResponse
+	(*GetBatchProfileSummaryRequest)(nil),  // 3: user.v1.GetBatchProfileSummaryRequest
+	(*GetProfileResponse)(nil),             // 4: user.v1.GetProfileResponse
+	(*InitializeUploadAvatarResponse)(nil), // 5: user.v1.InitializeUploadAvatarResponse
+	(*CompleteUploadAvatarResponse)(nil),   // 6: user.v1.CompleteUploadAvatarResponse
+	(*GetBatchProfileSummaryResponse)(nil), // 7: user.v1.GetBatchProfileSummaryResponse
 }
 var file_user_v1_service_proto_depIdxs = []int32{
 	0, // 0: user.v1.Service.GetProfile:input_type -> user.v1.GetProfileRequest
 	1, // 1: user.v1.Service.InitializeUploadAvatar:input_type -> user.v1.InitializeUploadAvatarRequest
 	2, // 2: user.v1.Service.CompleteUploadAvatar:input_type -> user.v1.CompleteUploadAvatarRequest
-	3, // 3: user.v1.Service.GetProfile:output_type -> user.v1.GetProfileResponse
-	4, // 4: user.v1.Service.InitializeUploadAvatar:output_type -> user.v1.InitializeUploadAvatarResponse
-	5, // 5: user.v1.Service.CompleteUploadAvatar:output_type -> user.v1.CompleteUploadAvatarResponse
-	3, // [3:6] is the sub-list for method output_type
-	0, // [0:3] is the sub-list for method input_type
+	3, // 3: user.v1.Service.GetBatchProfileSummary:input_type -> user.v1.GetBatchProfileSummaryRequest
+	4, // 4: user.v1.Service.GetProfile:output_type -> user.v1.GetProfileResponse
+	5, // 5: user.v1.Service.InitializeUploadAvatar:output_type -> user.v1.InitializeUploadAvatarResponse
+	6, // 6: user.v1.Service.CompleteUploadAvatar:output_type -> user.v1.CompleteUploadAvatarResponse
+	7, // 7: user.v1.Service.GetBatchProfileSummary:output_type -> user.v1.GetBatchProfileSummaryResponse
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
