@@ -624,6 +624,7 @@ type RefreshTokenResponse struct {
 	RefreshToken     string                 `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
 	AccessExpiresAt  *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=access_expires_at,json=accessExpiresAt,proto3" json:"access_expires_at,omitempty"`
 	RefreshExpiresAt *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=refresh_expires_at,json=refreshExpiresAt,proto3" json:"refresh_expires_at,omitempty"`
+	PrincipalId      string                 `protobuf:"bytes,5,opt,name=principal_id,json=principalId,proto3" json:"principal_id,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -684,6 +685,13 @@ func (x *RefreshTokenResponse) GetRefreshExpiresAt() *timestamppb.Timestamp {
 		return x.RefreshExpiresAt
 	}
 	return nil
+}
+
+func (x *RefreshTokenResponse) GetPrincipalId() string {
+	if x != nil {
+		return x.PrincipalId
+	}
+	return ""
 }
 
 type LoginWithEmailRequest struct {
@@ -816,6 +824,7 @@ type LoginWithEmailResponse struct {
 	RefreshToken     string                 `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
 	AccessExpiresAt  *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=access_expires_at,json=accessExpiresAt,proto3" json:"access_expires_at,omitempty"`
 	RefreshExpiresAt *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=refresh_expires_at,json=refreshExpiresAt,proto3" json:"refresh_expires_at,omitempty"`
+	PrincipalId      string                 `protobuf:"bytes,5,opt,name=principal_id,json=principalId,proto3" json:"principal_id,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -878,6 +887,13 @@ func (x *LoginWithEmailResponse) GetRefreshExpiresAt() *timestamppb.Timestamp {
 	return nil
 }
 
+func (x *LoginWithEmailResponse) GetPrincipalId() string {
+	if x != nil {
+		return x.PrincipalId
+	}
+	return ""
+}
+
 var File_auth_v1_type_proto protoreflect.FileDescriptor
 
 const file_auth_v1_type_proto_rawDesc = "" +
@@ -929,12 +945,13 @@ const file_auth_v1_type_proto_rawDesc = "" +
 	"\amessage\x18\x05 \x01(\tR\amessage\x12\x1b\n" +
 	"\tdevice_id\x18\x06 \x01(\tR\bdeviceId\":\n" +
 	"\x13RefreshTokenRequest\x12#\n" +
-	"\rrefresh_token\x18\x01 \x01(\tR\frefreshToken\"\xf0\x01\n" +
+	"\rrefresh_token\x18\x01 \x01(\tR\frefreshToken\"\x93\x02\n" +
 	"\x14RefreshTokenResponse\x12!\n" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12#\n" +
 	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\x12F\n" +
 	"\x11access_expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x0faccessExpiresAt\x12H\n" +
-	"\x12refresh_expires_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x10refreshExpiresAt\"\xd6\x02\n" +
+	"\x12refresh_expires_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x10refreshExpiresAt\x12!\n" +
+	"\fprincipal_id\x18\x05 \x01(\tR\vprincipalId\"\xd6\x02\n" +
 	"\x15LoginWithEmailRequest\x12\x1e\n" +
 	"\n" +
 	"identifier\x18\x01 \x01(\tR\n" +
@@ -953,12 +970,13 @@ const file_auth_v1_type_proto_rawDesc = "" +
 	"\bplatform\x18\n" +
 	" \x01(\tR\bplatform\x12\x1f\n" +
 	"\vdevice_type\x18\v \x01(\tR\n" +
-	"deviceType\"\xf2\x01\n" +
+	"deviceType\"\x95\x02\n" +
 	"\x16LoginWithEmailResponse\x12!\n" +
 	"\faccess_token\x18\x01 \x01(\tR\vaccessToken\x12#\n" +
 	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\x12F\n" +
 	"\x11access_expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x0faccessExpiresAt\x12H\n" +
-	"\x12refresh_expires_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x10refreshExpiresAtB0Z.github.com/kaelrion/contracts/gen/auth/v1;authb\x06proto3"
+	"\x12refresh_expires_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x10refreshExpiresAt\x12!\n" +
+	"\fprincipal_id\x18\x05 \x01(\tR\vprincipalIdB0Z.github.com/kaelrion/contracts/gen/auth/v1;authb\x06proto3"
 
 var (
 	file_auth_v1_type_proto_rawDescOnce sync.Once
