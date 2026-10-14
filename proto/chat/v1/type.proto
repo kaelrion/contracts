@@ -99,5 +99,6 @@ message GetListLatestMessagesRequest {
 }
 
 message GetListLatestMessagesResponse {
-  repeated LatestMessage messages = 1;
+  repeated LatestMessage messages    = 1;
+  string                 next_cursor = 2;
 }

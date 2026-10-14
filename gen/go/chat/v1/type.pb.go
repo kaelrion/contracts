@@ -952,6 +952,7 @@ func (x *GetListLatestMessagesRequest) GetLimit() int64 {
 type GetListLatestMessagesResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Messages      []*LatestMessage       `protobuf:"bytes,1,rep,name=messages,proto3" json:"messages,omitempty"`
+	NextCursor    string                 `protobuf:"bytes,2,opt,name=next_cursor,json=nextCursor,proto3" json:"next_cursor,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -991,6 +992,13 @@ func (x *GetListLatestMessagesResponse) GetMessages() []*LatestMessage {
 		return x.Messages
 	}
 	return nil
+}
+
+func (x *GetListLatestMessagesResponse) GetNextCursor() string {
+	if x != nil {
+		return x.NextCursor
+	}
+	return ""
 }
 
 var File_chat_v1_type_proto protoreflect.FileDescriptor
@@ -1081,9 +1089,11 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"\x14_reply_to_message_id\"]\n" +
 	"\x1cGetListLatestMessagesRequest\x12'\n" +
 	"\x0fconversation_id\x18\x01 \x01(\tR\x0econversationId\x12\x14\n" +
-	"\x05limit\x18\x02 \x01(\x03R\x05limit\"S\n" +
+	"\x05limit\x18\x02 \x01(\x03R\x05limit\"t\n" +
 	"\x1dGetListLatestMessagesResponse\x122\n" +
-	"\bmessages\x18\x01 \x03(\v2\x16.chat.v1.LatestMessageR\bmessagesB\x1aZ\x18github.com/kaelorin/chatb\x06proto3"
+	"\bmessages\x18\x01 \x03(\v2\x16.chat.v1.LatestMessageR\bmessages\x12\x1f\n" +
+	"\vnext_cursor\x18\x02 \x01(\tR\n" +
+	"nextCursorB\x1aZ\x18github.com/kaelorin/chatb\x06proto3"
 
 var (
 	file_chat_v1_type_proto_rawDescOnce sync.Once
