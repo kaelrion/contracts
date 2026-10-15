@@ -91,7 +91,8 @@ message LatestMessage {
   string                     sender_id           = 2;
   optional string            reply_to_message_id = 3;
   repeated LatestMessagePart parts               = 4;
-  google.protobuf.Timestamp  created_at          = 5;
+  string                     status              = 5;
+  google.protobuf.Timestamp  created_at          = 6;
 }
 
 message GetListLatestMessagesRequest {
