@@ -1328,6 +1328,7 @@ type RepresentationMetadata struct {
 	Size          int64                  `protobuf:"varint,3,opt,name=size,proto3" json:"size,omitempty"`
 	ContentType   string                 `protobuf:"bytes,4,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
 	DurationMs    *int64                 `protobuf:"varint,5,opt,name=duration_ms,json=durationMs,proto3,oneof" json:"duration_ms,omitempty"`
+	Id            string                 `protobuf:"bytes,6,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1395,6 +1396,13 @@ func (x *RepresentationMetadata) GetDurationMs() int64 {
 		return *x.DurationMs
 	}
 	return 0
+}
+
+func (x *RepresentationMetadata) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
 }
 
 type GetBatchRepresentationsMetadataRequest struct {
@@ -1594,14 +1602,15 @@ const file_media_v1_type_proto_rawDesc = "" +
 	"\bmedia_id\x18\x01 \x01(\tR\amediaId\x12!\n" +
 	"\fprincipal_id\x18\x02 \x01(\tR\vprincipalId\"d\n" +
 	"\x1eGetListRepresentationsResponse\x12B\n" +
-	"\x0frepresentations\x18\x01 \x03(\v2\x18.media.v1.RepresentationR\x0frepresentations\"\xd2\x01\n" +
+	"\x0frepresentations\x18\x01 \x03(\v2\x18.media.v1.RepresentationR\x0frepresentations\"\xe2\x01\n" +
 	"\x16RepresentationMetadata\x12\x19\n" +
 	"\x05width\x18\x01 \x01(\x03H\x00R\x05width\x88\x01\x01\x12\x1b\n" +
 	"\x06height\x18\x02 \x01(\x03H\x01R\x06height\x88\x01\x01\x12\x12\n" +
 	"\x04size\x18\x03 \x01(\x03R\x04size\x12!\n" +
 	"\fcontent_type\x18\x04 \x01(\tR\vcontentType\x12$\n" +
 	"\vduration_ms\x18\x05 \x01(\x03H\x02R\n" +
-	"durationMs\x88\x01\x01B\b\n" +
+	"durationMs\x88\x01\x01\x12\x0e\n" +
+	"\x02id\x18\x06 \x01(\tR\x02idB\b\n" +
 	"\x06_widthB\t\n" +
 	"\a_heightB\x0e\n" +
 	"\f_duration_ms\"z\n" +

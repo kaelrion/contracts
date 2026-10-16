@@ -148,6 +148,7 @@ message RepresentationMetadata {
   int64          size         = 3;
   string         content_type = 4;
   optional int64 duration_ms  = 5;
+  string         id           = 6;
 }
 
 message GetBatchRepresentationsMetadataRequest{
