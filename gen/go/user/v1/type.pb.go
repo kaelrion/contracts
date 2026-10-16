@@ -360,10 +360,11 @@ func (x *CompleteUploadAvatarResponse) GetUrl() string {
 
 type ProfileSummary struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FirstName     string                 `protobuf:"bytes,1,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
-	LastName      string                 `protobuf:"bytes,2,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
-	DisplayName   string                 `protobuf:"bytes,3,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
-	AvatarMediaId *string                `protobuf:"bytes,4,opt,name=avatar_media_id,json=avatarMediaId,proto3,oneof" json:"avatar_media_id,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	FirstName     string                 `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	LastName      string                 `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
+	DisplayName   string                 `protobuf:"bytes,4,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	AvatarMediaId *string                `protobuf:"bytes,5,opt,name=avatar_media_id,json=avatarMediaId,proto3,oneof" json:"avatar_media_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -396,6 +397,13 @@ func (x *ProfileSummary) ProtoReflect() protoreflect.Message {
 // Deprecated: Use ProfileSummary.ProtoReflect.Descriptor instead.
 func (*ProfileSummary) Descriptor() ([]byte, []int) {
 	return file_user_v1_type_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *ProfileSummary) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
 }
 
 func (x *ProfileSummary) GetFirstName() string {
@@ -545,13 +553,14 @@ const file_user_v1_type_proto_rawDesc = "" +
 	"\n" +
 	"session_id\x18\x02 \x01(\tR\tsessionId\"0\n" +
 	"\x1cCompleteUploadAvatarResponse\x12\x10\n" +
-	"\x03url\x18\x01 \x01(\tR\x03url\"\xb0\x01\n" +
-	"\x0eProfileSummary\x12\x1d\n" +
+	"\x03url\x18\x01 \x01(\tR\x03url\"\xc0\x01\n" +
+	"\x0eProfileSummary\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
-	"first_name\x18\x01 \x01(\tR\tfirstName\x12\x1b\n" +
-	"\tlast_name\x18\x02 \x01(\tR\blastName\x12!\n" +
-	"\fdisplay_name\x18\x03 \x01(\tR\vdisplayName\x12+\n" +
-	"\x0favatar_media_id\x18\x04 \x01(\tH\x00R\ravatarMediaId\x88\x01\x01B\x12\n" +
+	"first_name\x18\x02 \x01(\tR\tfirstName\x12\x1b\n" +
+	"\tlast_name\x18\x03 \x01(\tR\blastName\x12!\n" +
+	"\fdisplay_name\x18\x04 \x01(\tR\vdisplayName\x12+\n" +
+	"\x0favatar_media_id\x18\x05 \x01(\tH\x00R\ravatarMediaId\x88\x01\x01B\x12\n" +
 	"\x10_avatar_media_id\"1\n" +
 	"\x1dGetBatchProfileSummaryRequest\x12\x10\n" +
 	"\x03ids\x18\x01 \x03(\tR\x03ids\"d\n" +
