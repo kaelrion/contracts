@@ -102,5 +102,5 @@ message GetListLatestMessagesRequest {
 
 message GetListLatestMessagesResponse {
   repeated LatestMessage messages    = 1;
-  string                 next_cursor = 2;
+  optional string        next_cursor = 2;
 }
