@@ -9,4 +9,6 @@ service Service {
   rpc SendMessageText(SendMessageTextRequest) returns (SendMessageTextResponse);
   rpc SendMessageWithAttachment(SendMessageWithAttachmentRequest) returns (SendMessageWithAttachmentResponse);
   rpc GetListLatestMessages(GetListLatestMessagesRequest) returns (GetListLatestMessagesResponse);
+
+  rpc GetListConversations(GetListConversationsRequest) returns (GetListConversationsResponse);
 }

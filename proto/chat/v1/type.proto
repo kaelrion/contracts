@@ -104,3 +104,36 @@ message GetListLatestMessagesResponse {
   repeated LatestMessage messages    = 1;
   optional string        next_cursor = 2;
 }
+
+message Message {
+  string          id                  = 1;
+  string          conversation_id     = 2;
+  string          sender_id           = 3;
+  optional string reply_to_message_id = 4;
+}
+
+message Conversation {
+  string                             id                  = 1;
+  string                             type                = 2;
+  optional string                    name                = 3;
+  optional string                    avatar_media_id     = 4;
+  optional string                    last_message_id     = 5;
+  optional google.protobuf.Timestamp last_message_at     = 6;
+  optional string                    last_read_order_key = 7;
+  google.protobuf.Timestamp          last_activity_at    = 8;
+
+}
+
+message GetListConversationsRequest {
+  string          participant_id = 1;
+  optional string cursor         = 2;
+}
+
+message GetListConversationsResponse {
+  repeated Conversation conversations = 1;
+  optional string       cursor        = 2;
+}
+
+message SendMessageTextFirst {
+  Conversation conversation = 1;
+}
