@@ -127,6 +127,7 @@ message Conversation {
 message GetListConversationsRequest {
   string          participant_id = 1;
   optional string cursor         = 2;
+  int32           limit          = 3;
 }
 
 message GetListConversationsResponse {

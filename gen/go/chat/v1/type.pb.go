@@ -1190,6 +1190,7 @@ type GetListConversationsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ParticipantId string                 `protobuf:"bytes,1,opt,name=participant_id,json=participantId,proto3" json:"participant_id,omitempty"`
 	Cursor        *string                `protobuf:"bytes,2,opt,name=cursor,proto3,oneof" json:"cursor,omitempty"`
+	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1236,6 +1237,13 @@ func (x *GetListConversationsRequest) GetCursor() string {
 		return *x.Cursor
 	}
 	return ""
+}
+
+func (x *GetListConversationsRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
 }
 
 type GetListConversationsResponse struct {
@@ -1450,10 +1458,11 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"\x10_avatar_media_idB\x12\n" +
 	"\x10_last_message_idB\x12\n" +
 	"\x10_last_message_atB\x16\n" +
-	"\x14_last_read_order_key\"l\n" +
+	"\x14_last_read_order_key\"\x82\x01\n" +
 	"\x1bGetListConversationsRequest\x12%\n" +
 	"\x0eparticipant_id\x18\x01 \x01(\tR\rparticipantId\x12\x1b\n" +
-	"\x06cursor\x18\x02 \x01(\tH\x00R\x06cursor\x88\x01\x01B\t\n" +
+	"\x06cursor\x18\x02 \x01(\tH\x00R\x06cursor\x88\x01\x01\x12\x14\n" +
+	"\x05limit\x18\x03 \x01(\x05R\x05limitB\t\n" +
 	"\a_cursor\"\x83\x01\n" +
 	"\x1cGetListConversationsResponse\x12;\n" +
 	"\rconversations\x18\x01 \x03(\v2\x15.chat.v1.ConversationR\rconversations\x12\x1b\n" +
