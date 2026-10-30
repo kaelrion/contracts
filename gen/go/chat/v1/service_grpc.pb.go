@@ -19,10 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Service_SendMessageText_FullMethodName           = "/chat.v1.Service/SendMessageText"
-	Service_SendMessageWithAttachment_FullMethodName = "/chat.v1.Service/SendMessageWithAttachment"
-	Service_GetListLatestMessages_FullMethodName     = "/chat.v1.Service/GetListLatestMessages"
-	Service_GetListConversations_FullMethodName      = "/chat.v1.Service/GetListConversations"
+	Service_SendMessageText_FullMethodName             = "/chat.v1.Service/SendMessageText"
+	Service_SendMessageWithAttachment_FullMethodName   = "/chat.v1.Service/SendMessageWithAttachment"
+	Service_GetListLatestMessages_FullMethodName       = "/chat.v1.Service/GetListLatestMessages"
+	Service_GetListConversations_FullMethodName        = "/chat.v1.Service/GetListConversations"
+	Service_GetGroupConversationMembers_FullMethodName = "/chat.v1.Service/GetGroupConversationMembers"
 )
 
 // ServiceClient is the client API for Service service.
@@ -33,6 +34,7 @@ type ServiceClient interface {
 	SendMessageWithAttachment(ctx context.Context, in *SendMessageWithAttachmentRequest, opts ...grpc.CallOption) (*SendMessageWithAttachmentResponse, error)
 	GetListLatestMessages(ctx context.Context, in *GetListLatestMessagesRequest, opts ...grpc.CallOption) (*GetListLatestMessagesResponse, error)
 	GetListConversations(ctx context.Context, in *GetListConversationsRequest, opts ...grpc.CallOption) (*GetListConversationsResponse, error)
+	GetGroupConversationMembers(ctx context.Context, in *GetGroupConversationMembersRequest, opts ...grpc.CallOption) (*GetGroupConversationMembersResponse, error)
 }
 
 type serviceClient struct {
@@ -83,6 +85,16 @@ func (c *serviceClient) GetListConversations(ctx context.Context, in *GetListCon
 	return out, nil
 }
 
+func (c *serviceClient) GetGroupConversationMembers(ctx context.Context, in *GetGroupConversationMembersRequest, opts ...grpc.CallOption) (*GetGroupConversationMembersResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetGroupConversationMembersResponse)
+	err := c.cc.Invoke(ctx, Service_GetGroupConversationMembers_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ServiceServer is the server API for Service service.
 // All implementations must embed UnimplementedServiceServer
 // for forward compatibility.
@@ -91,6 +103,7 @@ type ServiceServer interface {
 	SendMessageWithAttachment(context.Context, *SendMessageWithAttachmentRequest) (*SendMessageWithAttachmentResponse, error)
 	GetListLatestMessages(context.Context, *GetListLatestMessagesRequest) (*GetListLatestMessagesResponse, error)
 	GetListConversations(context.Context, *GetListConversationsRequest) (*GetListConversationsResponse, error)
+	GetGroupConversationMembers(context.Context, *GetGroupConversationMembersRequest) (*GetGroupConversationMembersResponse, error)
 	mustEmbedUnimplementedServiceServer()
 }
 
@@ -112,6 +125,9 @@ func (UnimplementedServiceServer) GetListLatestMessages(context.Context, *GetLis
 }
 func (UnimplementedServiceServer) GetListConversations(context.Context, *GetListConversationsRequest) (*GetListConversationsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetListConversations not implemented")
+}
+func (UnimplementedServiceServer) GetGroupConversationMembers(context.Context, *GetGroupConversationMembersRequest) (*GetGroupConversationMembersResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetGroupConversationMembers not implemented")
 }
 func (UnimplementedServiceServer) mustEmbedUnimplementedServiceServer() {}
 func (UnimplementedServiceServer) testEmbeddedByValue()                 {}
@@ -206,6 +222,24 @@ func _Service_GetListConversations_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Service_GetGroupConversationMembers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetGroupConversationMembersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServer).GetGroupConversationMembers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Service_GetGroupConversationMembers_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServer).GetGroupConversationMembers(ctx, req.(*GetGroupConversationMembersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Service_ServiceDesc is the grpc.ServiceDesc for Service service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -228,6 +262,10 @@ var Service_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetListConversations",
 			Handler:    _Service_GetListConversations_Handler,
+		},
+		{
+			MethodName: "GetGroupConversationMembers",
+			Handler:    _Service_GetGroupConversationMembers_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

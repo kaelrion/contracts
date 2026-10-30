@@ -11,4 +11,5 @@ service Service {
   rpc GetListLatestMessages(GetListLatestMessagesRequest) returns (GetListLatestMessagesResponse);
 
   rpc GetListConversations(GetListConversationsRequest) returns (GetListConversationsResponse);
+  rpc GetGroupConversationMembers(GetGroupConversationMembersRequest) returns (GetGroupConversationMembersResponse);
 }

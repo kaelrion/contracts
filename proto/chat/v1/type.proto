@@ -124,6 +124,10 @@ message Conversation {
 
 }
 
+message SendMessageTextFirst {
+  Conversation conversation = 1;
+}
+
 message GetListConversationsRequest {
   string          participant_id = 1;
   optional string cursor         = 2;
@@ -135,6 +139,19 @@ message GetListConversationsResponse {
   optional string       cursor        = 2;
 }
 
-message SendMessageTextFirst {
-  Conversation conversation = 1;
+message GetGroupConversationMembersRequest{
+  string participant_id  = 1;
+  string conversation_id = 2;
+}
+
+message Participant {
+  string                             id        = 1;
+  string                             role      = 2;
+  optional string                    name      = 3;
+  google.protobuf.Timestamp          joined_at = 4;
+  optional google.protobuf.Timestamp left_at   = 5;
+}
+
+message GetGroupConversationMembersResponse {
+  repeated Participant participants = 1;
 }
