@@ -24,13 +24,14 @@ var File_chat_v1_service_proto protoreflect.FileDescriptor
 
 const file_chat_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x15chat/v1/service.proto\x12\achat.v1\x1a\x12chat/v1/type.proto2\x9a\x04\n" +
+	"\x15chat/v1/service.proto\x12\achat.v1\x1a\x12chat/v1/type.proto2\x82\x05\n" +
 	"\aService\x12T\n" +
 	"\x0fSendMessageText\x12\x1f.chat.v1.SendMessageTextRequest\x1a .chat.v1.SendMessageTextResponse\x12r\n" +
 	"\x19SendMessageWithAttachment\x12).chat.v1.SendMessageWithAttachmentRequest\x1a*.chat.v1.SendMessageWithAttachmentResponse\x12f\n" +
 	"\x15GetListLatestMessages\x12%.chat.v1.GetListLatestMessagesRequest\x1a&.chat.v1.GetListLatestMessagesResponse\x12c\n" +
 	"\x14GetListConversations\x12$.chat.v1.GetListConversationsRequest\x1a%.chat.v1.GetListConversationsResponse\x12x\n" +
-	"\x1bGetGroupConversationMembers\x12+.chat.v1.GetGroupConversationMembersRequest\x1a,.chat.v1.GetGroupConversationMembersResponseB\x1aZ\x18github.com/kaelorin/chatb\x06proto3"
+	"\x1bGetGroupConversationMembers\x12+.chat.v1.GetGroupConversationMembersRequest\x1a,.chat.v1.GetGroupConversationMembersResponse\x12f\n" +
+	"\x15GetConversationDetail\x12%.chat.v1.GetConversationDetailRequest\x1a&.chat.v1.GetConversationDetailResponseB\x1aZ\x18github.com/kaelorin/chatb\x06proto3"
 
 var file_chat_v1_service_proto_goTypes = []any{
 	(*SendMessageTextRequest)(nil),              // 0: chat.v1.SendMessageTextRequest
@@ -38,28 +39,32 @@ var file_chat_v1_service_proto_goTypes = []any{
 	(*GetListLatestMessagesRequest)(nil),        // 2: chat.v1.GetListLatestMessagesRequest
 	(*GetListConversationsRequest)(nil),         // 3: chat.v1.GetListConversationsRequest
 	(*GetGroupConversationMembersRequest)(nil),  // 4: chat.v1.GetGroupConversationMembersRequest
-	(*SendMessageTextResponse)(nil),             // 5: chat.v1.SendMessageTextResponse
-	(*SendMessageWithAttachmentResponse)(nil),   // 6: chat.v1.SendMessageWithAttachmentResponse
-	(*GetListLatestMessagesResponse)(nil),       // 7: chat.v1.GetListLatestMessagesResponse
-	(*GetListConversationsResponse)(nil),        // 8: chat.v1.GetListConversationsResponse
-	(*GetGroupConversationMembersResponse)(nil), // 9: chat.v1.GetGroupConversationMembersResponse
+	(*GetConversationDetailRequest)(nil),        // 5: chat.v1.GetConversationDetailRequest
+	(*SendMessageTextResponse)(nil),             // 6: chat.v1.SendMessageTextResponse
+	(*SendMessageWithAttachmentResponse)(nil),   // 7: chat.v1.SendMessageWithAttachmentResponse
+	(*GetListLatestMessagesResponse)(nil),       // 8: chat.v1.GetListLatestMessagesResponse
+	(*GetListConversationsResponse)(nil),        // 9: chat.v1.GetListConversationsResponse
+	(*GetGroupConversationMembersResponse)(nil), // 10: chat.v1.GetGroupConversationMembersResponse
+	(*GetConversationDetailResponse)(nil),       // 11: chat.v1.GetConversationDetailResponse
 }
 var file_chat_v1_service_proto_depIdxs = []int32{
-	0, // 0: chat.v1.Service.SendMessageText:input_type -> chat.v1.SendMessageTextRequest
-	1, // 1: chat.v1.Service.SendMessageWithAttachment:input_type -> chat.v1.SendMessageWithAttachmentRequest
-	2, // 2: chat.v1.Service.GetListLatestMessages:input_type -> chat.v1.GetListLatestMessagesRequest
-	3, // 3: chat.v1.Service.GetListConversations:input_type -> chat.v1.GetListConversationsRequest
-	4, // 4: chat.v1.Service.GetGroupConversationMembers:input_type -> chat.v1.GetGroupConversationMembersRequest
-	5, // 5: chat.v1.Service.SendMessageText:output_type -> chat.v1.SendMessageTextResponse
-	6, // 6: chat.v1.Service.SendMessageWithAttachment:output_type -> chat.v1.SendMessageWithAttachmentResponse
-	7, // 7: chat.v1.Service.GetListLatestMessages:output_type -> chat.v1.GetListLatestMessagesResponse
-	8, // 8: chat.v1.Service.GetListConversations:output_type -> chat.v1.GetListConversationsResponse
-	9, // 9: chat.v1.Service.GetGroupConversationMembers:output_type -> chat.v1.GetGroupConversationMembersResponse
-	5, // [5:10] is the sub-list for method output_type
-	0, // [0:5] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0,  // 0: chat.v1.Service.SendMessageText:input_type -> chat.v1.SendMessageTextRequest
+	1,  // 1: chat.v1.Service.SendMessageWithAttachment:input_type -> chat.v1.SendMessageWithAttachmentRequest
+	2,  // 2: chat.v1.Service.GetListLatestMessages:input_type -> chat.v1.GetListLatestMessagesRequest
+	3,  // 3: chat.v1.Service.GetListConversations:input_type -> chat.v1.GetListConversationsRequest
+	4,  // 4: chat.v1.Service.GetGroupConversationMembers:input_type -> chat.v1.GetGroupConversationMembersRequest
+	5,  // 5: chat.v1.Service.GetConversationDetail:input_type -> chat.v1.GetConversationDetailRequest
+	6,  // 6: chat.v1.Service.SendMessageText:output_type -> chat.v1.SendMessageTextResponse
+	7,  // 7: chat.v1.Service.SendMessageWithAttachment:output_type -> chat.v1.SendMessageWithAttachmentResponse
+	8,  // 8: chat.v1.Service.GetListLatestMessages:output_type -> chat.v1.GetListLatestMessagesResponse
+	9,  // 9: chat.v1.Service.GetListConversations:output_type -> chat.v1.GetListConversationsResponse
+	10, // 10: chat.v1.Service.GetGroupConversationMembers:output_type -> chat.v1.GetGroupConversationMembersResponse
+	11, // 11: chat.v1.Service.GetConversationDetail:output_type -> chat.v1.GetConversationDetailResponse
+	6,  // [6:12] is the sub-list for method output_type
+	0,  // [0:6] is the sub-list for method input_type
+	0,  // [0:0] is the sub-list for extension type_name
+	0,  // [0:0] is the sub-list for extension extendee
+	0,  // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_chat_v1_service_proto_init() }

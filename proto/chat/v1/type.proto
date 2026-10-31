@@ -155,3 +155,12 @@ message Participant {
 message GetGroupConversationMembersResponse {
   repeated Participant participants = 1;
 }
+
+message GetConversationDetailRequest{
+  string conversation_id = 1;
+  string participant_id  = 2;
+}
+
+message GetConversationDetailResponse{
+  Conversation conversation = 1;
+}

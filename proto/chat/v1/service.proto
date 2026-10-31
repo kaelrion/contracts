@@ -12,4 +12,5 @@ service Service {
 
   rpc GetListConversations(GetListConversationsRequest) returns (GetListConversationsResponse);
   rpc GetGroupConversationMembers(GetGroupConversationMembersRequest) returns (GetGroupConversationMembersResponse);
+  rpc GetConversationDetail(GetConversationDetailRequest) returns (GetConversationDetailResponse);
 }
