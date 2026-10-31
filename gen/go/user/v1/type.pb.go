@@ -479,10 +479,10 @@ func (x *GetBatchProfileSummaryRequest) GetIds() []string {
 }
 
 type GetBatchProfileSummaryResponse struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	ProfileSummarys []*ProfileSummary      `protobuf:"bytes,1,rep,name=profile_summarys,json=profileSummarys,proto3" json:"profile_summarys,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	ProfileSummaries []*ProfileSummary      `protobuf:"bytes,1,rep,name=profile_summaries,json=profileSummaries,proto3" json:"profile_summaries,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *GetBatchProfileSummaryResponse) Reset() {
@@ -515,9 +515,9 @@ func (*GetBatchProfileSummaryResponse) Descriptor() ([]byte, []int) {
 	return file_user_v1_type_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *GetBatchProfileSummaryResponse) GetProfileSummarys() []*ProfileSummary {
+func (x *GetBatchProfileSummaryResponse) GetProfileSummaries() []*ProfileSummary {
 	if x != nil {
-		return x.ProfileSummarys
+		return x.ProfileSummaries
 	}
 	return nil
 }
@@ -563,9 +563,9 @@ const file_user_v1_type_proto_rawDesc = "" +
 	"\x0favatar_media_id\x18\x05 \x01(\tH\x00R\ravatarMediaId\x88\x01\x01B\x12\n" +
 	"\x10_avatar_media_id\"1\n" +
 	"\x1dGetBatchProfileSummaryRequest\x12\x10\n" +
-	"\x03ids\x18\x01 \x03(\tR\x03ids\"d\n" +
-	"\x1eGetBatchProfileSummaryResponse\x12B\n" +
-	"\x10profile_summarys\x18\x01 \x03(\v2\x17.user.v1.ProfileSummaryR\x0fprofileSummarysB0Z.github.com/kaelrion/contracts/gen/user/v1;userb\x06proto3"
+	"\x03ids\x18\x01 \x03(\tR\x03ids\"f\n" +
+	"\x1eGetBatchProfileSummaryResponse\x12D\n" +
+	"\x11profile_summaries\x18\x01 \x03(\v2\x17.user.v1.ProfileSummaryR\x10profileSummariesB0Z.github.com/kaelrion/contracts/gen/user/v1;userb\x06proto3"
 
 var (
 	file_user_v1_type_proto_rawDescOnce sync.Once
@@ -594,7 +594,7 @@ var file_user_v1_type_proto_goTypes = []any{
 }
 var file_user_v1_type_proto_depIdxs = []int32{
 	9, // 0: user.v1.GetProfileResponse.birthday:type_name -> google.protobuf.Timestamp
-	6, // 1: user.v1.GetBatchProfileSummaryResponse.profile_summarys:type_name -> user.v1.ProfileSummary
+	6, // 1: user.v1.GetBatchProfileSummaryResponse.profile_summaries:type_name -> user.v1.ProfileSummary
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name

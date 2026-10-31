@@ -50,5 +50,5 @@ message GetBatchProfileSummaryRequest {
 }
 
 message GetBatchProfileSummaryResponse {
-  repeated ProfileSummary profile_summarys = 1;
+  repeated ProfileSummary profile_summaries = 1;
 }
