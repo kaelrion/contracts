@@ -479,8 +479,8 @@ func (x *GetBatchProfileSummaryRequest) GetIds() []string {
 }
 
 type GetBatchProfileSummaryResponse struct {
-	state            protoimpl.MessageState `protogen:"open.v1"`
-	ProfileSummaries []*ProfileSummary      `protobuf:"bytes,1,rep,name=profile_summaries,json=profileSummaries,proto3" json:"profile_summaries,omitempty"`
+	state            protoimpl.MessageState     `protogen:"open.v1"`
+	ProfileSummaries map[string]*ProfileSummary `protobuf:"bytes,1,rep,name=profile_summaries,json=profileSummaries,proto3" json:"profile_summaries,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -515,7 +515,7 @@ func (*GetBatchProfileSummaryResponse) Descriptor() ([]byte, []int) {
 	return file_user_v1_type_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *GetBatchProfileSummaryResponse) GetProfileSummaries() []*ProfileSummary {
+func (x *GetBatchProfileSummaryResponse) GetProfileSummaries() map[string]*ProfileSummary {
 	if x != nil {
 		return x.ProfileSummaries
 	}
@@ -563,9 +563,12 @@ const file_user_v1_type_proto_rawDesc = "" +
 	"\x0favatar_media_id\x18\x05 \x01(\tH\x00R\ravatarMediaId\x88\x01\x01B\x12\n" +
 	"\x10_avatar_media_id\"1\n" +
 	"\x1dGetBatchProfileSummaryRequest\x12\x10\n" +
-	"\x03ids\x18\x01 \x03(\tR\x03ids\"f\n" +
-	"\x1eGetBatchProfileSummaryResponse\x12D\n" +
-	"\x11profile_summaries\x18\x01 \x03(\v2\x17.user.v1.ProfileSummaryR\x10profileSummariesB0Z.github.com/kaelrion/contracts/gen/user/v1;userb\x06proto3"
+	"\x03ids\x18\x01 \x03(\tR\x03ids\"\xea\x01\n" +
+	"\x1eGetBatchProfileSummaryResponse\x12j\n" +
+	"\x11profile_summaries\x18\x01 \x03(\v2=.user.v1.GetBatchProfileSummaryResponse.ProfileSummariesEntryR\x10profileSummaries\x1a\\\n" +
+	"\x15ProfileSummariesEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12-\n" +
+	"\x05value\x18\x02 \x01(\v2\x17.user.v1.ProfileSummaryR\x05value:\x028\x01B0Z.github.com/kaelrion/contracts/gen/user/v1;userb\x06proto3"
 
 var (
 	file_user_v1_type_proto_rawDescOnce sync.Once
@@ -579,7 +582,7 @@ func file_user_v1_type_proto_rawDescGZIP() []byte {
 	return file_user_v1_type_proto_rawDescData
 }
 
-var file_user_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_user_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_user_v1_type_proto_goTypes = []any{
 	(*GetProfileRequest)(nil),              // 0: user.v1.GetProfileRequest
 	(*GetProfileResponse)(nil),             // 1: user.v1.GetProfileResponse
@@ -590,16 +593,18 @@ var file_user_v1_type_proto_goTypes = []any{
 	(*ProfileSummary)(nil),                 // 6: user.v1.ProfileSummary
 	(*GetBatchProfileSummaryRequest)(nil),  // 7: user.v1.GetBatchProfileSummaryRequest
 	(*GetBatchProfileSummaryResponse)(nil), // 8: user.v1.GetBatchProfileSummaryResponse
-	(*timestamppb.Timestamp)(nil),          // 9: google.protobuf.Timestamp
+	nil,                                    // 9: user.v1.GetBatchProfileSummaryResponse.ProfileSummariesEntry
+	(*timestamppb.Timestamp)(nil),          // 10: google.protobuf.Timestamp
 }
 var file_user_v1_type_proto_depIdxs = []int32{
-	9, // 0: user.v1.GetProfileResponse.birthday:type_name -> google.protobuf.Timestamp
-	6, // 1: user.v1.GetBatchProfileSummaryResponse.profile_summaries:type_name -> user.v1.ProfileSummary
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	10, // 0: user.v1.GetProfileResponse.birthday:type_name -> google.protobuf.Timestamp
+	9,  // 1: user.v1.GetBatchProfileSummaryResponse.profile_summaries:type_name -> user.v1.GetBatchProfileSummaryResponse.ProfileSummariesEntry
+	6,  // 2: user.v1.GetBatchProfileSummaryResponse.ProfileSummariesEntry.value:type_name -> user.v1.ProfileSummary
+	3,  // [3:3] is the sub-list for method output_type
+	3,  // [3:3] is the sub-list for method input_type
+	3,  // [3:3] is the sub-list for extension type_name
+	3,  // [3:3] is the sub-list for extension extendee
+	0,  // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_user_v1_type_proto_init() }
@@ -615,7 +620,7 @@ func file_user_v1_type_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_v1_type_proto_rawDesc), len(file_user_v1_type_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
