@@ -930,8 +930,8 @@ func (x *PresignedDownload) GetExpiresAt() *timestamppb.Timestamp {
 }
 
 type PresignDownloadsResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Medias        []*PresignedDownload   `protobuf:"bytes,1,rep,name=medias,proto3" json:"medias,omitempty"`
+	state         protoimpl.MessageState        `protogen:"open.v1"`
+	Sources       map[string]*PresignedDownload `protobuf:"bytes,1,rep,name=sources,proto3" json:"sources,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -966,9 +966,9 @@ func (*PresignDownloadsResponse) Descriptor() ([]byte, []int) {
 	return file_media_v1_type_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *PresignDownloadsResponse) GetMedias() []*PresignedDownload {
+func (x *PresignDownloadsResponse) GetSources() map[string]*PresignedDownload {
 	if x != nil {
-		return x.Medias
+		return x.Sources
 	}
 	return nil
 }
@@ -1578,9 +1578,12 @@ const file_media_v1_type_proto_rawDesc = "" +
 	"\bmedia_id\x18\x01 \x01(\tR\amediaId\x12\x10\n" +
 	"\x03url\x18\x02 \x01(\tR\x03url\x129\n" +
 	"\n" +
-	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"O\n" +
-	"\x18PresignDownloadsResponse\x123\n" +
-	"\x06medias\x18\x01 \x03(\v2\x1b.media.v1.PresignedDownloadR\x06medias\"[\n" +
+	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"\xbe\x01\n" +
+	"\x18PresignDownloadsResponse\x12I\n" +
+	"\asources\x18\x01 \x03(\v2/.media.v1.PresignDownloadsResponse.SourcesEntryR\asources\x1aW\n" +
+	"\fSourcesEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x121\n" +
+	"\x05value\x18\x02 \x01(\v2\x1b.media.v1.PresignedDownloadR\x05value:\x028\x01\"[\n" +
 	"\x1aPresignObjectUploadRequest\x12\x19\n" +
 	"\bowner_id\x18\x01 \x01(\tR\aownerId\x12\"\n" +
 	"\x04file\x18\x02 \x01(\v2\x0e.media.v1.FileR\x04file\"\x89\x01\n" +
@@ -1647,7 +1650,7 @@ func file_media_v1_type_proto_rawDescGZIP() []byte {
 }
 
 var file_media_v1_type_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_media_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
+var file_media_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 26)
 var file_media_v1_type_proto_goTypes = []any{
 	(MediaKind)(0),                                  // 0: media.v1.MediaKind
 	(MediaStatus)(0),                                // 1: media.v1.MediaStatus
@@ -1676,29 +1679,31 @@ var file_media_v1_type_proto_goTypes = []any{
 	(*GetBatchRepresentationsMetadataRequest)(nil),  // 24: media.v1.GetBatchRepresentationsMetadataRequest
 	(*GetBatchRepresentationsMetadataResponse)(nil), // 25: media.v1.GetBatchRepresentationsMetadataResponse
 	nil,                           // 26: media.v1.File.UserMetadataEntry
-	(*timestamppb.Timestamp)(nil), // 27: google.protobuf.Timestamp
+	nil,                           // 27: media.v1.PresignDownloadsResponse.SourcesEntry
+	(*timestamppb.Timestamp)(nil), // 28: google.protobuf.Timestamp
 }
 var file_media_v1_type_proto_depIdxs = []int32{
 	26, // 0: media.v1.File.user_metadata:type_name -> media.v1.File.UserMetadataEntry
-	27, // 1: media.v1.MultipartUploadInfo.expires_at:type_name -> google.protobuf.Timestamp
+	28, // 1: media.v1.MultipartUploadInfo.expires_at:type_name -> google.protobuf.Timestamp
 	2,  // 2: media.v1.InitializeUploadsRequest.files:type_name -> media.v1.File
 	3,  // 3: media.v1.InitializeUploadsResponse.uploads:type_name -> media.v1.MultipartUploadInfo
-	27, // 4: media.v1.PresignedPart.expires_at:type_name -> google.protobuf.Timestamp
+	28, // 4: media.v1.PresignedPart.expires_at:type_name -> google.protobuf.Timestamp
 	6,  // 5: media.v1.SignUploadPartsResponse.parts:type_name -> media.v1.PresignedPart
 	9,  // 6: media.v1.CompleteMultipartUploadRequest.parts:type_name -> media.v1.CompletedPart
-	27, // 7: media.v1.MediaInfo.created_at:type_name -> google.protobuf.Timestamp
+	28, // 7: media.v1.MediaInfo.created_at:type_name -> google.protobuf.Timestamp
 	11, // 8: media.v1.CompleteMultipartUploadResponse.media:type_name -> media.v1.MediaInfo
-	27, // 9: media.v1.PresignedDownload.expires_at:type_name -> google.protobuf.Timestamp
-	14, // 10: media.v1.PresignDownloadsResponse.medias:type_name -> media.v1.PresignedDownload
+	28, // 9: media.v1.PresignedDownload.expires_at:type_name -> google.protobuf.Timestamp
+	27, // 10: media.v1.PresignDownloadsResponse.sources:type_name -> media.v1.PresignDownloadsResponse.SourcesEntry
 	2,  // 11: media.v1.PresignObjectUploadRequest.file:type_name -> media.v1.File
-	27, // 12: media.v1.PresignObjectUploadResponse.expires_at:type_name -> google.protobuf.Timestamp
+	28, // 12: media.v1.PresignObjectUploadResponse.expires_at:type_name -> google.protobuf.Timestamp
 	20, // 13: media.v1.GetListRepresentationsResponse.representations:type_name -> media.v1.Representation
 	23, // 14: media.v1.GetBatchRepresentationsMetadataResponse.representations_metadata:type_name -> media.v1.RepresentationMetadata
-	15, // [15:15] is the sub-list for method output_type
-	15, // [15:15] is the sub-list for method input_type
-	15, // [15:15] is the sub-list for extension type_name
-	15, // [15:15] is the sub-list for extension extendee
-	0,  // [0:15] is the sub-list for field type_name
+	14, // 15: media.v1.PresignDownloadsResponse.SourcesEntry.value:type_name -> media.v1.PresignedDownload
+	16, // [16:16] is the sub-list for method output_type
+	16, // [16:16] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_media_v1_type_proto_init() }
@@ -1714,7 +1719,7 @@ func file_media_v1_type_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_media_v1_type_proto_rawDesc), len(file_media_v1_type_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   25,
+			NumMessages:   26,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

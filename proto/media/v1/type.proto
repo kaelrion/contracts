@@ -107,7 +107,7 @@ message PresignedDownload {
 }
 
 message PresignDownloadsResponse {
-  repeated PresignedDownload medias = 1;
+  map<string, PresignedDownload> sources = 1;
 }
 
 message PresignObjectUploadRequest {
