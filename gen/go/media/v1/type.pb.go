@@ -818,11 +818,11 @@ func (x *CompleteMultipartUploadResponse) GetMedia() *MediaInfo {
 }
 
 type PresignDownloadsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	PrincipalId   string                 `protobuf:"bytes,1,opt,name=principal_id,json=principalId,proto3" json:"principal_id,omitempty"`
-	MediaIds      []string               `protobuf:"bytes,2,rep,name=media_ids,json=mediaIds,proto3" json:"media_ids,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	PrincipalId       string                 `protobuf:"bytes,1,opt,name=principal_id,json=principalId,proto3" json:"principal_id,omitempty"`
+	RepresentationIds []string               `protobuf:"bytes,2,rep,name=representation_ids,json=representationIds,proto3" json:"representation_ids,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *PresignDownloadsRequest) Reset() {
@@ -862,18 +862,17 @@ func (x *PresignDownloadsRequest) GetPrincipalId() string {
 	return ""
 }
 
-func (x *PresignDownloadsRequest) GetMediaIds() []string {
+func (x *PresignDownloadsRequest) GetRepresentationIds() []string {
 	if x != nil {
-		return x.MediaIds
+		return x.RepresentationIds
 	}
 	return nil
 }
 
 type PresignedDownload struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	MediaId       string                 `protobuf:"bytes,1,opt,name=media_id,json=mediaId,proto3" json:"media_id,omitempty"`
-	Url           string                 `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty"`
-	ExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
+	Url           string                 `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
+	ExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -906,13 +905,6 @@ func (x *PresignedDownload) ProtoReflect() protoreflect.Message {
 // Deprecated: Use PresignedDownload.ProtoReflect.Descriptor instead.
 func (*PresignedDownload) Descriptor() ([]byte, []int) {
 	return file_media_v1_type_proto_rawDescGZIP(), []int{12}
-}
-
-func (x *PresignedDownload) GetMediaId() string {
-	if x != nil {
-		return x.MediaId
-	}
-	return ""
 }
 
 func (x *PresignedDownload) GetUrl() string {
@@ -1570,15 +1562,14 @@ const file_media_v1_type_proto_rawDesc = "" +
 	"\a_heightB\x0e\n" +
 	"\f_duration_ms\"L\n" +
 	"\x1fCompleteMultipartUploadResponse\x12)\n" +
-	"\x05media\x18\x01 \x01(\v2\x13.media.v1.MediaInfoR\x05media\"Y\n" +
+	"\x05media\x18\x01 \x01(\v2\x13.media.v1.MediaInfoR\x05media\"k\n" +
 	"\x17PresignDownloadsRequest\x12!\n" +
-	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\x12\x1b\n" +
-	"\tmedia_ids\x18\x02 \x03(\tR\bmediaIds\"{\n" +
-	"\x11PresignedDownload\x12\x19\n" +
-	"\bmedia_id\x18\x01 \x01(\tR\amediaId\x12\x10\n" +
-	"\x03url\x18\x02 \x01(\tR\x03url\x129\n" +
+	"\fprincipal_id\x18\x01 \x01(\tR\vprincipalId\x12-\n" +
+	"\x12representation_ids\x18\x02 \x03(\tR\x11representationIds\"`\n" +
+	"\x11PresignedDownload\x12\x10\n" +
+	"\x03url\x18\x01 \x01(\tR\x03url\x129\n" +
 	"\n" +
-	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"\xbe\x01\n" +
+	"expires_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"\xbe\x01\n" +
 	"\x18PresignDownloadsResponse\x12I\n" +
 	"\asources\x18\x01 \x03(\v2/.media.v1.PresignDownloadsResponse.SourcesEntryR\asources\x1aW\n" +
 	"\fSourcesEntry\x12\x10\n" +

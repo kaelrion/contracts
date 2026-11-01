@@ -97,13 +97,12 @@ message CompleteMultipartUploadResponse {
 
 message PresignDownloadsRequest {
   string          principal_id = 1;
-  repeated string media_ids    = 2;
+  repeated string representation_ids    = 2;
 }
 
 message PresignedDownload {
-  string                    media_id   = 1;
-  string                    url        = 2;
-  google.protobuf.Timestamp expires_at = 3;
+  string                    url        = 1;
+  google.protobuf.Timestamp expires_at = 2;
 }
 
 message PresignDownloadsResponse {
