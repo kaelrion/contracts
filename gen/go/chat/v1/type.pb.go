@@ -677,7 +677,7 @@ type LatestMessageAttachment struct {
 	MediaId       string                 `protobuf:"bytes,1,opt,name=media_id,json=mediaId,proto3" json:"media_id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	ContentType   string                 `protobuf:"bytes,3,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
-	Size          string                 `protobuf:"bytes,4,opt,name=size,proto3" json:"size,omitempty"`
+	Size          int64                  `protobuf:"varint,4,opt,name=size,proto3" json:"size,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -733,11 +733,11 @@ func (x *LatestMessageAttachment) GetContentType() string {
 	return ""
 }
 
-func (x *LatestMessageAttachment) GetSize() string {
+func (x *LatestMessageAttachment) GetSize() int64 {
 	if x != nil {
 		return x.Size
 	}
-	return ""
+	return 0
 }
 
 type LatestMessagePart struct {
@@ -1698,7 +1698,7 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"\bmedia_id\x18\x01 \x01(\tR\amediaId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12!\n" +
 	"\fcontent_type\x18\x03 \x01(\tR\vcontentType\x12\x12\n" +
-	"\x04size\x18\x04 \x01(\tR\x04size\"\xd4\x01\n" +
+	"\x04size\x18\x04 \x01(\x03R\x04size\"\xd4\x01\n" +
 	"\x11LatestMessagePart\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1a\n" +
 	"\bposition\x18\x02 \x01(\x05R\bposition\x120\n" +
