@@ -676,6 +676,7 @@ type LatestMessageAttachment struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	MediaId       string                 `protobuf:"bytes,1,opt,name=media_id,json=mediaId,proto3" json:"media_id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	ContentType   *string                `protobuf:"bytes,3,opt,name=content_type,json=contentType,proto3,oneof" json:"content_type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -720,6 +721,13 @@ func (x *LatestMessageAttachment) GetMediaId() string {
 func (x *LatestMessageAttachment) GetName() string {
 	if x != nil {
 		return x.Name
+	}
+	return ""
+}
+
+func (x *LatestMessageAttachment) GetContentType() string {
+	if x != nil && x.ContentType != nil {
+		return *x.ContentType
 	}
 	return ""
 }
@@ -1677,10 +1685,12 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"\x05parts\x18\x04 \x03(\v2&.chat.v1.SendMessageWithAttachmentPartR\x05parts\x12\x1b\n" +
 	"\tclient_id\x18\x05 \x01(\tR\bclientId\"-\n" +
 	"\x11LatestMessageText\x12\x18\n" +
-	"\acontent\x18\x01 \x01(\tR\acontent\"H\n" +
+	"\acontent\x18\x01 \x01(\tR\acontent\"\x81\x01\n" +
 	"\x17LatestMessageAttachment\x12\x19\n" +
 	"\bmedia_id\x18\x01 \x01(\tR\amediaId\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"\xd4\x01\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12&\n" +
+	"\fcontent_type\x18\x03 \x01(\tH\x00R\vcontentType\x88\x01\x01B\x0f\n" +
+	"\r_content_type\"\xd4\x01\n" +
 	"\x11LatestMessagePart\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1a\n" +
 	"\bposition\x18\x02 \x01(\x05R\bposition\x120\n" +
@@ -1840,6 +1850,7 @@ func file_chat_v1_type_proto_init() {
 	file_chat_v1_type_proto_msgTypes[3].OneofWrappers = []any{}
 	file_chat_v1_type_proto_msgTypes[5].OneofWrappers = []any{}
 	file_chat_v1_type_proto_msgTypes[6].OneofWrappers = []any{}
+	file_chat_v1_type_proto_msgTypes[9].OneofWrappers = []any{}
 	file_chat_v1_type_proto_msgTypes[10].OneofWrappers = []any{
 		(*LatestMessagePart_Text)(nil),
 		(*LatestMessagePart_Attachment)(nil),

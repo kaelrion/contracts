@@ -72,8 +72,9 @@ message LatestMessageText {
 }
 
 message LatestMessageAttachment {
-  string media_id = 1;
-  string name     = 2;
+  string          media_id     = 1;
+  string          name         = 2;
+  optional string content_type = 3;
 }
 
 message LatestMessagePart {
