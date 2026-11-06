@@ -168,3 +168,11 @@ message GetConversationDetailRequest{
 message GetConversationDetailResponse{
   Conversation conversation = 1;
 }
+
+message GetListParticipantsRequest {
+  string conversation_id = 1;
+}
+
+message GetListParticipantsResponse {
+  repeated Participant participants = 1;
+}
