@@ -4,6 +4,13 @@ package chat.v1;
 
 option go_package = "github.com/kaelorin/chat";
 import "google/protobuf/timestamp.proto";
+
+message Mention {
+  string mention_id   = 1;
+  int32  start_offset = 2;
+  int32  length       = 3;
+}
+
 message Text {
   string content = 1;
 }
@@ -28,11 +35,12 @@ message Part {
 }
 
 message SendMessageTextRequest {
-  string          sender_id           = 1;
-  string          conversation_id     = 2;
-  optional string reply_to_message_id = 3;
-  repeated Part   parts               = 4;
-  string          client_id           = 5;
+  string           sender_id           = 1;
+  string           conversation_id     = 2;
+  optional string  reply_to_message_id = 3;
+  repeated Part    parts               = 4;
+  string           client_id           = 5;
+  repeated Mention mentions            = 6;
 }
 
 message SendMessageTextResponse {
