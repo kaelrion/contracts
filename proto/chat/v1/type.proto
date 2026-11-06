@@ -5,6 +5,18 @@ package chat.v1;
 option go_package = "github.com/kaelorin/chat";
 import "google/protobuf/timestamp.proto";
 
+message TextEntity {
+  string          type         = 1;
+  int32           start_offset = 2;
+  int32           length       = 3;
+  optional string mention_id   = 4;
+  optional string href         = 5;
+  optional string title        = 6;
+  optional string description  = 7;
+  optional string url          = 8;
+  optional string sitename     = 9;
+}
+
 message Mention {
   string mention_id   = 1;
   int32  start_offset = 2;
@@ -76,7 +88,8 @@ message SendMessageWithAttachmentResponse {
 }
 
 message LatestMessageText {
-  string content = 1;
+  string              content  = 1;
+  repeated TextEntity entities = 2;
 }
 
 message LatestMessageAttachment {
