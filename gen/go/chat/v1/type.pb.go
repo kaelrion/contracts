@@ -1645,6 +1645,7 @@ func (x *GetConversationDetailResponse) GetConversation() *Conversation {
 type GetListParticipantsRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	ConversationId string                 `protobuf:"bytes,1,opt,name=conversation_id,json=conversationId,proto3" json:"conversation_id,omitempty"`
+	PrincipalId    string                 `protobuf:"bytes,2,opt,name=principal_id,json=principalId,proto3" json:"principal_id,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -1682,6 +1683,13 @@ func (*GetListParticipantsRequest) Descriptor() ([]byte, []int) {
 func (x *GetListParticipantsRequest) GetConversationId() string {
 	if x != nil {
 		return x.ConversationId
+	}
+	return ""
+}
+
+func (x *GetListParticipantsRequest) GetPrincipalId() string {
+	if x != nil {
+		return x.PrincipalId
 	}
 	return ""
 }
@@ -1882,9 +1890,10 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"\x0fconversation_id\x18\x01 \x01(\tR\x0econversationId\x12%\n" +
 	"\x0eparticipant_id\x18\x02 \x01(\tR\rparticipantId\"Z\n" +
 	"\x1dGetConversationDetailResponse\x129\n" +
-	"\fconversation\x18\x01 \x01(\v2\x15.chat.v1.ConversationR\fconversation\"E\n" +
+	"\fconversation\x18\x01 \x01(\v2\x15.chat.v1.ConversationR\fconversation\"h\n" +
 	"\x1aGetListParticipantsRequest\x12'\n" +
-	"\x0fconversation_id\x18\x01 \x01(\tR\x0econversationId\"W\n" +
+	"\x0fconversation_id\x18\x01 \x01(\tR\x0econversationId\x12!\n" +
+	"\fprincipal_id\x18\x02 \x01(\tR\vprincipalId\"W\n" +
 	"\x1bGetListParticipantsResponse\x128\n" +
 	"\fparticipants\x18\x01 \x03(\v2\x14.chat.v1.ParticipantR\fparticipantsB\x1aZ\x18github.com/kaelorin/chatb\x06proto3"
 
