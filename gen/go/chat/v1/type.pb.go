@@ -31,7 +31,7 @@ type TextEntity struct {
 	Href          *string                `protobuf:"bytes,5,opt,name=href,proto3,oneof" json:"href,omitempty"`
 	Title         *string                `protobuf:"bytes,6,opt,name=title,proto3,oneof" json:"title,omitempty"`
 	Description   *string                `protobuf:"bytes,7,opt,name=description,proto3,oneof" json:"description,omitempty"`
-	Url           *string                `protobuf:"bytes,8,opt,name=url,proto3,oneof" json:"url,omitempty"`
+	ImageUrl      *string                `protobuf:"bytes,8,opt,name=image_url,json=imageUrl,proto3,oneof" json:"image_url,omitempty"`
 	Sitename      *string                `protobuf:"bytes,9,opt,name=sitename,proto3,oneof" json:"sitename,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -116,9 +116,9 @@ func (x *TextEntity) GetDescription() string {
 	return ""
 }
 
-func (x *TextEntity) GetUrl() string {
-	if x != nil && x.Url != nil {
-		return *x.Url
+func (x *TextEntity) GetImageUrl() string {
+	if x != nil && x.ImageUrl != nil {
+		return *x.ImageUrl
 	}
 	return ""
 }
@@ -1926,7 +1926,7 @@ var File_chat_v1_type_proto protoreflect.FileDescriptor
 
 const file_chat_v1_type_proto_rawDesc = "" +
 	"\n" +
-	"\x12chat/v1/type.proto\x12\achat.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd9\x02\n" +
+	"\x12chat/v1/type.proto\x12\achat.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xea\x02\n" +
 	"\n" +
 	"TextEntity\x12\x12\n" +
 	"\x04type\x18\x01 \x01(\tR\x04type\x12!\n" +
@@ -1936,14 +1936,15 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"mention_id\x18\x04 \x01(\tH\x00R\tmentionId\x88\x01\x01\x12\x17\n" +
 	"\x04href\x18\x05 \x01(\tH\x01R\x04href\x88\x01\x01\x12\x19\n" +
 	"\x05title\x18\x06 \x01(\tH\x02R\x05title\x88\x01\x01\x12%\n" +
-	"\vdescription\x18\a \x01(\tH\x03R\vdescription\x88\x01\x01\x12\x15\n" +
-	"\x03url\x18\b \x01(\tH\x04R\x03url\x88\x01\x01\x12\x1f\n" +
+	"\vdescription\x18\a \x01(\tH\x03R\vdescription\x88\x01\x01\x12 \n" +
+	"\timage_url\x18\b \x01(\tH\x04R\bimageUrl\x88\x01\x01\x12\x1f\n" +
 	"\bsitename\x18\t \x01(\tH\x05R\bsitename\x88\x01\x01B\r\n" +
 	"\v_mention_idB\a\n" +
 	"\x05_hrefB\b\n" +
 	"\x06_titleB\x0e\n" +
-	"\f_descriptionB\x06\n" +
-	"\x04_urlB\v\n" +
+	"\f_descriptionB\f\n" +
+	"\n" +
+	"_image_urlB\v\n" +
 	"\t_sitename\"c\n" +
 	"\aMention\x12\x1d\n" +
 	"\n" +
