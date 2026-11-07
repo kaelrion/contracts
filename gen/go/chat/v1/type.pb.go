@@ -33,6 +33,7 @@ type TextEntity struct {
 	Description   *string                `protobuf:"bytes,7,opt,name=description,proto3,oneof" json:"description,omitempty"`
 	ImageUrl      *string                `protobuf:"bytes,8,opt,name=image_url,json=imageUrl,proto3,oneof" json:"image_url,omitempty"`
 	Sitename      *string                `protobuf:"bytes,9,opt,name=sitename,proto3,oneof" json:"sitename,omitempty"`
+	FaviconUrl    *string                `protobuf:"bytes,10,opt,name=favicon_url,json=faviconUrl,proto3,oneof" json:"favicon_url,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -126,6 +127,13 @@ func (x *TextEntity) GetImageUrl() string {
 func (x *TextEntity) GetSitename() string {
 	if x != nil && x.Sitename != nil {
 		return *x.Sitename
+	}
+	return ""
+}
+
+func (x *TextEntity) GetFaviconUrl() string {
+	if x != nil && x.FaviconUrl != nil {
+		return *x.FaviconUrl
 	}
 	return ""
 }
@@ -1926,7 +1934,7 @@ var File_chat_v1_type_proto protoreflect.FileDescriptor
 
 const file_chat_v1_type_proto_rawDesc = "" +
 	"\n" +
-	"\x12chat/v1/type.proto\x12\achat.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xea\x02\n" +
+	"\x12chat/v1/type.proto\x12\achat.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa0\x03\n" +
 	"\n" +
 	"TextEntity\x12\x12\n" +
 	"\x04type\x18\x01 \x01(\tR\x04type\x12!\n" +
@@ -1938,14 +1946,18 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"\x05title\x18\x06 \x01(\tH\x02R\x05title\x88\x01\x01\x12%\n" +
 	"\vdescription\x18\a \x01(\tH\x03R\vdescription\x88\x01\x01\x12 \n" +
 	"\timage_url\x18\b \x01(\tH\x04R\bimageUrl\x88\x01\x01\x12\x1f\n" +
-	"\bsitename\x18\t \x01(\tH\x05R\bsitename\x88\x01\x01B\r\n" +
+	"\bsitename\x18\t \x01(\tH\x05R\bsitename\x88\x01\x01\x12$\n" +
+	"\vfavicon_url\x18\n" +
+	" \x01(\tH\x06R\n" +
+	"faviconUrl\x88\x01\x01B\r\n" +
 	"\v_mention_idB\a\n" +
 	"\x05_hrefB\b\n" +
 	"\x06_titleB\x0e\n" +
 	"\f_descriptionB\f\n" +
 	"\n" +
 	"_image_urlB\v\n" +
-	"\t_sitename\"c\n" +
+	"\t_sitenameB\x0e\n" +
+	"\f_favicon_url\"c\n" +
 	"\aMention\x12\x1d\n" +
 	"\n" +
 	"mention_id\x18\x01 \x01(\tR\tmentionId\x12!\n" +
