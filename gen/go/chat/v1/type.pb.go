@@ -34,6 +34,7 @@ type TextEntity struct {
 	ImageUrl      *string                `protobuf:"bytes,8,opt,name=image_url,json=imageUrl,proto3,oneof" json:"image_url,omitempty"`
 	Sitename      *string                `protobuf:"bytes,9,opt,name=sitename,proto3,oneof" json:"sitename,omitempty"`
 	FaviconUrl    *string                `protobuf:"bytes,10,opt,name=favicon_url,json=faviconUrl,proto3,oneof" json:"favicon_url,omitempty"`
+	Id            string                 `protobuf:"bytes,11,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -134,6 +135,13 @@ func (x *TextEntity) GetSitename() string {
 func (x *TextEntity) GetFaviconUrl() string {
 	if x != nil && x.FaviconUrl != nil {
 		return *x.FaviconUrl
+	}
+	return ""
+}
+
+func (x *TextEntity) GetId() string {
+	if x != nil {
+		return x.Id
 	}
 	return ""
 }
@@ -1934,7 +1942,7 @@ var File_chat_v1_type_proto protoreflect.FileDescriptor
 
 const file_chat_v1_type_proto_rawDesc = "" +
 	"\n" +
-	"\x12chat/v1/type.proto\x12\achat.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa0\x03\n" +
+	"\x12chat/v1/type.proto\x12\achat.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb0\x03\n" +
 	"\n" +
 	"TextEntity\x12\x12\n" +
 	"\x04type\x18\x01 \x01(\tR\x04type\x12!\n" +
@@ -1949,7 +1957,8 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"\bsitename\x18\t \x01(\tH\x05R\bsitename\x88\x01\x01\x12$\n" +
 	"\vfavicon_url\x18\n" +
 	" \x01(\tH\x06R\n" +
-	"faviconUrl\x88\x01\x01B\r\n" +
+	"faviconUrl\x88\x01\x01\x12\x0e\n" +
+	"\x02id\x18\v \x01(\tR\x02idB\r\n" +
 	"\v_mention_idB\a\n" +
 	"\x05_hrefB\b\n" +
 	"\x06_titleB\x0e\n" +

@@ -15,7 +15,8 @@ message TextEntity {
   optional string description  = 7;
   optional string image_url    = 8;
   optional string sitename     = 9;
-  optional string favicon_url=10;
+  optional string favicon_url  = 10;
+  string          id           = 11;
 }
 
 message Mention {
