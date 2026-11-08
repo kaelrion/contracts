@@ -133,6 +133,7 @@ message LatestMessage {
   repeated LatestMessagePart parts               = 4;
   string                     status              = 5;
   google.protobuf.Timestamp  created_at          = 6;
+  string                     order_key           = 7;
 }
 
 message GetListLatestMessagesRequest {

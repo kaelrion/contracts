@@ -1179,6 +1179,7 @@ type LatestMessage struct {
 	Parts            []*LatestMessagePart   `protobuf:"bytes,4,rep,name=parts,proto3" json:"parts,omitempty"`
 	Status           string                 `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`
 	CreatedAt        *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	OrderKey         string                 `protobuf:"bytes,7,opt,name=order_key,json=orderKey,proto3" json:"order_key,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -1253,6 +1254,13 @@ func (x *LatestMessage) GetCreatedAt() *timestamppb.Timestamp {
 		return x.CreatedAt
 	}
 	return nil
+}
+
+func (x *LatestMessage) GetOrderKey() string {
+	if x != nil {
+		return x.OrderKey
+	}
+	return ""
 }
 
 type GetListLatestMessagesRequest struct {
@@ -2166,7 +2174,7 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"attachment\x18\x04 \x01(\v2 .chat.v1.LatestMessageAttachmentH\x00R\n" +
 	"attachment\x120\n" +
 	"\x04type\x18\x05 \x01(\x0e2\x1c.chat.v1.LastMessagePartTypeR\x04typeB\t\n" +
-	"\acontent\"\x8d\x02\n" +
+	"\acontent\"\xaa\x02\n" +
 	"\rLatestMessage\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +
 	"\tsender_id\x18\x02 \x01(\tR\bsenderId\x122\n" +
@@ -2174,7 +2182,8 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"\x05parts\x18\x04 \x03(\v2\x1a.chat.v1.LatestMessagePartR\x05parts\x12\x16\n" +
 	"\x06status\x18\x05 \x01(\tR\x06status\x129\n" +
 	"\n" +
-	"created_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAtB\x16\n" +
+	"created_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12\x1b\n" +
+	"\torder_key\x18\a \x01(\tR\borderKeyB\x16\n" +
 	"\x14_reply_to_message_id\"]\n" +
 	"\x1cGetListLatestMessagesRequest\x12'\n" +
 	"\x0fconversation_id\x18\x01 \x01(\tR\x0econversationId\x12\x14\n" +
