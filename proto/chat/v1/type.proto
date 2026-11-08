@@ -14,7 +14,7 @@ enum TextEntityType {
 message TextEntity {
   TextEntityType  type         = 1;
   int32           start_offset = 2;
-  int32           length       = 3;
+  int32           end_offset   = 3;
   optional string mention_id   = 4;
   optional string href         = 5;
   optional string title        = 6;

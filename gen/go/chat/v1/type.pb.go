@@ -127,7 +127,7 @@ type TextEntity struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Type          TextEntityType         `protobuf:"varint,1,opt,name=type,proto3,enum=chat.v1.TextEntityType" json:"type,omitempty"`
 	StartOffset   int32                  `protobuf:"varint,2,opt,name=start_offset,json=startOffset,proto3" json:"start_offset,omitempty"`
-	Length        int32                  `protobuf:"varint,3,opt,name=length,proto3" json:"length,omitempty"`
+	EndOffset     int32                  `protobuf:"varint,3,opt,name=end_offset,json=endOffset,proto3" json:"end_offset,omitempty"`
 	MentionId     *string                `protobuf:"bytes,4,opt,name=mention_id,json=mentionId,proto3,oneof" json:"mention_id,omitempty"`
 	Href          *string                `protobuf:"bytes,5,opt,name=href,proto3,oneof" json:"href,omitempty"`
 	Title         *string                `protobuf:"bytes,6,opt,name=title,proto3,oneof" json:"title,omitempty"`
@@ -184,9 +184,9 @@ func (x *TextEntity) GetStartOffset() int32 {
 	return 0
 }
 
-func (x *TextEntity) GetLength() int32 {
+func (x *TextEntity) GetEndOffset() int32 {
 	if x != nil {
-		return x.Length
+		return x.EndOffset
 	}
 	return 0
 }
@@ -2043,12 +2043,13 @@ var File_chat_v1_type_proto protoreflect.FileDescriptor
 
 const file_chat_v1_type_proto_rawDesc = "" +
 	"\n" +
-	"\x12chat/v1/type.proto\x12\achat.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc9\x03\n" +
+	"\x12chat/v1/type.proto\x12\achat.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd0\x03\n" +
 	"\n" +
 	"TextEntity\x12+\n" +
 	"\x04type\x18\x01 \x01(\x0e2\x17.chat.v1.TextEntityTypeR\x04type\x12!\n" +
-	"\fstart_offset\x18\x02 \x01(\x05R\vstartOffset\x12\x16\n" +
-	"\x06length\x18\x03 \x01(\x05R\x06length\x12\"\n" +
+	"\fstart_offset\x18\x02 \x01(\x05R\vstartOffset\x12\x1d\n" +
+	"\n" +
+	"end_offset\x18\x03 \x01(\x05R\tendOffset\x12\"\n" +
 	"\n" +
 	"mention_id\x18\x04 \x01(\tH\x00R\tmentionId\x88\x01\x01\x12\x17\n" +
 	"\x04href\x18\x05 \x01(\tH\x01R\x04href\x88\x01\x01\x12\x19\n" +
