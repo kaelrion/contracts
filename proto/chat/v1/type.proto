@@ -4,9 +4,15 @@ package chat.v1;
 
 option go_package = "github.com/kaelorin/chat";
 import "google/protobuf/timestamp.proto";
+enum TextEntityType {
+  TEXT_ENTITY_TYPE_UNSPECIFIED = 0;
+  TEXT_ENTITY_TYPE_MENTION     = 1;
+  TEXT_ENTITY_TYPE_LINK        = 2;
+  TEXT_ENTITY_TYPE_HASHTAG     = 3;
+}
 
 message TextEntity {
-  string          type         = 1;
+  TextEntityType  type         = 1;
   int32           start_offset = 2;
   int32           length       = 3;
   optional string mention_id   = 4;
@@ -89,6 +95,12 @@ message SendMessageWithAttachmentResponse {
   string                                 client_id       = 5;
 }
 
+enum LastMessagePartType {
+  LAST_MESSAGE_PART_TYPE_UNSPECIFIED = 0;
+  LAST_MESSAGE_PART_TYPE_TEXT        = 1;
+  LAST_MESSAGE_PART_TYPE_ATTACHMENT  = 2;
+}
+
 message LatestMessageText {
   string              content  = 1;
   repeated TextEntity entities = 2;
@@ -110,7 +122,7 @@ message LatestMessagePart {
     LatestMessageText       text       = 3;
     LatestMessageAttachment attachment = 4;
   }
-  string type = 5;
+  LastMessagePartType type = 5;
 }
 
 message LatestMessage {

@@ -22,9 +22,110 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type TextEntityType int32
+
+const (
+	TextEntityType_TEXT_ENTITY_TYPE_UNSPECIFIED TextEntityType = 0
+	TextEntityType_TEXT_ENTITY_TYPE_MENTION     TextEntityType = 1
+	TextEntityType_TEXT_ENTITY_TYPE_LINK        TextEntityType = 2
+	TextEntityType_TEXT_ENTITY_TYPE_HASHTAG     TextEntityType = 3
+)
+
+// Enum value maps for TextEntityType.
+var (
+	TextEntityType_name = map[int32]string{
+		0: "TEXT_ENTITY_TYPE_UNSPECIFIED",
+		1: "TEXT_ENTITY_TYPE_MENTION",
+		2: "TEXT_ENTITY_TYPE_LINK",
+		3: "TEXT_ENTITY_TYPE_HASHTAG",
+	}
+	TextEntityType_value = map[string]int32{
+		"TEXT_ENTITY_TYPE_UNSPECIFIED": 0,
+		"TEXT_ENTITY_TYPE_MENTION":     1,
+		"TEXT_ENTITY_TYPE_LINK":        2,
+		"TEXT_ENTITY_TYPE_HASHTAG":     3,
+	}
+)
+
+func (x TextEntityType) Enum() *TextEntityType {
+	p := new(TextEntityType)
+	*p = x
+	return p
+}
+
+func (x TextEntityType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (TextEntityType) Descriptor() protoreflect.EnumDescriptor {
+	return file_chat_v1_type_proto_enumTypes[0].Descriptor()
+}
+
+func (TextEntityType) Type() protoreflect.EnumType {
+	return &file_chat_v1_type_proto_enumTypes[0]
+}
+
+func (x TextEntityType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use TextEntityType.Descriptor instead.
+func (TextEntityType) EnumDescriptor() ([]byte, []int) {
+	return file_chat_v1_type_proto_rawDescGZIP(), []int{0}
+}
+
+type LastMessagePartType int32
+
+const (
+	LastMessagePartType_LAST_MESSAGE_PART_TYPE_UNSPECIFIED LastMessagePartType = 0
+	LastMessagePartType_LAST_MESSAGE_PART_TYPE_TEXT        LastMessagePartType = 1
+	LastMessagePartType_LAST_MESSAGE_PART_TYPE_ATTACHMENT  LastMessagePartType = 2
+)
+
+// Enum value maps for LastMessagePartType.
+var (
+	LastMessagePartType_name = map[int32]string{
+		0: "LAST_MESSAGE_PART_TYPE_UNSPECIFIED",
+		1: "LAST_MESSAGE_PART_TYPE_TEXT",
+		2: "LAST_MESSAGE_PART_TYPE_ATTACHMENT",
+	}
+	LastMessagePartType_value = map[string]int32{
+		"LAST_MESSAGE_PART_TYPE_UNSPECIFIED": 0,
+		"LAST_MESSAGE_PART_TYPE_TEXT":        1,
+		"LAST_MESSAGE_PART_TYPE_ATTACHMENT":  2,
+	}
+)
+
+func (x LastMessagePartType) Enum() *LastMessagePartType {
+	p := new(LastMessagePartType)
+	*p = x
+	return p
+}
+
+func (x LastMessagePartType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (LastMessagePartType) Descriptor() protoreflect.EnumDescriptor {
+	return file_chat_v1_type_proto_enumTypes[1].Descriptor()
+}
+
+func (LastMessagePartType) Type() protoreflect.EnumType {
+	return &file_chat_v1_type_proto_enumTypes[1]
+}
+
+func (x LastMessagePartType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use LastMessagePartType.Descriptor instead.
+func (LastMessagePartType) EnumDescriptor() ([]byte, []int) {
+	return file_chat_v1_type_proto_rawDescGZIP(), []int{1}
+}
+
 type TextEntity struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Type          string                 `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+	Type          TextEntityType         `protobuf:"varint,1,opt,name=type,proto3,enum=chat.v1.TextEntityType" json:"type,omitempty"`
 	StartOffset   int32                  `protobuf:"varint,2,opt,name=start_offset,json=startOffset,proto3" json:"start_offset,omitempty"`
 	Length        int32                  `protobuf:"varint,3,opt,name=length,proto3" json:"length,omitempty"`
 	MentionId     *string                `protobuf:"bytes,4,opt,name=mention_id,json=mentionId,proto3,oneof" json:"mention_id,omitempty"`
@@ -69,11 +170,11 @@ func (*TextEntity) Descriptor() ([]byte, []int) {
 	return file_chat_v1_type_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *TextEntity) GetType() string {
+func (x *TextEntity) GetType() TextEntityType {
 	if x != nil {
 		return x.Type
 	}
-	return ""
+	return TextEntityType_TEXT_ENTITY_TYPE_UNSPECIFIED
 }
 
 func (x *TextEntity) GetStartOffset() int32 {
@@ -965,7 +1066,7 @@ type LatestMessagePart struct {
 	//	*LatestMessagePart_Text
 	//	*LatestMessagePart_Attachment
 	Content       isLatestMessagePart_Content `protobuf_oneof:"content"`
-	Type          string                      `protobuf:"bytes,5,opt,name=type,proto3" json:"type,omitempty"`
+	Type          LastMessagePartType         `protobuf:"varint,5,opt,name=type,proto3,enum=chat.v1.LastMessagePartType" json:"type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1039,11 +1140,11 @@ func (x *LatestMessagePart) GetAttachment() *LatestMessageAttachment {
 	return nil
 }
 
-func (x *LatestMessagePart) GetType() string {
+func (x *LatestMessagePart) GetType() LastMessagePartType {
 	if x != nil {
 		return x.Type
 	}
-	return ""
+	return LastMessagePartType_LAST_MESSAGE_PART_TYPE_UNSPECIFIED
 }
 
 type isLatestMessagePart_Content interface {
@@ -1942,10 +2043,10 @@ var File_chat_v1_type_proto protoreflect.FileDescriptor
 
 const file_chat_v1_type_proto_rawDesc = "" +
 	"\n" +
-	"\x12chat/v1/type.proto\x12\achat.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb0\x03\n" +
+	"\x12chat/v1/type.proto\x12\achat.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc9\x03\n" +
 	"\n" +
-	"TextEntity\x12\x12\n" +
-	"\x04type\x18\x01 \x01(\tR\x04type\x12!\n" +
+	"TextEntity\x12+\n" +
+	"\x04type\x18\x01 \x01(\x0e2\x17.chat.v1.TextEntityTypeR\x04type\x12!\n" +
 	"\fstart_offset\x18\x02 \x01(\x05R\vstartOffset\x12\x16\n" +
 	"\x06length\x18\x03 \x01(\x05R\x06length\x12\"\n" +
 	"\n" +
@@ -2045,15 +2146,15 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"\x05width\x18\x05 \x01(\x05H\x00R\x05width\x88\x01\x01\x12\x1b\n" +
 	"\x06height\x18\x06 \x01(\x05H\x01R\x06height\x88\x01\x01B\b\n" +
 	"\x06_widthB\t\n" +
-	"\a_height\"\xd4\x01\n" +
+	"\a_height\"\xf2\x01\n" +
 	"\x11LatestMessagePart\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1a\n" +
 	"\bposition\x18\x02 \x01(\x05R\bposition\x120\n" +
 	"\x04text\x18\x03 \x01(\v2\x1a.chat.v1.LatestMessageTextH\x00R\x04text\x12B\n" +
 	"\n" +
 	"attachment\x18\x04 \x01(\v2 .chat.v1.LatestMessageAttachmentH\x00R\n" +
-	"attachment\x12\x12\n" +
-	"\x04type\x18\x05 \x01(\tR\x04typeB\t\n" +
+	"attachment\x120\n" +
+	"\x04type\x18\x05 \x01(\x0e2\x1c.chat.v1.LastMessagePartTypeR\x04typeB\t\n" +
 	"\acontent\"\x8d\x02\n" +
 	"\rLatestMessage\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +
@@ -2126,7 +2227,16 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"\x0fconversation_id\x18\x01 \x01(\tR\x0econversationId\x12!\n" +
 	"\fprincipal_id\x18\x02 \x01(\tR\vprincipalId\"W\n" +
 	"\x1bGetListParticipantsResponse\x128\n" +
-	"\fparticipants\x18\x01 \x03(\v2\x14.chat.v1.ParticipantR\fparticipantsB\x1aZ\x18github.com/kaelorin/chatb\x06proto3"
+	"\fparticipants\x18\x01 \x03(\v2\x14.chat.v1.ParticipantR\fparticipants*\x89\x01\n" +
+	"\x0eTextEntityType\x12 \n" +
+	"\x1cTEXT_ENTITY_TYPE_UNSPECIFIED\x10\x00\x12\x1c\n" +
+	"\x18TEXT_ENTITY_TYPE_MENTION\x10\x01\x12\x19\n" +
+	"\x15TEXT_ENTITY_TYPE_LINK\x10\x02\x12\x1c\n" +
+	"\x18TEXT_ENTITY_TYPE_HASHTAG\x10\x03*\x85\x01\n" +
+	"\x13LastMessagePartType\x12&\n" +
+	"\"LAST_MESSAGE_PART_TYPE_UNSPECIFIED\x10\x00\x12\x1f\n" +
+	"\x1bLAST_MESSAGE_PART_TYPE_TEXT\x10\x01\x12%\n" +
+	"!LAST_MESSAGE_PART_TYPE_ATTACHMENT\x10\x02B\x1aZ\x18github.com/kaelorin/chatb\x06proto3"
 
 var (
 	file_chat_v1_type_proto_rawDescOnce sync.Once
@@ -2140,68 +2250,73 @@ func file_chat_v1_type_proto_rawDescGZIP() []byte {
 	return file_chat_v1_type_proto_rawDescData
 }
 
+var file_chat_v1_type_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_chat_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 29)
 var file_chat_v1_type_proto_goTypes = []any{
-	(*TextEntity)(nil),                          // 0: chat.v1.TextEntity
-	(*Mention)(nil),                             // 1: chat.v1.Mention
-	(*Text)(nil),                                // 2: chat.v1.Text
-	(*Attachment)(nil),                          // 3: chat.v1.Attachment
-	(*Part)(nil),                                // 4: chat.v1.Part
-	(*SendMessageTextRequest)(nil),              // 5: chat.v1.SendMessageTextRequest
-	(*SendMessageTextResponse)(nil),             // 6: chat.v1.SendMessageTextResponse
-	(*SendMessageWithAttachmentRequest)(nil),    // 7: chat.v1.SendMessageWithAttachmentRequest
-	(*SendMessageWithAttachmentPart)(nil),       // 8: chat.v1.SendMessageWithAttachmentPart
-	(*SendMessageWithAttachmentResponse)(nil),   // 9: chat.v1.SendMessageWithAttachmentResponse
-	(*LatestMessageText)(nil),                   // 10: chat.v1.LatestMessageText
-	(*LatestMessageAttachment)(nil),             // 11: chat.v1.LatestMessageAttachment
-	(*LatestMessagePart)(nil),                   // 12: chat.v1.LatestMessagePart
-	(*LatestMessage)(nil),                       // 13: chat.v1.LatestMessage
-	(*GetListLatestMessagesRequest)(nil),        // 14: chat.v1.GetListLatestMessagesRequest
-	(*GetListLatestMessagesResponse)(nil),       // 15: chat.v1.GetListLatestMessagesResponse
-	(*Message)(nil),                             // 16: chat.v1.Message
-	(*Conversation)(nil),                        // 17: chat.v1.Conversation
-	(*SendMessageTextFirst)(nil),                // 18: chat.v1.SendMessageTextFirst
-	(*GetListConversationsRequest)(nil),         // 19: chat.v1.GetListConversationsRequest
-	(*GetListConversationsResponse)(nil),        // 20: chat.v1.GetListConversationsResponse
-	(*GetGroupConversationMembersRequest)(nil),  // 21: chat.v1.GetGroupConversationMembersRequest
-	(*Participant)(nil),                         // 22: chat.v1.Participant
-	(*GetGroupConversationMembersResponse)(nil), // 23: chat.v1.GetGroupConversationMembersResponse
-	(*GetConversationDetailRequest)(nil),        // 24: chat.v1.GetConversationDetailRequest
-	(*GetConversationDetailResponse)(nil),       // 25: chat.v1.GetConversationDetailResponse
-	(*GetListParticipantsRequest)(nil),          // 26: chat.v1.GetListParticipantsRequest
-	(*GetListParticipantsResponse)(nil),         // 27: chat.v1.GetListParticipantsResponse
-	nil,                                         // 28: chat.v1.Attachment.UserMetadataEntry
-	(*timestamppb.Timestamp)(nil),               // 29: google.protobuf.Timestamp
+	(TextEntityType)(0),                         // 0: chat.v1.TextEntityType
+	(LastMessagePartType)(0),                    // 1: chat.v1.LastMessagePartType
+	(*TextEntity)(nil),                          // 2: chat.v1.TextEntity
+	(*Mention)(nil),                             // 3: chat.v1.Mention
+	(*Text)(nil),                                // 4: chat.v1.Text
+	(*Attachment)(nil),                          // 5: chat.v1.Attachment
+	(*Part)(nil),                                // 6: chat.v1.Part
+	(*SendMessageTextRequest)(nil),              // 7: chat.v1.SendMessageTextRequest
+	(*SendMessageTextResponse)(nil),             // 8: chat.v1.SendMessageTextResponse
+	(*SendMessageWithAttachmentRequest)(nil),    // 9: chat.v1.SendMessageWithAttachmentRequest
+	(*SendMessageWithAttachmentPart)(nil),       // 10: chat.v1.SendMessageWithAttachmentPart
+	(*SendMessageWithAttachmentResponse)(nil),   // 11: chat.v1.SendMessageWithAttachmentResponse
+	(*LatestMessageText)(nil),                   // 12: chat.v1.LatestMessageText
+	(*LatestMessageAttachment)(nil),             // 13: chat.v1.LatestMessageAttachment
+	(*LatestMessagePart)(nil),                   // 14: chat.v1.LatestMessagePart
+	(*LatestMessage)(nil),                       // 15: chat.v1.LatestMessage
+	(*GetListLatestMessagesRequest)(nil),        // 16: chat.v1.GetListLatestMessagesRequest
+	(*GetListLatestMessagesResponse)(nil),       // 17: chat.v1.GetListLatestMessagesResponse
+	(*Message)(nil),                             // 18: chat.v1.Message
+	(*Conversation)(nil),                        // 19: chat.v1.Conversation
+	(*SendMessageTextFirst)(nil),                // 20: chat.v1.SendMessageTextFirst
+	(*GetListConversationsRequest)(nil),         // 21: chat.v1.GetListConversationsRequest
+	(*GetListConversationsResponse)(nil),        // 22: chat.v1.GetListConversationsResponse
+	(*GetGroupConversationMembersRequest)(nil),  // 23: chat.v1.GetGroupConversationMembersRequest
+	(*Participant)(nil),                         // 24: chat.v1.Participant
+	(*GetGroupConversationMembersResponse)(nil), // 25: chat.v1.GetGroupConversationMembersResponse
+	(*GetConversationDetailRequest)(nil),        // 26: chat.v1.GetConversationDetailRequest
+	(*GetConversationDetailResponse)(nil),       // 27: chat.v1.GetConversationDetailResponse
+	(*GetListParticipantsRequest)(nil),          // 28: chat.v1.GetListParticipantsRequest
+	(*GetListParticipantsResponse)(nil),         // 29: chat.v1.GetListParticipantsResponse
+	nil,                                         // 30: chat.v1.Attachment.UserMetadataEntry
+	(*timestamppb.Timestamp)(nil),               // 31: google.protobuf.Timestamp
 }
 var file_chat_v1_type_proto_depIdxs = []int32{
-	28, // 0: chat.v1.Attachment.user_metadata:type_name -> chat.v1.Attachment.UserMetadataEntry
-	2,  // 1: chat.v1.Part.text:type_name -> chat.v1.Text
-	3,  // 2: chat.v1.Part.attachment:type_name -> chat.v1.Attachment
-	4,  // 3: chat.v1.SendMessageTextRequest.parts:type_name -> chat.v1.Part
-	1,  // 4: chat.v1.SendMessageTextRequest.mentions:type_name -> chat.v1.Mention
-	4,  // 5: chat.v1.SendMessageWithAttachmentRequest.parts:type_name -> chat.v1.Part
-	2,  // 6: chat.v1.SendMessageWithAttachmentPart.text:type_name -> chat.v1.Text
-	8,  // 7: chat.v1.SendMessageWithAttachmentResponse.parts:type_name -> chat.v1.SendMessageWithAttachmentPart
-	0,  // 8: chat.v1.LatestMessageText.entities:type_name -> chat.v1.TextEntity
-	10, // 9: chat.v1.LatestMessagePart.text:type_name -> chat.v1.LatestMessageText
-	11, // 10: chat.v1.LatestMessagePart.attachment:type_name -> chat.v1.LatestMessageAttachment
-	12, // 11: chat.v1.LatestMessage.parts:type_name -> chat.v1.LatestMessagePart
-	29, // 12: chat.v1.LatestMessage.created_at:type_name -> google.protobuf.Timestamp
-	13, // 13: chat.v1.GetListLatestMessagesResponse.messages:type_name -> chat.v1.LatestMessage
-	29, // 14: chat.v1.Conversation.last_message_at:type_name -> google.protobuf.Timestamp
-	29, // 15: chat.v1.Conversation.last_activity_at:type_name -> google.protobuf.Timestamp
-	17, // 16: chat.v1.SendMessageTextFirst.conversation:type_name -> chat.v1.Conversation
-	17, // 17: chat.v1.GetListConversationsResponse.conversations:type_name -> chat.v1.Conversation
-	29, // 18: chat.v1.Participant.joined_at:type_name -> google.protobuf.Timestamp
-	29, // 19: chat.v1.Participant.left_at:type_name -> google.protobuf.Timestamp
-	22, // 20: chat.v1.GetGroupConversationMembersResponse.participants:type_name -> chat.v1.Participant
-	17, // 21: chat.v1.GetConversationDetailResponse.conversation:type_name -> chat.v1.Conversation
-	22, // 22: chat.v1.GetListParticipantsResponse.participants:type_name -> chat.v1.Participant
-	23, // [23:23] is the sub-list for method output_type
-	23, // [23:23] is the sub-list for method input_type
-	23, // [23:23] is the sub-list for extension type_name
-	23, // [23:23] is the sub-list for extension extendee
-	0,  // [0:23] is the sub-list for field type_name
+	0,  // 0: chat.v1.TextEntity.type:type_name -> chat.v1.TextEntityType
+	30, // 1: chat.v1.Attachment.user_metadata:type_name -> chat.v1.Attachment.UserMetadataEntry
+	4,  // 2: chat.v1.Part.text:type_name -> chat.v1.Text
+	5,  // 3: chat.v1.Part.attachment:type_name -> chat.v1.Attachment
+	6,  // 4: chat.v1.SendMessageTextRequest.parts:type_name -> chat.v1.Part
+	3,  // 5: chat.v1.SendMessageTextRequest.mentions:type_name -> chat.v1.Mention
+	6,  // 6: chat.v1.SendMessageWithAttachmentRequest.parts:type_name -> chat.v1.Part
+	4,  // 7: chat.v1.SendMessageWithAttachmentPart.text:type_name -> chat.v1.Text
+	10, // 8: chat.v1.SendMessageWithAttachmentResponse.parts:type_name -> chat.v1.SendMessageWithAttachmentPart
+	2,  // 9: chat.v1.LatestMessageText.entities:type_name -> chat.v1.TextEntity
+	12, // 10: chat.v1.LatestMessagePart.text:type_name -> chat.v1.LatestMessageText
+	13, // 11: chat.v1.LatestMessagePart.attachment:type_name -> chat.v1.LatestMessageAttachment
+	1,  // 12: chat.v1.LatestMessagePart.type:type_name -> chat.v1.LastMessagePartType
+	14, // 13: chat.v1.LatestMessage.parts:type_name -> chat.v1.LatestMessagePart
+	31, // 14: chat.v1.LatestMessage.created_at:type_name -> google.protobuf.Timestamp
+	15, // 15: chat.v1.GetListLatestMessagesResponse.messages:type_name -> chat.v1.LatestMessage
+	31, // 16: chat.v1.Conversation.last_message_at:type_name -> google.protobuf.Timestamp
+	31, // 17: chat.v1.Conversation.last_activity_at:type_name -> google.protobuf.Timestamp
+	19, // 18: chat.v1.SendMessageTextFirst.conversation:type_name -> chat.v1.Conversation
+	19, // 19: chat.v1.GetListConversationsResponse.conversations:type_name -> chat.v1.Conversation
+	31, // 20: chat.v1.Participant.joined_at:type_name -> google.protobuf.Timestamp
+	31, // 21: chat.v1.Participant.left_at:type_name -> google.protobuf.Timestamp
+	24, // 22: chat.v1.GetGroupConversationMembersResponse.participants:type_name -> chat.v1.Participant
+	19, // 23: chat.v1.GetConversationDetailResponse.conversation:type_name -> chat.v1.Conversation
+	24, // 24: chat.v1.GetListParticipantsResponse.participants:type_name -> chat.v1.Participant
+	25, // [25:25] is the sub-list for method output_type
+	25, // [25:25] is the sub-list for method input_type
+	25, // [25:25] is the sub-list for extension type_name
+	25, // [25:25] is the sub-list for extension extendee
+	0,  // [0:25] is the sub-list for field type_name
 }
 
 func init() { file_chat_v1_type_proto_init() }
@@ -2235,13 +2350,14 @@ func file_chat_v1_type_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_chat_v1_type_proto_rawDesc), len(file_chat_v1_type_proto_rawDesc)),
-			NumEnums:      0,
+			NumEnums:      2,
 			NumMessages:   29,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_chat_v1_type_proto_goTypes,
 		DependencyIndexes: file_chat_v1_type_proto_depIdxs,
+		EnumInfos:         file_chat_v1_type_proto_enumTypes,
 		MessageInfos:      file_chat_v1_type_proto_msgTypes,
 	}.Build()
 	File_chat_v1_type_proto = out.File
