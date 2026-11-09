@@ -123,6 +123,55 @@ func (LastMessagePartType) EnumDescriptor() ([]byte, []int) {
 	return file_chat_v1_type_proto_rawDescGZIP(), []int{1}
 }
 
+type PartType int32
+
+const (
+	PartType_PART_TYPE_UNSPECIFIED PartType = 0
+	PartType_PART_TYPE_TEXT        PartType = 1
+	PartType_PART_TYPE_ATTACHMENT  PartType = 2
+)
+
+// Enum value maps for PartType.
+var (
+	PartType_name = map[int32]string{
+		0: "PART_TYPE_UNSPECIFIED",
+		1: "PART_TYPE_TEXT",
+		2: "PART_TYPE_ATTACHMENT",
+	}
+	PartType_value = map[string]int32{
+		"PART_TYPE_UNSPECIFIED": 0,
+		"PART_TYPE_TEXT":        1,
+		"PART_TYPE_ATTACHMENT":  2,
+	}
+)
+
+func (x PartType) Enum() *PartType {
+	p := new(PartType)
+	*p = x
+	return p
+}
+
+func (x PartType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (PartType) Descriptor() protoreflect.EnumDescriptor {
+	return file_chat_v1_type_proto_enumTypes[2].Descriptor()
+}
+
+func (PartType) Type() protoreflect.EnumType {
+	return &file_chat_v1_type_proto_enumTypes[2]
+}
+
+func (x PartType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use PartType.Descriptor instead.
+func (PartType) EnumDescriptor() ([]byte, []int) {
+	return file_chat_v1_type_proto_rawDescGZIP(), []int{2}
+}
+
 type TextEntity struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Type          TextEntityType         `protobuf:"varint,1,opt,name=type,proto3,enum=chat.v1.TextEntityType" json:"type,omitempty"`
@@ -2055,6 +2104,362 @@ func (x *GetListParticipantsResponse) GetParticipants() []*Participant {
 	return nil
 }
 
+type PartSummary struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Type          PartType               `protobuf:"varint,2,opt,name=type,proto3,enum=chat.v1.PartType" json:"type,omitempty"`
+	Content       *string                `protobuf:"bytes,3,opt,name=content,proto3,oneof" json:"content,omitempty"`
+	ContentType   *string                `protobuf:"bytes,4,opt,name=content_type,json=contentType,proto3,oneof" json:"content_type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PartSummary) Reset() {
+	*x = PartSummary{}
+	mi := &file_chat_v1_type_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PartSummary) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PartSummary) ProtoMessage() {}
+
+func (x *PartSummary) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_v1_type_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PartSummary.ProtoReflect.Descriptor instead.
+func (*PartSummary) Descriptor() ([]byte, []int) {
+	return file_chat_v1_type_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *PartSummary) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *PartSummary) GetType() PartType {
+	if x != nil {
+		return x.Type
+	}
+	return PartType_PART_TYPE_UNSPECIFIED
+}
+
+func (x *PartSummary) GetContent() string {
+	if x != nil && x.Content != nil {
+		return *x.Content
+	}
+	return ""
+}
+
+func (x *PartSummary) GetContentType() string {
+	if x != nil && x.ContentType != nil {
+		return *x.ContentType
+	}
+	return ""
+}
+
+type MessageSummary struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Id             string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	ConversationId string                 `protobuf:"bytes,2,opt,name=conversation_id,json=conversationId,proto3" json:"conversation_id,omitempty"`
+	SenderId       string                 `protobuf:"bytes,3,opt,name=sender_id,json=senderId,proto3" json:"sender_id,omitempty"`
+	Parts          []*PartSummary         `protobuf:"bytes,4,rep,name=parts,proto3" json:"parts,omitempty"`
+	OrderKey       string                 `protobuf:"bytes,5,opt,name=order_key,json=orderKey,proto3" json:"order_key,omitempty"`
+	CreatedAt      *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	RecalledAt     *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=recalled_at,json=recalledAt,proto3,oneof" json:"recalled_at,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *MessageSummary) Reset() {
+	*x = MessageSummary{}
+	mi := &file_chat_v1_type_proto_msgTypes[29]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MessageSummary) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MessageSummary) ProtoMessage() {}
+
+func (x *MessageSummary) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_v1_type_proto_msgTypes[29]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MessageSummary.ProtoReflect.Descriptor instead.
+func (*MessageSummary) Descriptor() ([]byte, []int) {
+	return file_chat_v1_type_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *MessageSummary) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *MessageSummary) GetConversationId() string {
+	if x != nil {
+		return x.ConversationId
+	}
+	return ""
+}
+
+func (x *MessageSummary) GetSenderId() string {
+	if x != nil {
+		return x.SenderId
+	}
+	return ""
+}
+
+func (x *MessageSummary) GetParts() []*PartSummary {
+	if x != nil {
+		return x.Parts
+	}
+	return nil
+}
+
+func (x *MessageSummary) GetOrderKey() string {
+	if x != nil {
+		return x.OrderKey
+	}
+	return ""
+}
+
+func (x *MessageSummary) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *MessageSummary) GetRecalledAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.RecalledAt
+	}
+	return nil
+}
+
+type ConversationDetail struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Id             string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Type           string                 `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
+	Name           *string                `protobuf:"bytes,3,opt,name=name,proto3,oneof" json:"name,omitempty"`
+	AvatarMediaId  *string                `protobuf:"bytes,4,opt,name=avatar_media_id,json=avatarMediaId,proto3,oneof" json:"avatar_media_id,omitempty"`
+	LastMessage    *MessageSummary        `protobuf:"bytes,5,opt,name=last_message,json=lastMessage,proto3,oneof" json:"last_message,omitempty"`
+	LastActivityAt *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=last_activity_at,json=lastActivityAt,proto3" json:"last_activity_at,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *ConversationDetail) Reset() {
+	*x = ConversationDetail{}
+	mi := &file_chat_v1_type_proto_msgTypes[30]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ConversationDetail) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ConversationDetail) ProtoMessage() {}
+
+func (x *ConversationDetail) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_v1_type_proto_msgTypes[30]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ConversationDetail.ProtoReflect.Descriptor instead.
+func (*ConversationDetail) Descriptor() ([]byte, []int) {
+	return file_chat_v1_type_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *ConversationDetail) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *ConversationDetail) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *ConversationDetail) GetName() string {
+	if x != nil && x.Name != nil {
+		return *x.Name
+	}
+	return ""
+}
+
+func (x *ConversationDetail) GetAvatarMediaId() string {
+	if x != nil && x.AvatarMediaId != nil {
+		return *x.AvatarMediaId
+	}
+	return ""
+}
+
+func (x *ConversationDetail) GetLastMessage() *MessageSummary {
+	if x != nil {
+		return x.LastMessage
+	}
+	return nil
+}
+
+func (x *ConversationDetail) GetLastActivityAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.LastActivityAt
+	}
+	return nil
+}
+
+type GetListConversationsDetailRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ParticipantId string                 `protobuf:"bytes,1,opt,name=participant_id,json=participantId,proto3" json:"participant_id,omitempty"`
+	NextCursor    *string                `protobuf:"bytes,2,opt,name=next_cursor,json=nextCursor,proto3,oneof" json:"next_cursor,omitempty"`
+	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetListConversationsDetailRequest) Reset() {
+	*x = GetListConversationsDetailRequest{}
+	mi := &file_chat_v1_type_proto_msgTypes[31]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetListConversationsDetailRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetListConversationsDetailRequest) ProtoMessage() {}
+
+func (x *GetListConversationsDetailRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_v1_type_proto_msgTypes[31]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetListConversationsDetailRequest.ProtoReflect.Descriptor instead.
+func (*GetListConversationsDetailRequest) Descriptor() ([]byte, []int) {
+	return file_chat_v1_type_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *GetListConversationsDetailRequest) GetParticipantId() string {
+	if x != nil {
+		return x.ParticipantId
+	}
+	return ""
+}
+
+func (x *GetListConversationsDetailRequest) GetNextCursor() string {
+	if x != nil && x.NextCursor != nil {
+		return *x.NextCursor
+	}
+	return ""
+}
+
+func (x *GetListConversationsDetailRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+type GetListConversationsDetailResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Conversations []*ConversationDetail  `protobuf:"bytes,1,rep,name=conversations,proto3" json:"conversations,omitempty"`
+	NextCursor    *string                `protobuf:"bytes,2,opt,name=next_cursor,json=nextCursor,proto3,oneof" json:"next_cursor,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetListConversationsDetailResponse) Reset() {
+	*x = GetListConversationsDetailResponse{}
+	mi := &file_chat_v1_type_proto_msgTypes[32]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetListConversationsDetailResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetListConversationsDetailResponse) ProtoMessage() {}
+
+func (x *GetListConversationsDetailResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_v1_type_proto_msgTypes[32]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetListConversationsDetailResponse.ProtoReflect.Descriptor instead.
+func (*GetListConversationsDetailResponse) Descriptor() ([]byte, []int) {
+	return file_chat_v1_type_proto_rawDescGZIP(), []int{32}
+}
+
+func (x *GetListConversationsDetailResponse) GetConversations() []*ConversationDetail {
+	if x != nil {
+		return x.Conversations
+	}
+	return nil
+}
+
+func (x *GetListConversationsDetailResponse) GetNextCursor() string {
+	if x != nil && x.NextCursor != nil {
+		return *x.NextCursor
+	}
+	return ""
+}
+
 var File_chat_v1_type_proto protoreflect.FileDescriptor
 
 const file_chat_v1_type_proto_rawDesc = "" +
@@ -2247,7 +2652,47 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"\x0fconversation_id\x18\x01 \x01(\tR\x0econversationId\x12!\n" +
 	"\fprincipal_id\x18\x02 \x01(\tR\vprincipalId\"W\n" +
 	"\x1bGetListParticipantsResponse\x128\n" +
-	"\fparticipants\x18\x01 \x03(\v2\x14.chat.v1.ParticipantR\fparticipants*\x89\x01\n" +
+	"\fparticipants\x18\x01 \x03(\v2\x14.chat.v1.ParticipantR\fparticipants\"\xa8\x01\n" +
+	"\vPartSummary\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12%\n" +
+	"\x04type\x18\x02 \x01(\x0e2\x11.chat.v1.PartTypeR\x04type\x12\x1d\n" +
+	"\acontent\x18\x03 \x01(\tH\x00R\acontent\x88\x01\x01\x12&\n" +
+	"\fcontent_type\x18\x04 \x01(\tH\x01R\vcontentType\x88\x01\x01B\n" +
+	"\n" +
+	"\b_contentB\x0f\n" +
+	"\r_content_type\"\xbc\x02\n" +
+	"\x0eMessageSummary\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12'\n" +
+	"\x0fconversation_id\x18\x02 \x01(\tR\x0econversationId\x12\x1b\n" +
+	"\tsender_id\x18\x03 \x01(\tR\bsenderId\x12*\n" +
+	"\x05parts\x18\x04 \x03(\v2\x14.chat.v1.PartSummaryR\x05parts\x12\x1b\n" +
+	"\torder_key\x18\x05 \x01(\tR\borderKey\x129\n" +
+	"\n" +
+	"created_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12@\n" +
+	"\vrecalled_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampH\x00R\n" +
+	"recalledAt\x88\x01\x01B\x0e\n" +
+	"\f_recalled_at\"\xb3\x02\n" +
+	"\x12ConversationDetail\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04type\x18\x02 \x01(\tR\x04type\x12\x17\n" +
+	"\x04name\x18\x03 \x01(\tH\x00R\x04name\x88\x01\x01\x12+\n" +
+	"\x0favatar_media_id\x18\x04 \x01(\tH\x01R\ravatarMediaId\x88\x01\x01\x12?\n" +
+	"\flast_message\x18\x05 \x01(\v2\x17.chat.v1.MessageSummaryH\x02R\vlastMessage\x88\x01\x01\x12D\n" +
+	"\x10last_activity_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\x0elastActivityAtB\a\n" +
+	"\x05_nameB\x12\n" +
+	"\x10_avatar_media_idB\x0f\n" +
+	"\r_last_message\"\x96\x01\n" +
+	"!GetListConversationsDetailRequest\x12%\n" +
+	"\x0eparticipant_id\x18\x01 \x01(\tR\rparticipantId\x12$\n" +
+	"\vnext_cursor\x18\x02 \x01(\tH\x00R\n" +
+	"nextCursor\x88\x01\x01\x12\x14\n" +
+	"\x05limit\x18\x03 \x01(\x05R\x05limitB\x0e\n" +
+	"\f_next_cursor\"\x9d\x01\n" +
+	"\"GetListConversationsDetailResponse\x12A\n" +
+	"\rconversations\x18\x01 \x03(\v2\x1b.chat.v1.ConversationDetailR\rconversations\x12$\n" +
+	"\vnext_cursor\x18\x02 \x01(\tH\x00R\n" +
+	"nextCursor\x88\x01\x01B\x0e\n" +
+	"\f_next_cursor*\x89\x01\n" +
 	"\x0eTextEntityType\x12 \n" +
 	"\x1cTEXT_ENTITY_TYPE_UNSPECIFIED\x10\x00\x12\x1c\n" +
 	"\x18TEXT_ENTITY_TYPE_MENTION\x10\x01\x12\x19\n" +
@@ -2256,7 +2701,11 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"\x13LastMessagePartType\x12&\n" +
 	"\"LAST_MESSAGE_PART_TYPE_UNSPECIFIED\x10\x00\x12\x1f\n" +
 	"\x1bLAST_MESSAGE_PART_TYPE_TEXT\x10\x01\x12%\n" +
-	"!LAST_MESSAGE_PART_TYPE_ATTACHMENT\x10\x02B\x1aZ\x18github.com/kaelorin/chatb\x06proto3"
+	"!LAST_MESSAGE_PART_TYPE_ATTACHMENT\x10\x02*S\n" +
+	"\bPartType\x12\x19\n" +
+	"\x15PART_TYPE_UNSPECIFIED\x10\x00\x12\x12\n" +
+	"\x0ePART_TYPE_TEXT\x10\x01\x12\x18\n" +
+	"\x14PART_TYPE_ATTACHMENT\x10\x02B\x1aZ\x18github.com/kaelorin/chatb\x06proto3"
 
 var (
 	file_chat_v1_type_proto_rawDescOnce sync.Once
@@ -2270,73 +2719,86 @@ func file_chat_v1_type_proto_rawDescGZIP() []byte {
 	return file_chat_v1_type_proto_rawDescData
 }
 
-var file_chat_v1_type_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_chat_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 29)
+var file_chat_v1_type_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
+var file_chat_v1_type_proto_msgTypes = make([]protoimpl.MessageInfo, 34)
 var file_chat_v1_type_proto_goTypes = []any{
 	(TextEntityType)(0),                         // 0: chat.v1.TextEntityType
 	(LastMessagePartType)(0),                    // 1: chat.v1.LastMessagePartType
-	(*TextEntity)(nil),                          // 2: chat.v1.TextEntity
-	(*Mention)(nil),                             // 3: chat.v1.Mention
-	(*Text)(nil),                                // 4: chat.v1.Text
-	(*Attachment)(nil),                          // 5: chat.v1.Attachment
-	(*Part)(nil),                                // 6: chat.v1.Part
-	(*SendMessageTextRequest)(nil),              // 7: chat.v1.SendMessageTextRequest
-	(*SendMessageTextResponse)(nil),             // 8: chat.v1.SendMessageTextResponse
-	(*SendMessageWithAttachmentRequest)(nil),    // 9: chat.v1.SendMessageWithAttachmentRequest
-	(*SendMessageWithAttachmentPart)(nil),       // 10: chat.v1.SendMessageWithAttachmentPart
-	(*SendMessageWithAttachmentResponse)(nil),   // 11: chat.v1.SendMessageWithAttachmentResponse
-	(*LatestMessageText)(nil),                   // 12: chat.v1.LatestMessageText
-	(*LatestMessageAttachment)(nil),             // 13: chat.v1.LatestMessageAttachment
-	(*LatestMessagePart)(nil),                   // 14: chat.v1.LatestMessagePart
-	(*LatestMessage)(nil),                       // 15: chat.v1.LatestMessage
-	(*GetListLatestMessagesRequest)(nil),        // 16: chat.v1.GetListLatestMessagesRequest
-	(*GetListLatestMessagesResponse)(nil),       // 17: chat.v1.GetListLatestMessagesResponse
-	(*Message)(nil),                             // 18: chat.v1.Message
-	(*Conversation)(nil),                        // 19: chat.v1.Conversation
-	(*SendMessageTextFirst)(nil),                // 20: chat.v1.SendMessageTextFirst
-	(*GetListConversationsRequest)(nil),         // 21: chat.v1.GetListConversationsRequest
-	(*GetListConversationsResponse)(nil),        // 22: chat.v1.GetListConversationsResponse
-	(*GetGroupConversationMembersRequest)(nil),  // 23: chat.v1.GetGroupConversationMembersRequest
-	(*Participant)(nil),                         // 24: chat.v1.Participant
-	(*GetGroupConversationMembersResponse)(nil), // 25: chat.v1.GetGroupConversationMembersResponse
-	(*GetConversationDetailRequest)(nil),        // 26: chat.v1.GetConversationDetailRequest
-	(*GetConversationDetailResponse)(nil),       // 27: chat.v1.GetConversationDetailResponse
-	(*GetListParticipantsRequest)(nil),          // 28: chat.v1.GetListParticipantsRequest
-	(*GetListParticipantsResponse)(nil),         // 29: chat.v1.GetListParticipantsResponse
-	nil,                                         // 30: chat.v1.Attachment.UserMetadataEntry
-	(*timestamppb.Timestamp)(nil),               // 31: google.protobuf.Timestamp
+	(PartType)(0),                               // 2: chat.v1.PartType
+	(*TextEntity)(nil),                          // 3: chat.v1.TextEntity
+	(*Mention)(nil),                             // 4: chat.v1.Mention
+	(*Text)(nil),                                // 5: chat.v1.Text
+	(*Attachment)(nil),                          // 6: chat.v1.Attachment
+	(*Part)(nil),                                // 7: chat.v1.Part
+	(*SendMessageTextRequest)(nil),              // 8: chat.v1.SendMessageTextRequest
+	(*SendMessageTextResponse)(nil),             // 9: chat.v1.SendMessageTextResponse
+	(*SendMessageWithAttachmentRequest)(nil),    // 10: chat.v1.SendMessageWithAttachmentRequest
+	(*SendMessageWithAttachmentPart)(nil),       // 11: chat.v1.SendMessageWithAttachmentPart
+	(*SendMessageWithAttachmentResponse)(nil),   // 12: chat.v1.SendMessageWithAttachmentResponse
+	(*LatestMessageText)(nil),                   // 13: chat.v1.LatestMessageText
+	(*LatestMessageAttachment)(nil),             // 14: chat.v1.LatestMessageAttachment
+	(*LatestMessagePart)(nil),                   // 15: chat.v1.LatestMessagePart
+	(*LatestMessage)(nil),                       // 16: chat.v1.LatestMessage
+	(*GetListLatestMessagesRequest)(nil),        // 17: chat.v1.GetListLatestMessagesRequest
+	(*GetListLatestMessagesResponse)(nil),       // 18: chat.v1.GetListLatestMessagesResponse
+	(*Message)(nil),                             // 19: chat.v1.Message
+	(*Conversation)(nil),                        // 20: chat.v1.Conversation
+	(*SendMessageTextFirst)(nil),                // 21: chat.v1.SendMessageTextFirst
+	(*GetListConversationsRequest)(nil),         // 22: chat.v1.GetListConversationsRequest
+	(*GetListConversationsResponse)(nil),        // 23: chat.v1.GetListConversationsResponse
+	(*GetGroupConversationMembersRequest)(nil),  // 24: chat.v1.GetGroupConversationMembersRequest
+	(*Participant)(nil),                         // 25: chat.v1.Participant
+	(*GetGroupConversationMembersResponse)(nil), // 26: chat.v1.GetGroupConversationMembersResponse
+	(*GetConversationDetailRequest)(nil),        // 27: chat.v1.GetConversationDetailRequest
+	(*GetConversationDetailResponse)(nil),       // 28: chat.v1.GetConversationDetailResponse
+	(*GetListParticipantsRequest)(nil),          // 29: chat.v1.GetListParticipantsRequest
+	(*GetListParticipantsResponse)(nil),         // 30: chat.v1.GetListParticipantsResponse
+	(*PartSummary)(nil),                         // 31: chat.v1.PartSummary
+	(*MessageSummary)(nil),                      // 32: chat.v1.MessageSummary
+	(*ConversationDetail)(nil),                  // 33: chat.v1.ConversationDetail
+	(*GetListConversationsDetailRequest)(nil),   // 34: chat.v1.GetListConversationsDetailRequest
+	(*GetListConversationsDetailResponse)(nil),  // 35: chat.v1.GetListConversationsDetailResponse
+	nil,                           // 36: chat.v1.Attachment.UserMetadataEntry
+	(*timestamppb.Timestamp)(nil), // 37: google.protobuf.Timestamp
 }
 var file_chat_v1_type_proto_depIdxs = []int32{
 	0,  // 0: chat.v1.TextEntity.type:type_name -> chat.v1.TextEntityType
-	30, // 1: chat.v1.Attachment.user_metadata:type_name -> chat.v1.Attachment.UserMetadataEntry
-	4,  // 2: chat.v1.Part.text:type_name -> chat.v1.Text
-	5,  // 3: chat.v1.Part.attachment:type_name -> chat.v1.Attachment
-	6,  // 4: chat.v1.SendMessageTextRequest.parts:type_name -> chat.v1.Part
-	3,  // 5: chat.v1.SendMessageTextRequest.mentions:type_name -> chat.v1.Mention
-	6,  // 6: chat.v1.SendMessageWithAttachmentRequest.parts:type_name -> chat.v1.Part
-	4,  // 7: chat.v1.SendMessageWithAttachmentPart.text:type_name -> chat.v1.Text
-	10, // 8: chat.v1.SendMessageWithAttachmentResponse.parts:type_name -> chat.v1.SendMessageWithAttachmentPart
-	2,  // 9: chat.v1.LatestMessageText.entities:type_name -> chat.v1.TextEntity
-	12, // 10: chat.v1.LatestMessagePart.text:type_name -> chat.v1.LatestMessageText
-	13, // 11: chat.v1.LatestMessagePart.attachment:type_name -> chat.v1.LatestMessageAttachment
+	36, // 1: chat.v1.Attachment.user_metadata:type_name -> chat.v1.Attachment.UserMetadataEntry
+	5,  // 2: chat.v1.Part.text:type_name -> chat.v1.Text
+	6,  // 3: chat.v1.Part.attachment:type_name -> chat.v1.Attachment
+	7,  // 4: chat.v1.SendMessageTextRequest.parts:type_name -> chat.v1.Part
+	4,  // 5: chat.v1.SendMessageTextRequest.mentions:type_name -> chat.v1.Mention
+	7,  // 6: chat.v1.SendMessageWithAttachmentRequest.parts:type_name -> chat.v1.Part
+	5,  // 7: chat.v1.SendMessageWithAttachmentPart.text:type_name -> chat.v1.Text
+	11, // 8: chat.v1.SendMessageWithAttachmentResponse.parts:type_name -> chat.v1.SendMessageWithAttachmentPart
+	3,  // 9: chat.v1.LatestMessageText.entities:type_name -> chat.v1.TextEntity
+	13, // 10: chat.v1.LatestMessagePart.text:type_name -> chat.v1.LatestMessageText
+	14, // 11: chat.v1.LatestMessagePart.attachment:type_name -> chat.v1.LatestMessageAttachment
 	1,  // 12: chat.v1.LatestMessagePart.type:type_name -> chat.v1.LastMessagePartType
-	14, // 13: chat.v1.LatestMessage.parts:type_name -> chat.v1.LatestMessagePart
-	31, // 14: chat.v1.LatestMessage.created_at:type_name -> google.protobuf.Timestamp
-	15, // 15: chat.v1.GetListLatestMessagesResponse.messages:type_name -> chat.v1.LatestMessage
-	31, // 16: chat.v1.Conversation.last_message_at:type_name -> google.protobuf.Timestamp
-	31, // 17: chat.v1.Conversation.last_activity_at:type_name -> google.protobuf.Timestamp
-	19, // 18: chat.v1.SendMessageTextFirst.conversation:type_name -> chat.v1.Conversation
-	19, // 19: chat.v1.GetListConversationsResponse.conversations:type_name -> chat.v1.Conversation
-	31, // 20: chat.v1.Participant.joined_at:type_name -> google.protobuf.Timestamp
-	31, // 21: chat.v1.Participant.left_at:type_name -> google.protobuf.Timestamp
-	24, // 22: chat.v1.GetGroupConversationMembersResponse.participants:type_name -> chat.v1.Participant
-	19, // 23: chat.v1.GetConversationDetailResponse.conversation:type_name -> chat.v1.Conversation
-	24, // 24: chat.v1.GetListParticipantsResponse.participants:type_name -> chat.v1.Participant
-	25, // [25:25] is the sub-list for method output_type
-	25, // [25:25] is the sub-list for method input_type
-	25, // [25:25] is the sub-list for extension type_name
-	25, // [25:25] is the sub-list for extension extendee
-	0,  // [0:25] is the sub-list for field type_name
+	15, // 13: chat.v1.LatestMessage.parts:type_name -> chat.v1.LatestMessagePart
+	37, // 14: chat.v1.LatestMessage.created_at:type_name -> google.protobuf.Timestamp
+	16, // 15: chat.v1.GetListLatestMessagesResponse.messages:type_name -> chat.v1.LatestMessage
+	37, // 16: chat.v1.Conversation.last_message_at:type_name -> google.protobuf.Timestamp
+	37, // 17: chat.v1.Conversation.last_activity_at:type_name -> google.protobuf.Timestamp
+	20, // 18: chat.v1.SendMessageTextFirst.conversation:type_name -> chat.v1.Conversation
+	20, // 19: chat.v1.GetListConversationsResponse.conversations:type_name -> chat.v1.Conversation
+	37, // 20: chat.v1.Participant.joined_at:type_name -> google.protobuf.Timestamp
+	37, // 21: chat.v1.Participant.left_at:type_name -> google.protobuf.Timestamp
+	25, // 22: chat.v1.GetGroupConversationMembersResponse.participants:type_name -> chat.v1.Participant
+	20, // 23: chat.v1.GetConversationDetailResponse.conversation:type_name -> chat.v1.Conversation
+	25, // 24: chat.v1.GetListParticipantsResponse.participants:type_name -> chat.v1.Participant
+	2,  // 25: chat.v1.PartSummary.type:type_name -> chat.v1.PartType
+	31, // 26: chat.v1.MessageSummary.parts:type_name -> chat.v1.PartSummary
+	37, // 27: chat.v1.MessageSummary.created_at:type_name -> google.protobuf.Timestamp
+	37, // 28: chat.v1.MessageSummary.recalled_at:type_name -> google.protobuf.Timestamp
+	32, // 29: chat.v1.ConversationDetail.last_message:type_name -> chat.v1.MessageSummary
+	37, // 30: chat.v1.ConversationDetail.last_activity_at:type_name -> google.protobuf.Timestamp
+	33, // 31: chat.v1.GetListConversationsDetailResponse.conversations:type_name -> chat.v1.ConversationDetail
+	32, // [32:32] is the sub-list for method output_type
+	32, // [32:32] is the sub-list for method input_type
+	32, // [32:32] is the sub-list for extension type_name
+	32, // [32:32] is the sub-list for extension extendee
+	0,  // [0:32] is the sub-list for field type_name
 }
 
 func init() { file_chat_v1_type_proto_init() }
@@ -2365,13 +2827,18 @@ func file_chat_v1_type_proto_init() {
 	file_chat_v1_type_proto_msgTypes[19].OneofWrappers = []any{}
 	file_chat_v1_type_proto_msgTypes[20].OneofWrappers = []any{}
 	file_chat_v1_type_proto_msgTypes[22].OneofWrappers = []any{}
+	file_chat_v1_type_proto_msgTypes[28].OneofWrappers = []any{}
+	file_chat_v1_type_proto_msgTypes[29].OneofWrappers = []any{}
+	file_chat_v1_type_proto_msgTypes[30].OneofWrappers = []any{}
+	file_chat_v1_type_proto_msgTypes[31].OneofWrappers = []any{}
+	file_chat_v1_type_proto_msgTypes[32].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_chat_v1_type_proto_rawDesc), len(file_chat_v1_type_proto_rawDesc)),
-			NumEnums:      2,
-			NumMessages:   29,
+			NumEnums:      3,
+			NumMessages:   34,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
