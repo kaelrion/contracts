@@ -308,7 +308,7 @@ type Mention struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	MentionId     string                 `protobuf:"bytes,1,opt,name=mention_id,json=mentionId,proto3" json:"mention_id,omitempty"`
 	StartOffset   int32                  `protobuf:"varint,2,opt,name=start_offset,json=startOffset,proto3" json:"start_offset,omitempty"`
-	Length        int32                  `protobuf:"varint,3,opt,name=length,proto3" json:"length,omitempty"`
+	EndOffset     int32                  `protobuf:"varint,3,opt,name=end_offset,json=endOffset,proto3" json:"end_offset,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -357,9 +357,9 @@ func (x *Mention) GetStartOffset() int32 {
 	return 0
 }
 
-func (x *Mention) GetLength() int32 {
+func (x *Mention) GetEndOffset() int32 {
 	if x != nil {
-		return x.Length
+		return x.EndOffset
 	}
 	return 0
 }
@@ -2499,12 +2499,13 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"_image_urlB\v\n" +
 	"\t_sitenameB\x0e\n" +
 	"\f_favicon_urlB\b\n" +
-	"\x06_value\"c\n" +
+	"\x06_value\"j\n" +
 	"\aMention\x12\x1d\n" +
 	"\n" +
 	"mention_id\x18\x01 \x01(\tR\tmentionId\x12!\n" +
-	"\fstart_offset\x18\x02 \x01(\x05R\vstartOffset\x12\x16\n" +
-	"\x06length\x18\x03 \x01(\x05R\x06length\" \n" +
+	"\fstart_offset\x18\x02 \x01(\x05R\vstartOffset\x12\x1d\n" +
+	"\n" +
+	"end_offset\x18\x03 \x01(\x05R\tendOffset\" \n" +
 	"\x04Text\x12\x18\n" +
 	"\acontent\x18\x01 \x01(\tR\acontent\"\xe7\x02\n" +
 	"\n" +
