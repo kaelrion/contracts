@@ -246,6 +246,7 @@ message ConversationDetail {
   optional string           avatar_media_id  = 4;
   optional MessageSummary   last_message     = 5;
   google.protobuf.Timestamp last_activity_at = 6;
+  int64                     un_read_count    = 7;
 
 }
 

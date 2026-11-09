@@ -2272,6 +2272,7 @@ type ConversationDetail struct {
 	AvatarMediaId  *string                `protobuf:"bytes,4,opt,name=avatar_media_id,json=avatarMediaId,proto3,oneof" json:"avatar_media_id,omitempty"`
 	LastMessage    *MessageSummary        `protobuf:"bytes,5,opt,name=last_message,json=lastMessage,proto3,oneof" json:"last_message,omitempty"`
 	LastActivityAt *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=last_activity_at,json=lastActivityAt,proto3" json:"last_activity_at,omitempty"`
+	UnReadCount    int64                  `protobuf:"varint,7,opt,name=un_read_count,json=unReadCount,proto3" json:"un_read_count,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -2346,6 +2347,13 @@ func (x *ConversationDetail) GetLastActivityAt() *timestamppb.Timestamp {
 		return x.LastActivityAt
 	}
 	return nil
+}
+
+func (x *ConversationDetail) GetUnReadCount() int64 {
+	if x != nil {
+		return x.UnReadCount
+	}
+	return 0
 }
 
 type GetListConversationsDetailRequest struct {
@@ -2671,14 +2679,15 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"created_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12@\n" +
 	"\vrecalled_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampH\x00R\n" +
 	"recalledAt\x88\x01\x01B\x0e\n" +
-	"\f_recalled_at\"\xb3\x02\n" +
+	"\f_recalled_at\"\xd7\x02\n" +
 	"\x12ConversationDetail\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04type\x18\x02 \x01(\tR\x04type\x12\x17\n" +
 	"\x04name\x18\x03 \x01(\tH\x00R\x04name\x88\x01\x01\x12+\n" +
 	"\x0favatar_media_id\x18\x04 \x01(\tH\x01R\ravatarMediaId\x88\x01\x01\x12?\n" +
 	"\flast_message\x18\x05 \x01(\v2\x17.chat.v1.MessageSummaryH\x02R\vlastMessage\x88\x01\x01\x12D\n" +
-	"\x10last_activity_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\x0elastActivityAtB\a\n" +
+	"\x10last_activity_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\x0elastActivityAt\x12\"\n" +
+	"\run_read_count\x18\a \x01(\x03R\vunReadCountB\a\n" +
 	"\x05_nameB\x12\n" +
 	"\x10_avatar_media_idB\x0f\n" +
 	"\r_last_message\"\x96\x01\n" +
