@@ -417,6 +417,7 @@ type Attachment struct {
 	Height        *int64                 `protobuf:"varint,5,opt,name=height,proto3,oneof" json:"height,omitempty"`
 	DurationMs    *int64                 `protobuf:"varint,6,opt,name=duration_ms,json=durationMs,proto3,oneof" json:"duration_ms,omitempty"`
 	UserMetadata  map[string]string      `protobuf:"bytes,7,rep,name=user_metadata,json=userMetadata,proto3" json:"user_metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	AudioType     *string                `protobuf:"bytes,8,opt,name=audio_type,json=audioType,proto3,oneof" json:"audio_type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -498,6 +499,13 @@ func (x *Attachment) GetUserMetadata() map[string]string {
 		return x.UserMetadata
 	}
 	return nil
+}
+
+func (x *Attachment) GetAudioType() string {
+	if x != nil && x.AudioType != nil {
+		return *x.AudioType
+	}
+	return ""
 }
 
 type Part struct {
@@ -1038,6 +1046,8 @@ type LatestMessageAttachment struct {
 	Size          int64                  `protobuf:"varint,4,opt,name=size,proto3" json:"size,omitempty"`
 	Width         *int32                 `protobuf:"varint,5,opt,name=width,proto3,oneof" json:"width,omitempty"`
 	Height        *int32                 `protobuf:"varint,6,opt,name=height,proto3,oneof" json:"height,omitempty"`
+	DurationMs    *int64                 `protobuf:"varint,7,opt,name=duration_ms,json=durationMs,proto3,oneof" json:"duration_ms,omitempty"`
+	AudioType     *string                `protobuf:"bytes,8,opt,name=audio_type,json=audioType,proto3,oneof" json:"audio_type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1112,6 +1122,20 @@ func (x *LatestMessageAttachment) GetHeight() int32 {
 		return *x.Height
 	}
 	return 0
+}
+
+func (x *LatestMessageAttachment) GetDurationMs() int64 {
+	if x != nil && x.DurationMs != nil {
+		return *x.DurationMs
+	}
+	return 0
+}
+
+func (x *LatestMessageAttachment) GetAudioType() string {
+	if x != nil && x.AudioType != nil {
+		return *x.AudioType
+	}
+	return ""
 }
 
 type LatestMessagePart struct {
@@ -2507,7 +2531,7 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"\n" +
 	"end_offset\x18\x03 \x01(\x05R\tendOffset\" \n" +
 	"\x04Text\x12\x18\n" +
-	"\acontent\x18\x01 \x01(\tR\acontent\"\xe7\x02\n" +
+	"\acontent\x18\x01 \x01(\tR\acontent\"\x9a\x03\n" +
 	"\n" +
 	"Attachment\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
@@ -2517,13 +2541,16 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"\x06height\x18\x05 \x01(\x03H\x01R\x06height\x88\x01\x01\x12$\n" +
 	"\vduration_ms\x18\x06 \x01(\x03H\x02R\n" +
 	"durationMs\x88\x01\x01\x12J\n" +
-	"\ruser_metadata\x18\a \x03(\v2%.chat.v1.Attachment.UserMetadataEntryR\fuserMetadata\x1a?\n" +
+	"\ruser_metadata\x18\a \x03(\v2%.chat.v1.Attachment.UserMetadataEntryR\fuserMetadata\x12\"\n" +
+	"\n" +
+	"audio_type\x18\b \x01(\tH\x03R\taudioType\x88\x01\x01\x1a?\n" +
 	"\x11UserMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B\b\n" +
 	"\x06_widthB\t\n" +
 	"\a_heightB\x0e\n" +
-	"\f_duration_ms\"\x9d\x01\n" +
+	"\f_duration_msB\r\n" +
+	"\v_audio_type\"\x9d\x01\n" +
 	"\x04Part\x12\x12\n" +
 	"\x04type\x18\x01 \x01(\tR\x04type\x12#\n" +
 	"\x04text\x18\x02 \x01(\v2\r.chat.v1.TextH\x00R\x04text\x125\n" +
@@ -2570,16 +2597,22 @@ const file_chat_v1_type_proto_rawDesc = "" +
 	"\tclient_id\x18\x05 \x01(\tR\bclientId\"^\n" +
 	"\x11LatestMessageText\x12\x18\n" +
 	"\acontent\x18\x01 \x01(\tR\acontent\x12/\n" +
-	"\bentities\x18\x02 \x03(\v2\x13.chat.v1.TextEntityR\bentities\"\xcc\x01\n" +
+	"\bentities\x18\x02 \x03(\v2\x13.chat.v1.TextEntityR\bentities\"\xb5\x02\n" +
 	"\x17LatestMessageAttachment\x12\x19\n" +
 	"\bmedia_id\x18\x01 \x01(\tR\amediaId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12!\n" +
 	"\fcontent_type\x18\x03 \x01(\tR\vcontentType\x12\x12\n" +
 	"\x04size\x18\x04 \x01(\x03R\x04size\x12\x19\n" +
 	"\x05width\x18\x05 \x01(\x05H\x00R\x05width\x88\x01\x01\x12\x1b\n" +
-	"\x06height\x18\x06 \x01(\x05H\x01R\x06height\x88\x01\x01B\b\n" +
+	"\x06height\x18\x06 \x01(\x05H\x01R\x06height\x88\x01\x01\x12$\n" +
+	"\vduration_ms\x18\a \x01(\x03H\x02R\n" +
+	"durationMs\x88\x01\x01\x12\"\n" +
+	"\n" +
+	"audio_type\x18\b \x01(\tH\x03R\taudioType\x88\x01\x01B\b\n" +
 	"\x06_widthB\t\n" +
-	"\a_height\"\xf2\x01\n" +
+	"\a_heightB\x0e\n" +
+	"\f_duration_msB\r\n" +
+	"\v_audio_type\"\xf2\x01\n" +
 	"\x11LatestMessagePart\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1a\n" +
 	"\bposition\x18\x02 \x01(\x05R\bposition\x120\n" +
